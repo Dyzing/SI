@@ -1,5 +1,6 @@
 // gcc main.c actions.o axes.o init.o lumiere.o switch_blend.o  switch_light.o VM_init.o -lm -lGL -lGLU -lglut -o test
 
+//gcc main.c actions.c axes.o init.c lumiere.o switch_blend.o  switch_light.o VM_init.c -lm -lGL -lGLU -no-pie -lglut -o test; ./test
 
 //skybox
 #include "init.h"
@@ -19,13 +20,19 @@ GLfloat angle4 = 0;
 GLfloat angle5 = 0;
 
 GLfloat angle_triangle = 0;
-   
+GLfloat angle_aile = 0;
+
+int montee0_descente1 = 0;
+
+
+GLfloat position_x = 0;
+GLfloat position_y = 0;
+GLfloat position_z = 10;
 
 
 GLvoid Modelisation()
 {
   VM_init();      
-
 
 
   glPushMatrix();
@@ -39,10 +46,10 @@ GLvoid Modelisation()
   	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	  	//rotation
+		glTranslatef(2,2,2);
 		glRotatef(angle_triangle, 0, 1, 0);
-		angle_triangle = angle_triangle+1;
-		glTranslatef(0,0,10);
-		
+		glTranslatef(position_x,position_y,position_z);
+
 		glPushMatrix(); //corps
 		{
 			glColor3f(0.09,0.24,0.59);
@@ -118,28 +125,88 @@ GLvoid Modelisation()
 		
 		
 		glPushMatrix(); //aile droite
-		{
-			glTranslatef(0,0,1.4);
-			glRotatef(75,1,0,0);
-			glColor3f(0.09,0.24,0.34);
-			glBegin(GL_TRIANGLES);
-				glVertex3f(0.0, 2.0, 0.0);
-				glVertex3f(1.0, -1.0, 0.0);
-				glVertex3f(-1.0, -1.0, 0.0);
-			glEnd();
+		{				
+			if (montee0_descente1 == 0)
+			{
+				glRotatef(-angle_aile, 1,0,0);
+				angle_aile = angle_aile +1;
+				if (angle_aile == 30)
+				{
+					montee0_descente1 = 1;
+				}
+
+				glTranslatef(0,0,1.4);
+				glRotatef(75,1,0,0);
+				glColor3f(0.09,0.24,0.34);
+				glBegin(GL_TRIANGLES);
+					glVertex3f(0.0, 2.0, 0.0);
+					glVertex3f(1.0, -1.0, 0.0);
+					glVertex3f(-1.0, -1.0, 0.0);
+				glEnd();	
+			}
+
+			else	
+			{
+				glRotatef(-angle_aile, 1,0,0);
+				angle_aile = angle_aile -1;
+				if (angle_aile == -15)
+				{
+					montee0_descente1 = 0;
+				}
+
+				glTranslatef(0,0,1.4);
+				glRotatef(75,1,0,0);
+				glColor3f(0.09,0.24,0.34);
+				glBegin(GL_TRIANGLES);
+					glVertex3f(0.0, 2.0, 0.0);
+					glVertex3f(1.0, -1.0, 0.0);
+					glVertex3f(-1.0, -1.0, 0.0);
+				glEnd();	
+			}
+
 		}
 		glPopMatrix();
 
 		glPushMatrix(); //aile gauche
 		{
-			glTranslatef(0,0,-1.4);
-			glRotatef(-75,1,0,0);
-			glColor3f(0.09,0.24,0.34);
-			glBegin(GL_TRIANGLES);
-				glVertex3f(0.0, 2.0, 0.0);
-				glVertex3f(1.0, -1.0, 0.0);
-				glVertex3f(-1.0, -1.0, 0.0);
-			glEnd();
+
+			if (montee0_descente1 == 0)
+			{
+				glRotatef(angle_aile, 1,0,0);
+				angle_aile = angle_aile +1;
+				if (angle_aile == 30)
+				{
+					montee0_descente1 = 1;
+				}
+
+				glTranslatef(0,0,-1.4);
+				glRotatef(-75,1,0,0);
+				glColor3f(0.09,0.24,0.34);
+				glBegin(GL_TRIANGLES);
+					glVertex3f(0.0, 2.0, 0.0);
+					glVertex3f(1.0, -1.0, 0.0);
+					glVertex3f(-1.0, -1.0, 0.0);
+				glEnd();	
+			}
+
+			else	
+			{
+				glRotatef(angle_aile, 1,0,0);
+				angle_aile = angle_aile -1;
+				if (angle_aile == -15)
+				{
+					montee0_descente1 = 0;
+				}
+
+				glTranslatef(0,0,-1.4);
+				glRotatef(-75,1,0,0);
+				glColor3f(0.09,0.24,0.34);
+				glBegin(GL_TRIANGLES);
+					glVertex3f(0.0, 2.0, 0.0);
+					glVertex3f(1.0, -1.0, 0.0);
+					glVertex3f(-1.0, -1.0, 0.0);
+				glEnd();	
+			}
 		}
 		glPopMatrix();
 
@@ -148,6 +215,7 @@ GLvoid Modelisation()
 
 		glPushMatrix(); //queue
 		{
+
 			glTranslatef(-2,-0.5,0);
 			glRotatef(-90,0,1,0);
 			glRotatef(-240,1,0,0);
@@ -326,6 +394,8 @@ GLvoid Modelisation()
 	}
 	glPopMatrix();
 
+
+glFlush();
 
 glClearColor(0.53, 0.8, 0.92, 0.8);
 

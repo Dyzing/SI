@@ -15,7 +15,7 @@ int notre_init(int argc, char** argv, void (*DrawGLScene)())
 {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGBA | GLUT_DEPTH);
-	glutInitWindowSize(640, 480);
+	glutInitWindowSize(720, 480);
 	glutInitWindowPosition(150, 150);
 	glutCreateWindow("ma fenetre");
 	glutDisplayFunc(*DrawGLScene);
