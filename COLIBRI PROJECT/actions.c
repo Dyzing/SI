@@ -2,6 +2,10 @@
 
 extern GLfloat xrot;
 extern GLfloat yrot;
+extern GLfloat xcamrot;
+extern GLfloat ycamrot;
+extern GLfloat zcamrot;
+
 extern int blend;
 extern int light;
 extern GLfloat angle2;
@@ -14,9 +18,8 @@ extern GLfloat position_x;
 extern GLfloat position_y;
 extern GLfloat position_z;
 
-GLfloat position_x_temp;
-GLfloat position_y_temp;
-GLfloat position_z_temp;
+#include <math.h>
+
 
 
 
@@ -101,17 +104,31 @@ float z_vers_zero(float position_z)
     }
 }
 
-float avancer(float position_x) // Z
+float avancer_x(float position_x) // Z
 {
-  position_x = position_x + 1;
+  position_x =  position_x + cos(angle_triangle * M_PI/180);
   return position_x;
 }
 
-float reculer(float position_x) // Q
+float reculer_x(float position_x) // Q
 {
-  position_x = position_x - 1;
+  position_x = position_x -  cos(angle_triangle * M_PI/180);
   return position_x;
 }
+
+
+float avancer_z(float position_x) // Z
+{
+  position_z =  position_z - sin(angle_triangle * M_PI/180);
+  return position_z;
+}
+
+float reculer_z(float position_x) // Q
+{
+  position_z = position_z +  sin(angle_triangle * M_PI/180);
+  return position_z;
+}
+
 
 float x_set_zero(float position_x)
 {
@@ -151,7 +168,9 @@ void touche_pressee(unsigned char key, int x, int y)
 
     switch (key) {
     case ESCAPE:
-        exit(1);
+        xcamrot = 0;
+        zcamrot = -50;
+        ycamrot = 0;
         break;
 
     case ESPACE:
@@ -164,8 +183,8 @@ void touche_pressee(unsigned char key, int x, int y)
      blend =  switch_blend(blend);
       break;
 
-    case TOUCHE_MIN_L:
-    case TOUCHE_MAJ_L:
+    case TOUCHE_MIN_N:
+    case TOUCHE_MAJ_N:
       light = switch_light(light);
       break;
 
@@ -177,10 +196,12 @@ void touche_pressee(unsigned char key, int x, int y)
                 break;
 
     case TOUCHE_MAJ_Z:
-                position_x = avancer(position_x);
+                position_x = avancer_x(position_x);
+                position_z = avancer_z(position_z);
                 break;
     case TOUCHE_MIN_Z:
-                position_x = avancer(position_x);
+                position_x = avancer_x(position_x);
+                position_z = avancer_z(position_z);
                 break;
 
     case TOUCHE_MAJ_Q:
@@ -191,10 +212,12 @@ void touche_pressee(unsigned char key, int x, int y)
                 break;
 
     case TOUCHE_MAJ_S:
-                position_x = reculer(position_x);
+                position_x = reculer_x(position_x);
+                position_z = reculer_z(position_z);
                 break;
     case TOUCHE_MIN_S:
-                position_x = reculer(position_x);
+                position_x = reculer_x(position_x);
+                position_z = reculer_z(position_z);
                 break;
 
     case TOUCHE_MAJ_D:
@@ -236,6 +259,33 @@ void touche_pressee(unsigned char key, int x, int y)
                 angle_triangle =  plus_tourner(angle_triangle);
                 break;
 
+    case TOUCHE_MAJ_O:
+                zcamrot += 1;;
+                break;
+    case TOUCHE_MIN_O:
+                zcamrot += 1;;
+                break;
+
+    case TOUCHE_MAJ_K:
+                xcamrot =  tourner_gauche(xcamrot);
+                break;
+    case TOUCHE_MIN_K:
+                xcamrot =  tourner_gauche(xcamrot);
+                break;
+
+    case TOUCHE_MAJ_L:
+                zcamrot -= 1;
+                break;
+    case TOUCHE_MIN_L:
+                zcamrot -= 1;
+                break;
+
+    case TOUCHE_MAJ_M:
+                xcamrot =  tourner_droite(xcamrot);
+                break;
+    case TOUCHE_MIN_M:
+                xcamrot =  tourner_droite(xcamrot);
+                break;                                
     }
 }
 

@@ -6,8 +6,8 @@
 #define TOUCHE_MIN_B 98
 #define TOUCHE_MAJ_B 66
 
-#define TOUCHE_MIN_L 108
-#define TOUCHE_MAJ_L 76
+#define TOUCHE_MIN_N 110
+#define TOUCHE_MAJ_N 78
 
 #define ESCAPE 27
 #define ESPACE 32
@@ -38,6 +38,18 @@
 
 #define TOUCHE_MAJ_T 84
 #define TOUCHE_MIN_T 116
+
+#define TOUCHE_MAJ_O 79
+#define TOUCHE_MIN_O 111
+
+#define TOUCHE_MAJ_K 75
+#define TOUCHE_MIN_K 107
+
+#define TOUCHE_MAJ_L 76
+#define TOUCHE_MIN_L 108
+
+#define TOUCHE_MAJ_M 77
+#define TOUCHE_MIN_M 109
 
 
 #define RETURN 13
