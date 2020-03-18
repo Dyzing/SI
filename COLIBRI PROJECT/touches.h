@@ -51,6 +51,11 @@
 #define TOUCHE_MAJ_M 77
 #define TOUCHE_MIN_M 109
 
+#define TOUCHE_MAJ_I 73
+#define TOUCHE_MIN_I 105
+
+#define TOUCHE_MAJ_P 80
+#define TOUCHE_MIN_P 112
 
 #define RETURN 13
 #define DELETE 8

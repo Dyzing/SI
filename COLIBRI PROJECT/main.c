@@ -23,88 +23,110 @@ GLfloat angle4 = 0;
 GLfloat angle5 = 0;
 
 GLfloat angle_triangle = 0;
+GLfloat angle_oiseau_vertical = 0;
 GLfloat angle_aile = 0;
 
 int montee0_descente1 = 0;
 
 
 GLfloat position_x = 0;
-GLfloat position_y = 0;
+GLfloat position_y = -3;
 GLfloat position_z = 0;
+
+GLfloat position_x_beta = -7;
+GLfloat position_y_beta = 7.5;
+GLfloat position_z_beta = -17;
+
+int position_nuage = 0;
+
+GLfloat angle_oiseau_beta = -90;
+GLfloat angle_oiseau_vertical_beta = 0;
 
 
 float ambientLightDefault[] = { 0.1f, 0.1f, 0.1f, 0.1f };
 float mipuissance[] = { 0.75f, 0.75f, 0.75f, 0.75f };
 
-GLfloat position[] = {0.0, 0.0, -15.0, 1.0};
+GLfloat position[] = {0.0, 5.0, -15.0, 1.0};
+GLfloat direction[] = {-50.0,40.0, -40.0, 0.0};
+GLfloat jaune[4] = { 1.0, 0.84, 0.0, 1.0 };
 
-int lumiere_lampadaire = 1;
+
+int lumiere_lampadaire = 0;
+int lumiere_spot = 0;
+
+float couleur_ampoule = 0.3;
+float couleur_astre_y = 1;
+float couleur_astre_z = 1;
+
+float couleur_ciel_x = 0.09;
+float couleur_ciel_y = 0.09;
+float couleur_ciel_z = 0.43;
+
+
 
 
 
 GLvoid Modelisation()
 {
-  VM_init();      
+  VM_init();     
+
+  glEnable(GL_LIGHTING);
+  glEnable(GL_COLOR_MATERIAL);
+  glLightModelfv(GL_LIGHT_MODEL_AMBIENT, mipuissance);
 
 
-  glPushMatrix();
-  {
+	if(lumiere_lampadaire == 1)
+	{
+  glEnable(GL_LIGHT0);
+  glLightfv(GL_LIGHT0, GL_POSITION, position);
+  // printf("postion x : %f\n", position[0]);
+  // printf("postion y : %f\n", position[1]);
+  // printf("postion z : %f\n", position[3]);
+
+  glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);
+ // glLightfv(GL_LIGHT0, GL_DIFFUSE, mipuissance);
+  //glLightfv(GL_LIGHT0, GL_SPECULAR, mipuissance);
+  glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 2.0);
+	glShadeModel(GL_SMOOTH);
+
+	}
+	else if (lumiere_lampadaire == 0)
+	{
+		glDisable(GL_LIGHT0);
+	}
+
+
+
+
+  	glPushMatrix(); // OISEAU ACTEUR
+  	{
   		//lumiere
-  	  glEnable(GL_LIGHTING);
-	  glEnable(GL_COLOR_MATERIAL);
-	  glLightModelfv(GL_LIGHT_MODEL_AMBIENT, mipuissance);
-
-
-  	if(lumiere_lampadaire == 1)
-  	{
-	  glEnable(GL_LIGHT0);
-	  glLightfv(GL_LIGHT0, GL_POSITION, position);
-	  // printf("postion x : %f\n", position[0]);
-	  // printf("postion y : %f\n", position[1]);
-	  // printf("postion z : %f\n", position[3]);
-
-	  glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);
-	 // glLightfv(GL_LIGHT0, GL_DIFFUSE, mipuissance);
-	  //glLightfv(GL_LIGHT0, GL_SPECULAR, mipuissance);
-	  glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 2.0);
-		glShadeModel(GL_SMOOTH);
-
-  	}
-  	else if (lumiere_lampadaire == 0)
-  	{
-  		glDisable(GL_LIGHT0);
-  			  glLightfv(GL_LIGHT0, GL_POSITION, position);
-	  // printf("postion x : %f\n", position[0]);
-	  // printf("postion y : %f\n", position[1]);
-	  // printf("postion z : %f\n", position[3]);
-
-	  glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);
-	 // glLightfv(GL_LIGHT0, GL_DIFFUSE, mipuissance);
-	  //glLightfv(GL_LIGHT0, GL_SPECULAR, mipuissance);
-	  glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 2.0);
-		glShadeModel(GL_SMOOTH);
-
-  	}
 
 
 
-float dir_length = sqrt(position_x * position_x + position_y * position_y + position_z * position_z);
 
-// position_x /=dir_length;
-// position_y /= dir_length;
-// position_z /= dir_length;
+		float dir_length = sqrt(position_x * position_x + position_y * position_y + position_z * position_z);
+
+		// position_x /=dir_length;
+		// position_y /= dir_length;
+		// position_z /= dir_length;
 
 
-	  //transparence
-	glEnable(GL_BLEND); 
-  	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	  	//transparence
+		glEnable(GL_BLEND); 
+	  	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	  	//rotation
 		glTranslatef(2,2,2);
 		glTranslatef(position_x,position_y,position_z);
 
+		printf("position x : %f\n", position_x);
+		printf("angle_triangle : %f\n", angle_triangle);
+		printf("position z : %f\n", position_z);
+		printf("angle oiseau vertical : %f\n", angle_oiseau_vertical);
 
 		glRotatef(angle_triangle , 0, 1, 0);
+		glRotatef(angle_oiseau_vertical, 0, 0, 1);
 
 
 		glPushMatrix(); //corps
@@ -186,7 +208,7 @@ float dir_length = sqrt(position_x * position_x + position_y * position_y + posi
 			if (montee0_descente1 == 0)
 			{
 				glRotatef(-angle_aile, 1,0,0);
-				angle_aile = angle_aile +1;
+				angle_aile = angle_aile +2;
 				if (angle_aile == 30)
 				{
 					montee0_descente1 = 1;
@@ -205,8 +227,8 @@ float dir_length = sqrt(position_x * position_x + position_y * position_y + posi
 			else	
 			{
 				glRotatef(-angle_aile, 1,0,0);
-				angle_aile = angle_aile -1;
-				if (angle_aile == -15)
+				angle_aile = angle_aile -2;
+				if (angle_aile == -16)
 				{
 					montee0_descente1 = 0;
 				}
@@ -230,7 +252,7 @@ float dir_length = sqrt(position_x * position_x + position_y * position_y + posi
 			if (montee0_descente1 == 0)
 			{
 				glRotatef(angle_aile, 1,0,0);
-				angle_aile = angle_aile +1;
+				angle_aile = angle_aile +2;
 				if (angle_aile == 30)
 				{
 					montee0_descente1 = 1;
@@ -249,8 +271,8 @@ float dir_length = sqrt(position_x * position_x + position_y * position_y + posi
 			else	
 			{
 				glRotatef(angle_aile, 1,0,0);
-				angle_aile = angle_aile -1;
-				if (angle_aile == -15)
+				angle_aile = angle_aile -2;
+				if (angle_aile == -16)
 				{
 					montee0_descente1 = 0;
 				}
@@ -288,8 +310,8 @@ float dir_length = sqrt(position_x * position_x + position_y * position_y + posi
 
 		glPushMatrix(); //bec
 		{
-			glTranslatef(2.8,0,0);
-			glScalef(2.5,0.2,0.2);
+			glTranslatef(3.5,0,0);
+			glScalef(5.5,0.2,0.2);
 			glColor3f(0.41,0.41,0.41);
 			glBegin( GL_TRIANGLES ); 
 				glVertex3f( 0.0f, 1.f, 0.0f );
@@ -313,6 +335,231 @@ float dir_length = sqrt(position_x * position_x + position_y * position_y + posi
 	}
 	glPopMatrix();
 
+
+	glPushMatrix(); // OISEAU SECONDAIRE
+  	{
+  		//lumiere
+
+		float dir_length = sqrt(position_x * position_x + position_y * position_y + position_z * position_z);
+
+
+	  	//transparence
+		glEnable(GL_BLEND); 
+	  	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	  	//rotation
+		glTranslatef(2,2,2);
+		glTranslatef(position_x_beta,position_y_beta,position_z_beta);
+
+		glRotatef(angle_oiseau_beta , 0, 1, 0);
+		glRotatef(angle_oiseau_vertical_beta, 0, 0, 1);
+
+
+		glPushMatrix(); //corps
+		{
+			glColor3f(0.2,0.6,0.8);
+			glScalef(2,1,1);
+			glutSolidSphere(1,25,25);
+			glEnd();
+		}
+		glPopMatrix();
+		
+		
+		
+		glPushMatrix(); //tete
+		{
+			glTranslatef(2,0,0);
+			glColor3f(0.4,0.6,0.7);
+			glScalef(1,0.5,0.5);
+			glutSolidSphere(1,25,25);
+			glEnd();
+		}
+		glPopMatrix();
+		
+		
+		
+		glPushMatrix(); //oeil droite
+		{
+			glTranslatef(2.8,0.2,0.2);			  
+			glColor3f(1,1,1);
+			glScalef(0.5,1,1);
+			glutSolidSphere(0.12, 25, 25);
+			glEnd();
+
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); //pupille droite
+		{
+			glTranslatef(2.82,0.2,0.2);			  
+			glColor3f(0,0,0);
+			glScalef(1,1,0.5);
+			glutSolidSphere(0.08, 25, 25);
+			glEnd();
+
+		}
+		glPopMatrix();
+		  
+		  
+		  
+		glPushMatrix(); //oeil gauche
+		{
+			glTranslatef(2.8,0.2,-0.2);			  
+			glColor3f(1,1,1);
+			glScalef(0.5,1,1);
+			glutSolidSphere(0.12, 25, 25);
+			glEnd();
+
+		}
+		glPopMatrix();
+		
+		
+		
+		glPushMatrix(); //pupille gauche
+		{
+			glTranslatef(2.82,0.2,-0.2);			  
+			glColor3f(0,0,0);
+			glScalef(1,1,0.5);
+			glutSolidSphere(0.08, 25, 25);
+			glEnd();
+
+		}
+		glPopMatrix();
+		
+		
+		
+		glPushMatrix(); //aile droite
+		{				
+			if (montee0_descente1 == 0)
+			{
+				glRotatef(-angle_aile, 1,0,0);
+				angle_aile = angle_aile +2;
+				if (angle_aile == 30)
+				{
+					montee0_descente1 = 1;
+				}
+
+				glTranslatef(0,0,1.4);
+				glRotatef(75,1,0,0);
+				glColor3f(0.09,0.24,0.34);
+				glBegin(GL_TRIANGLES);
+					glVertex3f(0.0, 2.0, 0.0);
+					glVertex3f(1.0, -1.0, 0.0);
+					glVertex3f(-1.0, -1.0, 0.0);
+				glEnd();	
+			}
+
+			else	
+			{
+				glRotatef(-angle_aile, 1,0,0);
+				angle_aile = angle_aile -2;
+				if (angle_aile == -16)
+				{
+					montee0_descente1 = 0;
+				}
+
+				glTranslatef(0,0,1.4);
+				glRotatef(75,1,0,0);
+				glColor3f(0.09,0.24,0.34);
+				glBegin(GL_TRIANGLES);
+					glVertex3f(0.0, 2.0, 0.0);
+					glVertex3f(1.0, -1.0, 0.0);
+					glVertex3f(-1.0, -1.0, 0.0);
+				glEnd();	
+			}
+
+		}
+		glPopMatrix();
+
+		glPushMatrix(); //aile gauche
+		{
+
+			if (montee0_descente1 == 0)
+			{
+				glRotatef(angle_aile, 1,0,0);
+				angle_aile = angle_aile +2;
+				if (angle_aile == 30)
+				{
+					montee0_descente1 = 1;
+				}
+
+				glTranslatef(0,0,-1.4);
+				glRotatef(-75,1,0,0);
+				glColor3f(0.09,0.24,0.34);
+				glBegin(GL_TRIANGLES);
+					glVertex3f(0.0, 2.0, 0.0);
+					glVertex3f(1.0, -1.0, 0.0);
+					glVertex3f(-1.0, -1.0, 0.0);
+				glEnd();	
+			}
+
+			else	
+			{
+				glRotatef(angle_aile, 1,0,0);
+				angle_aile = angle_aile -2;
+				if (angle_aile == -16)
+				{
+					montee0_descente1 = 0;
+				}
+
+				glTranslatef(0,0,-1.4);
+				glRotatef(-75,1,0,0);
+				glColor3f(0.09,0.24,0.34);
+				glBegin(GL_TRIANGLES);
+					glVertex3f(0.0, 2.0, 0.0);
+					glVertex3f(1.0, -1.0, 0.0);
+					glVertex3f(-1.0, -1.0, 0.0);
+				glEnd();	
+			}
+		}
+		glPopMatrix();
+
+
+
+
+		glPushMatrix(); //queue
+		{
+
+			glTranslatef(-2,-0.5,0);
+			glRotatef(-90,0,1,0);
+			glRotatef(-240,1,0,0);
+			glRotatef(-180,0,0,1);
+			glColor3f(0.09,0.24,0.34);
+			glBegin(GL_TRIANGLES);
+				glVertex3f(0.0, 1.0, 0.0);
+				glVertex3f(1.0, -1.0, 0.0);
+				glVertex3f(-1.0, -1.0, 0.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+		glPushMatrix(); //bec
+		{
+			glTranslatef(3.5,0,0);
+			glScalef(5.5,0.2,0.2);
+			glColor3f(0.41,0.41,0.41);
+			glBegin( GL_TRIANGLES ); 
+				glVertex3f( 0.0f, 1.f, 0.0f );
+				glVertex3f( -1.0f, -1.0f, 1.0f );
+				glVertex3f( 1.0f, -1.0f, 1.0f);
+
+				glVertex3f( 0.0f, 1.0f, 0.0f);
+				glVertex3f( -1.0f, -1.0f, 1.0f);
+				glVertex3f( 0.0f, -1.0f, -1.0f);
+
+				glVertex3f( 0.0f, 1.0f, 0.0f);
+				glVertex3f( 0.0f, -1.0f, -1.0f);
+				glVertex3f( 1.0f, -1.0f, 1.0f);
+
+				glVertex3f( -1.0f, -1.0f, 1.0f);
+				glVertex3f( 0.0f, -1.0f, -1.0f);
+				glVertex3f( 1.0f, -1.0f, 1.0f);
+			glEnd();
+		}
+		glPopMatrix();
+	}
+	glPopMatrix();
 
 	glPushMatrix(); //sol
 	{
@@ -701,10 +948,9 @@ float dir_length = sqrt(position_x * position_x + position_y * position_y + posi
 		glPushMatrix(); //ampoule/lumiere
 		{
 
-
-			glTranslatef(0, 5, -15);
+			glTranslatef(0, 4.5, -15);
 			glScalef(1,1,1);
-			glColor3f(1,1,1);
+			glColor4f(couleur_ampoule,couleur_ampoule,couleur_ampoule, couleur_ampoule);
 			glutSolidCube(2.0);
 			glEnd();
 		}
@@ -722,9 +968,45 @@ float dir_length = sqrt(position_x * position_x + position_y * position_y + posi
 		glPopMatrix();
 
 	}
+
+
+	glPushMatrix(); //soleil
+	{
+		if(lumiere_spot == 1)
+		{
+			  glEnable(GL_LIGHT1);
+			 // glLightfv(GL_LIGHT1, GL_AMBIENT, jaune);
+			  glLightfv(GL_LIGHT1, GL_DIFFUSE, jaune);
+			  glLightfv(GL_LIGHT1, GL_SPECULAR, jaune);
+			  glLightfv(GL_LIGHT1, GL_POSITION, direction);
+			  // printf("postion x : %f\n", position[0]);
+			  // printf("postion y : %f\n", position[1]);
+			  // printf("postion z : %f\n", position[3]);
+
+			  glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);
+			 // glLightfv(GL_LIGHT0, GL_DIFFUSE, mipuissance);
+			  //glLightfv(GL_LIGHT0, GL_SPECULAR, mipuissance);
+			  glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, 2.0);
+				glShadeModel(GL_SMOOTH);
+
+		}
+		else
+		{
+			glDisable(GL_LIGHT1);
+		}
+
+
+		glEnable(GL_DEPTH_TEST);
+		glTranslatef(-50,40,-40);
+		glScalef(4,4,4);
+		glColor3f(1.0,couleur_astre_y, couleur_astre_z);
+		glutSolidSphere(4.0, 200, 200);
+	}
+
+
 	glPopMatrix();
 
-	glPushMatrix();
+	glPushMatrix(); //cube
 	{
 		glTranslatef(0,-10,-12);
 		glColor3f(1,1,1);
@@ -734,9 +1016,71 @@ float dir_length = sqrt(position_x * position_x + position_y * position_y + posi
 	glPopMatrix();
 
 
+	glPushMatrix(); //nuage1
+	{
+		glTranslatef(position_nuage - 300,33,-20);
+		position_nuage = position_nuage%400 + 1;
+		glScalef(10,1,5);
+		glColor4f(1,1,1,0.5);
+		glutSolidCube(5.0);
+		glEnd();
+	}
+	glPopMatrix();
+
+
+	glPushMatrix(); //nuage2
+	{
+		glTranslatef(position_nuage -260,30,-30);
+		position_nuage = position_nuage%400 + 1;
+		glScalef(10,1,5);
+		glColor4f(1,1,1, 0.5);
+		glutSolidCube(5.0);
+		glEnd();
+	}
+	glPopMatrix();
+
+
+	glPushMatrix(); //nuage3
+	{
+		glTranslatef(position_nuage  - 150 ,40,-35);
+		position_nuage = position_nuage%400 + 1;
+		glScalef(10,1,5);
+		glColor4f(1,1,1, 0.5);
+		glutSolidCube(5.0);
+		glEnd();
+	}
+	glPopMatrix();
+
+
+	glPushMatrix(); //nuage4
+	{
+		glTranslatef(position_nuage - 200,45,-25);
+		position_nuage = position_nuage%400 + 1;
+		glScalef(10,1,5);
+		glColor4f(1,1,1, 0.5);
+		glutSolidCube(5.0);
+		glEnd();
+	}
+	glPopMatrix();
+
+
+	glPushMatrix(); //nuage5
+	{
+		glTranslatef(position_nuage - 100,40,-30);
+		position_nuage = position_nuage%400 + 1;
+		glScalef(10,1,5);
+		glColor4f(1,1,1, 0.5);
+		glutSolidCube(5.0);
+		glEnd();
+	}
+	glPopMatrix();
+
+
+	glPopMatrix();
+
 glFlush();
 
-glClearColor(0.53, 0.8, 0.92, 0.8);
+glClearColor(couleur_ciel_x,couleur_ciel_y, couleur_ciel_z, 0.8);
 
 
 
