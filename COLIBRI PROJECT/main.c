@@ -33,6 +33,12 @@ GLfloat position_y = 0;
 GLfloat position_z = 0;
 
 
+float ambientLightDefault[] = { 0.1f, 0.1f, 0.1f, 0.1f };
+float mipuissance[] = { 0.75f, 0.75f, 0.75f, 0.75f };
+
+GLfloat position[] = {0.0, 0.0, -15.0, 1.0};
+
+int lumiere_lampadaire = 1;
 
 
 
@@ -44,6 +50,42 @@ GLvoid Modelisation()
   glPushMatrix();
   {
   		//lumiere
+  	  glEnable(GL_LIGHTING);
+	  glEnable(GL_COLOR_MATERIAL);
+	  glLightModelfv(GL_LIGHT_MODEL_AMBIENT, mipuissance);
+
+
+  	if(lumiere_lampadaire == 1)
+  	{
+	  glEnable(GL_LIGHT0);
+	  glLightfv(GL_LIGHT0, GL_POSITION, position);
+	  // printf("postion x : %f\n", position[0]);
+	  // printf("postion y : %f\n", position[1]);
+	  // printf("postion z : %f\n", position[3]);
+
+	  glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);
+	 // glLightfv(GL_LIGHT0, GL_DIFFUSE, mipuissance);
+	  //glLightfv(GL_LIGHT0, GL_SPECULAR, mipuissance);
+	  glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 2.0);
+		glShadeModel(GL_SMOOTH);
+
+  	}
+  	else if (lumiere_lampadaire == 0)
+  	{
+  		glDisable(GL_LIGHT0);
+  			  glLightfv(GL_LIGHT0, GL_POSITION, position);
+	  // printf("postion x : %f\n", position[0]);
+	  // printf("postion y : %f\n", position[1]);
+	  // printf("postion z : %f\n", position[3]);
+
+	  glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);
+	 // glLightfv(GL_LIGHT0, GL_DIFFUSE, mipuissance);
+	  //glLightfv(GL_LIGHT0, GL_SPECULAR, mipuissance);
+	  glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 2.0);
+		glShadeModel(GL_SMOOTH);
+
+  	}
+
 
 
 float dir_length = sqrt(position_x * position_x + position_y * position_y + position_z * position_z);
@@ -60,9 +102,6 @@ float dir_length = sqrt(position_x * position_x + position_y * position_y + posi
 	  	//rotation
 		glTranslatef(2,2,2);
 		glTranslatef(position_x,position_y,position_z);
-		printf("x : %f\n", position_x);
-		printf("z : %f\n", position_z);
-		printf("angle : %f\n", angle_triangle);
 
 
 		glRotatef(angle_triangle , 0, 1, 0);
@@ -361,57 +400,60 @@ float dir_length = sqrt(position_x * position_x + position_y * position_y + posi
 
 
 
-
-
-	glPushMatrix(); //caillou gauche 1
+	glPushMatrix(); //rocher
 	{
-		glTranslatef(-15,-16,-15);
-		glRotatef(110,0,0,1);
-		glColor3f(0.41,0.41,0.41);
-		glScalef(1,2,2);
-		glutSolidSphere(3, 10, 10);
+		glTranslatef(-10,0,-5);
+		glPushMatrix(); //caillou gauche 1
+		{
+			glTranslatef(-15,-16,-15);
+			glRotatef(110,0,0,1);
+			glColor3f(0.41,0.41,0.41);
+			glScalef(1,2,2);
+			glutSolidSphere(3, 10, 10);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); //caillou gauche 2
+		{
+			glTranslatef(-13,-16,-15);
+			glRotatef(-110,0,0,1);
+			glColor3f(0.41,0.41,0.41);
+			glScalef(1,2,2);
+			glutSolidSphere(3, 10, 10);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); //caillou gauche 3
+		{
+			glTranslatef(-14,-18,-16);
+			glRotatef(-110,0,0,1);
+			glRotatef(90,0,0,1);
+			glColor3f(0.41,0.41,0.41);
+			glScalef(1,2,3);
+			glutSolidSphere(3, 10, 10);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); //caillou gauche 4
+		{
+			glTranslatef(-14,-18,-10);
+			glRotatef(-110,0,0,1);
+			glRotatef(-90,0,1,0);
+			glColor3f(0.41,0.41,0.41);
+			glScalef(1,2,3);
+			glutSolidSphere(2, 10, 10);
+			glEnd();
+		}
+		glPopMatrix();
 		glEnd();
 	}
 	glPopMatrix();
-
-
-	glPushMatrix(); //caillou gauche 2
-	{
-		glTranslatef(-13,-16,-15);
-		glRotatef(-110,0,0,1);
-		glColor3f(0.41,0.41,0.41);
-		glScalef(1,2,2);
-		glutSolidSphere(3, 10, 10);
-		glEnd();
-	}
-	glPopMatrix();
-
-
-	glPushMatrix(); //caillou gauche 3
-	{
-		glTranslatef(-14,-18,-16);
-		glRotatef(-110,0,0,1);
-		glRotatef(90,0,0,1);
-		glColor3f(0.41,0.41,0.41);
-		glScalef(1,2,3);
-		glutSolidSphere(3, 10, 10);
-		glEnd();
-	}
-	glPopMatrix();
-
-
-	glPushMatrix(); //caillou gauche 4
-	{
-		glTranslatef(-14,-18,-10);
-		glRotatef(-110,0,0,1);
-		glRotatef(-90,0,1,0);
-		glColor3f(0.41,0.41,0.41);
-		glScalef(1,2,3);
-		glutSolidSphere(2, 10, 10);
-		glEnd();
-	}
-	glPopMatrix();
-
 
 	glPushMatrix(); //clôture droite
 	{
@@ -590,22 +632,106 @@ float dir_length = sqrt(position_x * position_x + position_y * position_y + posi
 	}
 	glPopMatrix();
 
-
-
-	glPushMatrix(); //cascade
+	glPushMatrix();	//cascade
 	{
-		  //transparence
-		glEnable(GL_BLEND); 
-	  	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glPushMatrix(); //amont
+		{
+			  //transparence
+			glEnable(GL_BLEND); 
+		  	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-		glTranslatef(0,-18,17);
-		glScalef(15,0.5,10);
-		glColor4f(0.25,0.41,0.88,0.5);
-		glutSolidCube(3.0);
-		glEnd();
+			glTranslatef(0,-18,17);
+			glScalef(20,1,15);
+			glColor4f(0.25,0.41,0.88,0.5);
+			glutSolidCube(3.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+		glPushMatrix(); //descente
+		{
+			  //transparence
+			glEnable(GL_BLEND); 
+		  	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+			glTranslatef(0,-39,40);
+			glScalef(20,15,1.5);
+			glColor4f(0.25,0.41,0.88,0.5);
+			glutSolidCube(3.0);
+			glEnd();
+		}
+		glPopMatrix();
 	}
 	glPopMatrix();
 
+
+	glPushMatrix(); //lampadaire
+	{
+		glPushMatrix(); //poteau
+		{
+			glTranslatef(-10, -17, -15);
+			glScalef(1,50,1);
+			glColor3f(0.75,0.75,0.75);
+			glutSolidCube(1.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+		glPushMatrix(); //barre horizontale
+		{
+			glTranslatef(-5.5, 8, -15);
+			glScalef(10,1,1);
+			glColor3f(0.75,0.75,0.75);
+			glutSolidCube(1.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+		glPushMatrix(); //baton vertical
+		{
+			glTranslatef(0, 7, -15);
+			glScalef(1,3,1);
+			glColor3f(0.75,0.75,0.75);
+			glutSolidCube(1.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); //ampoule/lumiere
+		{
+
+
+			glTranslatef(0, 5, -15);
+			glScalef(1,1,1);
+			glColor3f(1,1,1);
+			glutSolidCube(2.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); //lampion
+		{
+			glTranslatef(0, 5, -15);
+			glScalef(1,1,1);
+			glColor4f(0.82,0.82,0.82,0.25);
+			glutSolidCube(4.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+	}
+	glPopMatrix();
+
+	glPushMatrix();
+	{
+		glTranslatef(0,-10,-12);
+		glColor3f(1,1,1);
+		glutSolidCube(5.0);
+		glEnd();
+	}
+	glPopMatrix();
 
 
 glFlush();

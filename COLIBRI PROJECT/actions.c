@@ -18,6 +18,8 @@ extern GLfloat position_x;
 extern GLfloat position_y;
 extern GLfloat position_z;
 
+extern int lumiere_lampadaire;
+
 #include <math.h>
 
 
@@ -162,6 +164,8 @@ float tourner_droite(float angle) // D
 }
 
 
+
+
 void touche_pressee(unsigned char key, int x, int y)
 {
     usleep(100);
@@ -184,8 +188,11 @@ void touche_pressee(unsigned char key, int x, int y)
       break;
 
     case TOUCHE_MIN_N:
+                //light = switch_light(light);
+                lumiere_lampadaire = 1;
     case TOUCHE_MAJ_N:
-      light = switch_light(light);
+                // light = switch_light(light);
+                lumiere_lampadaire = 0;
       break;
 
     case TOUCHE_MAJ_A:
