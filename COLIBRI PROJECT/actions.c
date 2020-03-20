@@ -19,6 +19,12 @@ extern GLfloat position_x;
 extern GLfloat position_y;
 extern GLfloat position_z;
 
+extern GLfloat angle_tete_principal;
+extern int montee0_descente1_tete_principal;
+
+extern GLfloat angle_queue_principale;
+extern int montee0_descente1_queue_principale;
+
 extern int lumiere_lampadaire;
 extern int lumiere_spot;
 extern float couleur_ampoule;
@@ -245,6 +251,32 @@ float descendre(float angle) // D
 }
 
 
+
+float avancer_x_cam(float position_alpha) // Z
+{
+  position_alpha =  position_alpha + cos(yrot * M_PI/180);
+  return position_alpha;
+}
+
+float reculer_x_cam(float position_alpha) // Q
+{
+  position_alpha = position_alpha -  cos(yrot * M_PI/180);
+  return position_alpha;
+}
+
+
+float avancer_z_cam(float position_alpha) // Z
+{
+  position_alpha =  position_alpha - sin(yrot * M_PI/180);
+  return position_alpha;
+}
+
+float reculer_z_cam(float position_alpha) // Q
+{
+  position_alpha = position_alpha +  sin(yrot * M_PI/180);
+  return position_alpha;
+}
+
 void touche_pressee(unsigned char key, int x, int y)
 {
     usleep(100);
@@ -311,13 +343,35 @@ void touche_pressee(unsigned char key, int x, int y)
                 break;
 
     case TOUCHE_MAJ_Z:
+            if(((position_x -1 > -30)&&(position_z + 1 < 30)) && ((position_x + 1 < 30)&&(position_z + 1 < 30)) && ((position_x + 1 < 30)&&(position_z -1 > -30)) && ((position_x - 1 > 30)&&(position_z - 1 > 30)))
+             {
                 position_x = avancer_x(position_x);
                 position_z = avancer_z(position_z);
+             }   
                 break;
     case TOUCHE_MIN_Z:
+            if((position_x - avancer_x(position_x) > -30)&&(position_z + avancer_z(position_z) < 30))      
+            {
                 position_x = avancer_x(position_x);
                 position_z = avancer_z(position_z);
-                break;
+            }   
+            // else if(((position_x + avancer_x(position_x) < 30)&&(position_z + avancer_z(position_z) < 30))
+            // {
+            //     position_x = avancer_x(position_x);
+            //     position_z = avancer_z(position_z);
+            // }
+            // else if((position_x + 1 < 30)&&(position_z -1 > -30))
+            // {
+            //     position_x = avancer_x(position_x);
+            //     position_z = avancer_z(position_z);
+            // }
+            // else if((position_x - 1 > 30)&&(position_z - 1 > 30))
+            // {
+            //     position_x = avancer_x(position_x);
+            //     position_z = avancer_z(position_z);
+            // }
+
+            break;
 
     case TOUCHE_MAJ_Q:
                 angle_triangle = tourner_gauche(angle_triangle);
@@ -327,12 +381,18 @@ void touche_pressee(unsigned char key, int x, int y)
                 break;
 
     case TOUCHE_MAJ_S:
+            if(((position_x -1 > -30)&&(position_z + 1 < 30)) && ((position_x + 1 < 30)&&(position_z + 1 < 30)) && ((position_x + 1 < 30)&&(position_z -1 > -30)) && ((position_x - 1 > 30)&&(position_z - 1 > 30)))
+             {
                 position_x = reculer_x(position_x);
-                position_z = reculer_z(position_z);
+                position_z = reculer_x(position_z);
+             }   
                 break;
     case TOUCHE_MIN_S:
+            if(((position_x -1 > -30)&&(position_z + 1 < 30)) && ((position_x + 1 < 30)&&(position_z + 1 < 30)) && ((position_x + 1 < 30)&&(position_z -1 > -30)) && ((position_x - 1 > 30)&&(position_z - 1 > 30)))
+             {
                 position_x = reculer_x(position_x);
-                position_z = reculer_z(position_z);
+                position_z = reculer_x(position_z);
+             }   
                 break;
 
     case TOUCHE_MAJ_D:
@@ -350,10 +410,24 @@ void touche_pressee(unsigned char key, int x, int y)
                 break;
 
     case TOUCHE_MAJ_R:
-                angle5 = moins_angle(angle5);
+                if(montee0_descente1_tete_principal == 1)
+                {
+                  angle_tete_principal += 1;
+                  if (angle_tete_principal == 20)
+                  {
+                    montee0_descente1_tete_principal = 0;
+                  }
+                }
                 break;
     case TOUCHE_MIN_R:
-                angle5 = plus_angle(angle5);
+                if(montee0_descente1_tete_principal == 0)
+                {
+                  angle_tete_principal -= 1;
+                  if (angle_tete_principal == -15)
+                  {
+                    montee0_descente1_tete_principal = 1;
+                  }
+                }         
                 break;
 
     case TOUCHE_MAJ_C:
@@ -379,38 +453,56 @@ void touche_pressee(unsigned char key, int x, int y)
                 break;
 
     case TOUCHE_MAJ_T:
-                angle_triangle =  plus_tourner(angle_triangle);
+                if(montee0_descente1_queue_principale == 1)
+                {
+                  angle_queue_principale += 1;
+                  if (angle_queue_principale== 20)
+                  {
+                    montee0_descente1_queue_principale = 0;
+                  }
+                }
                 break;
     case TOUCHE_MIN_T:
-                angle_triangle =  plus_tourner(angle_triangle);
+                if(montee0_descente1_queue_principale == 0)
+                {
+                  angle_queue_principale -= 1;
+                  if (angle_queue_principale == -15)
+                  {
+                    montee0_descente1_queue_principale = 1;
+                  }
+                }         
                 break;
 
     case TOUCHE_MAJ_O:
-                zcamrot += 1;;
+                zcamrot = avancer_x_cam(zcamrot);
+                xcamrot = avancer_z_cam(xcamrot);
                 break;
     case TOUCHE_MIN_O:
-                zcamrot += 1;;
+                zcamrot = avancer_x_cam(zcamrot);
+                xcamrot = avancer_z_cam(xcamrot);       
                 break;
 
     case TOUCHE_MAJ_K:
-                xcamrot =  tourner_gauche(xcamrot);
+                yrot =  tourner_gauche(yrot);
                 break;
     case TOUCHE_MIN_K:
-                xcamrot =  tourner_gauche(xcamrot);
+                yrot =  tourner_gauche(yrot);
                 break;
 
     case TOUCHE_MAJ_L:
-                zcamrot -= 1;
+                zcamrot = reculer_x_cam(zcamrot);
+                xcamrot = reculer_z_cam(xcamrot);
                 break;
     case TOUCHE_MIN_L:
-                zcamrot -= 1;
+                zcamrot = reculer_x_cam(zcamrot);
+                xcamrot = reculer_z_cam(xcamrot);
                 break;
 
     case TOUCHE_MAJ_M:
-                xcamrot =  tourner_droite(xcamrot);
+                yrot =  tourner_droite(yrot);
                 break;
     case TOUCHE_MIN_M:
-                xcamrot =  tourner_droite(xcamrot);
+                yrot =  tourner_droite(yrot);
                 break; 
 
 
