@@ -81,7 +81,7 @@ float couleur_ciel_x = 0.09;
 float couleur_ciel_y = 0.09;
 float couleur_ciel_z = 0.43;
 
-int position_nuage = 0;
+int position_nuage = 0.5;
 
 float augmentation_position_y__oiseau_secondaire = 0.5;
 
@@ -1304,7 +1304,7 @@ GLvoid Modelisation()
 	glPushMatrix(); //nuage2
 	{
 		glTranslatef(position_nuage -260,30,-30);
-		position_nuage = position_nuage%400 + 1;
+		position_nuage = position_nuage%400 + 0.5;
 		glScalef(10,1,5);
 		glColor4f(1,1,1, 0.5);
 		glutSolidCube(5.0);
@@ -1316,7 +1316,7 @@ GLvoid Modelisation()
 	glPushMatrix(); //nuage3
 	{
 		glTranslatef(position_nuage  - 150 ,40,-35);
-		position_nuage = position_nuage%400 + 1;
+		position_nuage = position_nuage%400 + 0.5;
 		glScalef(10,1,5);
 		glColor4f(1,1,1, 0.5);
 		glutSolidCube(5.0);
@@ -1328,7 +1328,7 @@ GLvoid Modelisation()
 	glPushMatrix(); //nuage4
 	{
 		glTranslatef(position_nuage - 200,45,-25);
-		position_nuage = position_nuage%400 + 1;
+		position_nuage = position_nuage%400 + 0.5;
 		glScalef(10,1,5);
 		glColor4f(1,1,1, 0.5);
 		glutSolidCube(5.0);
@@ -1340,7 +1340,7 @@ GLvoid Modelisation()
 	glPushMatrix(); //nuage5
 	{
 		glTranslatef(position_nuage - 100,40,-30);
-		position_nuage = position_nuage%400 + 1;
+		position_nuage = position_nuage%400 + 0.5;
 		glScalef(10,1,5);
 		glColor4f(1,1,1, 0.5);
 		glutSolidCube(5.0);
