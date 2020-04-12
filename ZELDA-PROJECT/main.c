@@ -99,6 +99,183 @@ GLfloat position_z_rocher_droite = -220.0;
 
 
 int aleatoire = 1;
+int aleatoire_arbre = 1;
+
+void creer_sakura(int x, int y, int z)
+{
+		glPushMatrix(); //arbre sakura glColor3f(1,0.71,0.75);
+	{
+		glPushMatrix();
+		{
+			glTranslatef(x,y,z);
+			glScalef(5,20,5);
+			glColor3f(0.24,0.08,0.03);
+			glBegin( GL_TRIANGLES ); 
+				glVertex3f( 0.0f, 1.f, 0.0f );
+				glVertex3f( -1.0f, -1.0f, 1.0f );
+				glVertex3f( 1.0f, -1.0f, 1.0f);
+
+				glVertex3f( 0.0f, 1.0f, 0.0f);
+				glVertex3f( -1.0f, -1.0f, 1.0f);
+				glVertex3f( 0.0f, -1.0f, -1.0f);
+
+				glVertex3f( 0.0f, 1.0f, 0.0f);
+				glVertex3f( 0.0f, -1.0f, -1.0f);
+				glVertex3f( 1.0f, -1.0f, 1.0f);
+
+				glVertex3f( -1.0f, -1.0f, 1.0f);
+				glVertex3f( 0.0f, -1.0f, -1.0f);
+				glVertex3f( 1.0f, -1.0f, 1.0f);
+			glEnd();	
+		}
+		glPopMatrix();
+
+		glPushMatrix();
+		{
+			glTranslatef(x,y+15,z);
+			glScalef(3,3,3);
+			glColor3f(1,0.71,0.75);
+			glutSolidSphere(5, 8,8);
+		}
+		glPopMatrix();
+
+	}
+	glPopMatrix();
+}
+
+void creer_arbre_lambda(int x, int y, int z)
+{
+		glPushMatrix(); //arbre lambda
+	{
+			glPushMatrix();
+			{
+				glTranslatef(x,y,z);
+				glScalef(5,20,5);
+				glColor3f(0.74,0.38,0.18);
+				glBegin( GL_TRIANGLES ); 
+					glVertex3f( 0.0f, 1.f, 0.0f );
+					glVertex3f( -1.0f, -1.0f, 1.0f );
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+
+					glVertex3f( 0.0f, 1.0f, 0.0f);
+					glVertex3f( -1.0f, -1.0f, 1.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+
+					glVertex3f( 0.0f, 1.0f, 0.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+
+					glVertex3f( -1.0f, -1.0f, 1.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+				glEnd();	
+			}
+			glPopMatrix();
+
+			glPushMatrix();
+			{
+				glTranslatef(x,y+15,z);
+				glScalef(3,3,3);
+				glColor3f(0.18,0.54,0.34);
+				glutSolidSphere(5, 8,8);
+			}
+			glPopMatrix();
+
+	}
+	glPopMatrix();
+
+}
+
+
+void creer_sapin(int x, int y, int z)
+{
+		glPushMatrix(); //arbre sapin
+	{
+		glPushMatrix();
+		{
+			glTranslatef(x,y,z);
+			glScalef(5,20,5);
+			glColor3f(0.34,0.16,0.06);
+			glBegin( GL_TRIANGLES ); 
+				glVertex3f( 0.0f, 1.f, 0.0f );
+				glVertex3f( -1.0f, -1.0f, 1.0f );
+				glVertex3f( 1.0f, -1.0f, 1.0f);
+
+				glVertex3f( 0.0f, 1.0f, 0.0f);
+				glVertex3f( -1.0f, -1.0f, 1.0f);
+				glVertex3f( 0.0f, -1.0f, -1.0f);
+
+				glVertex3f( 0.0f, 1.0f, 0.0f);
+				glVertex3f( 0.0f, -1.0f, -1.0f);
+				glVertex3f( 1.0f, -1.0f, 1.0f);
+
+				glVertex3f( -1.0f, -1.0f, 1.0f);
+				glVertex3f( 0.0f, -1.0f, -1.0f);
+				glVertex3f( 1.0f, -1.0f, 1.0f);
+			glEnd();	
+		}
+		glPopMatrix();
+
+		glPushMatrix();
+		{
+			glTranslatef(x,y+15,z);
+			glScalef(9,20,9);
+			glColor3f(0,0.39,0);
+			glBegin( GL_TRIANGLES ); 
+				glVertex3f( 0.0f, 1.f, 0.0f );
+				glVertex3f( -1.0f, -1.0f, 1.0f );
+				glVertex3f( 1.0f, -1.0f, 1.0f);
+
+				glVertex3f( 0.0f, 1.0f, 0.0f);
+				glVertex3f( -1.0f, -1.0f, 1.0f);
+				glVertex3f( 0.0f, -1.0f, -1.0f);
+
+				glVertex3f( 0.0f, 1.0f, 0.0f);
+				glVertex3f( 0.0f, -1.0f, -1.0f);
+				glVertex3f( 1.0f, -1.0f, 1.0f);
+
+				glVertex3f( -1.0f, -1.0f, 1.0f);
+				glVertex3f( 0.0f, -1.0f, -1.0f);
+				glVertex3f( 1.0f, -1.0f, 1.0f);
+			glEnd();	
+		}
+		glPopMatrix();
+
+	}
+	glPopMatrix();
+}
+
+//srand(time(NULL));
+
+int i_arbre = -1;
+int compteur_arbre_x;
+int compteur_arbre_z;
+
+void arbre_partout()
+{
+	int ligne = 0;
+	for(compteur_arbre_x = 0; compteur_arbre_x < 5; compteur_arbre_x++)
+	{
+		int espace = 40;
+		int i = 1;
+		for(compteur_arbre_z = 0; compteur_arbre_z < 5; compteur_arbre_z++)
+		{
+			creer_sakura(150*i + espace*i, 0, -100 + espace + ligne);
+			creer_arbre_lambda(150*i + espace*i, 0, 50 + espace + ligne);
+			creer_sapin(0*i + espace*i, 0, -500 + espace + ligne);
+			creer_sakura(-40*i + espace*i, 0, -400 + espace + ligne);
+			creer_arbre_lambda(180*i + espace*i, 0, -250 + espace + ligne);
+			creer_sapin(280*i + espace*i, 0, -335 + espace + ligne);
+			creer_sakura(253*i + espace*i, 0, 180 + espace + ligne);
+			creer_sapin(115*i + espace*i, 0, 190 + espace + ligne);
+
+			i = -i;
+			espace += 40;
+		}
+		ligne += 50;
+	}
+
+}
 
 
 GLvoid Modelisation()
@@ -1189,7 +1366,7 @@ GLvoid Modelisation()
 	}
 
 
-	glPushMatrix(); //soleil
+	glPushMatrix(); //astres
 	{
 		if(lumiere_spot == 1)
 		{
@@ -1216,17 +1393,13 @@ GLvoid Modelisation()
 	}
 	glPopMatrix();
 
-	glPushMatrix();
+	glPushMatrix(); // Les nuages
 	{
 		int compteur;
    		srand(time(NULL));
 
 		for(compteur = 0; compteur < 10; compteur++)
 		{
-				printf("position nuage  %i\n", position_nuage);
-				printf("aleatoire  %i\n", aleatoire);
-
-
 			if(position_nuage >= 1999)
 			{
 				aleatoire = (rand() % 2) +1;
@@ -1339,7 +1512,6 @@ GLvoid Modelisation()
 					glEnd();
 				}
 				glPopMatrix();
-								printf("compteur  %i\n", compteur);
 
 		
 				glPushMatrix(); //nuage4
@@ -3137,7 +3309,7 @@ GLvoid Modelisation()
 	
 		glPushMatrix(); //colline 3
 		{
-			glTranslatef(-500,-50, 375);
+			glTranslatef(-650,-50, 375);
 			glColor3f(0.13,0.54,0.13);
 			glScalef(25,30,15);
 			glutSolidSphere(10,8,8);
@@ -3235,8 +3407,153 @@ GLvoid Modelisation()
 		glPopMatrix();
 
 
+	// glPushMatrix(); //arbre sakura glColor3f(1,0.71,0.75);
+	// {
+	// 	glPushMatrix();
+	// 	{
+	// 		glTranslatef(0,0,0);
+	// 		glScalef(5,20,5);
+	// 		glColor3f(0.24,0.08,0.03);
+	// 		glBegin( GL_TRIANGLES ); 
+	// 			glVertex3f( 0.0f, 1.f, 0.0f );
+	// 			glVertex3f( -1.0f, -1.0f, 1.0f );
+	// 			glVertex3f( 1.0f, -1.0f, 1.0f);
 
+	// 			glVertex3f( 0.0f, 1.0f, 0.0f);
+	// 			glVertex3f( -1.0f, -1.0f, 1.0f);
+	// 			glVertex3f( 0.0f, -1.0f, -1.0f);
+
+	// 			glVertex3f( 0.0f, 1.0f, 0.0f);
+	// 			glVertex3f( 0.0f, -1.0f, -1.0f);
+	// 			glVertex3f( 1.0f, -1.0f, 1.0f);
+
+	// 			glVertex3f( -1.0f, -1.0f, 1.0f);
+	// 			glVertex3f( 0.0f, -1.0f, -1.0f);
+	// 			glVertex3f( 1.0f, -1.0f, 1.0f);
+	// 		glEnd();	
+	// 	}
+	// 	glPopMatrix();
+
+	// 	glPushMatrix();
+	// 	{
+	// 		glTranslatef(0,15,0);
+	// 		glScalef(3,3,3);
+	// 		glColor3f(1,0.71,0.75);
+	// 		glutSolidSphere(5, 8,8);
+	// 	}
+	// 	glPopMatrix();
+
+	// }
+	// glPopMatrix();
+	//creer_sakura(0,0,-20);
+
+
+
+	// glPushMatrix(); //arbre lambda
+	// {
+	// 		glPushMatrix();
+	// 		{
+	// 			glTranslatef(20,0,20);
+	// 			glScalef(5,20,5);
+	// 			glColor3f(0.74,0.38,0.18);
+	// 			glBegin( GL_TRIANGLES ); 
+	// 				glVertex3f( 0.0f, 1.f, 0.0f );
+	// 				glVertex3f( -1.0f, -1.0f, 1.0f );
+	// 				glVertex3f( 1.0f, -1.0f, 1.0f);
+
+	// 				glVertex3f( 0.0f, 1.0f, 0.0f);
+	// 				glVertex3f( -1.0f, -1.0f, 1.0f);
+	// 				glVertex3f( 0.0f, -1.0f, -1.0f);
+
+	// 				glVertex3f( 0.0f, 1.0f, 0.0f);
+	// 				glVertex3f( 0.0f, -1.0f, -1.0f);
+	// 				glVertex3f( 1.0f, -1.0f, 1.0f);
+
+	// 				glVertex3f( -1.0f, -1.0f, 1.0f);
+	// 				glVertex3f( 0.0f, -1.0f, -1.0f);
+	// 				glVertex3f( 1.0f, -1.0f, 1.0f);
+	// 			glEnd();	
+	// 		}
+	// 		glPopMatrix();
+
+	// 		glPushMatrix();
+	// 		{
+	// 			glTranslatef(20,15,20);
+	// 			glScalef(3,3,3);
+	// 			glColor3f(0.18,0.54,0.34);
+	// 			glutSolidSphere(5, 8,8);
+	// 		}
+	// 		glPopMatrix();
+
+	// }
+	// glPopMatrix();
+	//creer_arbre_lambda(20,0,20);
+
+	// glPushMatrix(); //arbre sapin
+	// {
+	// 	glPushMatrix();
+	// 	{
+	// 		glTranslatef(-20,0,20);
+	// 		glScalef(5,20,5);
+	// 		glColor3f(0.34,0.16,0.06);
+	// 		glBegin( GL_TRIANGLES ); 
+	// 			glVertex3f( 0.0f, 1.f, 0.0f );
+	// 			glVertex3f( -1.0f, -1.0f, 1.0f );
+	// 			glVertex3f( 1.0f, -1.0f, 1.0f);
+
+	// 			glVertex3f( 0.0f, 1.0f, 0.0f);
+	// 			glVertex3f( -1.0f, -1.0f, 1.0f);
+	// 			glVertex3f( 0.0f, -1.0f, -1.0f);
+
+	// 			glVertex3f( 0.0f, 1.0f, 0.0f);
+	// 			glVertex3f( 0.0f, -1.0f, -1.0f);
+	// 			glVertex3f( 1.0f, -1.0f, 1.0f);
+
+	// 			glVertex3f( -1.0f, -1.0f, 1.0f);
+	// 			glVertex3f( 0.0f, -1.0f, -1.0f);
+	// 			glVertex3f( 1.0f, -1.0f, 1.0f);
+	// 		glEnd();	
+	// 	}
+	// 	glPopMatrix();
+
+	// 	glPushMatrix();
+	// 	{
+	// 		glTranslatef(-20,15,20);
+	// 		glScalef(9,20,9);
+	// 		glColor3f(0,0.39,0);
+	// 		glBegin( GL_TRIANGLES ); 
+	// 			glVertex3f( 0.0f, 1.f, 0.0f );
+	// 			glVertex3f( -1.0f, -1.0f, 1.0f );
+	// 			glVertex3f( 1.0f, -1.0f, 1.0f);
+
+	// 			glVertex3f( 0.0f, 1.0f, 0.0f);
+	// 			glVertex3f( -1.0f, -1.0f, 1.0f);
+	// 			glVertex3f( 0.0f, -1.0f, -1.0f);
+
+	// 			glVertex3f( 0.0f, 1.0f, 0.0f);
+	// 			glVertex3f( 0.0f, -1.0f, -1.0f);
+	// 			glVertex3f( 1.0f, -1.0f, 1.0f);
+
+	// 			glVertex3f( -1.0f, -1.0f, 1.0f);
+	// 			glVertex3f( 0.0f, -1.0f, -1.0f);
+	// 			glVertex3f( 1.0f, -1.0f, 1.0f);
+	// 		glEnd();	
+	// 	}
+	// 	glPopMatrix();
+
+	// }
+	// glPopMatrix();
+	//creer_sapin(-20,0,20);
+
+	glPushMatrix();
+	{
+		arbre_partout();
+	}
 	glPopMatrix();
+
+
+
+glPopMatrix();
 
 glFlush();
 
