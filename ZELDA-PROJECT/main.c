@@ -3407,149 +3407,98 @@ GLvoid Modelisation()
 		glPopMatrix();
 
 
-	// glPushMatrix(); //arbre sakura glColor3f(1,0.71,0.75);
-	// {
-	// 	glPushMatrix();
-	// 	{
-	// 		glTranslatef(0,0,0);
-	// 		glScalef(5,20,5);
-	// 		glColor3f(0.24,0.08,0.03);
-	// 		glBegin( GL_TRIANGLES ); 
-	// 			glVertex3f( 0.0f, 1.f, 0.0f );
-	// 			glVertex3f( -1.0f, -1.0f, 1.0f );
-	// 			glVertex3f( 1.0f, -1.0f, 1.0f);
-
-	// 			glVertex3f( 0.0f, 1.0f, 0.0f);
-	// 			glVertex3f( -1.0f, -1.0f, 1.0f);
-	// 			glVertex3f( 0.0f, -1.0f, -1.0f);
-
-	// 			glVertex3f( 0.0f, 1.0f, 0.0f);
-	// 			glVertex3f( 0.0f, -1.0f, -1.0f);
-	// 			glVertex3f( 1.0f, -1.0f, 1.0f);
-
-	// 			glVertex3f( -1.0f, -1.0f, 1.0f);
-	// 			glVertex3f( 0.0f, -1.0f, -1.0f);
-	// 			glVertex3f( 1.0f, -1.0f, 1.0f);
-	// 		glEnd();	
-	// 	}
-	// 	glPopMatrix();
-
-	// 	glPushMatrix();
-	// 	{
-	// 		glTranslatef(0,15,0);
-	// 		glScalef(3,3,3);
-	// 		glColor3f(1,0.71,0.75);
-	// 		glutSolidSphere(5, 8,8);
-	// 	}
-	// 	glPopMatrix();
-
-	// }
-	// glPopMatrix();
-	//creer_sakura(0,0,-20);
-
-
-
-	// glPushMatrix(); //arbre lambda
-	// {
-	// 		glPushMatrix();
-	// 		{
-	// 			glTranslatef(20,0,20);
-	// 			glScalef(5,20,5);
-	// 			glColor3f(0.74,0.38,0.18);
-	// 			glBegin( GL_TRIANGLES ); 
-	// 				glVertex3f( 0.0f, 1.f, 0.0f );
-	// 				glVertex3f( -1.0f, -1.0f, 1.0f );
-	// 				glVertex3f( 1.0f, -1.0f, 1.0f);
-
-	// 				glVertex3f( 0.0f, 1.0f, 0.0f);
-	// 				glVertex3f( -1.0f, -1.0f, 1.0f);
-	// 				glVertex3f( 0.0f, -1.0f, -1.0f);
-
-	// 				glVertex3f( 0.0f, 1.0f, 0.0f);
-	// 				glVertex3f( 0.0f, -1.0f, -1.0f);
-	// 				glVertex3f( 1.0f, -1.0f, 1.0f);
-
-	// 				glVertex3f( -1.0f, -1.0f, 1.0f);
-	// 				glVertex3f( 0.0f, -1.0f, -1.0f);
-	// 				glVertex3f( 1.0f, -1.0f, 1.0f);
-	// 			glEnd();	
-	// 		}
-	// 		glPopMatrix();
-
-	// 		glPushMatrix();
-	// 		{
-	// 			glTranslatef(20,15,20);
-	// 			glScalef(3,3,3);
-	// 			glColor3f(0.18,0.54,0.34);
-	// 			glutSolidSphere(5, 8,8);
-	// 		}
-	// 		glPopMatrix();
-
-	// }
-	// glPopMatrix();
-	//creer_arbre_lambda(20,0,20);
-
-	// glPushMatrix(); //arbre sapin
-	// {
-	// 	glPushMatrix();
-	// 	{
-	// 		glTranslatef(-20,0,20);
-	// 		glScalef(5,20,5);
-	// 		glColor3f(0.34,0.16,0.06);
-	// 		glBegin( GL_TRIANGLES ); 
-	// 			glVertex3f( 0.0f, 1.f, 0.0f );
-	// 			glVertex3f( -1.0f, -1.0f, 1.0f );
-	// 			glVertex3f( 1.0f, -1.0f, 1.0f);
-
-	// 			glVertex3f( 0.0f, 1.0f, 0.0f);
-	// 			glVertex3f( -1.0f, -1.0f, 1.0f);
-	// 			glVertex3f( 0.0f, -1.0f, -1.0f);
-
-	// 			glVertex3f( 0.0f, 1.0f, 0.0f);
-	// 			glVertex3f( 0.0f, -1.0f, -1.0f);
-	// 			glVertex3f( 1.0f, -1.0f, 1.0f);
-
-	// 			glVertex3f( -1.0f, -1.0f, 1.0f);
-	// 			glVertex3f( 0.0f, -1.0f, -1.0f);
-	// 			glVertex3f( 1.0f, -1.0f, 1.0f);
-	// 		glEnd();	
-	// 	}
-	// 	glPopMatrix();
-
-	// 	glPushMatrix();
-	// 	{
-	// 		glTranslatef(-20,15,20);
-	// 		glScalef(9,20,9);
-	// 		glColor3f(0,0.39,0);
-	// 		glBegin( GL_TRIANGLES ); 
-	// 			glVertex3f( 0.0f, 1.f, 0.0f );
-	// 			glVertex3f( -1.0f, -1.0f, 1.0f );
-	// 			glVertex3f( 1.0f, -1.0f, 1.0f);
-
-	// 			glVertex3f( 0.0f, 1.0f, 0.0f);
-	// 			glVertex3f( -1.0f, -1.0f, 1.0f);
-	// 			glVertex3f( 0.0f, -1.0f, -1.0f);
-
-	// 			glVertex3f( 0.0f, 1.0f, 0.0f);
-	// 			glVertex3f( 0.0f, -1.0f, -1.0f);
-	// 			glVertex3f( 1.0f, -1.0f, 1.0f);
-
-	// 			glVertex3f( -1.0f, -1.0f, 1.0f);
-	// 			glVertex3f( 0.0f, -1.0f, -1.0f);
-	// 			glVertex3f( 1.0f, -1.0f, 1.0f);
-	// 		glEnd();	
-	// 	}
-	// 	glPopMatrix();
-
-	// }
-	// glPopMatrix();
-	//creer_sapin(-20,0,20);
-
 	glPushMatrix();
 	{
 		arbre_partout();
 	}
 	glPopMatrix();
+
+
+
+glPushMatrix(); //LINK
+{
+	glPushMatrix(); //tete
+	{
+		glTranslatef(0,5,10);
+		glScalef(1.3,1.2,1);
+		glColor3f(0.94,0.90,0.649);
+		glutSolidSphere(4, 20, 20);
+
+		glPushMatrix(); //oeil gauche
+		{
+			glTranslatef(-1,1,3.7);
+	
+
+			glPushMatrix(); //pupille gauche
+			{
+				glTranslatef(0,0,0.2);
+				glScalef(1,1,0.2);
+				glColor3f(0,0,0);
+				glutSolidSphere(0.45, 20, 20);		
+			}
+			glPopMatrix();
+
+
+			glScalef(2,1,0.5);
+			glColor3f(1,1,1);
+			glutSolidSphere(0.5, 20, 20);	
+		}
+		glPopMatrix();
+
+		glPushMatrix(); //oeil droit
+		{
+			glTranslatef(1,1,3.7);
+
+
+			glPushMatrix(); //pupille droit
+			{
+				glTranslatef(0,0,0.2);
+				glScalef(1,1,0.2);
+				glColor3f(0,0,0);
+				glutSolidSphere(0.45, 20, 20);		
+			}
+			glPopMatrix();
+
+			glScalef(2,1,0.5);
+			glColor3f(1,1,1);
+			glutSolidSphere(0.5, 20, 20);	
+
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); // nez
+		{
+			glTranslatef(0,0,3.7);
+			glScalef(0.3,0.5,0.5);
+			glColor3f(0,0,0);
+			glBegin( GL_TRIANGLES ); 
+				// glVertex3f( 0.0f, 1.f, 0.0f );
+				// glVertex3f( -1.0f, -1.0f, 1.0f );
+				// glVertex3f( 1.0f, -1.0f, 1.0f);
+
+
+				// glVertex3f( 0.0f, 1.0f, 0.0f);
+				// glVertex3f( -1.0f, -1.0f, 1.0f);
+				// glVertex3f( 0.0f, -1.0f, -1.0f);
+
+				glVertex3f( 0.0f, 1.0f, 0.0f);
+				glVertex3f( 0.0f, -1.0f, -1.0f);
+				glVertex3f( 1.0f, -1.0f, 1.0f);
+
+				glVertex3f( -1.0f, -1.0f, 1.0f);
+				glVertex3f( 0.0f, -1.0f, -1.0f);
+				glVertex3f( 1.0f, -1.0f, 1.0f);
+			glEnd();
+		}
+		glPopMatrix();
+
+	}
+	glPopMatrix();
+
+}
+glPopMatrix();
+
 
 
 
