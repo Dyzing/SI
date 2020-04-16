@@ -1,0 +1,10 @@
+idées pour mon porjet :
+
+- chaque maison est un mini-jeu :
+	- jeu de boule à couleur avec lanceur
+	- boules qui tombent à esquiver
+	- jeu de voitures telecommandées
+	- super simon
+	- jeu d'esquive dans la mer
+	- jeu du dinosaure sans wifi
+	- 
