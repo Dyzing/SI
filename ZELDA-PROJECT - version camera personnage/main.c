@@ -88,14 +88,14 @@ float augmentation_position_y__oiseau_secondaire = 0.5;
 
 GLfloat angle_rocher = 1.0;
 
-GLfloat position_y_rocher = 89.0;
-GLfloat position_z_rocher = -130.0;
+GLfloat position_y_rocher = 1200;
+GLfloat position_z_rocher = 1232;
 
-GLfloat position_y_rocher_gauche = 149.0;
-GLfloat position_z_rocher_gauche = -190.0;
+GLfloat position_y_rocher_gauche = 1300;
+GLfloat position_z_rocher_gauche = 1332;
 
-GLfloat position_y_rocher_droite = 179.0;
-GLfloat position_z_rocher_droite = -220.0;
+GLfloat position_y_rocher_droite = 1250;
+GLfloat position_z_rocher_droite = 1282;
 
 
 int aleatoire = 1;
@@ -1552,15 +1552,15 @@ GLvoid Modelisation()
 
 	glPushMatrix(); //rocher mileux
 	{
-		glTranslatef(0,position_y_rocher,position_z_rocher);
+		glTranslatef(1000,position_y_rocher,position_z_rocher);
 		glRotatef(angle_rocher, 1,0,0);
 		angle_rocher += 5;
 		position_y_rocher -= 0.5;
-		position_z_rocher += 0.5;
-		if ((position_y_rocher <= -20) && (position_z_rocher >= 0))
+		position_z_rocher -= 0.5;
+		if ((position_y_rocher <= 950) && (position_z_rocher <= 800))
 		{
-			position_y_rocher = 89;
-			position_z_rocher = -130;
+			position_y_rocher = 1200;
+			position_z_rocher = 1232;
 		}
 		glColor3f(0.54,0.27,0.07);
 		glScalef(1,1,1);
@@ -1575,15 +1575,15 @@ GLvoid Modelisation()
 
 	glPushMatrix(); //rocher gauche
 	{
-		glTranslatef(-20,position_y_rocher_gauche,position_z_rocher_gauche);
+		glTranslatef(1020,position_y_rocher_gauche,position_z_rocher_gauche);
 		glRotatef(angle_rocher, 1,0,0);
 		angle_rocher += 5;
 		position_y_rocher_gauche -= 0.5;
-		position_z_rocher_gauche += 0.5;
-		if ((position_y_rocher_gauche <= -20) && (position_z_rocher_gauche  >= 0))
+		position_z_rocher_gauche -= 0.5;
+		if ((position_y_rocher_gauche <= 950) && (position_z_rocher_gauche  <= 800))
 		{
-			position_y_rocher_gauche = 149;
-			position_z_rocher_gauche = -190;
+			position_y_rocher_gauche = 1300;
+			position_z_rocher_gauche = 1332;
 		}
 		glColor3f(0.54,0.27,0.07);
 		glScalef(1,1,1);
@@ -1597,15 +1597,15 @@ GLvoid Modelisation()
 
 	glPushMatrix(); //rocher droite
 	{
-		glTranslatef(+20,position_y_rocher_droite,position_z_rocher_droite);
+		glTranslatef(1020,position_y_rocher_droite,position_z_rocher_droite);
 		glRotatef(angle_rocher, 1,0,0);
 		angle_rocher += 5;
 		position_y_rocher_droite -= 0.5;
-		position_z_rocher_droite += 0.5;
-		if ((position_y_rocher_droite <= -20) && (position_z_rocher_droite  >= 0))
+		position_z_rocher_droite -= 0.5;
+		if ((position_y_rocher_droite <= 950) && (position_z_rocher_droite  <= 800))
 		{
-			position_y_rocher_droite = 179;
-			position_z_rocher_droite = -220;
+			position_y_rocher_droite = 1250;
+			position_z_rocher_droite = 1282;
 		}
 		glColor3f(0.54,0.27,0.07);
 		glScalef(1,1,1);
@@ -3683,27 +3683,6 @@ GLvoid Modelisation()
 
 
 
-			glPushMatrix(); //chapeau
-			{
-				glEnable(GL_DEPTH_TEST);
-				glTranslatef(20,0.5,-20);
-				glRotatef(120,0,1,0);
-				glRotatef(-20,1,0,0);
-				glScalef(5,5,5);
-				glColor4f(1,0.71, 0.75, 0.4);
-				GLUquadric* cone = gluNewQuadric();
-		    	gluQuadricTexture(cone,GL_TRUE); 
-			    gluCylinder(cone,0.5,0,1.6,20,1); 
-		        gluDeleteQuadric(cone); 
-			}
-			glPopMatrix();
-
-
-
-
-
-
-
 
 			glEnd();
 		}
@@ -3718,11 +3697,23 @@ GLvoid Modelisation()
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_BLEND); 
 		 glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glTranslatef(0,32,-92);
-		glRotatef(45,1,0,0);
-		glScalef(15,1,30);
+		glTranslatef(1000,1050,1100);
+		glRotatef(-45,1,0,0);
+		glScalef(15,1,300);
 		glColor4f(0.5,0.5,0, 0.8);
 		glutSolidCube(5.0);
+		glEnd();
+	}
+	glPopMatrix();
+
+
+
+		glPushMatrix(); //ile 1 
+	{
+		glTranslatef(1000,1000,1000);
+		glScalef(50,1,40);
+		glColor3f(0.43, 0.57, 0);
+		glutSolidCube(3.0);
 		glEnd();
 	}
 	glPopMatrix();

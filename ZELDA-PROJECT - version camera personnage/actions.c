@@ -342,12 +342,16 @@ void touche_pressee(unsigned char key, int x, int y)
                 break;
 
     case TOUCHE_MAJ_Z:
-              position_x = avancer_x(position_x);
-              position_z = avancer_z(position_z);
-              break;
     case TOUCHE_MIN_Z:
               position_x = avancer_x(position_x);
               position_z = avancer_z(position_z);
+              printf("position_x : %f\n, position_z : %f\n", position_x, position_z);
+              if((position_z <= 55) && ((position_z >= 42)) && ((position_x >= 100)))
+              {
+                  position_x = 1000;
+                  position_z = 1000;
+                  position_y = 1010;
+              }
               break;
 
     case TOUCHE_MAJ_Q:

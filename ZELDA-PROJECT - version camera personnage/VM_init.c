@@ -16,7 +16,7 @@ void VM_init()
 	glTranslatef(0,0,-60);
 	glRotatef(xrot, 1,0,0);
 	glRotatef(yrot, 0, 1, 0);
-	glTranslatef(-position_x,position_y  ,-position_z);	
+	glTranslatef(-position_x,-position_y - 10 ,-position_z);	
 
 
 }
