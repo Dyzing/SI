@@ -14,4 +14,7 @@ void touche_pressee(unsigned char key, int x, int y);
 
 void touche_speciale(int touche, int x, int y);
 
+void set_camera_3(float x, float y, float z);
+
+
 #endif

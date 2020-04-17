@@ -98,6 +98,12 @@ GLfloat position_y_rocher_droite = 1250;
 GLfloat position_z_rocher_droite = 1282;
 
 
+GLfloat position_dino_x = 2000;
+GLfloat position_dino_y = 2020;
+GLfloat position_dino_z = 2000;
+
+
+
 int aleatoire = 1;
 int aleatoire_arbre = 1;
 
@@ -1554,7 +1560,7 @@ GLvoid Modelisation()
 	{
 		glTranslatef(1000,position_y_rocher,position_z_rocher);
 		glRotatef(angle_rocher, 1,0,0);
-		angle_rocher += 5;
+		angle_rocher -= 5;
 		position_y_rocher -= 0.5;
 		position_z_rocher -= 0.5;
 		if ((position_y_rocher <= 950) && (position_z_rocher <= 800))
@@ -1577,7 +1583,7 @@ GLvoid Modelisation()
 	{
 		glTranslatef(1020,position_y_rocher_gauche,position_z_rocher_gauche);
 		glRotatef(angle_rocher, 1,0,0);
-		angle_rocher += 5;
+		angle_rocher -= 5;
 		position_y_rocher_gauche -= 0.5;
 		position_z_rocher_gauche -= 0.5;
 		if ((position_y_rocher_gauche <= 950) && (position_z_rocher_gauche  <= 800))
@@ -1599,7 +1605,7 @@ GLvoid Modelisation()
 	{
 		glTranslatef(1020,position_y_rocher_droite,position_z_rocher_droite);
 		glRotatef(angle_rocher, 1,0,0);
-		angle_rocher += 5;
+		angle_rocher -= 5;
 		position_y_rocher_droite -= 0.5;
 		position_z_rocher_droite -= 0.5;
 		if ((position_y_rocher_droite <= 950) && (position_z_rocher_droite  <= 800))
@@ -3719,6 +3725,256 @@ GLvoid Modelisation()
 	glPopMatrix();
 
 
+	glPushMatrix(); //ile 1 dino
+	{
+		glTranslatef(1300,2000,2000);
+		glScalef(500,1,40);
+		glColor3f(1,1,1);
+		glutSolidCube(3.0);
+		glEnd();
+	}
+	glPopMatrix();
+
+
+	glPushMatrix(); //dinosaure
+	{
+
+		glTranslatef(position_dino_x,position_dino_y,position_dino_z);
+
+		glPushMatrix(); //tete dino
+		{
+			glTranslatef(0,4.8,20);
+
+
+			glPushMatrix(); //oeil
+			{
+				glTranslatef(-2,1,3);
+
+				glPushMatrix(); //pupille
+				{
+					glTranslatef(0,0,0.3);
+					glColor3f(0.4,0.4,0.4);
+					glScalef(0.5,0.5,0.5);
+					glutSolidCube(1);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+				glColor3f(1,1,1);
+				glutSolidCube(1);
+				glEnd();
+			}
+			glPopMatrix();
+
+			glColor3f(0.4,0.4,0.4);
+
+			glPushMatrix(); // cou
+			{
+				glTranslatef(-2.99,-3,0);
+				glScalef(1,1,2);
+				glutSolidCube(3);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+
+			glPushMatrix(); // langue
+			{
+				glTranslatef(-0.9,-4.5,0);
+				glScalef(2.4,0.3,2);
+				glutSolidCube(3);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glScalef(3,2,2);
+			glutSolidCube(3);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+
+		glPushMatrix(); // cravate
+		{
+			glTranslatef(-3,-4.5,20);
+			glScalef(2,3,2);
+			glutSolidCube(3);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+
+		glPushMatrix(); // bra
+		{
+			glTranslatef(-1,-3.5,20);
+
+
+			glPushMatrix(); // main
+			{
+				glTranslatef(2.55,-1,0);
+				glScalef(0.3,0.4,2);
+				glutSolidCube(3);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glScalef(2,0.3,2);
+			glutSolidCube(3);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); //dos rond
+		{
+			glTranslatef(-6,-9,20);
+			glScalef(2,2,1.5);
+			glutSolidSphere(3,8,8);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+
+		glPushMatrix(); // queue
+		{
+			glTranslatef(-12.0,-10,20);
+
+
+			glPushMatrix(); // milieu de queue
+			{
+				glTranslatef(-1.5,2,0);
+				glScalef(1,1,2);
+				glutSolidCube(3);
+				glEnd();
+			}
+			glPopMatrix();
+
+			glPushMatrix(); // fin de queue
+			{
+				glTranslatef(-2.5,3.5,0);
+				glScalef(1,1,2);
+				glutSolidCube(3);
+				glEnd();
+			}
+			glPopMatrix();
+
+			glPushMatrix(); //bout de queue devant
+			{
+				glTranslatef(-2.5,8,0);
+				glScalef(1.5,3.5,3);
+				glBegin( GL_TRIANGLES ); 
+					glVertex3f( 0.0f, 1.f, 0.0f );
+					glVertex3f( -1.0f, -1.0f, 1.0f );
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+
+					glVertex3f( 0.0f, 1.0f, 0.0f);
+					glVertex3f( -1.0f, -1.0f, 1.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+
+					glVertex3f( 0.0f, 1.0f, 0.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+
+					glVertex3f( -1.0f, -1.0f, 1.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+	
+				glEnd();	
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //bout de queue derrière
+			{
+				glTranslatef(-2.5,8,0);
+				glScalef(1.5,3.5,3);
+				glRotatef(180,0,1,0);
+				glBegin( GL_TRIANGLES ); 
+					glVertex3f( 0.0f, 1.f, 0.0f );
+					glVertex3f( -1.0f, -1.0f, 1.0f );
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+
+					glVertex3f( 0.0f, 1.0f, 0.0f);
+					glVertex3f( -1.0f, -1.0f, 1.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+
+					glVertex3f( 0.0f, 1.0f, 0.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+
+					glVertex3f( -1.0f, -1.0f, 1.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+	
+				glEnd();	
+			}
+			glPopMatrix();
+
+
+
+
+			glScalef(1,1,2);
+			glutSolidCube(3);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+
+		glPushMatrix(); // jambes
+		{
+			glTranslatef(-7,-14,20);
+
+			glPushMatrix(); //jambe gauche
+			{
+				glScalef(0.3,1,1.8);
+				glutSolidCube(3);
+				glEnd();
+			}
+			glPopMatrix();
+
+			glPushMatrix(); //jambe droite
+			{
+				glTranslatef(3,0,0);
+				glScalef(0.3,1,1.8);
+				glutSolidCube(3);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //pied gauche
+			{
+				glTranslatef(0.5,-1,0);
+				glScalef(0.5,0.3,1.8);
+				glutSolidCube(3);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //pied droite
+			{
+				glTranslatef(3.5,-1,0);
+				glScalef(0.5,0.3,1.8);
+				glutSolidCube(3);
+				glEnd();
+			}
+			glPopMatrix();
+
+		}
+		glPopMatrix();
+
+	glEnd();
+	}
+	glPopMatrix();
 
 
 glPopMatrix();

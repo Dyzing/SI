@@ -1,4 +1,4 @@
-idées pour mon porjet :
+idées pour mon projet :
 
 - chaque maison est un mini-jeu :
 	- jeu de boule à couleur avec lanceur
@@ -7,4 +7,4 @@ idées pour mon porjet :
 	- super simon
 	- jeu d'esquive dans la mer
 	- jeu du dinosaure sans wifi
-	- 
+	- tic tac toe

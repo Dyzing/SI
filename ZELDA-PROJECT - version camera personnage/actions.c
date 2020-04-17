@@ -35,6 +35,10 @@ extern float couleur_ciel_x;
 extern float couleur_ciel_y;
 extern float couleur_ciel_z;
 
+extern GLfloat position_dino_x;
+extern GLfloat position_dino_y;
+extern GLfloat position_dino_z;
+
 #include <math.h>
 
 
@@ -277,6 +281,17 @@ float reculer_z_cam(float position_alpha) // Q
   return position_alpha;
 }
 
+void set_camera_3(float x, float y, float z)
+{
+    glTranslatef(-x,-y,-z);  
+}
+
+float set_camera_1(float old_position_camera,float new_position_camera)
+{
+  old_position_camera = new_position_camera;
+}
+
+
 void touche_pressee(unsigned char key, int x, int y)
 {
     usleep(100);
@@ -343,14 +358,32 @@ void touche_pressee(unsigned char key, int x, int y)
 
     case TOUCHE_MAJ_Z:
     case TOUCHE_MIN_Z:
-              position_x = avancer_x(position_x);
-              position_z = avancer_z(position_z);
-              printf("position_x : %f\n, position_z : %f\n", position_x, position_z);
               if((position_z <= 55) && ((position_z >= 42)) && ((position_x >= 100)))
               {
                   position_x = 1000;
                   position_z = 1000;
                   position_y = 1010;
+              }
+              // if((position_z <= 3) && ((position_z >= -10)) && ((position_x <= -105)))
+              // {
+              //     position_x = position_dino_x;
+              //     position_z = position_dino_y;
+              //     position_y = position_dino_z;
+              // }
+              // if((position_z >= 1500)&& ((position_x >= 1500)))
+              // {
+              //     position_x = set_camera_1(position_x,2000);
+              //     position_z = set_camera_1(position_z,2000);
+              //     position_y = set_camera_1(position_y,2025);
+              //     position_dino_x = avancer_x(position_dino_x);
+              //     position_dino_z = avancer_z(position_dino_z);
+              //     printf("position_x : %f\n, position_z : %f\n", position_x, position_z);
+              // }
+              else
+              {
+                position_x = avancer_x(position_x);
+                position_z = avancer_z(position_z);
+                printf("position_x : %f\n, position_z : %f\n", position_x, position_z);
               }
               break;
 
