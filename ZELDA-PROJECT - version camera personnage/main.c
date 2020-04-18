@@ -9,6 +9,8 @@
 #include <math.h>
 #include <stdlib.h>
 #include <time.h>
+#include <stdio.h>
+
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
@@ -98,10 +100,14 @@ GLfloat position_y_rocher_droite = 1250;
 GLfloat position_z_rocher_droite = 1282;
 
 
-GLfloat position_dino_x = 2000;
+GLfloat position_dino_x = 1940;
 GLfloat position_dino_y = 2020;
-GLfloat position_dino_z = 2000;
+GLfloat position_dino_z = 2020;
+int dino_bouge = 0;
+int dino_monte0_descend1_statique2 = 2;
 
+GLfloat position_cactus_grand_x = 1600;
+GLfloat position_cactus_petit_x = 1800;
 
 
 int aleatoire = 1;
@@ -283,6 +289,210 @@ void arbre_partout()
 
 }
 
+
+float monter_dino(float position_dino_y)
+{
+  position_dino_y += 1;
+  return position_dino_y;
+}
+
+float descendre_dino(float position_dino_y)
+{
+  position_dino_y -= 1;
+  return position_dino_y;
+}
+
+void creer_petit_cactus(float x, float y, float z, float position_depart) //		glTranslatef(1900,2010,2000);
+{
+
+	glPushMatrix(); // petit cactus
+	{
+		if(x <= 2005)
+		{
+			printf("x petit: %f\n", x);
+			x = x + 1;
+			glTranslatef(x,y,z);
+
+		}
+		else
+		{
+			x = position_depart;
+			glTranslatef(x,y,z);
+		}
+
+		glPushMatrix(); //bouboule
+		{
+			glTranslatef(0,4.25,0);
+			glColor3f(0,0,0);
+			glScalef(1,1,1);
+			glutSolidSphere(0.5,8,8);
+			glEnd();		
+		}
+		glPopMatrix();
+
+		glPushMatrix(); //tronc
+		{
+			glColor3f(0.06,0.58,0.06);
+			glScalef(1,5,1);
+			glutSolidSphere(1,6,6);
+			glEnd();		
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); // branche gauche
+		{
+			glTranslatef(-1,1,0);
+
+			glPushMatrix(); //horizontal
+			{
+				glColor3f(0.06,0.58,0.06);
+				glScalef(3,1,1);
+				glutSolidSphere(0.5,6,6);
+				glEnd();		
+			}
+			glPopMatrix();
+
+			glPushMatrix(); //vertical
+			{
+				glTranslatef(-1.1,1,0);
+				glColor3f(0.06,0.58,0.06);
+				glScalef(1,3,1);
+				glutSolidSphere(0.5,6,6);
+				glEnd();		
+			}
+			glPopMatrix();
+			glEnd();
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); // branche droite
+		{
+			glTranslatef(1,-0.5,0);
+
+			glPushMatrix(); //horizontal
+			{
+				glColor3f(0.06,0.58,0.06);
+				glScalef(3,1,1);
+				glutSolidSphere(0.5,6,6);
+				glEnd();		
+			}
+			glPopMatrix();
+
+			glPushMatrix(); //vertical
+			{
+				glTranslatef(1.1,1,0);
+				glColor3f(0.06,0.58,0.06);
+				glScalef(1,3,1);
+				glutSolidSphere(0.5,6,6);
+				glEnd();		
+			}
+			glPopMatrix();
+			glEnd();
+		}
+		glPopMatrix();
+		glEnd();
+	}
+	glPopMatrix();
+}
+
+void creer_grand_cactus(float x, float y, float z, float position_depart)
+{
+	glPushMatrix(); // grand cactus
+	{
+		printf("x grand : %f\n", x);
+		if(x <= 2005)
+		{
+			x+= 1;
+			glTranslatef(x,y,z);
+		}
+		else
+		{
+			x = position_depart;
+			glTranslatef(x,y,z);
+		}
+
+		glTranslatef(x,y,z);
+
+		glScalef(2,2,2);
+
+		glPushMatrix(); //bouboule
+		{
+			glTranslatef(0,4.25,0);
+			glColor3f(0,0,0);
+			glScalef(1,1,1);
+			glutSolidSphere(0.5,8,8);
+			glEnd();		
+		}
+		glPopMatrix();
+
+		glPushMatrix(); //tronc
+		{
+			glColor3f(0.06,0.58,0.06);
+			glScalef(1,5,1);
+			glutSolidSphere(1,6,6);
+			glEnd();		
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); // branche gauche
+		{
+			glTranslatef(-1,1,0);
+
+			glPushMatrix(); //horizontal
+			{
+				glColor3f(0.06,0.58,0.06);
+				glScalef(3,1,1);
+				glutSolidSphere(0.5,6,6);
+				glEnd();		
+			}
+			glPopMatrix();
+
+			glPushMatrix(); //vertical
+			{
+				glTranslatef(-1.1,1,0);
+				glColor3f(0.06,0.58,0.06);
+				glScalef(1,3,1);
+				glutSolidSphere(0.5,6,6);
+				glEnd();		
+			}
+			glPopMatrix();
+			glEnd();
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); // branche droite
+		{
+			glTranslatef(1,-0.5,0);
+
+			glPushMatrix(); //horizontal
+			{
+				glColor3f(0.06,0.58,0.06);
+				glScalef(3,1,1);
+				glutSolidSphere(0.5,6,6);
+				glEnd();		
+			}
+			glPopMatrix();
+
+			glPushMatrix(); //vertical
+			{
+				glTranslatef(1.1,1,0);
+				glColor3f(0.06,0.58,0.06);
+				glScalef(1,3,1);
+				glutSolidSphere(0.5,6,6);
+				glEnd();		
+			}
+			glPopMatrix();
+			glEnd();
+		}
+		glPopMatrix();
+		glEnd();
+	}
+	glPopMatrix();
+}
 
 GLvoid Modelisation()
 {
@@ -3727,10 +3937,226 @@ GLvoid Modelisation()
 
 	glPushMatrix(); //ile 1 dino
 	{
-		glTranslatef(1300,2000,2000);
-		glScalef(500,1,40);
-		glColor3f(1,1,1);
-		glutSolidCube(3.0);
+
+		glPushMatrix(); //Maison DINO
+		{
+			glTranslatef(2020, 2020, 1900);
+			glRotatef(-90,0,1,0);
+
+
+			glPushMatrix(); //mur du fond
+			{		
+				glTranslatef(100,0,-30);
+				glScalef(9,5,0.4);
+				glColor4f(1,1,1, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //mur de droite
+			{		
+				glTranslatef(131,-1,-6);
+				glRotatef(90, 0,1,0);
+				glScalef(7,5,0.4);
+				glColor4f(0.5,0.5,0.5, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+
+			glPushMatrix(); //mur de gauche
+			{		
+				glTranslatef(70,-1,-6);
+				glRotatef(-90, 0,1,0);
+				glScalef(7,5,0.4);
+				glColor4f(0.5,0.5,0.5, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //plafond
+			{		
+				glTranslatef(101,18	,-6);
+				glRotatef(90, 1,0,0);
+				glScalef(9,7,0.4);
+				glColor4f(0,1,1, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+
+
+			glPushMatrix(); //toit gauche
+			{		
+				glTranslatef(78,25,-6);
+				glRotatef(90, 1,0,0);
+				glRotatef(22.5, 0,1,0);
+				glScalef(7,7,0.4);
+				glColor4f(0,1,0.5, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //toit gauche
+			{		
+				glTranslatef(122,25,-6);
+				glRotatef(90, 1,0,0);
+				glRotatef(-22.5, 0,1,0);
+				glScalef(7,7,0.4);
+				glColor4f(0,1,0.5, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //face avant toit
+			{
+				glTranslatef(101,27,17);
+				glScalef(32,8.4,1);
+				glColor4f(0,0.41,0.41, 0.8);
+				glBegin( GL_TRIANGLES ); 
+					glVertex3f( 0.0f, 1.f, 0.0f );
+					glVertex3f( -1.0f, -1.0f, 1.0f );
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+
+					glVertex3f( 0.0f, 1.0f, 0.0f);
+					glVertex3f( -1.0f, -1.0f, 1.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+
+					glVertex3f( 0.0f, 1.0f, 0.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+
+					glVertex3f( -1.0f, -1.0f, 1.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+
+			glPushMatrix(); //face arrière toit
+			{
+				glTranslatef(101,27,-29);
+				glRotatef(180,0,1,0);
+				glScalef(32,8.4,1);
+				glColor4f(0,0.41,0.41, 0.8);
+				glBegin( GL_TRIANGLES ); 
+					glVertex3f( 0.0f, 1.f, 0.0f );
+					glVertex3f( -1.0f, -1.0f, 1.0f );
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+
+					glVertex3f( 0.0f, 1.0f, 0.0f);
+					glVertex3f( -1.0f, -1.0f, 1.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+
+					glVertex3f( 0.0f, 1.0f, 0.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+
+					glVertex3f( -1.0f, -1.0f, 1.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+
+			glPushMatrix(); //sol
+			{		
+				glTranslatef(101,-19.5,-8);
+				glRotatef(90, 1,0,0);
+				glScalef(8.5,6.7,0.4);
+				glColor4f(1,0.5,0, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+
+
+			glPushMatrix(); //mur de devant gauche
+			{		
+				glTranslatef(83,-3,17);
+				glScalef(3.5,5.6,0.4);
+				glColor4f(1,1,1, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //mur de devant droite
+			{		
+				glTranslatef(120,-3,17);
+				glScalef(3.5,5.6,0.4);
+				glColor4f(1,1,1, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //mur de devant au mileu en haut
+			{		
+				glTranslatef(101.5,10,17);
+				glScalef(1.9,2.5,0.4);
+				glColor4f(0.5,0.5,0.5, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //fentre en devant gauche
+			{		
+				glTranslatef(82.5,8,18.5);
+				glScalef(2,1.5,0.4);
+				glColor4f(0,0,0, 0.9);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+
+			glPushMatrix(); //fentre en devant droite
+			{		
+				glTranslatef(119.5,8,18.5);
+				glScalef(2,1.5,0.4);
+				glColor4f(0,0,0, 0.9);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+			glEnd();
+		}
+		glPopMatrix();
+
+		glPushMatrix(); //sol ile dino
+		{
+			glTranslatef(1300,2000,2000);
+			glScalef(500,1,40);
+			glColor3f(1,1,1);
+			glutSolidCube(3.0);
+			glEnd();
+		}
+		glPopMatrix();
 		glEnd();
 	}
 	glPopMatrix();
@@ -3739,7 +4165,41 @@ GLvoid Modelisation()
 	glPushMatrix(); //dinosaure
 	{
 
-		glTranslatef(position_dino_x,position_dino_y,position_dino_z);
+		if(dino_bouge == 1)
+		{
+
+		      if( (position_dino_y <= 2060) && (dino_monte0_descend1_statique2 == 0) ) 
+		      {
+		        printf("dino monte");
+		        position_dino_y = monter_dino(position_dino_y);
+		        glTranslatef(position_dino_x,position_dino_y,position_dino_z);
+		        printf("position_dino_y : %f\n", position_dino_y);
+		        if (position_dino_y >= 2060)
+		        {
+		        	dino_monte0_descend1_statique2 = 1;
+		        }
+		      }
+		      else if( (position_dino_y >= 2018) && (dino_monte0_descend1_statique2 == 1) )
+		      {
+		        printf("dino descend");	
+		        position_dino_y = descendre_dino(position_dino_y);
+		        glTranslatef(position_dino_x,position_dino_y,position_dino_z);
+		        printf("position_dino_y : %f\n", position_dino_y);
+		        if (position_dino_y <= 2018)
+		        {
+		        	dino_monte0_descend1_statique2 = 2;
+		        	dino_bouge = 0;   	
+		        }
+		      }		      
+		}
+		else
+		{
+			glTranslatef(position_dino_x,position_dino_y,position_dino_z);
+		}
+
+
+		glRotatef(180, 0,1,0);
+
 
 		glPushMatrix(); //tete dino
 		{
@@ -3976,6 +4436,190 @@ GLvoid Modelisation()
 	}
 	glPopMatrix();
 
+	//creer_petit_cactus(1800,2010,2000, 1300); //		glTranslatef(1900,2010,2000);
+	glPushMatrix(); // petit cactus
+	{
+		if(position_cactus_petit_x <= 2005)
+		{
+			printf("position_cactus_petit_x  : %f\n", position_cactus_petit_x);
+			position_cactus_petit_x = position_cactus_petit_x + 1;
+			glTranslatef(position_cactus_petit_x,2010,2000);
+		}
+		else
+		{
+			position_cactus_petit_x = 1300;
+			glTranslatef(position_cactus_petit_x,2010,2000);
+		}
+
+		glPushMatrix(); //bouboule
+		{
+			glTranslatef(0,4.25,0);
+			glColor3f(0,0,0);
+			glScalef(1,1,1);
+			glutSolidSphere(0.5,8,8);
+			glEnd();		
+		}
+		glPopMatrix();
+
+		glPushMatrix(); //tronc
+		{
+			glColor3f(0.06,0.58,0.06);
+			glScalef(1,5,1);
+			glutSolidSphere(1,6,6);
+			glEnd();		
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); // branche gauche
+		{
+			glTranslatef(-1,1,0);
+
+			glPushMatrix(); //horizontal
+			{
+				glColor3f(0.06,0.58,0.06);
+				glScalef(3,1,1);
+				glutSolidSphere(0.5,6,6);
+				glEnd();		
+			}
+			glPopMatrix();
+
+			glPushMatrix(); //vertical
+			{
+				glTranslatef(-1.1,1,0);
+				glColor3f(0.06,0.58,0.06);
+				glScalef(1,3,1);
+				glutSolidSphere(0.5,6,6);
+				glEnd();		
+			}
+			glPopMatrix();
+			glEnd();
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); // branche droite
+		{
+			glTranslatef(1,-0.5,0);
+
+			glPushMatrix(); //horizontal
+			{
+				glColor3f(0.06,0.58,0.06);
+				glScalef(3,1,1);
+				glutSolidSphere(0.5,6,6);
+				glEnd();		
+			}
+			glPopMatrix();
+
+			glPushMatrix(); //vertical
+			{
+				glTranslatef(1.1,1,0);
+				glColor3f(0.06,0.58,0.06);
+				glScalef(1,3,1);
+				glutSolidSphere(0.5,6,6);
+				glEnd();		
+			}
+			glPopMatrix();
+			glEnd();
+		}
+		glPopMatrix();
+		glEnd();
+	}
+	glPopMatrix();
+	//creer_grand_cactus(1600,2010,2000, 1100);
+	glPushMatrix(); // grand cactus
+	{
+		if(position_cactus_grand_x <= 2005)
+		{
+			printf("position_cactus_grand_x grand : %f\n", position_cactus_grand_x);
+			position_cactus_grand_x = position_cactus_grand_x + 1;
+			glTranslatef(position_cactus_grand_x,2010,2000);
+		}
+		else
+		{
+			position_cactus_grand_x = 1100;
+			glTranslatef(position_cactus_grand_x,2010,2000);
+		}
+
+		//glTranslatef(x,y,z);
+
+		glScalef(2,2,2);
+
+		glPushMatrix(); //bouboule
+		{
+			glTranslatef(0,4.25,0);
+			glColor3f(0,0,0);
+			glScalef(1,1,1);
+			glutSolidSphere(0.5,8,8);
+			glEnd();		
+		}
+		glPopMatrix();
+
+		glPushMatrix(); //tronc
+		{
+			glColor3f(0.06,0.58,0.06);
+			glScalef(1,5,1);
+			glutSolidSphere(1,6,6);
+			glEnd();		
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); // branche gauche
+		{
+			glTranslatef(-1,1,0);
+
+			glPushMatrix(); //horizontal
+			{
+				glColor3f(0.06,0.58,0.06);
+				glScalef(3,1,1);
+				glutSolidSphere(0.5,6,6);
+				glEnd();		
+			}
+			glPopMatrix();
+
+			glPushMatrix(); //vertical
+			{
+				glTranslatef(-1.1,1,0);
+				glColor3f(0.06,0.58,0.06);
+				glScalef(1,3,1);
+				glutSolidSphere(0.5,6,6);
+				glEnd();		
+			}
+			glPopMatrix();
+			glEnd();
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); // branche droite
+		{
+			glTranslatef(1,-0.5,0);
+
+			glPushMatrix(); //horizontal
+			{
+				glColor3f(0.06,0.58,0.06);
+				glScalef(3,1,1);
+				glutSolidSphere(0.5,6,6);
+				glEnd();		
+			}
+			glPopMatrix();
+
+			glPushMatrix(); //vertical
+			{
+				glTranslatef(1.1,1,0);
+				glColor3f(0.06,0.58,0.06);
+				glScalef(1,3,1);
+				glutSolidSphere(0.5,6,6);
+				glEnd();		
+			}
+			glPopMatrix();
+			glEnd();
+		}
+		glPopMatrix();
+		glEnd();
+	}
+	glPopMatrix();
 
 glPopMatrix();
 

@@ -1,4 +1,5 @@
 #include "actions.h"
+#include <stdio.h>
 
 extern GLfloat xrot;
 extern int yrot;
@@ -38,6 +39,8 @@ extern float couleur_ciel_z;
 extern GLfloat position_dino_x;
 extern GLfloat position_dino_y;
 extern GLfloat position_dino_z;
+extern int dino_bouge;
+extern int dino_monte0_descend1_statique2;
 
 #include <math.h>
 
@@ -292,6 +295,8 @@ float set_camera_1(float old_position_camera,float new_position_camera)
 }
 
 
+
+
 void touche_pressee(unsigned char key, int x, int y)
 {
     usleep(100);
@@ -303,11 +308,9 @@ void touche_pressee(unsigned char key, int x, int y)
         break;
 
     case ESPACE:
-      xrot = 0.0f;
-      yrot = (angle_triangle - 90)%360 ;
-      xcamrot = 0.0f;
-      zcamrot = 0.0f;
-      ycamrot = 0.0f;
+      printf("espace, dino_bouge %i\n", dino_bouge);
+      dino_bouge = 1;
+      dino_monte0_descend1_statique2 = 0;
       break;
 
     case TOUCHE_MIN_B:
@@ -378,12 +381,27 @@ void touche_pressee(unsigned char key, int x, int y)
               //     position_dino_x = avancer_x(position_dino_x);
               //     position_dino_z = avancer_z(position_dino_z);
               //     printf("position_x : %f\n, position_z : %f\n", position_x, position_z);
-              // }
-              else
+              if (!( ((position_z <= 2005) && (position_z >= 1995)) && ((position_x >= 2000) && (position_x <= 2010)) ) && ( (position_z <= 2055) && ((position_z >= 1940)) && ((position_x <= 2045)) && (position_x >= 1950) ))
               {
                 position_x = avancer_x(position_x);
                 position_z = avancer_z(position_z);
+                set_camera_3(2000, 2020 , 2000 ); //glTranslatef(-position_x,-position_y - 10 ,-position_z);
                 printf("position_x : %f\n, position_z : %f\n", position_x, position_z);
+              }
+              // }
+              else
+              {
+                if (!( (position_z <= 2055) && ((position_z >= 1940)) && ((position_x <= 2045)) && (position_x >= 1950) ) && position_y >= 1900)
+                {
+                    printf("steph");
+                    printf("position_x : %f\n, position_z : %f\n", position_x, position_z);
+                }
+                else
+                {
+                    position_x = avancer_x(position_x);
+                    position_z = avancer_z(position_z);
+                    printf("position_x : %f\n, position_z : %f\n", position_x, position_z);
+                }
               }
               break;
 
@@ -395,12 +413,11 @@ void touche_pressee(unsigned char key, int x, int y)
                 break;
 
     case TOUCHE_MAJ_S:
-              position_x = reculer_x(position_x);
-              position_z = reculer_z(position_z);
-                break;
     case TOUCHE_MIN_S:
                 position_x = reculer_x(position_x);
                 position_z = reculer_z(position_z);  
+                printf("position_x : %f\n, position_z : %f\n", position_x, position_z);
+
                 break;
 
     case TOUCHE_MAJ_D:
