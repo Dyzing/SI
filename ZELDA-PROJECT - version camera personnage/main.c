@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 
 #define STB_IMAGE_IMPLEMENTATION
@@ -52,9 +53,9 @@ GLfloat position_x = 0;
 GLfloat position_y = -3;
 GLfloat position_z = 0;
 
-GLfloat position_x_beta = -7;
-GLfloat position_y_beta = 7.5;
-GLfloat position_z_beta = -17;
+GLfloat position_x_beta = 1400;
+GLfloat position_y_beta = 2010;
+GLfloat position_z_beta = 2000;
 
 
 GLfloat angle_oiseau_beta = 0;
@@ -100,7 +101,7 @@ GLfloat position_y_rocher_droite = 1250;
 GLfloat position_z_rocher_droite = 1282;
 
 
-GLfloat position_dino_x = 1940;
+GLfloat position_dino_x = 1970;
 GLfloat position_dino_y = 2020;
 GLfloat position_dino_z = 2020;
 int dino_bouge = 0;
@@ -113,9 +114,36 @@ GLfloat position_cactus_petit_x = 1800;
 int aleatoire = 1;
 int aleatoire_arbre = 1;
 
+int aleatoire_oiseau = 1;
+
+
+struct AABB3D 
+{ 
+  float x,y,z; 
+  float w,h,d; 
+};
+
+struct AABB3D box1;
+struct AABB3D box2;
+
+struct AABB3D box_rocher_milieu;
+struct AABB3D box_rocher_droite;
+struct AABB3D box_rocher_gauche;
+
+struct AABB3D box_personnage;
+struct AABB3D box_dinosaure;
+struct AABB3D box_petit_cactus;
+struct AABB3D box_oiseau_dino;
+struct AABB3D box_grand_cactus;
+
+
+float position_box2 = -6;
+float couleur_box2 = 0;
+
+
 void creer_sakura(int x, int y, int z)
 {
-		glPushMatrix(); //arbre sakura glColor3f(1,0.71,0.75);
+	glPushMatrix(); //arbre sakura glColor3f(1,0.71,0.75);
 	{
 		glPushMatrix();
 		{
@@ -157,7 +185,7 @@ void creer_sakura(int x, int y, int z)
 
 void creer_arbre_lambda(int x, int y, int z)
 {
-		glPushMatrix(); //arbre lambda
+	glPushMatrix(); //arbre lambda
 	{
 			glPushMatrix();
 			{
@@ -201,7 +229,7 @@ void creer_arbre_lambda(int x, int y, int z)
 
 void creer_sapin(int x, int y, int z)
 {
-		glPushMatrix(); //arbre sapin
+	glPushMatrix(); //arbre sapin
 	{
 		glPushMatrix();
 		{
@@ -257,7 +285,6 @@ void creer_sapin(int x, int y, int z)
 	glPopMatrix();
 }
 
-//srand(time(NULL));
 
 int i_arbre = -1;
 int compteur_arbre_x;
@@ -289,7 +316,6 @@ void arbre_partout()
 
 }
 
-
 float monter_dino(float position_dino_y)
 {
   position_dino_y += 1;
@@ -309,7 +335,6 @@ void creer_petit_cactus(float x, float y, float z, float position_depart) //		gl
 	{
 		if(x <= 2005)
 		{
-			printf("x petit: %f\n", x);
 			x = x + 1;
 			glTranslatef(x,y,z);
 
@@ -401,7 +426,6 @@ void creer_grand_cactus(float x, float y, float z, float position_depart)
 {
 	glPushMatrix(); // grand cactus
 	{
-		printf("x grand : %f\n", x);
 		if(x <= 2005)
 		{
 			x+= 1;
@@ -494,6 +518,22 @@ void creer_grand_cactus(float x, float y, float z, float position_depart)
 	glPopMatrix();
 }
 
+
+bool Collision(struct AABB3D box1,struct AABB3D box2) 
+{ 
+   if((box2.x >= box1.x + box1.w)      // trop à droite 
+    || (box2.x + box2.w <= box1.x) // trop à gauche 
+    || (box2.y >= box1.y + box1.h) // trop en bas 
+    || (box2.y + box2.h <= box1.y)  // trop en haut     
+        || (box2.z >= box1.z + box1.d)   // trop derrière 
+    || (box2.z + box2.d <= box1.z))  // trop devant 
+          return false; 
+   else 
+          return true; 
+}
+
+
+
 GLvoid Modelisation()
 {
   VM_init();     
@@ -527,6 +567,26 @@ GLvoid Modelisation()
 	  	//transparence
 		glEnable(GL_BLEND); 
 	  	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+
+		box_personnage.x = position_x  + 2;
+		box_personnage.y = position_y + 3;
+		box_personnage.z = position_z + 6;
+
+		box_personnage.w = 6;
+		box_personnage.h = 4;
+		box_personnage.d = 14;
+
+
+	// glPushMatrix(); //box oiseau
+	// {
+	// 	glTranslatef(position_x  +2,position_y + 3,position_z  +6);
+	// 	glScalef(3,2,7);
+	// 	glColor4f(1,1,1,0.5);
+	// 	glutSolidCube(2.0);
+	// 	glEnd();
+	// }
+	// glPopMatrix();
 
 	  	//rotation
 		glTranslatef(2,2,2);
@@ -751,59 +811,113 @@ GLvoid Modelisation()
   	{
   		//lumiere
 
-		float dir_length = sqrt(position_x * position_x + position_y * position_y + position_z * position_z);
+		//float dir_length = sqrt(position_x * position_x + position_y * position_y + position_z * position_z);
 
 
 	  	//transparence
 		glEnable(GL_BLEND); 
 	  	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+
+
+
+
+
+
 	  	//rotation
 		//glRotatef(angle_oiseau_beta , 0, 1, 0);
 		//glRotatef(angle_oiseau_vertical_beta, 0, 0, 1);
-		glTranslatef(2,2,2);
-	  //	glRotatef(-90, 0,1,0);
+		// glTranslatef(2,2,2);
+	 //  //	glRotatef(-90, 0,1,0);
 
 
-		//	printf("position y beta %f\n", position_y_beta);
-		//	printf("montee0_descente1_oiseaux_secondaire %i\n", montee0_descente1_oiseaux_secondaire);
-		if(montee0_descente1_oiseaux_secondaire == 0) //on monte
+		// //	printf("position y beta %f\n", position_y_beta);
+		// //	printf("montee0_descente1_oiseaux_secondaire %i\n", montee0_descente1_oiseaux_secondaire);
+		// if(montee0_descente1_oiseaux_secondaire == 0) //on monte
+		// {
+		// 	glTranslatef(position_x_beta,position_y_beta,position_z_beta);
+		// 	glRotatef(-90,0,1,0);
+
+		// 	position_y_beta += augmentation_position_y__oiseau_secondaire;
+		// 	if (position_y_beta >= 25)
+		// 	{
+		// 		augmentation_position_y__oiseau_secondaire = 0;
+		// 		if(angle_oiseau_beta != 360)
+		// 		{
+		// 			angle_oiseau_beta += 4;
+		// 			angle_oiseau_vertical_secondaire += 4;
+		// 			glRotatef(angle_oiseau_vertical_secondaire, 0, 0, 1);
+		// 			glRotatef(angle_oiseau_beta, 0,1,0);
+		// 		}
+		// 		if(angle_oiseau_beta == 360)
+		// 		{
+		// 			angle_oiseau_beta = 0;
+		// 			angle_oiseau_vertical_secondaire = 0;
+		// 			augmentation_position_y__oiseau_secondaire = 0.5;
+		// 			montee0_descente1_oiseaux_secondaire = 1;
+
+		// 		}
+		// 	}
+		// }
+		// else // on descend
+		// {
+		// 	glTranslatef(position_x_beta,position_y_beta,position_z_beta);
+		// 	glRotatef(-90,0,1,0);
+		// 	position_y_beta -= 0.5;
+		// 	if (position_y_beta == 7.5)
+		// 	{
+		// 		montee0_descente1_oiseaux_secondaire = 0;
+		// 	}
+		// }
+
+
+		if(position_x_beta <= 2005 && position_y >= 1999)
 		{
-			glTranslatef(position_x_beta,position_y_beta,position_z_beta);
-			glRotatef(-90,0,1,0);
-
-			position_y_beta += augmentation_position_y__oiseau_secondaire;
-			if (position_y_beta >= 25)
-			{
-				augmentation_position_y__oiseau_secondaire = 0;
-				if(angle_oiseau_beta != 360)
-				{
-					angle_oiseau_beta += 4;
-					angle_oiseau_vertical_secondaire += 4;
-					glRotatef(angle_oiseau_vertical_secondaire, 0, 0, 1);
-					glRotatef(angle_oiseau_beta, 0,1,0);
-				}
-				if(angle_oiseau_beta == 360)
-				{
-					angle_oiseau_beta = 0;
-					angle_oiseau_vertical_secondaire = 0;
-					augmentation_position_y__oiseau_secondaire = 0.5;
-					montee0_descente1_oiseaux_secondaire = 1;
-
-				}
-			}
+			//printf("position_x_beta  : %f\n", position_x_beta);
+			position_x_beta = position_x_beta + 1.5;
+			position_y_beta = 2010 + (aleatoire_oiseau * aleatoire_oiseau * aleatoire_oiseau) ;
+			glTranslatef(position_x_beta, position_y_beta ,position_z_beta);
 		}
-		else // on descend
+		else
 		{
+			srand(time(NULL));
+			aleatoire_oiseau = (rand() % 4);
+			position_x_beta = 1500;
+			position_y_beta = 2010 + (aleatoire_oiseau * aleatoire_oiseau * aleatoire_oiseau);
 			glTranslatef(position_x_beta,position_y_beta,position_z_beta);
-			glRotatef(-90,0,1,0);
-			position_y_beta -= 0.5;
-			if (position_y_beta == 7.5)
-			{
-				montee0_descente1_oiseaux_secondaire = 0;
-			}
 		}
 
+
+
+
+
+		box_oiseau_dino.x = position_x_beta  + 2;
+		box_oiseau_dino.y = position_y_beta + 2;
+		box_oiseau_dino.z = position_z_beta;
+
+		box_oiseau_dino.w = 14;
+		box_oiseau_dino.h = 2;
+		box_oiseau_dino.d = 6;
+
+
+
+		if(Collision(box_dinosaure, box_oiseau_dino) && position_y >= 1999)
+		{	
+			position_x = 0;
+			position_y = -10;
+			position_z = 20;
+		}
+
+
+	// glPushMatrix(); //box oiseau dino
+	// {
+	// 	glTranslatef(position_x_beta  +2,position_y_beta ,position_z_beta );
+	// 	glScalef(7,2,3);
+	// 	glColor4f(1,1,1,0.5);
+	// 	glutSolidCube(2.0);
+	// 	glEnd();
+	// }
+	// glPopMatrix();
 
 
 		glPushMatrix(); //corps
@@ -1769,6 +1883,24 @@ GLvoid Modelisation()
 	glPushMatrix(); //rocher mileux
 	{
 		glTranslatef(1000,position_y_rocher,position_z_rocher);
+
+		
+		box_rocher_milieu.x = 1000;
+		box_rocher_milieu.y = position_y_rocher;
+		box_rocher_milieu.z = position_z_rocher;
+
+		box_rocher_milieu.w = 10;
+		box_rocher_milieu.h = 10;
+		box_rocher_milieu.d = 10;
+
+		if(Collision(box_rocher_milieu, box_personnage))
+		{	
+			position_x = 0;
+			position_y = 10;
+			position_z = 20;
+		}
+
+
 		glRotatef(angle_rocher, 1,0,0);
 		angle_rocher -= 5;
 		position_y_rocher -= 0.5;
@@ -1792,6 +1924,24 @@ GLvoid Modelisation()
 	glPushMatrix(); //rocher gauche
 	{
 		glTranslatef(1020,position_y_rocher_gauche,position_z_rocher_gauche);
+
+		box_rocher_gauche.x = 1020;
+		box_rocher_gauche.y = position_y_rocher_gauche;
+		box_rocher_gauche.z = position_z_rocher_gauche;
+
+		box_rocher_gauche.w = 10;
+		box_rocher_gauche.h = 10;
+		box_rocher_gauche.d = 10;
+
+		if(Collision(box_rocher_gauche, box_personnage))
+		{	
+			position_x = 0;
+			position_y = 10;
+			position_z = 20;
+		}
+
+
+
 		glRotatef(angle_rocher, 1,0,0);
 		angle_rocher -= 5;
 		position_y_rocher_gauche -= 0.5;
@@ -1813,7 +1963,24 @@ GLvoid Modelisation()
 
 	glPushMatrix(); //rocher droite
 	{
-		glTranslatef(1020,position_y_rocher_droite,position_z_rocher_droite);
+		glTranslatef(980,position_y_rocher_droite,position_z_rocher_droite);
+
+		box_rocher_droite.x = 980;
+		box_rocher_droite.y = position_y_rocher_droite;
+		box_rocher_droite.z = position_z_rocher_droite;
+
+		box_rocher_droite.w = 10;
+		box_rocher_droite.h = 10;
+		box_rocher_droite.d = 10;
+
+		if(Collision(box_rocher_droite, box_personnage))
+		{	
+			position_x = 0;
+			position_y = 0;
+			position_z = 20;
+		}
+
+
 		glRotatef(angle_rocher, 1,0,0);
 		angle_rocher -= 5;
 		position_y_rocher_droite -= 0.5;
@@ -4170,10 +4337,8 @@ GLvoid Modelisation()
 
 		      if( (position_dino_y <= 2060) && (dino_monte0_descend1_statique2 == 0) ) 
 		      {
-		        printf("dino monte");
 		        position_dino_y = monter_dino(position_dino_y);
 		        glTranslatef(position_dino_x,position_dino_y,position_dino_z);
-		        printf("position_dino_y : %f\n", position_dino_y);
 		        if (position_dino_y >= 2060)
 		        {
 		        	dino_monte0_descend1_statique2 = 1;
@@ -4181,10 +4346,8 @@ GLvoid Modelisation()
 		      }
 		      else if( (position_dino_y >= 2018) && (dino_monte0_descend1_statique2 == 1) )
 		      {
-		        printf("dino descend");	
 		        position_dino_y = descendre_dino(position_dino_y);
 		        glTranslatef(position_dino_x,position_dino_y,position_dino_z);
-		        printf("position_dino_y : %f\n", position_dino_y);
 		        if (position_dino_y <= 2018)
 		        {
 		        	dino_monte0_descend1_statique2 = 2;
@@ -4197,6 +4360,31 @@ GLvoid Modelisation()
 			glTranslatef(position_dino_x,position_dino_y,position_dino_z);
 		}
 
+		
+		box_dinosaure.x = position_dino_x + 6;
+		box_dinosaure.y = position_dino_y -4;
+		box_dinosaure.z = position_dino_z - 20;
+
+		box_dinosaure.w = 22;
+		box_dinosaure.h = 24;
+		box_dinosaure.d = 10;
+
+		if(Collision(box_dinosaure, box_petit_cactus) && position_y >= 1999)
+		{	
+			position_x = 0;
+			position_y = -10;
+			position_z = 20;
+		}
+
+	// glPushMatrix(); //box dinosaure
+	// {
+	// 	glTranslatef(position_dino_x + 6 ,position_dino_y -4 ,position_dino_z - 20);
+	// 	glScalef(11,12,5);
+	// 	glColor4f(1,1,1,0.5);
+	// 	glutSolidCube(2.0);
+	// 	glEnd();
+	// }
+	// glPopMatrix();
 
 		glRotatef(180, 0,1,0);
 
@@ -4436,12 +4624,14 @@ GLvoid Modelisation()
 	}
 	glPopMatrix();
 
-	//creer_petit_cactus(1800,2010,2000, 1300); //		glTranslatef(1900,2010,2000);
+	//creer_petit_cactus(0,10,30, 0); //		glTranslatef(1900,2010,2000);
+
+
+
 	glPushMatrix(); // petit cactus
 	{
-		if(position_cactus_petit_x <= 2005)
+		if(position_cactus_petit_x <= 2005 && position_y >= 1999)
 		{
-			printf("position_cactus_petit_x  : %f\n", position_cactus_petit_x);
 			position_cactus_petit_x = position_cactus_petit_x + 1;
 			glTranslatef(position_cactus_petit_x,2010,2000);
 		}
@@ -4450,6 +4640,25 @@ GLvoid Modelisation()
 			position_cactus_petit_x = 1300;
 			glTranslatef(position_cactus_petit_x,2010,2000);
 		}
+
+		box_petit_cactus.x = position_cactus_petit_x  + 1;
+		box_petit_cactus.y = 2010;
+		box_petit_cactus.z = 2000;
+
+		box_petit_cactus.w = 6;
+		box_petit_cactus.h = 10;
+		box_petit_cactus.d = 2;
+
+	// glPushMatrix(); //box petit_cactus
+	// {
+	// 	glTranslatef(1,10,30);
+	// 	glScalef(3,5,1);
+	// 	glColor4f(1,1,1,0.5);
+	// 	glutSolidCube(2.0);
+	// 	glEnd();
+	// }
+	// glPopMatrix();
+
 
 		glPushMatrix(); //bouboule
 		{
@@ -4526,12 +4735,14 @@ GLvoid Modelisation()
 		glEnd();
 	}
 	glPopMatrix();
-	//creer_grand_cactus(1600,2010,2000, 1100);
+
+	//creer_grand_cactus(0,10,0,0);
+
+
 	glPushMatrix(); // grand cactus
 	{
-		if(position_cactus_grand_x <= 2005)
+		if(position_cactus_grand_x <= 2005 && position_y >= 1999)
 		{
-			printf("position_cactus_grand_x grand : %f\n", position_cactus_grand_x);
 			position_cactus_grand_x = position_cactus_grand_x + 1;
 			glTranslatef(position_cactus_grand_x,2010,2000);
 		}
@@ -4542,6 +4753,37 @@ GLvoid Modelisation()
 		}
 
 		//glTranslatef(x,y,z);
+
+
+
+
+		box_grand_cactus.x = position_cactus_grand_x  + 2;
+		box_grand_cactus.y = 2010;
+		box_grand_cactus.z = 2000;
+
+		box_grand_cactus.w = 12;
+		box_grand_cactus.h = 18;
+		box_grand_cactus.d = 4;
+
+
+		if(Collision(box_dinosaure, box_grand_cactus) && position_y >= 1999)
+		{	
+			position_x = 0;
+			position_y = -10;
+			position_z = 20;
+		}
+
+
+	// glPushMatrix(); //box grand_cactus
+	// {
+	// 	glTranslatef(position_cactus_grand_x  + 2,2010,2000);
+	// 	glScalef(6,9,2);
+	// 	glColor4f(1,1,1,0.5);
+	// 	glutSolidCube(2.0);
+	// 	glEnd();
+	// }
+	// glPopMatrix();
+
 
 		glScalef(2,2,2);
 
@@ -4620,6 +4862,106 @@ GLvoid Modelisation()
 		glEnd();
 	}
 	glPopMatrix();
+
+
+	glPushMatrix(); //cube 1
+	{
+		box1.x = 0;
+		box1.y = 0;
+		box1.z = 0;
+
+		box1.w = 2;
+		box1.h = 2;
+		box1.d = 2;
+
+		glTranslatef(0,0,0);
+		glColor3f(1,1,1);
+		glutSolidCube(2.0);
+		glEnd();
+	}
+	glPopMatrix();
+
+	glPushMatrix(); //cube 2
+	{
+		box2.x = position_box2;
+		box2.y = 1;
+		box2.z = 0;
+
+		box2.w = 2;
+		box2.h = 2;
+		box2.d = 2;
+
+		// if(Collision(box1, box2))
+		// {	
+		// 	couleur_box2 = 0.8;
+		// 	position_z = 100;
+		// }
+
+		glTranslatef(position_box2,1,0);
+		position_box2 = position_box2 + 0.1;
+		if(position_box2 >= 10)
+		{
+			position_box2 = -6;
+			couleur_box2 = 0;
+		}
+
+		glColor3f(couleur_box2,1,1);
+		glutSolidCube(2.0);
+		glEnd();
+	}
+	glPopMatrix();
+
+
+
+
+	glPushMatrix(); //box oiseau dino
+	{
+		glTranslatef(position_x_beta  +2,position_y_beta ,position_z_beta );
+		glScalef(7,2,3);
+		glColor4f(1,1,1,0.5);
+		glutSolidCube(2.0);
+		glEnd();
+	}
+	glPopMatrix();
+
+
+	glPushMatrix(); //box dinosaure
+	{
+		glTranslatef(position_dino_x + 6 ,position_dino_y -4 ,position_dino_z - 20);
+		glScalef(11,12,5);
+		glColor4f(1,1,1,0.5);
+		glutSolidCube(2.0);
+		glEnd();
+	}
+	glPopMatrix();
+
+
+	glPushMatrix(); //box petit_cactus
+	{
+		glTranslatef(position_cactus_petit_x,2010,2000);
+		glScalef(2.5,5,1);
+		glColor4f(1,1,1,0.5);
+		glutSolidCube(2.0);
+		glEnd();
+	}
+	glPopMatrix();
+
+
+
+	glPushMatrix(); //box grand_cactus
+	{
+		glTranslatef(position_cactus_grand_x  + 2,2010,2000);
+		glScalef(6,9,2);
+		glColor4f(1,1,1,0.5);
+		glutSolidCube(2.0);
+		glEnd();
+	}
+	glPopMatrix();
+
+
+
+
+// FIN DE MODELISATION
 
 glPopMatrix();
 

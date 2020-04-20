@@ -8,3 +8,4 @@ idées pour mon projet :
 	- jeu d'esquive dans la mer
 	- jeu du dinosaure sans wifi
 	- tic tac toe
+	- jeu de tir CoD
