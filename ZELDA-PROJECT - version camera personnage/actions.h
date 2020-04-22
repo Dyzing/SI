@@ -16,5 +16,6 @@ void touche_speciale(int touche, int x, int y);
 
 void set_camera_3(float x, float y, float z);
 
+void vMouse(int button, int state, int x, int y);
 
 #endif

@@ -1,11 +1,12 @@
 idées pour mon projet :
 
 - chaque maison est un mini-jeu :
-	- jeu de boule à couleur avec lanceur
-	- boules qui tombent à esquiver
+	- jeu de boule à couleur ave
+c lanceur
+	- boules qui tombent à esquiver : fait
 	- jeu de voitures telecommandées
 	- super simon
 	- jeu d'esquive dans la mer
-	- jeu du dinosaure sans wifi
+	- jeu du dinosaure sans wifi : fait
 	- tic tac toe
 	- jeu de tir CoD

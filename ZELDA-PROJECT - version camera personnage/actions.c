@@ -42,6 +42,11 @@ extern GLfloat position_dino_z;
 extern int dino_bouge;
 extern int dino_monte0_descend1_statique2;
 
+extern int mouse_button;
+extern int mouse_state;
+extern int mouse_x;
+extern int mouse_y;
+
 #include <math.h>
 
 
@@ -302,7 +307,7 @@ void touche_pressee(unsigned char key, int x, int y)
     usleep(100);
 
     switch (key) 
-  {
+    {
     case ESCAPE:
         exit(1); 
         break;
@@ -391,7 +396,7 @@ void touche_pressee(unsigned char key, int x, int y)
               // }
               else
               {
-                if (!( (position_z <= 2055) && ((position_z >= 1940)) && ((position_x <= 2045)) && (position_x >= 1950) ) && position_y >= 1900)
+                if (!( (position_z <= 2055) && ((position_z >= 1940)) && ((position_x <= 2045)) && (position_x >= 1950) )  && position_y >= 1999 && position_y <= 2500) 
                 {
                     printf("steph");
                     printf("position_x : %f\n, position_z : %f\n", position_x, position_z);
@@ -551,8 +556,9 @@ void touche_pressee(unsigned char key, int x, int y)
 
 void touche_speciale(int touche, int x, int y)
 {
-         usleep(100);
-    switch (touche) {
+    usleep(100);
+    switch (touche) 
+    {
                 case GLUT_KEY_UP:
                   xrot += 3.0f;
                         break;
@@ -569,12 +575,54 @@ void touche_speciale(int touche, int x, int y)
                   yrot = (yrot - 3)%360;
                         break;
         }
+    
 
 }
 
 
 
+void vMouse(int button, int state, int x, int y)
+{
+  switch (button)
+  {
+    case GLUT_LEFT_BUTTON :
+      printf("Souris a: %d %d \n",x,y);
+      printf("Bouton Gauche\n");
+      if (state==GLUT_DOWN) 
+      {
 
+        printf("Appui\n");
+        mouse_state = GLUT_DOWN;
+        mouse_x = x;
+        mouse_y = y;
+        mouse_button = button;
+        break;
+      }
+      if (state==GLUT_UP)
+      {
+        printf("Relachement\n");
+        mouse_state = GLUT_UP;
+        break;
+      }
+      break;
+    
+    // case GLUT_MIDDLE_BUTTON :
+    //   printf("Bouton du Milieu\n");
+    //   if (state==GLUT_DOWN) printf("Appui\n");
+    //   if (state==GLUT_UP) printf("Relachement\n");
+    //   break;
+
+    // case GLUT_RIGHT_BUTTON :
+    //   printf("Bouton Droit\n");
+    //   if (state==GLUT_DOWN) printf("Appui\n");
+    //   if (state==GLUT_UP) printf("Relachement\n");
+    //   break;
+
+    default :
+      printf("Erreur??\n");
+      break;
+  }
+}
 
 
 

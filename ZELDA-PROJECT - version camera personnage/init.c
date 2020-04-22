@@ -23,6 +23,7 @@ int notre_init(int argc, char** argv, void (*DrawGLScene)())
 	glutReshapeFunc(Redimensionne);
 	glutKeyboardFunc(touche_pressee);
 	glutSpecialFunc(touche_speciale);
+	glutMouseFunc(vMouse);
 	glClearColor(0,0,0,0);
 	
 	glEnable(GL_DEPTH_TEST);

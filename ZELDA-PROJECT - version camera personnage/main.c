@@ -140,6 +140,29 @@ struct AABB3D box_grand_cactus;
 float position_box2 = -6;
 float couleur_box2 = 0;
 
+int aleatoire_simon = 0;
+float transparence_simon_bleu = 0.3;
+float transparence_simon_rouge = 0.3;
+float transparence_simon_jaune = 0.3;
+float transparence_simon_vert = 0.3;
+int tour_suivant = 1;
+
+int cube_time = 1;
+int cube_attente = 0;
+
+char simon[10];
+int max_simon = 3;
+int tour_simon = 0;
+int nb_click = 0;
+int nb_flash_actuel = 0;
+int tour_IA0_Link1 = 0;
+
+
+int mouse_button;
+int mouse_state;
+int mouse_x;
+int mouse_y;
+
 
 void creer_sakura(int x, int y, int z)
 {
@@ -158,7 +181,7 @@ void creer_sakura(int x, int y, int z)
 				glVertex3f( 0.0f, 1.0f, 0.0f);
 				glVertex3f( -1.0f, -1.0f, 1.0f);
 				glVertex3f( 0.0f, -1.0f, -1.0f);
-
+ 
 				glVertex3f( 0.0f, 1.0f, 0.0f);
 				glVertex3f( 0.0f, -1.0f, -1.0f);
 				glVertex3f( 1.0f, -1.0f, 1.0f);
@@ -534,6 +557,7 @@ bool Collision(struct AABB3D box1,struct AABB3D box2)
 
 
 
+
 GLvoid Modelisation()
 {
   VM_init();     
@@ -871,7 +895,7 @@ GLvoid Modelisation()
 		// }
 
 
-		if(position_x_beta <= 2005 && position_y >= 1999)
+		if(position_x_beta <= 2005 && position_y >= 1999 && position_y <= 2500)
 		{
 			//printf("position_x_beta  : %f\n", position_x_beta);
 			position_x_beta = position_x_beta + 1.5;
@@ -901,7 +925,7 @@ GLvoid Modelisation()
 
 
 
-		if(Collision(box_dinosaure, box_oiseau_dino) && position_y >= 1999)
+		if(Collision(box_dinosaure, box_oiseau_dino) && position_y >= 1999 && position_y <= 2500)
 		{	
 			position_x = 0;
 			position_y = -10;
@@ -4369,7 +4393,7 @@ GLvoid Modelisation()
 		box_dinosaure.h = 24;
 		box_dinosaure.d = 10;
 
-		if(Collision(box_dinosaure, box_petit_cactus) && position_y >= 1999)
+		if(Collision(box_dinosaure, box_petit_cactus) && position_y >= 1999 && position_y <= 2500)
 		{	
 			position_x = 0;
 			position_y = -10;
@@ -4630,7 +4654,7 @@ GLvoid Modelisation()
 
 	glPushMatrix(); // petit cactus
 	{
-		if(position_cactus_petit_x <= 2005 && position_y >= 1999)
+		if(position_cactus_petit_x <= 2005 && position_y >= 1999 && position_y <= 2500)
 		{
 			position_cactus_petit_x = position_cactus_petit_x + 1;
 			glTranslatef(position_cactus_petit_x,2010,2000);
@@ -4741,7 +4765,7 @@ GLvoid Modelisation()
 
 	glPushMatrix(); // grand cactus
 	{
-		if(position_cactus_grand_x <= 2005 && position_y >= 1999)
+		if(position_cactus_grand_x <= 2005 && position_y >= 1999 && position_y <= 2500)
 		{
 			position_cactus_grand_x = position_cactus_grand_x + 1;
 			glTranslatef(position_cactus_grand_x,2010,2000);
@@ -4766,7 +4790,7 @@ GLvoid Modelisation()
 		box_grand_cactus.d = 4;
 
 
-		if(Collision(box_dinosaure, box_grand_cactus) && position_y >= 1999)
+		if(Collision(box_dinosaure, box_grand_cactus) && position_y >= 1999 && position_y <= 2500)
 		{	
 			position_x = 0;
 			position_y = -10;
@@ -4959,6 +4983,754 @@ GLvoid Modelisation()
 	glPopMatrix();
 
 
+	glPushMatrix(); //ile 3 super simon
+	{
+
+		glPushMatrix(); //Maison super simon
+		{
+			glTranslatef(3020, 3020, 2900);
+			glRotatef(-90,0,1,0);
+
+
+			glPushMatrix(); //mur du fond
+			{		
+				glTranslatef(100,0,-30);
+				glScalef(9,5,0.4);
+				glColor4f(1,1,1, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //mur de droite
+			{		
+				glTranslatef(131,-1,-6);
+				glRotatef(90, 0,1,0);
+				glScalef(7,5,0.4);
+				glColor4f(0.5,0.5,0.5, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+
+			glPushMatrix(); //mur de gauche
+			{		
+				glTranslatef(70,-1,-6);
+				glRotatef(-90, 0,1,0);
+				glScalef(7,5,0.4);
+				glColor4f(0.5,0.5,0.5, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //plafond
+			{		
+				glTranslatef(101,18	,-6);
+				glRotatef(90, 1,0,0);
+				glScalef(9,7,0.4);
+				glColor4f(0,1,1, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+
+
+			glPushMatrix(); //toit gauche
+			{		
+				glTranslatef(78,25,-6);
+				glRotatef(90, 1,0,0);
+				glRotatef(22.5, 0,1,0);
+				glScalef(7,7,0.4);
+				glColor4f(0,1,0.5, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //toit gauche
+			{		
+				glTranslatef(122,25,-6);
+				glRotatef(90, 1,0,0);
+				glRotatef(-22.5, 0,1,0);
+				glScalef(7,7,0.4);
+				glColor4f(0,1,0.5, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //face avant toit
+			{
+				glTranslatef(101,27,17);
+				glScalef(32,8.4,1);
+				glColor4f(0,0.41,0.41, 0.8);
+				glBegin( GL_TRIANGLES ); 
+					glVertex3f( 0.0f, 1.f, 0.0f );
+					glVertex3f( -1.0f, -1.0f, 1.0f );
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+
+					glVertex3f( 0.0f, 1.0f, 0.0f);
+					glVertex3f( -1.0f, -1.0f, 1.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+
+					glVertex3f( 0.0f, 1.0f, 0.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+
+					glVertex3f( -1.0f, -1.0f, 1.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+
+			glPushMatrix(); //face arrière toit
+			{
+				glTranslatef(101,27,-29);
+				glRotatef(180,0,1,0);
+				glScalef(32,8.4,1);
+				glColor4f(0,0.41,0.41, 0.8);
+				glBegin( GL_TRIANGLES ); 
+					glVertex3f( 0.0f, 1.f, 0.0f );
+					glVertex3f( -1.0f, -1.0f, 1.0f );
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+
+					glVertex3f( 0.0f, 1.0f, 0.0f);
+					glVertex3f( -1.0f, -1.0f, 1.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+
+					glVertex3f( 0.0f, 1.0f, 0.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+
+					glVertex3f( -1.0f, -1.0f, 1.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+
+			glPushMatrix(); //sol
+			{		
+				glTranslatef(101,-19.5,-8);
+				glRotatef(90, 1,0,0);
+				glScalef(8.5,6.7,0.4);
+				glColor4f(1,0.5,0, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+
+
+			glPushMatrix(); //mur de devant gauche
+			{		
+				glTranslatef(83,-3,17);
+				glScalef(3.5,5.6,0.4);
+				glColor4f(1,1,1, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //mur de devant droite
+			{		
+				glTranslatef(120,-3,17);
+				glScalef(3.5,5.6,0.4);
+				glColor4f(1,1,1, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //mur de devant au mileu en haut
+			{		
+				glTranslatef(101.5,10,17);
+				glScalef(1.9,2.5,0.4);
+				glColor4f(0.5,0.5,0.5, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //fentre en devant gauche
+			{		
+				glTranslatef(82.5,8,18.5);
+				glScalef(2,1.5,0.4);
+				glColor4f(0,0,0, 0.9);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+
+			glPushMatrix(); //fentre en devant droite
+			{		
+				glTranslatef(119.5,8,18.5);
+				glScalef(2,1.5,0.4);
+				glColor4f(0,0,0, 0.9);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+			glEnd();
+		}
+		glPopMatrix();
+
+		glPushMatrix(); //sol ile simon
+		{
+			glTranslatef(2950,3000,3000);
+			glScalef(70,1,40);
+			glColor3f(1,1,1);
+			glutSolidCube(3.0);
+			glEnd();
+		}
+		glPopMatrix();
+		glEnd();
+
+		glPushMatrix(); //cube simon
+		{
+			glTranslatef(10,-5,0);
+
+			//printf("tour_IA0_Link1 :  %i\n", tour_IA0_Link1);
+
+
+			if(tour_simon < max_simon && position_y > 2900 && tour_IA0_Link1 == 0) // tour IA
+			{
+
+				if(cube_attente < 50 && cube_attente > 0)  // délais d'attente
+				{
+					cube_attente += 1;
+					printf(" attente : %i\n", cube_time);
+				}
+				else
+				{
+					cube_attente = 0;
+				}
+
+				if(nb_flash_actuel == tour_simon && cube_attente == 0)
+				{
+					if(position_z < 3010 && position_z > 2990 && position_x < 2945 && position_y > 2900 && tour_suivant == 1)
+					{
+						srand(time(NULL));
+						aleatoire_simon = (rand() % 4) + 1;
+					}
+
+
+					if(aleatoire_simon == 1 && cube_attente == 0) //bleu
+					{
+						printf("bleu");
+						if(cube_time < 100)
+						{
+							tour_suivant = 0;
+							transparence_simon_bleu = 1;
+							cube_time += 1;
+							printf(" cube time : %i\n", cube_time);
+						}
+						else
+						{
+							simon[tour_simon] = 'b';
+							tour_suivant = 1;
+							cube_time = 0;
+							transparence_simon_bleu = 0.3;
+							aleatoire_simon = 0;
+							cube_attente = 1;
+							tour_simon+= 1;
+							nb_flash_actuel = 0;
+							tour_IA0_Link1 = 1;
+							for (int i = 0; i < tour_simon; ++i)
+							{
+								printf("simon[%i] = %c\n", tour_simon - 1, simon[tour_simon - 1]);
+							}
+						}
+					}
+					else if(aleatoire_simon == 2 && cube_attente == 0) //rouge
+					{
+						printf("vert");
+						if(cube_time < 100)
+						{
+							tour_suivant = 0;
+							transparence_simon_rouge = 1;
+							cube_time += 1;
+							printf(" cube time : %i\n", cube_time);
+						}
+						else
+						{
+							simon[tour_simon] = 'r';
+							tour_suivant = 1;
+							cube_time = 0;
+							transparence_simon_rouge = 0.3;
+							aleatoire_simon = 0;
+							cube_attente = 1;
+							tour_simon+= 1;
+							nb_flash_actuel = 0;
+							tour_IA0_Link1 = 1;
+							for (int i = 0; i < tour_simon - 1; ++i)
+							{
+								printf("simon[%i] = %c\n", tour_simon, simon[tour_simon - 1]);
+							}						}
+					}
+					else if(aleatoire_simon == 3 && cube_attente == 0) //jaune
+					{
+						printf("jaune");
+						if(cube_time < 100)
+						{
+							tour_suivant = 0;
+							transparence_simon_jaune = 1;
+							cube_time += 1;
+							printf(" cube time : %i\n", cube_time);
+						}
+						else
+						{
+							simon[tour_simon] = 'j';
+							tour_suivant = 1;
+							cube_time = 0;
+							transparence_simon_jaune = 0.3;
+							aleatoire_simon = 0;
+							cube_attente = 1;
+							tour_simon+= 1;
+							nb_flash_actuel = 0;
+							tour_IA0_Link1 = 1;
+							for (int i = 0; i < tour_simon - 1; ++i)
+							{
+								printf("simon[%i] = %c\n", tour_simon - 1, simon[tour_simon - 1]);
+							}						}
+					}
+					else if(aleatoire_simon == 4 && cube_attente == 0) //vert
+					{
+						printf("vert");
+						if(cube_time < 100)
+						{
+							tour_suivant = 0;
+							transparence_simon_vert = 1;
+							cube_time += 1;
+							printf(" cube time : %i\n", cube_time);
+						}
+						else
+						{
+							simon[tour_simon] = 'v';
+							tour_suivant = 1;
+							cube_time = 0;
+							transparence_simon_vert = 0.3;
+							aleatoire_simon = 0;
+							cube_attente = 1;
+							tour_simon+= 1;
+							nb_flash_actuel = 0;
+							tour_IA0_Link1 = 1;
+							for (int i = 0; i < tour_simon - 1; ++i)
+							{
+								printf("simon[%i] = %c\n", tour_simon - 1, simon[tour_simon - 1]);
+							}						
+						}
+					}
+
+				}
+
+				else if (nb_flash_actuel < tour_simon && cube_attente == 0)
+				{
+					printf("SECOND IF ****************************** \n");
+					printf(" cube time : %i\n", cube_time);
+
+					if(simon[nb_flash_actuel] == 'b') //bleu
+					{
+						if(cube_time < 100)
+						{
+							tour_suivant = 0;
+							transparence_simon_bleu = 1;
+							cube_time += 1;
+							printf(" cube time : %i\n", cube_time);
+						}
+						else
+						{
+							tour_suivant = 1;
+							cube_time = 0;
+							transparence_simon_bleu = 0.3;
+							aleatoire_simon = 0;
+							cube_attente = 1;
+							nb_flash_actuel += 1;
+						}
+					}
+					else if(simon[nb_flash_actuel] == 'r') //rouge
+					{
+						if(cube_time < 100)
+						{
+							tour_suivant = 0;
+							transparence_simon_rouge = 1;
+							cube_time += 1;
+							printf(" cube time : %i\n", cube_time);
+						}
+						else
+						{
+							tour_suivant = 1;
+							cube_time = 0;
+							transparence_simon_rouge = 0.3;
+							aleatoire_simon = 0;
+							cube_attente = 1;
+							nb_flash_actuel += 1;
+						}
+					}
+					else if(simon[nb_flash_actuel] == 'j') //jaune
+					{
+						if(cube_time < 100)
+						{
+							tour_suivant = 0;
+							transparence_simon_jaune = 1;
+							cube_time += 1;
+							printf(" cube time : %i\n", cube_time);
+						}
+						else
+						{
+							tour_suivant = 1;
+							cube_time = 0;
+							transparence_simon_jaune = 0.3;
+							aleatoire_simon = 0;
+							cube_attente = 1;
+							nb_flash_actuel += 1;
+						}
+					}
+					else if(simon[nb_flash_actuel] == 'v') //vert
+					{
+						if(cube_time < 100)
+						{
+							tour_suivant = 0;
+							transparence_simon_vert = 1;
+							cube_time += 1;
+							printf(" cube time : %i\n", cube_time);
+						}
+						else
+						{
+							tour_suivant = 1;
+							cube_time = 0;
+							transparence_simon_vert = 0.3;
+							aleatoire_simon = 0;
+							cube_attente = 1;
+							nb_flash_actuel += 1;
+						}
+					}
+				}	
+
+				printf("nb_flash_actuel_apres :  %i\n", nb_flash_actuel);
+				printf("tour_simon_apres :  %i\n", tour_simon);
+			}
+			else if(position_y > 2900 && tour_IA0_Link1 == 1) // tour link
+			{
+
+
+
+				printf("tour_simon : %i\n", tour_simon);
+				printf("nb_click : %i\n", nb_click);
+				if(nb_click < tour_simon )
+				{
+
+					if(cube_attente < 50 && cube_attente > 0)  // délais d'attente
+					{
+						cube_attente += 1;
+						printf(" attente : %i\n", cube_time);
+					}
+					else
+					{
+						cube_attente = 0;
+					}
+
+					if(mouse_x > 238 && mouse_x < 332 && mouse_y > 112 && mouse_y < 212 && mouse_state == GLUT_DOWN && mouse_button == GLUT_LEFT_BUTTON)
+					{
+						printf("bleu \n");
+						for (int i = 0; i < nb_click; ++i)
+						{
+							printf("simon[%i] = %c\n",i, simon[i]);
+						}
+						if(simon[nb_click] == 'b')
+						{
+							printf("bleu \n");
+							if(cube_attente == 0)
+							{
+								if(cube_time < 25)
+								{
+									tour_suivant = 0;
+									transparence_simon_bleu = 1;
+									cube_time += 1;
+									printf(" cube time : %i\n", cube_time);
+								}
+								else
+								{
+									tour_suivant = 1;
+									cube_time = 0;
+									transparence_simon_bleu = 0.3;
+									aleatoire_simon = 0;
+									cube_attente = 1;
+									nb_click += 1;
+									printf("nb_click : %i\n, tour_simon : %i\n", nb_click, tour_simon);
+									if(nb_click == tour_simon && nb_click < max_simon)
+									{
+										tour_IA0_Link1 = 0;
+										nb_click = 0;
+									}
+									for (int i = 0; i < nb_click; ++i)
+									{
+										printf("simon[%i] = %c\n",nb_click, simon[nb_click]);
+									}
+								}
+							}
+						}
+						else
+						{
+							// transparence_simon_bleu = 0;
+							// transparence_simon_rouge = 0;
+							// transparence_simon_jaune = 0;
+							// transparence_simon_vert = 0;
+							printf("perdu \n");
+						}
+					}
+					else if(mouse_x > 306 && mouse_x < 398 && mouse_y > 179 && mouse_y < 275 && mouse_state == GLUT_DOWN && mouse_button == GLUT_LEFT_BUTTON)
+					{
+						printf("rouge \n");
+						for (int i = 0; i < nb_click; ++i)
+						{
+							printf("simon[%i] = %c\n",i, simon[i]);
+						}
+						if(simon[nb_click] == 'r')
+						{
+							printf("rouge \n");
+							if(cube_attente == 0)
+							{
+								if(cube_time < 25)
+								{
+									tour_suivant = 0;
+									transparence_simon_rouge = 1;
+									cube_time += 1;
+									printf(" cube time : %i\n", cube_time);
+								}
+								else
+								{
+									tour_suivant = 1;
+									cube_time = 0;
+									transparence_simon_rouge = 0.3;
+									aleatoire_simon = 0;
+									cube_attente = 1;
+									nb_click += 1;
+									printf("nb_click : %i\n, tour_simon : %i\n", nb_click, tour_simon);
+									if(nb_click == tour_simon && nb_click < max_simon)
+									{
+										tour_IA0_Link1 = 0;
+										nb_click = 0;
+									}
+									for (int i = 0; i < nb_click; ++i)
+									{
+										printf("simon[%i] = %c\n",nb_click, simon[nb_click]);
+									}
+								}
+							}
+						}
+						else
+						{
+							// transparence_simon_bleu = 0;
+							// transparence_simon_rouge = 0;
+							// transparence_simon_jaune = 0;
+							// transparence_simon_vert = 0;
+							printf("perdu \n");
+						}
+					}
+					else if(mouse_x > 306 && mouse_x < 398 && mouse_y > 51 && mouse_y < 158 && mouse_state == GLUT_DOWN && mouse_button == GLUT_LEFT_BUTTON)
+					{
+						printf("jaune \n");
+						for (int i = 0; i < tour_simon; ++i)
+						{
+							printf("simon[%i] = %c\n",i, simon[i]);
+						}
+						if(simon[nb_click] == 'j')
+						{
+							printf("jaune \n");
+							if(cube_attente == 0)
+							{
+								if(cube_time < 25)
+								{
+									tour_suivant = 0;
+									transparence_simon_jaune = 1;
+									cube_time += 1;
+									printf(" cube time : %i\n", cube_time);
+								}
+								else
+								{
+									tour_suivant = 1;
+									cube_time = 0;
+									transparence_simon_jaune = 0.3;
+									aleatoire_simon = 0;
+									cube_attente = 1;
+									nb_click += 1;
+									printf("nb_click : %i\n, tour_simon : %i\n", nb_click, tour_simon);
+									if(nb_click == tour_simon && nb_click < max_simon)
+									{
+										tour_IA0_Link1 = 0;
+										nb_click = 0;
+									}
+									for (int i = 0; i < nb_click; ++i)
+									{
+										printf("simon[%i] = %c\n",nb_click, simon[nb_click]);
+									}
+								}
+							}
+						}
+						else
+						{
+							// transparence_simon_bleu = 0;
+							// transparence_simon_rouge = 0;
+							// transparence_simon_jaune = 0;
+							// transparence_simon_vert = 0;
+							printf("perdu \n");
+						}					
+					}
+					else if(mouse_x > 368 && mouse_x < 465 && mouse_y > 112 && mouse_y < 212 && mouse_state == GLUT_DOWN && mouse_button == GLUT_LEFT_BUTTON)
+					{
+						printf("vert \n");
+						for (int i = 0; i < nb_click; ++i)
+						{
+							printf("simon[%i] = %c\n",i, simon[i]);
+						}
+						if(simon[nb_click] == 'v')
+						{
+							printf("vert \n");
+							if(cube_attente == 0)
+							{
+								if(cube_time < 25)
+								{
+									tour_suivant = 0;
+									transparence_simon_vert = 1;
+									cube_time += 1;
+									printf(" cube time : %i\n", cube_time);
+								}
+								else
+								{
+									tour_suivant = 1;
+									cube_time = 0;
+									transparence_simon_vert = 0.3;
+									aleatoire_simon = 0;
+									cube_attente = 1;
+									nb_click += 1;
+									printf("nb_click : %i\n, tour_simon : %i\n", nb_click, tour_simon);
+									if(nb_click == tour_simon && nb_click < max_simon)
+									{
+										tour_IA0_Link1 = 0;
+										nb_click = 0;
+									}
+									for (int i = 0; i < nb_click; ++i)
+									{
+										printf("simon[%i] = %c\n",nb_click, simon[nb_click]);
+									}
+								}
+							}
+						}
+						else
+						{
+							// transparence_simon_bleu = 0;
+							// transparence_simon_rouge = 0;
+							// transparence_simon_jaune = 0;
+							// transparence_simon_vert = 0;
+							printf("perdu \n");
+						}					
+					}
+				}
+				else
+				{
+					printf(" attente : %i\n", cube_attente);
+					if(cube_attente < 500 && cube_attente > 1)  // délais d'attente
+					{
+						cube_attente += 1;
+						printf(" attente : %i\n", cube_time);
+						transparence_simon_bleu = 0;
+						transparence_simon_rouge = 0;
+						transparence_simon_jaune = 0;
+						transparence_simon_vert = 0;
+					}
+					else
+					{
+						cube_attente = 0;
+					}
+					if (cube_attente <= 1)
+					{
+						transparence_simon_bleu = 1;
+						transparence_simon_rouge = 1;
+						transparence_simon_jaune = 1;
+						transparence_simon_vert = 1;
+						cube_attente += 0.1;
+					}
+					
+				}
+			}
+			else
+			{
+				//printf("stop");
+			}
+
+
+
+
+
+
+			glPushMatrix(); //cube bleu gauche super-simon
+			{
+				glTranslatef(2900,3040,3010);
+				glRotatef(45,1,0,0);
+				glColor4f(0,0,1,transparence_simon_bleu);
+				glutSolidCube(10.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+			glPushMatrix(); //cube vert droite super-simon
+			{
+				glTranslatef(2900,3040,2990);
+				glRotatef(45,1,0,0);
+				glColor4f(0,1,0,transparence_simon_vert);
+				glutSolidCube(10.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+			glPushMatrix(); //cube jaune haut super-simon
+			{
+				glTranslatef(2900,3050,3000);
+				glRotatef(45,1,0,0);
+				glColor4f(1,1,0,transparence_simon_jaune);
+				glutSolidCube(10.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+			glPushMatrix(); //cube rouge bas super-simon
+			{
+				glTranslatef(2900,3030,3000);
+				glRotatef(45,1,0,0);
+				glColor4f(1,0,0,transparence_simon_rouge);
+				glutSolidCube(10.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+			glEnd();
+		}
+		glPopMatrix();
+
+	}
+	glPopMatrix();
 
 
 // FIN DE MODELISATION

@@ -35,6 +35,19 @@ void VM_init()
         position_z = 2000;
 
 	}
+	else if( ( (position_z <= 152) && ((position_z >= 140)) && ((position_x <= -105)) ) )
+	{
+		//et_camera_3(2000, 2010, 2000);
+		//glTranslatef(0,0 ,60);
+		//glRotatef(90, 0,1,0);
+		printf("test simon");	
+    	position_x = 2940;
+        position_y = 3010;
+        position_z = 3000;
+        xrot = -6.0;
+        yrot = -87;
+        angle_triangle = -180;
+	}
 	else if ( (position_z <= 2005) && ((position_z >= 1995)) && ((position_x >= 2000)) )
 	{
 		printf("test 1");	
