@@ -35,7 +35,19 @@ void VM_init()
         position_z = 2000;
 
 	}
-	else if( ( (position_z <= 152) && ((position_z >= 140)) && ((position_x <= -105)) ) )
+	else if( ( (position_z <= 206) && ((position_z >= 193)) && ((position_x >= 105)) ) )
+	{
+		//et_camera_3(2000, 2010, 2000);
+		//glTranslatef(0,0 ,60);
+		//glRotatef(90, 0,1,0);
+		printf("test aquatique");	
+    	position_x = 0;
+        position_y = -50;
+        position_z = 950;
+        xrot = 0.0;
+        yrot = -180;
+        angle_triangle = -90;
+	}	else if( ( (position_z <= 152) && ((position_z >= 140)) && ((position_x <= -105)) ) )
 	{
 		//et_camera_3(2000, 2010, 2000);
 		//glTranslatef(0,0 ,60);
