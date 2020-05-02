@@ -1,5 +1,6 @@
 #include "actions.h"
 #include <stdio.h>
+#include <unistd.h>
 
 extern GLfloat xrot;
 extern int yrot;
@@ -386,7 +387,11 @@ void touche_pressee(unsigned char key, int x, int y)
               //     position_dino_x = avancer_x(position_dino_x);
               //     position_dino_z = avancer_z(position_dino_z);
               //     printf("position_x : %f\n, position_z : %f\n", position_x, position_z);
-              if (!( ((position_z <= 2005) && (position_z >= 1995)) && ((position_x >= 2000) && (position_x <= 2010)) ) && ( (position_z <= 2055) && ((position_z >= 1940)) && ((position_x <= 2045)) && (position_x >= 1950) ))
+              else if(position_z > 975 && position_y < 50)
+              {
+                printf("ne peut plus avancer ocean \n");
+              }
+              else if (!( ((position_z <= 2005) && (position_z >= 1995)) && ((position_x >= 2000) && (position_x <= 2010)) ) && ( (position_z <= 2055) && ((position_z >= 1940)) && ((position_x <= 2045)) && (position_x >= 1950) ))
               {
                 position_x = avancer_x(position_x);
                 position_z = avancer_z(position_z);
@@ -405,16 +410,21 @@ void touche_pressee(unsigned char key, int x, int y)
                 {
                     position_x = avancer_x(position_x);
                     position_z = avancer_z(position_z);
-                    printf("position_x : %f\n, position_z : %f\n", position_x, position_z);
+                    printf("position_x : %f\n, position_z : %f\n, position_y : %f\n", position_x, position_z, position_y);
                 }
               }
               break;
 
     case TOUCHE_MAJ_Q:
-                angle_triangle = tourner_gauche(angle_triangle);
-                break;
     case TOUCHE_MIN_Q:  
-                angle_triangle =  tourner_gauche(angle_triangle);
+                if(position_z >= 900 && position_y < 0)
+                {
+                  position_x += 4;
+                }
+                else
+                {
+                  angle_triangle =  tourner_gauche(angle_triangle);
+                }
                 break;
 
     case TOUCHE_MAJ_S:
@@ -426,10 +436,15 @@ void touche_pressee(unsigned char key, int x, int y)
                 break;
 
     case TOUCHE_MAJ_D:
-                angle_triangle = tourner_droite(angle_triangle);
-                break;
     case TOUCHE_MIN_D:
-                angle_triangle = tourner_droite(angle_triangle);
+                if(position_z >= 900 && position_y < 0)
+                {
+                  position_x-= 4;
+                }
+                else
+                {
+                  angle_triangle = tourner_droite(angle_triangle);
+                }
                 break;
 
     case TOUCHE_MAJ_E:
