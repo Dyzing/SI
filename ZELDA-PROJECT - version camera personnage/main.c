@@ -179,6 +179,8 @@ int mouse_button;
 int mouse_state;
 int mouse_x;
 int mouse_y;
+int mouse_motion_x = 0;
+int mouse_motion_y = 0;
 
 //variables_christophe
 
@@ -201,7 +203,9 @@ struct AABB3D box_turbot;
 struct AABB3D box_clown;
 struct AABB3D box_zancle;
 
-
+int algue_positif_negatif = 1;
+int nb_algue = 1;
+float angle_algue = 0.5;
 
 void creer_sakura(int x, int y, int z)
 {
@@ -579,6 +583,138 @@ void creer_grand_cactus(float x, float y, float z, float position_depart)
 	}
 	glPopMatrix();
 }
+
+
+
+void creer_algue(float x, float y, float z)
+{
+	glPushMatrix(); // algue
+	{
+		glTranslatef(x,y,z);
+		glScalef(1.5,2.5,1.5);
+		glPushMatrix(); //boule de terre
+		{
+			glTranslatef(0,5,20);
+			glColor3f(0.54,0.27,0.07);
+			glScalef(2,1,2);
+			glutSolidSphere(2,8,8);
+			glEnd();
+		}
+		glPopMatrix();
+
+		glPushMatrix(); //feuille d'algue gauche
+		{
+
+			glPushMatrix(); //petite feuille d'algue gauche
+			{
+				glTranslatef(-4,18,20);
+				glRotatef(-20,0,0,1);
+				glColor3f(0,0.51,0);
+				glScalef(0.5,2,0.25);
+				glutSolidSphere(2,8,8);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glTranslatef(-4,13,20);
+			glRotatef(20,0,0,1);
+			glColor3f(0,0.51,0);
+			glScalef(0.5,5,0.25);
+			glutSolidSphere(2,8,8);
+			glEnd();
+		}
+		glPopMatrix();
+
+		glPushMatrix(); //feuille d'algue devant
+		{
+
+
+			glPushMatrix(); //petite feuille d'algue devant
+			{
+				glTranslatef(0,15,24);
+				glRotatef(90,0,1,0);
+				glRotatef(-20,0,0,1);
+				glColor3f(0,0.51,0);
+				glScalef(0.5,1.5,0.25);
+				glutSolidSphere(2,8,8);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glTranslatef(0,10,24);
+			glRotatef(90,0,1,0);
+			glRotatef(20,0,0,1);
+			glColor3f(0,0.51,0);
+			glScalef(0.5,3,0.25);
+			glutSolidSphere(2,8,8);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+
+		glPushMatrix(); //feuille d'algue arrière
+		{
+
+
+			glPushMatrix(); //petite feuille d'algue arrière
+			{
+				glTranslatef(0,10,18);
+				glRotatef(-90,0,1,0);
+				glRotatef(-20,0,0,1);
+				glColor3f(0,0.51,0);
+				glScalef(0.25,1,0.125);
+				glutSolidSphere(2,8,8);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glTranslatef(0,10,16);
+			glRotatef(-90,0,1,0);
+			glRotatef(20,0,0,1);
+			glColor3f(0,0.51,0);
+			glScalef(0.5,3,0.25);
+			glutSolidSphere(2,8,8);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+
+		glPushMatrix(); //feuille d'algue gauche
+		{
+
+
+			glPushMatrix(); //petite feuille d'algue droite
+			{
+				glTranslatef(2,14,20);
+				glRotatef(20,0,0,1);
+				glColor3f(0,0.51,0);
+				glScalef(0.5,2,0.25);
+				glutSolidSphere(2,8,8);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+
+			glTranslatef(4,13,20);
+			glRotatef(-20,0,0,1);
+			glColor3f(0,0.51,0);
+			glScalef(0.5,5,0.25);
+			glutSolidSphere(2,8,8);
+			glEnd();
+		}
+		glPopMatrix();
+
+		glEnd();
+	}
+	glPopMatrix();
+}
+
 
 
 bool Collision(struct AABB3D box1,struct AABB3D box2) 
@@ -1342,6 +1478,15 @@ GLvoid Modelisation()
 	glPopMatrix();
 
 
+	glPushMatrix(); //fond de mer
+	{
+		glTranslatef(0,-100,1345);
+		glScalef(500,1,300);
+		glColor3f(0.94, 0.90, 0.54);
+		glutSolidCube(3.0);
+		glEnd();
+	}
+	glPopMatrix();
 
 
 
@@ -1652,56 +1797,7 @@ GLvoid Modelisation()
 	}
 	glPopMatrix();
 
-	glPushMatrix();	//cascade
-	{
-		glPushMatrix(); //amont
-		{
-			  //transparence
-			glEnable(GL_BLEND); 
-		  	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-			glTranslatef(0,-18,300);
-			glScalef(20,1,200);
-			glColor4f(0.25,0.41,0.88,0.5);
-			glutSolidCube(3.0);
-			glEnd();
-		}
-		glPopMatrix();
-
-		glPushMatrix(); //descente
-		{
-			  //transparence
-			glEnable(GL_BLEND); 
-		  	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-			glTranslatef(0,-28,674);
-			glRotatef(7.5,1,0,0);
-			glScalef(20,1,50);
-			glColor4f(0.25,0.41,0.88,0.5);
-			glutSolidCube(3.0);
-			glEnd();
-		}
-		glPopMatrix();
-
-
-
-		glPushMatrix(); //mer
-		{
-			  //transparence
-			glEnable(GL_BLEND); 
-		  	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-			glTranslatef(0,-36,950);
-			glScalef(500,1,300);
-			glColor4f(0.25,0.41,0.88,0.5);
-			glutSolidCube(3.0);
-			glEnd();
-		}
-		glPopMatrix();
-
-
-	}
-	glPopMatrix();
 
 
 	glPushMatrix(); //lampadaire
@@ -5784,1341 +5880,1546 @@ GLvoid Modelisation()
 
 // CHRISTOPHE
 
-
-	glPushMatrix(); // Requin
+	glPushMatrix(); //animaux marins 
 	{
-		glTranslatef(aleatoire_requin,position_requin_y,position_requin_z);
 
-
-
-		box_requin.x = aleatoire_requin - 10;
-		box_requin.y = position_requin_y;
-		box_requin.z = position_requin_z + 3;
-
-		box_requin.w = 26;
-		box_requin.h = 16;
-		box_requin.d = 42;
-
-
-		if(Collision(box_personnage, box_requin) && position_z > 900 && position_z < 1000)
-		{	
-			// position_x = 0;
-			// position_y = -10;
-			// position_z = 20;
-			printf(" touche \n");
-		}
-
-
-
-
-		// glPushMatrix(); //box requin
-		// {
-		// 	glTranslatef(aleatoire_requin ,position_requin_y ,position_requin_z + 3);
-		// 	glScalef(13,8,21);
-		// 	glColor4f(1,1,1,0.5);
-		// 	glutSolidCube(2.0);
-		// 	glEnd();
-		// }
-		// glPopMatrix();
-
-
-
-
-
-
-		if(position_z > 925 && position_z < 1000)
+		glPushMatrix(); // Requin
 		{
-			position_y = -50;
-			position_requin_z -= 3;
-			if(position_requin_z < 900)
+			glTranslatef(aleatoire_requin,position_requin_y,position_requin_z);
+
+
+
+			box_requin.x = aleatoire_requin - 10;
+			box_requin.y = position_requin_y;
+			box_requin.z = position_requin_z + 3;
+
+			box_requin.w = 26;
+			box_requin.h = 16;
+			box_requin.d = 42;
+
+
+			if(Collision(box_personnage, box_requin) && position_z > 900 && position_z < 1000)
+			{	
+				// position_x = 0;
+				// position_y = -10;
+				// position_z = 20;
+				printf(" touche \n");
+			}
+
+
+
+
+			// glPushMatrix(); //box requin
+			// {
+			// 	glTranslatef(aleatoire_requin ,position_requin_y ,position_requin_z + 3);
+			// 	glScalef(13,8,21);
+			// 	glColor4f(1,1,1,0.5);
+			// 	glutSolidCube(2.0);
+			// 	glEnd();
+			// }
+			// glPopMatrix();
+
+
+
+
+
+
+			if(position_z > 925 && position_z < 1000)
 			{
-				srand(time(NULL));
-				aleatoire_requin = (rand() % 25) * positif_ou_negatif_requin;
+				position_y = -50;
+				position_requin_z -= 5;
+				if(position_requin_z < 900)
+				{
+					srand(time(NULL));
+					aleatoire_requin = (rand() % 25) * positif_ou_negatif_requin;
+					position_requin_z = 1650;
+					positif_ou_negatif_requin = -positif_ou_negatif_requin;
+
+				}
+			}
+			else
+			{
 				position_requin_z = 1650;
-				positif_ou_negatif_requin = -positif_ou_negatif_requin;
-
 			}
-		}
-		else
-		{
-			position_requin_z = 1650;
-		}
-		GLUquadricObj *obj = gluNewQuadric();
-		
-		glPushMatrix(); // tronc
-		{
-			glPushMatrix(); // centre
-				glRotatef(90,0,1,0);
-				glColor3f(0.305, 0.392, 0.474);
-				glScalef(2,0.8,0.9);
-				glutSolidSphere(7,32,32);
-				
-				glTranslatef(0,-0.1,0);
-				glColor3f(0.647, 0.701, 0.752);
-				glutSolidSphere(7,32,32);
-			glPopMatrix();
+			GLUquadricObj *obj = gluNewQuadric();
 			
-			axes();
-			
-			glPushMatrix();  // Yeux
+			glPushMatrix(); // tronc
 			{
-				glTranslatef(2,1,-13);
-				glColor3f(0,0,0);
-				glutSolidSphere(0.5,32,32);
-				glTranslatef(-4,0,0);
-				glutSolidSphere(0.5,32,32);
-			}
-			glPopMatrix();
-			
-			glTranslatef(0,5,0);
-			glColor3f(0.305, 0.392, 0.474);
-			
-			glPushMatrix();  // Machoire
-			{
-				glTranslatef(0,-5,-18);
-				glBegin( GL_TRIANGLES );
-				{	//SUPERIEURE
-				// dessus centre
-					glVertex3f( 0.0f, 0.0f, 0.0f); // A
-					glVertex3f( 3.0f, 3.0f, 8.0f); // B
-					glVertex3f(-3.0f, 3.0f, 8.0f); // B'
-				// dessus gauche 
-					glVertex3f( 0.0f, 0.0f, 0.0f); // A
-					glVertex3f( 3.0f, 3.0f, 8.0f); // B
-					glVertex3f( 4.5f, 0.0f, 8.0f); // C
-				// dessus droite 
-					glVertex3f( 0.0f, 0.0f, 0.0f); // A
-					glVertex3f(-3.0f, 3.0f, 8.0f); // B'
-					glVertex3f(-4.5f, 0.0f, 8.0f); // C'
-				// dessous centre
-					glVertex3f( 0.0f, 0.0f, 0.0f); // A
-					glVertex3f( 1.0f,-1.0f, 1.0f); // D
-					glVertex3f(-1.0f,-1.0f, 1.0f); // D'
-				// dessous gauche
-					glVertex3f( 0.0f, 0.0f, 0.0f); // A
-					glVertex3f( 1.0f,-1.0f, 1.0f); // D
-					glVertex3f( 4.5f, 0.0f, 8.0f); // C
-				// dessous gauche exterieure
-					glVertex3f( 1.0f,-1.0f, 1.0f); // D
-					glVertex3f( 4.5f, 0.0f, 8.0f); // C
-					glVertex3f( 4.0f,-2.0f,10.0f); // E
-				// dessous droite
-					glVertex3f( 0.0f, 0.0f, 0.0f); // A
-					glVertex3f(-1.0f,-1.0f, 1.0f); // D'
-					glVertex3f(-4.5f, 0.0f, 8.0f); // C'
-				// dessous droite exterieure
-					glVertex3f(-1.0f,-1.0f, 1.0f); // D'
-					glVertex3f(-4.5f, 0.0f, 8.0f); // C'
-					glVertex3f(-4.0f,-2.0f,10.0f); // E'
-				// dessous
-					glVertex3f( 0.0f, 0.0f, 0.0f); // A
-					glVertex3f( 4.5f, 0.0f, 8.0f); // C
-					glVertex3f(-4.5f, 0.0f, 8.0f); // C'
+				glPushMatrix(); // centre
+					glRotatef(90,0,1,0);
+					glColor3f(0.305, 0.392, 0.474);
+					glScalef(2,0.8,0.9);
+					glutSolidSphere(7,32,32);
 					
-					// INFERIEURE
-				// centre
-					glVertex3f( 1.0f,-2.0f, 2.0f); // F
-					glVertex3f(-1.0f,-2.0f, 2.0f); // F'
-					glVertex3f( 0.0f,-3.0f, 3.0f); // G
-				// gauche
-					glVertex3f( 1.0f,-2.0f, 2.0f); // F
-					glVertex3f( 4.0f,-2.0f,10.0f); // E
-					glVertex3f( 0.0f,-3.0f, 3.0f); // G
-				// droite
-					glVertex3f(-1.0f,-2.0f, 2.0f); // F'
-					glVertex3f(-4.0f,-2.0f,10.0f); // E'
-					glVertex3f( 0.0f,-3.0f, 3.0f); // G
-				// dessous
-					glVertex3f( 0.0f,-3.0f, 3.0f); // G
-					glVertex3f( 4.0f,-2.0f,10.0f); // E
-					glVertex3f(-4.0f,-2.0f,10.0f); // E'
-				}
-				glEnd();
-				glTranslatef(1,-1,1);
-				glBegin( GL_TRIANGLES ); // DENTS haut
+					glTranslatef(0,-0.1,0);
+					glColor3f(0.647, 0.701, 0.752);
+					glutSolidSphere(7,32,32);
+				glPopMatrix();
+				
+				axes();
+				
+				glPushMatrix();  // Yeux
 				{
-					glColor3f(1,1,1);
-					for (float i=0; i<2; i++){
-						glVertex3f( dent_x-i, dent_y, dent_z);
-						glVertex3f( dent_x-0.5-i, dent_y, dent_z);
-						glVertex3f( dent_x-0.25-i, dent_y-0.25, dent_z);
-						i = i-0.5;
-					}
+					glTranslatef(2,1,-13);
+					glColor3f(0,0,0);
+					glutSolidSphere(0.5,32,32);
+					glTranslatef(-4,0,0);
+					glutSolidSphere(0.5,32,32);
 				}
-				glEnd();
-				glTranslatef(0,-1,1);
-				glBegin( GL_TRIANGLES ); // DENTS bas
+				glPopMatrix();
+				
+				glTranslatef(0,5,0);
+				glColor3f(0.305, 0.392, 0.474);
+				
+				glPushMatrix();  // Machoire
 				{
-					for (float i=0; i<2; i++){
-						glVertex3f( dent_x-i, dent_y, dent_z);
-						glVertex3f( dent_x-0.5-i, dent_y, dent_z);
-						glVertex3f( dent_x-0.25-i, dent_y+0.25, dent_z);
-						i = i-0.5;
+					glTranslatef(0,-5,-18);
+					glBegin( GL_TRIANGLES );
+					{	//SUPERIEURE
+					// dessus centre
+						glVertex3f( 0.0f, 0.0f, 0.0f); // A
+						glVertex3f( 3.0f, 3.0f, 8.0f); // B
+						glVertex3f(-3.0f, 3.0f, 8.0f); // B'
+					// dessus gauche 
+						glVertex3f( 0.0f, 0.0f, 0.0f); // A
+						glVertex3f( 3.0f, 3.0f, 8.0f); // B
+						glVertex3f( 4.5f, 0.0f, 8.0f); // C
+					// dessus droite 
+						glVertex3f( 0.0f, 0.0f, 0.0f); // A
+						glVertex3f(-3.0f, 3.0f, 8.0f); // B'
+						glVertex3f(-4.5f, 0.0f, 8.0f); // C'
+					// dessous centre
+						glVertex3f( 0.0f, 0.0f, 0.0f); // A
+						glVertex3f( 1.0f,-1.0f, 1.0f); // D
+						glVertex3f(-1.0f,-1.0f, 1.0f); // D'
+					// dessous gauche
+						glVertex3f( 0.0f, 0.0f, 0.0f); // A
+						glVertex3f( 1.0f,-1.0f, 1.0f); // D
+						glVertex3f( 4.5f, 0.0f, 8.0f); // C
+					// dessous gauche exterieure
+						glVertex3f( 1.0f,-1.0f, 1.0f); // D
+						glVertex3f( 4.5f, 0.0f, 8.0f); // C
+						glVertex3f( 4.0f,-2.0f,10.0f); // E
+					// dessous droite
+						glVertex3f( 0.0f, 0.0f, 0.0f); // A
+						glVertex3f(-1.0f,-1.0f, 1.0f); // D'
+						glVertex3f(-4.5f, 0.0f, 8.0f); // C'
+					// dessous droite exterieure
+						glVertex3f(-1.0f,-1.0f, 1.0f); // D'
+						glVertex3f(-4.5f, 0.0f, 8.0f); // C'
+						glVertex3f(-4.0f,-2.0f,10.0f); // E'
+					// dessous
+						glVertex3f( 0.0f, 0.0f, 0.0f); // A
+						glVertex3f( 4.5f, 0.0f, 8.0f); // C
+						glVertex3f(-4.5f, 0.0f, 8.0f); // C'
+						
+						// INFERIEURE
+					// centre
+						glVertex3f( 1.0f,-2.0f, 2.0f); // F
+						glVertex3f(-1.0f,-2.0f, 2.0f); // F'
+						glVertex3f( 0.0f,-3.0f, 3.0f); // G
+					// gauche
+						glVertex3f( 1.0f,-2.0f, 2.0f); // F
+						glVertex3f( 4.0f,-2.0f,10.0f); // E
+						glVertex3f( 0.0f,-3.0f, 3.0f); // G
+					// droite
+						glVertex3f(-1.0f,-2.0f, 2.0f); // F'
+						glVertex3f(-4.0f,-2.0f,10.0f); // E'
+						glVertex3f( 0.0f,-3.0f, 3.0f); // G
+					// dessous
+						glVertex3f( 0.0f,-3.0f, 3.0f); // G
+						glVertex3f( 4.0f,-2.0f,10.0f); // E
+						glVertex3f(-4.0f,-2.0f,10.0f); // E'
 					}
+					glEnd();
+					glTranslatef(1,-1,1);
+					glBegin( GL_TRIANGLES ); // DENTS haut
+					{
+						glColor3f(1,1,1);
+						for (float i=0; i<2; i++){
+							glVertex3f( dent_x-i, dent_y, dent_z);
+							glVertex3f( dent_x-0.5-i, dent_y, dent_z);
+							glVertex3f( dent_x-0.25-i, dent_y-0.25, dent_z);
+							i = i-0.5;
+						}
+					}
+					glEnd();
+					glTranslatef(0,-1,1);
+					glBegin( GL_TRIANGLES ); // DENTS bas
+					{
+						for (float i=0; i<2; i++){
+							glVertex3f( dent_x-i, dent_y, dent_z);
+							glVertex3f( dent_x-0.5-i, dent_y, dent_z);
+							glVertex3f( dent_x-0.25-i, dent_y+0.25, dent_z);
+							i = i-0.5;
+						}
+					}
+					glEnd();
 				}
-				glEnd();
+				glPopMatrix();
+				
+				glPushMatrix(); // dorsale
+				{
+					glColor3f(0.305, 0.392, 0.474);
+					glBegin( GL_TRIANGLES );
+					{
+					//gauche devant
+						glVertex3f( 0.0f, 0.0f,-2.0f);
+						glVertex3f(-1.0f, 0.0f, 0.0f);
+						glVertex3f( 0.0f, 4.0f, 3.0f);
+					//gauche derrière
+						glVertex3f(-1.0f, 0.0f, 0.0f);
+						glVertex3f( 0.0f, 4.0f, 3.0f);
+						glVertex3f( 0.0f, 0.0f, 2.0f);
+					//droite devant
+						glVertex3f( 0.0f, 0.0f,-2.0f);
+						glVertex3f( 1.0f, 0.0f, 0.0f);
+						glVertex3f( 0.0f, 4.0f, 3.0f);
+					//droite derrière
+						glVertex3f( 1.0f, 0.0f, 0.0f);
+						glVertex3f( 0.0f, 4.0f, 3.0f);
+						glVertex3f( 0.0f, 0.0f, 2.0f);
+					}
+					glEnd();
+				}
+				glPopMatrix();
+				
+				glTranslatef(-6,-6,0);
+				
+				glPushMatrix(); // nageoire gauche
+				{
+					glBegin( GL_TRIANGLES );
+					{
+					//gauche dessus devant
+						glVertex3f( 0.0f, 0.0f,-1.0f);
+						glVertex3f( 0.0f, 1.0f, 0.0f);
+						glVertex3f(-10.0f,0.0f, 5.0f);
+					//gauche dessus derrière 
+						glVertex3f( 0.0f, 1.0f, 0.0f);
+						glVertex3f(-10.0f,0.0f, 5.0f);
+						glVertex3f( 0.0f, 0.0f, 3.0f);
+					//gauche dessous devant
+						glVertex3f( 0.0f, 0.0f,-1.0f);
+						glVertex3f( 0.0f,-0.5f, 0.0f);
+						glVertex3f(-10.0f,0.0f, 5.0f);
+					//gauche dessous derrière 
+						glVertex3f( 0.0f,-0.5f, 0.0f);
+						glVertex3f(-10.0f,0.0f, 5.0f);
+						glVertex3f( 0.0f, 0.0f, 3.0f);
+					}
+					glEnd();
+				}
+				glPopMatrix();
+				
+				glTranslatef(12,0,0);
+				
+				glPushMatrix(); // nageoire droite
+				{
+					glBegin( GL_TRIANGLES );
+					{
+					//droite dessus devant
+						glVertex3f( 0.0f, 0.0f,-1.0f);
+						glVertex3f( 0.0f, 1.0f, 0.0f);
+						glVertex3f(10.0f, 0.0f, 5.0f);
+					//droite dessus derrière 
+						glVertex3f( 0.0f, 1.0f, 0.0f);
+						glVertex3f(10.0f, 0.0f, 5.0f);
+						glVertex3f( 0.0f, 0.0f, 3.0f);
+					//droite dessous devant
+						glVertex3f( 0.0f, 0.0f,-1.0f);
+						glVertex3f( 0.0f,-0.5f, 0.0f);
+						glVertex3f(10.0f, 0.0f, 5.0f);
+					//droite dessous derrière 
+						glVertex3f( 0.0f,-0.5f, 0.0f);
+						glVertex3f(10.0f, 0.0f, 5.0f);
+						glVertex3f( 0.0f, 0.0f, 3.0f);
+					}
+					glEnd();
+				}
+				glPopMatrix();
 			}
 			glPopMatrix();
+			
+			glPushMatrix(); // queue
+			{
+				glTranslatef(0,0,6);
+				glScalef(0.9,0.8,1);
+				gluCylinder(obj,6.3,1,15,32,32);
+				glTranslatef(0,-0.1,0);
+				
+				glColor3f(0.647, 0.701, 0.752);
+				gluCylinder(obj,6.3,1,15,32,32);
+				
+				glTranslatef(0,0.1,13);
+				
+				// aileron
+				glColor3f(0.305, 0.392, 0.474);
+				glBegin( GL_TRIANGLES );
+				{
+				//gauche devant haut
+					glVertex3f( 0.0f, 0.0f,-1.0f);
+					glVertex3f(-1.0f, 0.0f, 2.0f);
+					glVertex3f( 0.0f,11.0f, 5.0f);
+				//gauche derrière haut
+					glVertex3f(-1.0f, 0.0f, 2.0f);
+					glVertex3f( 0.0f,11.0f, 5.0f);
+					glVertex3f( 0.0f, 0.0f, 3.5f);
+				//gauche devant bas
+					glVertex3f( 0.0f, 0.0f,-1.0f);
+					glVertex3f(-1.0f, 0.0f, 2.0f);
+					glVertex3f( 0.0f,-11.0f,5.0f);
+				//gauche derrière bas
+					glVertex3f(-1.0f, 0.0f, 2.0f);
+					glVertex3f( 0.0f,-11.0f,5.0f);
+					glVertex3f( 0.0f, 0.0f, 3.5f);
+				//droite devant haut
+					glVertex3f( 0.0f, 0.0f,-1.0f);
+					glVertex3f( 1.0f, 0.0f, 2.0f);
+					glVertex3f( 0.0f,11.0f, 5.0f);
+				//droite derrière haut
+					glVertex3f( 1.0f, 0.0f, 2.0f);
+					glVertex3f( 0.0f,11.0f, 5.0f);
+					glVertex3f( 0.0f, 0.0f, 3.5f);
+				//droite devant bas
+					glVertex3f( 0.0f, 0.0f,-1.0f);
+					glVertex3f( 1.0f, 0.0f, 2.0f);
+					glVertex3f( 0.0f,-11.0f,5.0f);
+				//droite derrière bas
+					glVertex3f( 1.0f, 0.0f, 2.0f);
+					glVertex3f( 0.0f,-11.0f,5.0f);
+					glVertex3f( 0.0f, 0.0f, 3.5f);
+				}
+				glEnd();
+				
+				axes();
+			}
+			glPopMatrix();
+			
+		}
+		glPopMatrix();
+		
+		glPushMatrix(); // Poisson : Turbot
+		{
+			glTranslatef(aleatoire_turbot,position_turbot_y,position_turbot_z);
+
+
+
+
+			box_turbot.x = aleatoire_turbot;
+			box_turbot.y = position_turbot_y;
+			box_turbot.z = position_turbot_z;
+
+			box_turbot.w = 4;
+			box_turbot.h = 12;
+			box_turbot.d = 16;
+
+
+			if(Collision(box_personnage, box_turbot) && position_z > 900 && position_z < 1000)
+			{	
+				// position_x = 0;
+				// position_y = -10;
+				// position_z = 20;
+				printf(" touche zancle \n");
+			}
+
+
+
+
+
+			// glPushMatrix(); //box turbot
+			// {
+			// 	glTranslatef(aleatoire_turbot ,position_turbot_y ,position_turbot_z);
+			// 	glScalef(2,6,8);
+			// 	glColor4f(1,1,1,0.5);
+			// 	glutSolidCube(2.0);
+			// 	glEnd();
+			// }
+			// glPopMatrix();
+
+
+			glScalef(2,2,2);
+			if(position_z > 925 && position_z < 1000)
+			{
+				position_y = -50;
+				position_turbot_z -= 6;
+				if(position_turbot_z < 900)
+				{
+					srand(time(NULL));
+					aleatoire_turbot = (rand() % 25) * positif_ou_negatif_turbot;
+					position_turbot_z = 1750;
+					positif_ou_negatif_turbot = -positif_ou_negatif_turbot;
+				}
+			}
+
+			GLUquadricObj *obj = gluNewQuadric();
+			glColor3f(0.282, 0.156, 0.098);
+			
+			glPushMatrix(); //corps
+			{
+				glScalef(0.2,1,1);
+				glutSolidSphere(3,32,32);
+			}
+			glPopMatrix();
+			
+			glPushMatrix(); //tete
+			{
+				glTranslatef(0,0,-0.5);
+				glPushMatrix();
+				{
+					glScalef(0.3,1,1.5);
+					glutSolidSphere(2,32,32);
+				}
+				glPopMatrix();
+				
+				glPushMatrix(); //yeux
+				{
+					glColor3f(0.341, 0.215, 0.160);
+					glTranslatef(-0.3,0.5,-2);
+					glutSolidSphere(0.15,32,32);
+					glTranslatef(0.6,0,0);
+					glutSolidSphere(0.15,32,32);
+				}
+				glPopMatrix();
+				
+				glPushMatrix(); //machoire
+				{
+					glTranslatef(0,-1,-2.2); //inf
+					glRotatef(33,1,0,0);
+					glScalef(0.3,0.1,1.2);
+					glutSolidSphere(1,32,32);
+					
+					glTranslatef(0,-1,-1.5); //sup
+					glRotatef(0,1,0,0);
+				}
+				glPopMatrix();
+				
+			}
+			glPopMatrix();
+			
+			glPushMatrix(); // nageoires
+			{
+				gluCylinder(obj,0.6,1,1,32,32);
+			}
+			glPopMatrix();
+			
+			glPushMatrix(); // queue
+			{
+				glTranslatef(0,0,2.9);
+				glScalef(0.1,1,1);
+				gluCylinder(obj,0.5,1,1,32,32);
+				glTranslatef(0,0,1);
+				gluDisk(obj,0,1,32,32);
+			}
+			glPopMatrix();
+			
+			glPushMatrix(); // ailerons
+			{
+				glTranslatef(0,1,0.3);
+				glScalef(0.05,1.1,1.2);
+				glutSolidSphere(2,32,32);
+				glTranslatef(0,-2.3,0);
+				glutSolidSphere(1.5,32,32);
+			}
+			glPopMatrix();
+			
+		}
+		glPopMatrix();
+		
+		glPushMatrix(); // Poisson : Clown
+		{
+			glTranslatef(aleatoire_clown,position_clown_y,position_clown_z);
+			glScalef(3,3,3);
+
+
+
+
+			box_clown.x = aleatoire_clown;
+			box_clown.y = position_clown_y;
+			box_clown.z = position_clown_z;
+
+			box_clown.w = 4;
+			box_clown.h = 4;
+			box_clown.d = 6;
+
+
+			if(Collision(box_personnage, box_clown) && position_z > 900 && position_z < 1000)
+			{	
+				// position_x = 0;
+				// position_y = -10;
+				// position_z = 20;
+				printf(" touche clown \n");
+			}
+
+
+
+
+
+			// glPushMatrix(); //box clown
+			// {
+			// 	glTranslatef(aleatoire_clown ,position_clown_y ,position_clown_z);
+			// 	glScalef(2,2,3);
+			// 	glColor4f(1,1,1,0.5);
+			// 	glutSolidCube(2.0);
+			// 	glEnd();
+			// }
+			// glPopMatrix();
+
+
+
+
+
+			if(position_z > 925 && position_z < 1000)
+			{
+				position_y = -50;
+				position_clown_z-= 5;
+				if(position_clown_z < 900)
+				{
+					srand(time(NULL));
+					aleatoire_clown = (rand() % 25) * positif_ou_negatif_clown;
+					position_clown_z = 1700;
+					positif_ou_negatif_clown = -positif_ou_negatif_clown;
+				}
+				
+			}
+
+
+			GLUquadricObj *obj = gluNewQuadric();
+		
+			glPushMatrix(); // yeux
+			{
+				glColor3f(0,0,0);
+				glTranslatef(-0.3,0.1,-0.75);
+				glutSolidSphere(0.05,32,32);
+				glTranslatef(0.6,0,0);
+				glutSolidSphere(0.05,32,32);
+			}
+			glPopMatrix();
+				
+			glColor3f(0.976, 0.443, 0.101);
+			glScalef(1,1,2);
+			glutSolidSphere(0.5,32,32);
 			
 			glPushMatrix(); // dorsale
 			{
-				glColor3f(0.305, 0.392, 0.474);
-				glBegin( GL_TRIANGLES );
-				{
-				//gauche devant
-					glVertex3f( 0.0f, 0.0f,-2.0f);
-					glVertex3f(-1.0f, 0.0f, 0.0f);
-					glVertex3f( 0.0f, 4.0f, 3.0f);
-				//gauche derrière
-					glVertex3f(-1.0f, 0.0f, 0.0f);
-					glVertex3f( 0.0f, 4.0f, 3.0f);
-					glVertex3f( 0.0f, 0.0f, 2.0f);
-				//droite devant
-					glVertex3f( 0.0f, 0.0f,-2.0f);
-					glVertex3f( 1.0f, 0.0f, 0.0f);
-					glVertex3f( 0.0f, 4.0f, 3.0f);
-				//droite derrière
-					glVertex3f( 1.0f, 0.0f, 0.0f);
-					glVertex3f( 0.0f, 4.0f, 3.0f);
-					glVertex3f( 0.0f, 0.0f, 2.0f);
-				}
-				glEnd();
-			}
-			glPopMatrix();
-			
-			glTranslatef(-6,-6,0);
-			
-			glPushMatrix(); // nageoire gauche
-			{
-				glBegin( GL_TRIANGLES );
-				{
-				//gauche dessus devant
-					glVertex3f( 0.0f, 0.0f,-1.0f);
-					glVertex3f( 0.0f, 1.0f, 0.0f);
-					glVertex3f(-10.0f,0.0f, 5.0f);
-				//gauche dessus derrière 
-					glVertex3f( 0.0f, 1.0f, 0.0f);
-					glVertex3f(-10.0f,0.0f, 5.0f);
-					glVertex3f( 0.0f, 0.0f, 3.0f);
-				//gauche dessous devant
-					glVertex3f( 0.0f, 0.0f,-1.0f);
-					glVertex3f( 0.0f,-0.5f, 0.0f);
-					glVertex3f(-10.0f,0.0f, 5.0f);
-				//gauche dessous derrière 
-					glVertex3f( 0.0f,-0.5f, 0.0f);
-					glVertex3f(-10.0f,0.0f, 5.0f);
-					glVertex3f( 0.0f, 0.0f, 3.0f);
-				}
-				glEnd();
-			}
-			glPopMatrix();
-			
-			glTranslatef(12,0,0);
-			
-			glPushMatrix(); // nageoire droite
-			{
-				glBegin( GL_TRIANGLES );
-				{
-				//droite dessus devant
-					glVertex3f( 0.0f, 0.0f,-1.0f);
-					glVertex3f( 0.0f, 1.0f, 0.0f);
-					glVertex3f(10.0f, 0.0f, 5.0f);
-				//droite dessus derrière 
-					glVertex3f( 0.0f, 1.0f, 0.0f);
-					glVertex3f(10.0f, 0.0f, 5.0f);
-					glVertex3f( 0.0f, 0.0f, 3.0f);
-				//droite dessous devant
-					glVertex3f( 0.0f, 0.0f,-1.0f);
-					glVertex3f( 0.0f,-0.5f, 0.0f);
-					glVertex3f(10.0f, 0.0f, 5.0f);
-				//droite dessous derrière 
-					glVertex3f( 0.0f,-0.5f, 0.0f);
-					glVertex3f(10.0f, 0.0f, 5.0f);
-					glVertex3f( 0.0f, 0.0f, 3.0f);
-				}
-				glEnd();
-			}
-			glPopMatrix();
-		}
-		glPopMatrix();
-		
-		glPushMatrix(); // queue
-		{
-			glTranslatef(0,0,6);
-			glScalef(0.9,0.8,1);
-			gluCylinder(obj,6.3,1,15,32,32);
-			glTranslatef(0,-0.1,0);
-			
-			glColor3f(0.647, 0.701, 0.752);
-			gluCylinder(obj,6.3,1,15,32,32);
-			
-			glTranslatef(0,0.1,13);
-			
-			// aileron
-			glColor3f(0.305, 0.392, 0.474);
-			glBegin( GL_TRIANGLES );
-			{
-			//gauche devant haut
-				glVertex3f( 0.0f, 0.0f,-1.0f);
-				glVertex3f(-1.0f, 0.0f, 2.0f);
-				glVertex3f( 0.0f,11.0f, 5.0f);
-			//gauche derrière haut
-				glVertex3f(-1.0f, 0.0f, 2.0f);
-				glVertex3f( 0.0f,11.0f, 5.0f);
-				glVertex3f( 0.0f, 0.0f, 3.5f);
-			//gauche devant bas
-				glVertex3f( 0.0f, 0.0f,-1.0f);
-				glVertex3f(-1.0f, 0.0f, 2.0f);
-				glVertex3f( 0.0f,-11.0f,5.0f);
-			//gauche derrière bas
-				glVertex3f(-1.0f, 0.0f, 2.0f);
-				glVertex3f( 0.0f,-11.0f,5.0f);
-				glVertex3f( 0.0f, 0.0f, 3.5f);
-			//droite devant haut
-				glVertex3f( 0.0f, 0.0f,-1.0f);
-				glVertex3f( 1.0f, 0.0f, 2.0f);
-				glVertex3f( 0.0f,11.0f, 5.0f);
-			//droite derrière haut
-				glVertex3f( 1.0f, 0.0f, 2.0f);
-				glVertex3f( 0.0f,11.0f, 5.0f);
-				glVertex3f( 0.0f, 0.0f, 3.5f);
-			//droite devant bas
-				glVertex3f( 0.0f, 0.0f,-1.0f);
-				glVertex3f( 1.0f, 0.0f, 2.0f);
-				glVertex3f( 0.0f,-11.0f,5.0f);
-			//droite derrière bas
-				glVertex3f( 1.0f, 0.0f, 2.0f);
-				glVertex3f( 0.0f,-11.0f,5.0f);
-				glVertex3f( 0.0f, 0.0f, 3.5f);
-			}
-			glEnd();
-			
-			axes();
-		}
-		glPopMatrix();
-		
-	}
-	glPopMatrix();
-	
-	glPushMatrix(); // Poisson : Turbot
-	{
-		glTranslatef(aleatoire_turbot,position_turbot_y,position_turbot_z);
-
-
-
-
-		box_turbot.x = aleatoire_turbot;
-		box_turbot.y = position_turbot_y;
-		box_turbot.z = position_turbot_z;
-
-		box_turbot.w = 4;
-		box_turbot.h = 12;
-		box_turbot.d = 16;
-
-
-		if(Collision(box_personnage, box_turbot) && position_z > 900 && position_z < 1000)
-		{	
-			// position_x = 0;
-			// position_y = -10;
-			// position_z = 20;
-			printf(" touche zancle \n");
-		}
-
-
-
-
-
-		// glPushMatrix(); //box turbot
-		// {
-		// 	glTranslatef(aleatoire_turbot ,position_turbot_y ,position_turbot_z);
-		// 	glScalef(2,6,8);
-		// 	glColor4f(1,1,1,0.5);
-		// 	glutSolidCube(2.0);
-		// 	glEnd();
-		// }
-		// glPopMatrix();
-
-
-		glScalef(2,2,2);
-		if(position_z > 925 && position_z < 1000)
-		{
-			position_y = -50;
-			position_turbot_z -= 4;
-			if(position_turbot_z < 900)
-			{
-				srand(time(NULL));
-				aleatoire_turbot = (rand() % 25) * positif_ou_negatif_turbot;
-				position_turbot_z = 1750;
-				positif_ou_negatif_turbot = -positif_ou_negatif_turbot;
-			}
-		}
-
-		GLUquadricObj *obj = gluNewQuadric();
-		glColor3f(0.282, 0.156, 0.098);
-		
-		glPushMatrix(); //corps
-		{
-			glScalef(0.2,1,1);
-			glutSolidSphere(3,32,32);
-		}
-		glPopMatrix();
-		
-		glPushMatrix(); //tete
-		{
-			glTranslatef(0,0,-0.5);
-			glPushMatrix();
-			{
-				glScalef(0.3,1,1.5);
-				glutSolidSphere(2,32,32);
-			}
-			glPopMatrix();
-			
-			glPushMatrix(); //yeux
-			{
-				glColor3f(0.341, 0.215, 0.160);
-				glTranslatef(-0.3,0.5,-2);
-				glutSolidSphere(0.15,32,32);
-				glTranslatef(0.6,0,0);
-				glutSolidSphere(0.15,32,32);
-			}
-			glPopMatrix();
-			
-			glPushMatrix(); //machoire
-			{
-				glTranslatef(0,-1,-2.2); //inf
+				glTranslatef(0,0.45,0);
 				glRotatef(33,1,0,0);
-				glScalef(0.3,0.1,1.2);
-				glutSolidSphere(1,32,32);
-				
-				glTranslatef(0,-1,-1.5); //sup
-				glRotatef(0,1,0,0);
-			}
-			glPopMatrix();
-			
-		}
-		glPopMatrix();
-		
-		glPushMatrix(); // nageoires
-		{
-			gluCylinder(obj,0.6,1,1,32,32);
-		}
-		glPopMatrix();
-		
-		glPushMatrix(); // queue
-		{
-			glTranslatef(0,0,2.9);
-			glScalef(0.1,1,1);
-			gluCylinder(obj,0.5,1,1,32,32);
-			glTranslatef(0,0,1);
-			gluDisk(obj,0,1,32,32);
-		}
-		glPopMatrix();
-		
-		glPushMatrix(); // ailerons
-		{
-			glTranslatef(0,1,0.3);
-			glScalef(0.05,1.1,1.2);
-			glutSolidSphere(2,32,32);
-			glTranslatef(0,-2.3,0);
-			glutSolidSphere(1.5,32,32);
-		}
-		glPopMatrix();
-		
-	}
-	glPopMatrix();
-	
-	glPushMatrix(); // Poisson : Clown
-	{
-		glTranslatef(aleatoire_clown,position_clown_y,position_clown_z);
-		glScalef(3,3,3);
-
-
-
-
-		box_clown.x = aleatoire_clown;
-		box_clown.y = position_clown_y;
-		box_clown.z = position_clown_z;
-
-		box_clown.w = 4;
-		box_clown.h = 4;
-		box_clown.d = 6;
-
-
-		if(Collision(box_personnage, box_clown) && position_z > 900 && position_z < 1000)
-		{	
-			// position_x = 0;
-			// position_y = -10;
-			// position_z = 20;
-			printf(" touche clown \n");
-		}
-
-
-
-
-
-		// glPushMatrix(); //box clown
-		// {
-		// 	glTranslatef(aleatoire_clown ,position_clown_y ,position_clown_z);
-		// 	glScalef(2,2,3);
-		// 	glColor4f(1,1,1,0.5);
-		// 	glutSolidCube(2.0);
-		// 	glEnd();
-		// }
-		// glPopMatrix();
-
-
-
-
-
-		if(position_z > 925 && position_z < 1000)
-		{
-			position_y = -50;
-			position_clown_z-= 3;
-			if(position_clown_z < 900)
-			{
-				srand(time(NULL));
-				aleatoire_clown = (rand() % 25) * positif_ou_negatif_clown;
-				position_clown_z = 1700;
-				positif_ou_negatif_clown = -positif_ou_negatif_clown;
-			}
-			
-		}
-
-
-		GLUquadricObj *obj = gluNewQuadric();
-	
-		glPushMatrix(); // yeux
-		{
-			glColor3f(0,0,0);
-			glTranslatef(-0.3,0.1,-0.75);
-			glutSolidSphere(0.05,32,32);
-			glTranslatef(0.6,0,0);
-			glutSolidSphere(0.05,32,32);
-		}
-		glPopMatrix();
-			
-		glColor3f(0.976, 0.443, 0.101);
-		glScalef(1,1,2);
-		glutSolidSphere(0.5,32,32);
-		
-		glPushMatrix(); // dorsale
-		{
-			glTranslatef(0,0.45,0);
-			glRotatef(33,1,0,0);
-			glScalef(0.1,1,1);
-			glutSolidSphere(0.1,32,32);
-			glColor3f(0,0,0);
-			glScalef(0.8,1,1);
-			glTranslatef(0,0.01,0);
-			glutSolidSphere(0.1,32,32);
-		}
-		glPopMatrix();
-		
-		glPushMatrix(); // ventrale
-		{
-			glColor3f(0.976, 0.443, 0.101);
-			glTranslatef(0,-0.45,0);
-			glRotatef(-33,1,0,0);
-			glScalef(0.1,1,1);
-			glutSolidSphere(0.1,32,32);
-			glColor3f(0,0,0);
-			glScalef(0.8,1,1);
-			glTranslatef(0,-0.01,0);
-			glutSolidSphere(0.1,32,32);
-		}
-		glPopMatrix();
-		
-		glPushMatrix(); // nageoire g
-		{
-			glColor3f(0.976, 0.443, 0.101);
-			glTranslatef(-0.5,0,0);
-			glRotatef(-45,0,1,0);
-			glScalef(0.1,1,1);
-			glutSolidSphere(0.1,32,32);
-			
-			glTranslatef(0,0,0.01);
-			glColor3f(0,0,0);
-			glScalef(0.5,1,1);
-			glutSolidSphere(0.1,32,32);
-		}
-		glPopMatrix();
-		
-		glPushMatrix(); // nageoire d
-		{
-			glColor3f(0.976, 0.443, 0.101);
-			glTranslatef(0.5,0,0);
-			glRotatef(45,0,1,0);
-			glScalef(0.1,1,1);
-			glutSolidSphere(0.1,32,32);
-			
-			glTranslatef(0,0,0.01);
-			glColor3f(0,0,0);
-			glScalef(0.5,1,1);
-			glutSolidSphere(0.1,32,32);
-		}
-		glPopMatrix();
-		
-		glPushMatrix(); // blanc 1
-		{
-			glColor3f(1,1,1);
-			glTranslatef(0,0,-0.3);
-			gluCylinder(obj,0.4,0.47,0.1,32,32);
-		}
-		glPopMatrix();
-		glPushMatrix(); // blanc 2
-		{
-			glColor3f(1,1,1);
-			glTranslatef(0,0,0.2);
-			gluCylinder(obj,0.47,0.4,0.1,32,32);
-		}
-		glPopMatrix();
-		
-		glScalef(1,1,0.5);
-		
-		glPushMatrix(); // queue
-		{
-			glTranslatef(0,0,0.5);
-			glColor3f(0.976, 0.443, 0.101);
-			gluCylinder(obj,0.45,0.2,0.5,32,32);
-			
-			glTranslatef(0,0,0.5);
-			glColor3f(1,1,1);
-			gluCylinder(obj,0.2,0.1,0.2,32,32);
-			
-			glTranslatef(0,0,0.18);
-			glutSolidSphere(0.1,32,32);
-			
-			glTranslatef(0,0,0.1);
-			glColor3f(0.976, 0.443, 0.101);
-			glScalef(0.2,1.3,1);
-			glutSolidSphere(0.2,32,32);
-			
-			glTranslatef(0,0,0.01);
-			glColor3f(0,0,0);
-			glScalef(0.5,1,1);
-			glutSolidSphere(0.2,32,32);
-			
-		}
-		glPopMatrix();
-	}
-	glPopMatrix();
-	
-	glPushMatrix(); // Poisson : Zancle
-	{
-		glTranslatef(aleatoire_zancle,position_zancle_y,position_zancle_z);
-		glScalef(3,3,3);
-
-
-
-		box_zancle.x = aleatoire_zancle;
-		box_zancle.y = position_zancle_y;
-		box_zancle.z = position_zancle_z + 2;
-
-		box_zancle.w = 2;
-		box_zancle.h = 4;
-		box_zancle.d = 4;
-
-
-		if(Collision(box_personnage, box_zancle) && position_z > 900 && position_z < 1000)
-		{	
-			// position_x = 0;
-			// position_y = -10;
-			// position_z = 20;
-			printf(" touche zancle \n");
-		}
-
-
-		// glPushMatrix(); //box zancle 
-		// {
-		// 	glTranslatef(0 ,5 ,100 + 2);
-		// 	glScalef(1,2,2);
-		// 	glColor4f(1,1,1,0.5);
-		// 	glutSolidCube(2.0);
-		// 	glEnd();
-		// }
-		// glPopMatrix();
-
-
-
-		if(position_z > 925 && position_z < 1000)
-		{
-			position_y = -50;
-			position_zancle_z -= 2;
-			if(position_zancle_z< 900)
-			{
-				srand(time(NULL));
-				aleatoire_zancle = (rand() % 25) * positif_ou_negatif_zancle;
-				position_zancle_z = 1800;
-				positif_ou_negatif_zancle = -positif_ou_negatif_zancle;
-			}
-			
-		}
-
-
-		GLUquadricObj *obj = gluNewQuadric();
-		glScalef(0.3,1,1);
-		
-		glColor3f(0,0,0);
-		gluDisk(obj,0.01,0.05,32,32);
-		gluCylinder(obj,0.05,0.1,0.2,32,32);
-		
-		glTranslatef(0,0,0.2);
-		glColor3f(0.925, 0.921, 0.611);
-		gluCylinder(obj,0.1,0.2,0.1,32,32);
-		
-		glTranslatef(0,0,0.1);
-		glColor3f(0,0,0);
-		gluCylinder(obj,0.2,0.5,0.2,32,32);
-		glPushMatrix(); // yeux
-		{
-			glColor3f(1,1,1);
-			glTranslatef(0.3,0.2,0.1);
-			glutSolidSphere(0.05,32,32);
-			
-			glTranslatef(-0.6,0,0);
-			glutSolidSphere(0.05,32,32);
-		}
-		glPopMatrix();
-		
-		glTranslatef(0,0,0.2);
-		glColor3f(0.925, 0.921, 0.611);
-		gluCylinder(obj,0.5,0.51,0.3,32,32);
-		
-		
-		glTranslatef(0,0,0.3);
-		glColor3f(0,0,0);
-		gluCylinder(obj,0.51,0.3,0.2,32,32);
-		
-		glTranslatef(0,0,0.2);
-		glColor3f(0.925, 0.921, 0.611);
-		gluCylinder(obj,0.3,0.1,0.1,32,32);
-		
-		glTranslatef(0,0,0.1);
-		glColor3f(0,0,0);
-		gluCylinder(obj,0.1,0.3,0.2,32,32);
-		
-		glScalef(0.5,1,1);
-		glTranslatef(0,0,0.2);
-		gluDisk(obj,0,0.3,32,32);
-	}
-	glPopMatrix();
-
-
-
-	// box aquatique
-
-
-
-
-	glPushMatrix(); // Requin modele box
-	{
-		glTranslatef(0,5,10);
-		if(position_z > 925 && position_z < 1000)
-		{
-			position_y = -50;
-			position_requin_z -= 3;
-			if(position_requin_z < 900)
-			{
-				position_requin_z = 1650;
-
-			}
-		}
-		GLUquadricObj *obj = gluNewQuadric();
-		
-		glPushMatrix(); // tronc
-		{
-			glPushMatrix(); // centre
-				glRotatef(90,0,1,0);
-				glColor3f(0.305, 0.392, 0.474);
-				glScalef(2,0.8,0.9);
-				glutSolidSphere(7,32,32);
-				
-				glTranslatef(0,-0.1,0);
-				glColor3f(0.647, 0.701, 0.752);
-				glutSolidSphere(7,32,32);
-			glPopMatrix();
-			
-			axes();
-			
-			glPushMatrix();  // Yeux
-			{
-				glTranslatef(2,1,-13);
+				glScalef(0.1,1,1);
+				glutSolidSphere(0.1,32,32);
 				glColor3f(0,0,0);
-				glutSolidSphere(0.5,32,32);
-				glTranslatef(-4,0,0);
-				glutSolidSphere(0.5,32,32);
+				glScalef(0.8,1,1);
+				glTranslatef(0,0.01,0);
+				glutSolidSphere(0.1,32,32);
 			}
 			glPopMatrix();
 			
-			glTranslatef(0,5,0);
-			glColor3f(0.305, 0.392, 0.474);
-			
-			glPushMatrix();  // Machoire
+			glPushMatrix(); // ventrale
 			{
-				glTranslatef(0,-5,-18);
-				glBegin( GL_TRIANGLES );
-				{	//SUPERIEURE
-				// dessus centre
-					glVertex3f( 0.0f, 0.0f, 0.0f); // A
-					glVertex3f( 3.0f, 3.0f, 8.0f); // B
-					glVertex3f(-3.0f, 3.0f, 8.0f); // B'
-				// dessus gauche 
-					glVertex3f( 0.0f, 0.0f, 0.0f); // A
-					glVertex3f( 3.0f, 3.0f, 8.0f); // B
-					glVertex3f( 4.5f, 0.0f, 8.0f); // C
-				// dessus droite 
-					glVertex3f( 0.0f, 0.0f, 0.0f); // A
-					glVertex3f(-3.0f, 3.0f, 8.0f); // B'
-					glVertex3f(-4.5f, 0.0f, 8.0f); // C'
-				// dessous centre
-					glVertex3f( 0.0f, 0.0f, 0.0f); // A
-					glVertex3f( 1.0f,-1.0f, 1.0f); // D
-					glVertex3f(-1.0f,-1.0f, 1.0f); // D'
-				// dessous gauche
-					glVertex3f( 0.0f, 0.0f, 0.0f); // A
-					glVertex3f( 1.0f,-1.0f, 1.0f); // D
-					glVertex3f( 4.5f, 0.0f, 8.0f); // C
-				// dessous gauche exterieure
-					glVertex3f( 1.0f,-1.0f, 1.0f); // D
-					glVertex3f( 4.5f, 0.0f, 8.0f); // C
-					glVertex3f( 4.0f,-2.0f,10.0f); // E
-				// dessous droite
-					glVertex3f( 0.0f, 0.0f, 0.0f); // A
-					glVertex3f(-1.0f,-1.0f, 1.0f); // D'
-					glVertex3f(-4.5f, 0.0f, 8.0f); // C'
-				// dessous droite exterieure
-					glVertex3f(-1.0f,-1.0f, 1.0f); // D'
-					glVertex3f(-4.5f, 0.0f, 8.0f); // C'
-					glVertex3f(-4.0f,-2.0f,10.0f); // E'
-				// dessous
-					glVertex3f( 0.0f, 0.0f, 0.0f); // A
-					glVertex3f( 4.5f, 0.0f, 8.0f); // C
-					glVertex3f(-4.5f, 0.0f, 8.0f); // C'
-					
-					// INFERIEURE
-				// centre
-					glVertex3f( 1.0f,-2.0f, 2.0f); // F
-					glVertex3f(-1.0f,-2.0f, 2.0f); // F'
-					glVertex3f( 0.0f,-3.0f, 3.0f); // G
-				// gauche
-					glVertex3f( 1.0f,-2.0f, 2.0f); // F
-					glVertex3f( 4.0f,-2.0f,10.0f); // E
-					glVertex3f( 0.0f,-3.0f, 3.0f); // G
-				// droite
-					glVertex3f(-1.0f,-2.0f, 2.0f); // F'
-					glVertex3f(-4.0f,-2.0f,10.0f); // E'
-					glVertex3f( 0.0f,-3.0f, 3.0f); // G
-				// dessous
-					glVertex3f( 0.0f,-3.0f, 3.0f); // G
-					glVertex3f( 4.0f,-2.0f,10.0f); // E
-					glVertex3f(-4.0f,-2.0f,10.0f); // E'
-				}
-				glEnd();
-				glTranslatef(1,-1,1);
-				glBegin( GL_TRIANGLES ); // DENTS haut
-				{
-					glColor3f(1,1,1);
-					for (float i=0; i<2; i++){
-						glVertex3f( dent_x-i, dent_y, dent_z);
-						glVertex3f( dent_x-0.5-i, dent_y, dent_z);
-						glVertex3f( dent_x-0.25-i, dent_y-0.25, dent_z);
-						i = i-0.5;
-					}
-				}
-				glEnd();
-				glTranslatef(0,-1,1);
-				glBegin( GL_TRIANGLES ); // DENTS bas
-				{
-					for (float i=0; i<2; i++){
-						glVertex3f( dent_x-i, dent_y, dent_z);
-						glVertex3f( dent_x-0.5-i, dent_y, dent_z);
-						glVertex3f( dent_x-0.25-i, dent_y+0.25, dent_z);
-						i = i-0.5;
-					}
-				}
-				glEnd();
+				glColor3f(0.976, 0.443, 0.101);
+				glTranslatef(0,-0.45,0);
+				glRotatef(-33,1,0,0);
+				glScalef(0.1,1,1);
+				glutSolidSphere(0.1,32,32);
+				glColor3f(0,0,0);
+				glScalef(0.8,1,1);
+				glTranslatef(0,-0.01,0);
+				glutSolidSphere(0.1,32,32);
 			}
 			glPopMatrix();
 			
-			glPushMatrix(); // dorsale
+			glPushMatrix(); // nageoire g
 			{
-				glColor3f(0.305, 0.392, 0.474);
-				glBegin( GL_TRIANGLES );
-				{
-				//gauche devant
-					glVertex3f( 0.0f, 0.0f,-2.0f);
-					glVertex3f(-1.0f, 0.0f, 0.0f);
-					glVertex3f( 0.0f, 4.0f, 3.0f);
-				//gauche derrière
-					glVertex3f(-1.0f, 0.0f, 0.0f);
-					glVertex3f( 0.0f, 4.0f, 3.0f);
-					glVertex3f( 0.0f, 0.0f, 2.0f);
-				//droite devant
-					glVertex3f( 0.0f, 0.0f,-2.0f);
-					glVertex3f( 1.0f, 0.0f, 0.0f);
-					glVertex3f( 0.0f, 4.0f, 3.0f);
-				//droite derrière
-					glVertex3f( 1.0f, 0.0f, 0.0f);
-					glVertex3f( 0.0f, 4.0f, 3.0f);
-					glVertex3f( 0.0f, 0.0f, 2.0f);
-				}
-				glEnd();
-			}
-			glPopMatrix();
-			
-			glTranslatef(-6,-6,0);
-			
-			glPushMatrix(); // nageoire gauche
-			{
-				glBegin( GL_TRIANGLES );
-				{
-				//gauche dessus devant
-					glVertex3f( 0.0f, 0.0f,-1.0f);
-					glVertex3f( 0.0f, 1.0f, 0.0f);
-					glVertex3f(-10.0f,0.0f, 5.0f);
-				//gauche dessus derrière 
-					glVertex3f( 0.0f, 1.0f, 0.0f);
-					glVertex3f(-10.0f,0.0f, 5.0f);
-					glVertex3f( 0.0f, 0.0f, 3.0f);
-				//gauche dessous devant
-					glVertex3f( 0.0f, 0.0f,-1.0f);
-					glVertex3f( 0.0f,-0.5f, 0.0f);
-					glVertex3f(-10.0f,0.0f, 5.0f);
-				//gauche dessous derrière 
-					glVertex3f( 0.0f,-0.5f, 0.0f);
-					glVertex3f(-10.0f,0.0f, 5.0f);
-					glVertex3f( 0.0f, 0.0f, 3.0f);
-				}
-				glEnd();
-			}
-			glPopMatrix();
-			
-			glTranslatef(12,0,0);
-			
-			glPushMatrix(); // nageoire droite
-			{
-				glBegin( GL_TRIANGLES );
-				{
-				//droite dessus devant
-					glVertex3f( 0.0f, 0.0f,-1.0f);
-					glVertex3f( 0.0f, 1.0f, 0.0f);
-					glVertex3f(10.0f, 0.0f, 5.0f);
-				//droite dessus derrière 
-					glVertex3f( 0.0f, 1.0f, 0.0f);
-					glVertex3f(10.0f, 0.0f, 5.0f);
-					glVertex3f( 0.0f, 0.0f, 3.0f);
-				//droite dessous devant
-					glVertex3f( 0.0f, 0.0f,-1.0f);
-					glVertex3f( 0.0f,-0.5f, 0.0f);
-					glVertex3f(10.0f, 0.0f, 5.0f);
-				//droite dessous derrière 
-					glVertex3f( 0.0f,-0.5f, 0.0f);
-					glVertex3f(10.0f, 0.0f, 5.0f);
-					glVertex3f( 0.0f, 0.0f, 3.0f);
-				}
-				glEnd();
-			}
-			glPopMatrix();
-		}
-		glPopMatrix();
-		
-		glPushMatrix(); // queue
-		{
-			glTranslatef(0,0,6);
-			glScalef(0.9,0.8,1);
-			gluCylinder(obj,6.3,1,15,32,32);
-			glTranslatef(0,-0.1,0);
-			
-			glColor3f(0.647, 0.701, 0.752);
-			gluCylinder(obj,6.3,1,15,32,32);
-			
-			glTranslatef(0,0.1,13);
-			
-			// aileron
-			glColor3f(0.305, 0.392, 0.474);
-			glBegin( GL_TRIANGLES );
-			{
-			//gauche devant haut
-				glVertex3f( 0.0f, 0.0f,-1.0f);
-				glVertex3f(-1.0f, 0.0f, 2.0f);
-				glVertex3f( 0.0f,11.0f, 5.0f);
-			//gauche derrière haut
-				glVertex3f(-1.0f, 0.0f, 2.0f);
-				glVertex3f( 0.0f,11.0f, 5.0f);
-				glVertex3f( 0.0f, 0.0f, 3.5f);
-			//gauche devant bas
-				glVertex3f( 0.0f, 0.0f,-1.0f);
-				glVertex3f(-1.0f, 0.0f, 2.0f);
-				glVertex3f( 0.0f,-11.0f,5.0f);
-			//gauche derrière bas
-				glVertex3f(-1.0f, 0.0f, 2.0f);
-				glVertex3f( 0.0f,-11.0f,5.0f);
-				glVertex3f( 0.0f, 0.0f, 3.5f);
-			//droite devant haut
-				glVertex3f( 0.0f, 0.0f,-1.0f);
-				glVertex3f( 1.0f, 0.0f, 2.0f);
-				glVertex3f( 0.0f,11.0f, 5.0f);
-			//droite derrière haut
-				glVertex3f( 1.0f, 0.0f, 2.0f);
-				glVertex3f( 0.0f,11.0f, 5.0f);
-				glVertex3f( 0.0f, 0.0f, 3.5f);
-			//droite devant bas
-				glVertex3f( 0.0f, 0.0f,-1.0f);
-				glVertex3f( 1.0f, 0.0f, 2.0f);
-				glVertex3f( 0.0f,-11.0f,5.0f);
-			//droite derrière bas
-				glVertex3f( 1.0f, 0.0f, 2.0f);
-				glVertex3f( 0.0f,-11.0f,5.0f);
-				glVertex3f( 0.0f, 0.0f, 3.5f);
-			}
-			glEnd();
-			
-			axes();
-		}
-		glPopMatrix();
-		
-	}
-	glPopMatrix();
-
-	glPushMatrix(); //box requin
-	{
-		glTranslatef(aleatoire_requin ,position_requin_y ,position_requin_z + 3);
-		glScalef(13,8,21);
-		glColor4f(1,1,1,0.5);
-		glutSolidCube(2.0);
-		glEnd();
-	}
-	glPopMatrix();
-
-
-	glPushMatrix(); // Poisson : Turbot modele box
-	{
-		glTranslatef(0,5,50);
-		glScalef(2,2,2);
-		if(position_z > 925 && position_z < 1000)
-		{
-			position_y = -50;
-			position_turbot_z -= 4;
-			if(position_turbot_z < 900)
-			{
-				position_turbot_z = 1750;
-
-			}
-		}
-
-		GLUquadricObj *obj = gluNewQuadric();
-		glColor3f(0.282, 0.156, 0.098);
-		
-		glPushMatrix(); //corps
-		{
-			glScalef(0.2,1,1);
-			glutSolidSphere(3,32,32);
-		}
-		glPopMatrix();
-		
-		glPushMatrix(); //tete
-		{
-			glTranslatef(0,0,-0.5);
-			glPushMatrix();
-			{
-				glScalef(0.3,1,1.5);
-				glutSolidSphere(2,32,32);
-			}
-			glPopMatrix();
-			
-			glPushMatrix(); //yeux
-			{
-				glColor3f(0.341, 0.215, 0.160);
-				glTranslatef(-0.3,0.5,-2);
-				glutSolidSphere(0.15,32,32);
-				glTranslatef(0.6,0,0);
-				glutSolidSphere(0.15,32,32);
-			}
-			glPopMatrix();
-			
-			glPushMatrix(); //machoire
-			{
-				glTranslatef(0,-1,-2.2); //inf
-				glRotatef(33,1,0,0);
-				glScalef(0.3,0.1,1.2);
-				glutSolidSphere(1,32,32);
+				glColor3f(0.976, 0.443, 0.101);
+				glTranslatef(-0.5,0,0);
+				glRotatef(-45,0,1,0);
+				glScalef(0.1,1,1);
+				glutSolidSphere(0.1,32,32);
 				
-				glTranslatef(0,-1,-1.5); //sup
-				glRotatef(0,1,0,0);
+				glTranslatef(0,0,0.01);
+				glColor3f(0,0,0);
+				glScalef(0.5,1,1);
+				glutSolidSphere(0.1,32,32);
 			}
 			glPopMatrix();
 			
-		}
-		glPopMatrix();
-		
-		glPushMatrix(); // nageoires
-		{
-			gluCylinder(obj,0.6,1,1,32,32);
-		}
-		glPopMatrix();
-		
-		glPushMatrix(); // queue
-		{
-			glTranslatef(0,0,2.9);
-			glScalef(0.1,1,1);
-			gluCylinder(obj,0.5,1,1,32,32);
-			glTranslatef(0,0,1);
-			gluDisk(obj,0,1,32,32);
-		}
-		glPopMatrix();
-		
-		glPushMatrix(); // ailerons
-		{
-			glTranslatef(0,1,0.3);
-			glScalef(0.05,1.1,1.2);
-			glutSolidSphere(2,32,32);
-			glTranslatef(0,-2.3,0);
-			glutSolidSphere(1.5,32,32);
-		}
-		glPopMatrix();
-		
-	}
-	glPopMatrix();
-
-
-	glPushMatrix(); //box turbot
-	{
-		glTranslatef(aleatoire_turbot ,position_turbot_y ,position_turbot_z);
-		glScalef(2,6,8);
-		glColor4f(1,1,1,0.5);
-		glutSolidCube(2.0);
-		glEnd();
-	}
-	glPopMatrix();
-	
-
-	glPushMatrix(); // Poisson : Clown modele box
-	{
-		glTranslatef(0,5,80);
-		glScalef(3,3,3);
-		if(position_z > 925 && position_z < 1000)
-		{
-			position_y = -50;
-			position_clown_z-= 3;
-			if(position_clown_z < 900)
+			glPushMatrix(); // nageoire d
 			{
-				srand(time(NULL));
-				aleatoire_clown = (rand() % 25) * positif_ou_negatif_clown;
-				position_clown_z = 1700;
-				positif_ou_negatif_clown = -positif_ou_negatif_clown;
+				glColor3f(0.976, 0.443, 0.101);
+				glTranslatef(0.5,0,0);
+				glRotatef(45,0,1,0);
+				glScalef(0.1,1,1);
+				glutSolidSphere(0.1,32,32);
+				
+				glTranslatef(0,0,0.01);
+				glColor3f(0,0,0);
+				glScalef(0.5,1,1);
+				glutSolidSphere(0.1,32,32);
 			}
+			glPopMatrix();
 			
+			glPushMatrix(); // blanc 1
+			{
+				glColor3f(1,1,1);
+				glTranslatef(0,0,-0.3);
+				gluCylinder(obj,0.4,0.47,0.1,32,32);
+			}
+			glPopMatrix();
+			glPushMatrix(); // blanc 2
+			{
+				glColor3f(1,1,1);
+				glTranslatef(0,0,0.2);
+				gluCylinder(obj,0.47,0.4,0.1,32,32);
+			}
+			glPopMatrix();
+			
+			glScalef(1,1,0.5);
+			
+			glPushMatrix(); // queue
+			{
+				glTranslatef(0,0,0.5);
+				glColor3f(0.976, 0.443, 0.101);
+				gluCylinder(obj,0.45,0.2,0.5,32,32);
+				
+				glTranslatef(0,0,0.5);
+				glColor3f(1,1,1);
+				gluCylinder(obj,0.2,0.1,0.2,32,32);
+				
+				glTranslatef(0,0,0.18);
+				glutSolidSphere(0.1,32,32);
+				
+				glTranslatef(0,0,0.1);
+				glColor3f(0.976, 0.443, 0.101);
+				glScalef(0.2,1.3,1);
+				glutSolidSphere(0.2,32,32);
+				
+				glTranslatef(0,0,0.01);
+				glColor3f(0,0,0);
+				glScalef(0.5,1,1);
+				glutSolidSphere(0.2,32,32);
+				
+			}
+			glPopMatrix();
 		}
+		glPopMatrix();
+		
+		glPushMatrix(); // Poisson : Zancle
+		{
+			glTranslatef(aleatoire_zancle,position_zancle_y,position_zancle_z);
+			glScalef(3,3,3);
 
 
-		GLUquadricObj *obj = gluNewQuadric();
-	
-		glPushMatrix(); // yeux
-		{
-			glColor3f(0,0,0);
-			glTranslatef(-0.3,0.1,-0.75);
-			glutSolidSphere(0.05,32,32);
-			glTranslatef(0.6,0,0);
-			glutSolidSphere(0.05,32,32);
-		}
-		glPopMatrix();
+
+			box_zancle.x = aleatoire_zancle;
+			box_zancle.y = position_zancle_y;
+			box_zancle.z = position_zancle_z + 2;
+
+			box_zancle.w = 2;
+			box_zancle.h = 4;
+			box_zancle.d = 4;
+
+
+			if(Collision(box_personnage, box_zancle) && position_z > 900 && position_z < 1000)
+			{	
+				// position_x = 0;
+				// position_y = -10;
+				// position_z = 20;
+				printf(" touche zancle \n");
+			}
+
+
+			// glPushMatrix(); //box zancle 
+			// {
+			// 	glTranslatef(0 ,5 ,100 + 2);
+			// 	glScalef(1,2,2);
+			// 	glColor4f(1,1,1,0.5);
+			// 	glutSolidCube(2.0);
+			// 	glEnd();
+			// }
+			// glPopMatrix();	
+
+
+
+			if(position_z > 925 && position_z < 1000)
+			{
+				position_y = -50;
+				position_zancle_z -= 4;
+				if(position_zancle_z< 900)
+				{
+					srand(time(NULL));
+					aleatoire_zancle = (rand() % 25) * positif_ou_negatif_zancle;
+					position_zancle_z = 1800;
+					positif_ou_negatif_zancle = -positif_ou_negatif_zancle;
+				}
+				
+			}
+
+
+			GLUquadricObj *obj = gluNewQuadric();
+			glScalef(0.3,1,1);
 			
-		glColor3f(0.976, 0.443, 0.101);
-		glScalef(1,1,2);
-		glutSolidSphere(0.5,32,32);
-		
-		glPushMatrix(); // dorsale
-		{
-			glTranslatef(0,0.45,0);
-			glRotatef(33,1,0,0);
-			glScalef(0.1,1,1);
-			glutSolidSphere(0.1,32,32);
 			glColor3f(0,0,0);
-			glScalef(0.8,1,1);
-			glTranslatef(0,0.01,0);
-			glutSolidSphere(0.1,32,32);
-		}
-		glPopMatrix();
-		
-		glPushMatrix(); // ventrale
-		{
-			glColor3f(0.976, 0.443, 0.101);
-			glTranslatef(0,-0.45,0);
-			glRotatef(-33,1,0,0);
-			glScalef(0.1,1,1);
-			glutSolidSphere(0.1,32,32);
-			glColor3f(0,0,0);
-			glScalef(0.8,1,1);
-			glTranslatef(0,-0.01,0);
-			glutSolidSphere(0.1,32,32);
-		}
-		glPopMatrix();
-		
-		glPushMatrix(); // nageoire g
-		{
-			glColor3f(0.976, 0.443, 0.101);
-			glTranslatef(-0.5,0,0);
-			glRotatef(-45,0,1,0);
-			glScalef(0.1,1,1);
-			glutSolidSphere(0.1,32,32);
+			gluDisk(obj,0.01,0.05,32,32);
+			gluCylinder(obj,0.05,0.1,0.2,32,32);
 			
-			glTranslatef(0,0,0.01);
-			glColor3f(0,0,0);
-			glScalef(0.5,1,1);
-			glutSolidSphere(0.1,32,32);
-		}
-		glPopMatrix();
-		
-		glPushMatrix(); // nageoire d
-		{
-			glColor3f(0.976, 0.443, 0.101);
-			glTranslatef(0.5,0,0);
-			glRotatef(45,0,1,0);
-			glScalef(0.1,1,1);
-			glutSolidSphere(0.1,32,32);
-			
-			glTranslatef(0,0,0.01);
-			glColor3f(0,0,0);
-			glScalef(0.5,1,1);
-			glutSolidSphere(0.1,32,32);
-		}
-		glPopMatrix();
-		
-		glPushMatrix(); // blanc 1
-		{
-			glColor3f(1,1,1);
-			glTranslatef(0,0,-0.3);
-			gluCylinder(obj,0.4,0.47,0.1,32,32);
-		}
-		glPopMatrix();
-		glPushMatrix(); // blanc 2
-		{
-			glColor3f(1,1,1);
 			glTranslatef(0,0,0.2);
-			gluCylinder(obj,0.47,0.4,0.1,32,32);
-		}
-		glPopMatrix();
-		
-		glScalef(1,1,0.5);
-		
-		glPushMatrix(); // queue
-		{
-			glTranslatef(0,0,0.5);
-			glColor3f(0.976, 0.443, 0.101);
-			gluCylinder(obj,0.45,0.2,0.5,32,32);
-			
-			glTranslatef(0,0,0.5);
-			glColor3f(1,1,1);
-			gluCylinder(obj,0.2,0.1,0.2,32,32);
-			
-			glTranslatef(0,0,0.18);
-			glutSolidSphere(0.1,32,32);
+			glColor3f(0.925, 0.921, 0.611);
+			gluCylinder(obj,0.1,0.2,0.1,32,32);
 			
 			glTranslatef(0,0,0.1);
-			glColor3f(0.976, 0.443, 0.101);
-			glScalef(0.2,1.3,1);
-			glutSolidSphere(0.2,32,32);
-			
-			glTranslatef(0,0,0.01);
 			glColor3f(0,0,0);
-			glScalef(0.5,1,1);
-			glutSolidSphere(0.2,32,32);
-			
-		}
-		glPopMatrix();
-	}
-	glPopMatrix();
-
-
-	glPushMatrix(); //box clown
-	{
-		glTranslatef(aleatoire_clown ,position_clown_y ,position_clown_z);
-		glScalef(2,2,3);
-		glColor4f(1,1,1,0.5);
-		glutSolidCube(2.0);
-		glEnd();
-	}
-	glPopMatrix();
-
-
-
-	glPushMatrix(); // Poisson : Zancle modele box
-	{
-		glTranslatef(0,5,100);
-		glScalef(3,3,3);
-		if(position_z > 925 && position_z < 1000)
-		{
-			position_y = -50;
-			position_zancle_z -= 2;
-			if(position_zancle_z< 900)
+			gluCylinder(obj,0.2,0.5,0.2,32,32);
+			glPushMatrix(); // yeux
 			{
-				srand(time(NULL));
-				aleatoire_zancle = (rand() % 25) * positif_ou_negatif_zancle;
-				position_zancle_z = 1800;
-				positif_ou_negatif_zancle = -positif_ou_negatif_zancle;
+				glColor3f(1,1,1);
+				glTranslatef(0.3,0.2,0.1);
+				glutSolidSphere(0.05,32,32);
+				
+				glTranslatef(-0.6,0,0);
+				glutSolidSphere(0.05,32,32);
 			}
+			glPopMatrix();
 			
+			glTranslatef(0,0,0.2);
+			glColor3f(0.925, 0.921, 0.611);
+			gluCylinder(obj,0.5,0.51,0.3,32,32);
+			
+			
+			glTranslatef(0,0,0.3);
+			glColor3f(0,0,0);
+			gluCylinder(obj,0.51,0.3,0.2,32,32);
+			
+			glTranslatef(0,0,0.2);
+			glColor3f(0.925, 0.921, 0.611);
+			gluCylinder(obj,0.3,0.1,0.1,32,32);
+			
+			glTranslatef(0,0,0.1);
+			glColor3f(0,0,0);
+			gluCylinder(obj,0.1,0.3,0.2,32,32);
+			
+			glScalef(0.5,1,1);
+			glTranslatef(0,0,0.2);
+			gluDisk(obj,0,0.3,32,32);
 		}
+		glPopMatrix();
+
+		glEnd();
+	}	
+	glPopMatrix();
 
 
-		GLUquadricObj *obj = gluNewQuadric();
-		glScalef(0.3,1,1);
-		
-		glColor3f(0,0,0);
-		gluDisk(obj,0.01,0.05,32,32);
-		gluCylinder(obj,0.05,0.1,0.2,32,32);
-		
-		glTranslatef(0,0,0.2);
-		glColor3f(0.925, 0.921, 0.611);
-		gluCylinder(obj,0.1,0.2,0.1,32,32);
-		
-		glTranslatef(0,0,0.1);
-		glColor3f(0,0,0);
-		gluCylinder(obj,0.2,0.5,0.2,32,32);
-		glPushMatrix(); // yeux
-		{
-			glColor3f(1,1,1);
-			glTranslatef(0.3,0.2,0.1);
-			glutSolidSphere(0.05,32,32);
+	glPushMatrix(); // box aquatique
+	{
+
+		// glPushMatrix(); // Requin modele box
+		// {
+		// 	glTranslatef(0,5,10);
+		// 	if(position_z > 925 && position_z < 1000)
+		// 	{
+		// 		position_y = -50;
+		// 		position_requin_z -= 3;
+		// 		if(position_requin_z < 900)
+		// 		{
+		// 			position_requin_z = 1650;
+
+		// 		}
+		// 	}
+		// 	GLUquadricObj *obj = gluNewQuadric();
 			
-			glTranslatef(-0.6,0,0);
-			glutSolidSphere(0.05,32,32);
+		// 	glPushMatrix(); // tronc
+		// 	{
+		// 		glPushMatrix(); // centre
+		// 			glRotatef(90,0,1,0);
+		// 			glColor3f(0.305, 0.392, 0.474);
+		// 			glScalef(2,0.8,0.9);
+		// 			glutSolidSphere(7,32,32);
+					
+		// 			glTranslatef(0,-0.1,0);
+		// 			glColor3f(0.647, 0.701, 0.752);
+		// 			glutSolidSphere(7,32,32);
+		// 		glPopMatrix();
+				
+		// 		axes();
+				
+		// 		glPushMatrix();  // Yeux
+		// 		{
+		// 			glTranslatef(2,1,-13);
+		// 			glColor3f(0,0,0);
+		// 			glutSolidSphere(0.5,32,32);
+		// 			glTranslatef(-4,0,0);
+		// 			glutSolidSphere(0.5,32,32);
+		// 		}
+		// 		glPopMatrix();
+				
+		// 		glTranslatef(0,5,0);
+		// 		glColor3f(0.305, 0.392, 0.474);
+				
+		// 		glPushMatrix();  // Machoire
+		// 		{
+		// 			glTranslatef(0,-5,-18);
+		// 			glBegin( GL_TRIANGLES );
+		// 			{	//SUPERIEURE
+		// 			// dessus centre
+		// 				glVertex3f( 0.0f, 0.0f, 0.0f); // A
+		// 				glVertex3f( 3.0f, 3.0f, 8.0f); // B
+		// 				glVertex3f(-3.0f, 3.0f, 8.0f); // B'
+		// 			// dessus gauche 
+		// 				glVertex3f( 0.0f, 0.0f, 0.0f); // A
+		// 				glVertex3f( 3.0f, 3.0f, 8.0f); // B
+		// 				glVertex3f( 4.5f, 0.0f, 8.0f); // C
+		// 			// dessus droite 
+		// 				glVertex3f( 0.0f, 0.0f, 0.0f); // A
+		// 				glVertex3f(-3.0f, 3.0f, 8.0f); // B'
+		// 				glVertex3f(-4.5f, 0.0f, 8.0f); // C'
+		// 			// dessous centre
+		// 				glVertex3f( 0.0f, 0.0f, 0.0f); // A
+		// 				glVertex3f( 1.0f,-1.0f, 1.0f); // D
+		// 				glVertex3f(-1.0f,-1.0f, 1.0f); // D'
+		// 			// dessous gauche
+		// 				glVertex3f( 0.0f, 0.0f, 0.0f); // A
+		// 				glVertex3f( 1.0f,-1.0f, 1.0f); // D
+		// 				glVertex3f( 4.5f, 0.0f, 8.0f); // C
+		// 			// dessous gauche exterieure
+		// 				glVertex3f( 1.0f,-1.0f, 1.0f); // D
+		// 				glVertex3f( 4.5f, 0.0f, 8.0f); // C
+		// 				glVertex3f( 4.0f,-2.0f,10.0f); // E
+		// 			// dessous droite
+		// 				glVertex3f( 0.0f, 0.0f, 0.0f); // A
+		// 				glVertex3f(-1.0f,-1.0f, 1.0f); // D'
+		// 				glVertex3f(-4.5f, 0.0f, 8.0f); // C'
+		// 			// dessous droite exterieure
+		// 				glVertex3f(-1.0f,-1.0f, 1.0f); // D'
+		// 				glVertex3f(-4.5f, 0.0f, 8.0f); // C'
+		// 				glVertex3f(-4.0f,-2.0f,10.0f); // E'
+		// 			// dessous
+		// 				glVertex3f( 0.0f, 0.0f, 0.0f); // A
+		// 				glVertex3f( 4.5f, 0.0f, 8.0f); // C
+		// 				glVertex3f(-4.5f, 0.0f, 8.0f); // C'
+						
+		// 				// INFERIEURE
+		// 			// centre
+		// 				glVertex3f( 1.0f,-2.0f, 2.0f); // F
+		// 				glVertex3f(-1.0f,-2.0f, 2.0f); // F'
+		// 				glVertex3f( 0.0f,-3.0f, 3.0f); // G
+		// 			// gauche
+		// 				glVertex3f( 1.0f,-2.0f, 2.0f); // F
+		// 				glVertex3f( 4.0f,-2.0f,10.0f); // E
+		// 				glVertex3f( 0.0f,-3.0f, 3.0f); // G
+		// 			// droite
+		// 				glVertex3f(-1.0f,-2.0f, 2.0f); // F'
+		// 				glVertex3f(-4.0f,-2.0f,10.0f); // E'
+		// 				glVertex3f( 0.0f,-3.0f, 3.0f); // G
+		// 			// dessous
+		// 				glVertex3f( 0.0f,-3.0f, 3.0f); // G
+		// 				glVertex3f( 4.0f,-2.0f,10.0f); // E
+		// 				glVertex3f(-4.0f,-2.0f,10.0f); // E'
+		// 			}
+		// 			glEnd();
+		// 			glTranslatef(1,-1,1);
+		// 			glBegin( GL_TRIANGLES ); // DENTS haut
+		// 			{
+		// 				glColor3f(1,1,1);
+		// 				for (float i=0; i<2; i++){
+		// 					glVertex3f( dent_x-i, dent_y, dent_z);
+		// 					glVertex3f( dent_x-0.5-i, dent_y, dent_z);
+		// 					glVertex3f( dent_x-0.25-i, dent_y-0.25, dent_z);
+		// 					i = i-0.5;
+		// 				}
+		// 			}
+		// 			glEnd();
+		// 			glTranslatef(0,-1,1);
+		// 			glBegin( GL_TRIANGLES ); // DENTS bas
+		// 			{
+		// 				for (float i=0; i<2; i++){
+		// 					glVertex3f( dent_x-i, dent_y, dent_z);
+		// 					glVertex3f( dent_x-0.5-i, dent_y, dent_z);
+		// 					glVertex3f( dent_x-0.25-i, dent_y+0.25, dent_z);
+		// 					i = i-0.5;
+		// 				}
+		// 			}
+		// 			glEnd();
+		// 		}
+		// 		glPopMatrix();
+				
+		// 		glPushMatrix(); // dorsale
+		// 		{
+		// 			glColor3f(0.305, 0.392, 0.474);
+		// 			glBegin( GL_TRIANGLES );
+		// 			{
+		// 			//gauche devant
+		// 				glVertex3f( 0.0f, 0.0f,-2.0f);
+		// 				glVertex3f(-1.0f, 0.0f, 0.0f);
+		// 				glVertex3f( 0.0f, 4.0f, 3.0f);
+		// 			//gauche derrière
+		// 				glVertex3f(-1.0f, 0.0f, 0.0f);
+		// 				glVertex3f( 0.0f, 4.0f, 3.0f);
+		// 				glVertex3f( 0.0f, 0.0f, 2.0f);
+		// 			//droite devant
+		// 				glVertex3f( 0.0f, 0.0f,-2.0f);
+		// 				glVertex3f( 1.0f, 0.0f, 0.0f);
+		// 				glVertex3f( 0.0f, 4.0f, 3.0f);
+		// 			//droite derrière
+		// 				glVertex3f( 1.0f, 0.0f, 0.0f);
+		// 				glVertex3f( 0.0f, 4.0f, 3.0f);
+		// 				glVertex3f( 0.0f, 0.0f, 2.0f);
+		// 			}
+		// 			glEnd();
+		// 		}
+		// 		glPopMatrix();
+				
+		// 		glTranslatef(-6,-6,0);
+				
+		// 		glPushMatrix(); // nageoire gauche
+		// 		{
+		// 			glBegin( GL_TRIANGLES );
+		// 			{
+		// 			//gauche dessus devant
+		// 				glVertex3f( 0.0f, 0.0f,-1.0f);
+		// 				glVertex3f( 0.0f, 1.0f, 0.0f);
+		// 				glVertex3f(-10.0f,0.0f, 5.0f);
+		// 			//gauche dessus derrière 
+		// 				glVertex3f( 0.0f, 1.0f, 0.0f);
+		// 				glVertex3f(-10.0f,0.0f, 5.0f);
+		// 				glVertex3f( 0.0f, 0.0f, 3.0f);
+		// 			//gauche dessous devant
+		// 				glVertex3f( 0.0f, 0.0f,-1.0f);
+		// 				glVertex3f( 0.0f,-0.5f, 0.0f);
+		// 				glVertex3f(-10.0f,0.0f, 5.0f);
+		// 			//gauche dessous derrière 
+		// 				glVertex3f( 0.0f,-0.5f, 0.0f);
+		// 				glVertex3f(-10.0f,0.0f, 5.0f);
+		// 				glVertex3f( 0.0f, 0.0f, 3.0f);
+		// 			}
+		// 			glEnd();
+		// 		}
+		// 		glPopMatrix();
+				
+		// 		glTranslatef(12,0,0);
+				
+		// 		glPushMatrix(); // nageoire droite
+		// 		{
+		// 			glBegin( GL_TRIANGLES );
+		// 			{
+		// 			//droite dessus devant
+		// 				glVertex3f( 0.0f, 0.0f,-1.0f);
+		// 				glVertex3f( 0.0f, 1.0f, 0.0f);
+		// 				glVertex3f(10.0f, 0.0f, 5.0f);
+		// 			//droite dessus derrière 
+		// 				glVertex3f( 0.0f, 1.0f, 0.0f);
+		// 				glVertex3f(10.0f, 0.0f, 5.0f);
+		// 				glVertex3f( 0.0f, 0.0f, 3.0f);
+		// 			//droite dessous devant
+		// 				glVertex3f( 0.0f, 0.0f,-1.0f);
+		// 				glVertex3f( 0.0f,-0.5f, 0.0f);
+		// 				glVertex3f(10.0f, 0.0f, 5.0f);
+		// 			//droite dessous derrière 
+		// 				glVertex3f( 0.0f,-0.5f, 0.0f);
+		// 				glVertex3f(10.0f, 0.0f, 5.0f);
+		// 				glVertex3f( 0.0f, 0.0f, 3.0f);
+		// 			}
+		// 			glEnd();
+		// 		}
+		// 		glPopMatrix();
+		// 	}
+		// 	glPopMatrix();
+			
+		// 	glPushMatrix(); // queue
+		// 	{
+		// 		glTranslatef(0,0,6);
+		// 		glScalef(0.9,0.8,1);
+		// 		gluCylinder(obj,6.3,1,15,32,32);
+		// 		glTranslatef(0,-0.1,0);
+				
+		// 		glColor3f(0.647, 0.701, 0.752);
+		// 		gluCylinder(obj,6.3,1,15,32,32);
+				
+		// 		glTranslatef(0,0.1,13);
+				
+		// 		// aileron
+		// 		glColor3f(0.305, 0.392, 0.474);
+		// 		glBegin( GL_TRIANGLES );
+		// 		{
+		// 		//gauche devant haut
+		// 			glVertex3f( 0.0f, 0.0f,-1.0f);
+		// 			glVertex3f(-1.0f, 0.0f, 2.0f);
+		// 			glVertex3f( 0.0f,11.0f, 5.0f);
+		// 		//gauche derrière haut
+		// 			glVertex3f(-1.0f, 0.0f, 2.0f);
+		// 			glVertex3f( 0.0f,11.0f, 5.0f);
+		// 			glVertex3f( 0.0f, 0.0f, 3.5f);
+		// 		//gauche devant bas
+		// 			glVertex3f( 0.0f, 0.0f,-1.0f);
+		// 			glVertex3f(-1.0f, 0.0f, 2.0f);
+		// 			glVertex3f( 0.0f,-11.0f,5.0f);
+		// 		//gauche derrière bas
+		// 			glVertex3f(-1.0f, 0.0f, 2.0f);
+		// 			glVertex3f( 0.0f,-11.0f,5.0f);
+		// 			glVertex3f( 0.0f, 0.0f, 3.5f);
+		// 		//droite devant haut
+		// 			glVertex3f( 0.0f, 0.0f,-1.0f);
+		// 			glVertex3f( 1.0f, 0.0f, 2.0f);
+		// 			glVertex3f( 0.0f,11.0f, 5.0f);
+		// 		//droite derrière haut
+		// 			glVertex3f( 1.0f, 0.0f, 2.0f);
+		// 			glVertex3f( 0.0f,11.0f, 5.0f);
+		// 			glVertex3f( 0.0f, 0.0f, 3.5f);
+		// 		//droite devant bas
+		// 			glVertex3f( 0.0f, 0.0f,-1.0f);
+		// 			glVertex3f( 1.0f, 0.0f, 2.0f);
+		// 			glVertex3f( 0.0f,-11.0f,5.0f);
+		// 		//droite derrière bas
+		// 			glVertex3f( 1.0f, 0.0f, 2.0f);
+		// 			glVertex3f( 0.0f,-11.0f,5.0f);
+		// 			glVertex3f( 0.0f, 0.0f, 3.5f);
+		// 		}
+		// 		glEnd();
+				
+		// 		axes();
+		// 	}
+		// 	glPopMatrix();
+			
+		// }
+		// glPopMatrix();
+
+		glPushMatrix(); //box requin
+		{
+			glTranslatef(aleatoire_requin ,position_requin_y ,position_requin_z + 3);
+			glScalef(13,8,21);
+			glColor4f(1,1,1,0.5);
+			glutSolidCube(2.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+		// glPushMatrix(); // Poisson : Turbot modele box
+		// {
+		// 	glTranslatef(0,5,50);
+		// 	glScalef(2,2,2);
+		// 	if(position_z > 925 && position_z < 1000)
+		// 	{
+		// 		position_y = -50;
+		// 		position_turbot_z -= 4;
+		// 		if(position_turbot_z < 900)
+		// 		{
+		// 			position_turbot_z = 1750;
+
+		// 		}
+		// 	}
+
+		// 	GLUquadricObj *obj = gluNewQuadric();
+		// 	glColor3f(0.282, 0.156, 0.098);
+			
+		// 	glPushMatrix(); //corps
+		// 	{
+		// 		glScalef(0.2,1,1);
+		// 		glutSolidSphere(3,32,32);
+		// 	}
+		// 	glPopMatrix();
+			
+		// 	glPushMatrix(); //tete
+		// 	{
+		// 		glTranslatef(0,0,-0.5);
+		// 		glPushMatrix();
+		// 		{
+		// 			glScalef(0.3,1,1.5);
+		// 			glutSolidSphere(2,32,32);
+		// 		}
+		// 		glPopMatrix();
+				
+		// 		glPushMatrix(); //yeux
+		// 		{
+		// 			glColor3f(0.341, 0.215, 0.160);
+		// 			glTranslatef(-0.3,0.5,-2);
+		// 			glutSolidSphere(0.15,32,32);
+		// 			glTranslatef(0.6,0,0);
+		// 			glutSolidSphere(0.15,32,32);
+		// 		}
+		// 		glPopMatrix();
+				
+		// 		glPushMatrix(); //machoire
+		// 		{
+		// 			glTranslatef(0,-1,-2.2); //inf
+		// 			glRotatef(33,1,0,0);
+		// 			glScalef(0.3,0.1,1.2);
+		// 			glutSolidSphere(1,32,32);
+					
+		// 			glTranslatef(0,-1,-1.5); //sup
+		// 			glRotatef(0,1,0,0);
+		// 		}
+		// 		glPopMatrix();
+				
+		// 	}
+		// 	glPopMatrix();
+			
+		// 	glPushMatrix(); // nageoires
+		// 	{
+		// 		gluCylinder(obj,0.6,1,1,32,32);
+		// 	}
+		// 	glPopMatrix();
+			
+		// 	glPushMatrix(); // queue
+		// 	{
+		// 		glTranslatef(0,0,2.9);
+		// 		glScalef(0.1,1,1);
+		// 		gluCylinder(obj,0.5,1,1,32,32);
+		// 		glTranslatef(0,0,1);
+		// 		gluDisk(obj,0,1,32,32);
+		// 	}
+		// 	glPopMatrix();
+			
+		// 	glPushMatrix(); // ailerons
+		// 	{
+		// 		glTranslatef(0,1,0.3);
+		// 		glScalef(0.05,1.1,1.2);
+		// 		glutSolidSphere(2,32,32);
+		// 		glTranslatef(0,-2.3,0);
+		// 		glutSolidSphere(1.5,32,32);
+		// 	}
+		// 	glPopMatrix();
+			
+		// }
+		// glPopMatrix();
+
+
+		glPushMatrix(); //box turbot
+		{
+			glTranslatef(aleatoire_turbot ,position_turbot_y ,position_turbot_z);
+			glScalef(2,6,8);
+			glColor4f(1,1,1,0.5);
+			glutSolidCube(2.0);
+			glEnd();
 		}
 		glPopMatrix();
 		
-		glTranslatef(0,0,0.2);
-		glColor3f(0.925, 0.921, 0.611);
-		gluCylinder(obj,0.5,0.51,0.3,32,32);
+
+		// glPushMatrix(); // Poisson : Clown modele box
+		// {
+		// 	glTranslatef(0,5,80);
+		// 	glScalef(3,3,3);
+		// 	if(position_z > 925 && position_z < 1000)
+		// 	{
+		// 		position_y = -50;
+		// 		position_clown_z-= 3;
+		// 		if(position_clown_z < 900)
+		// 		{
+		// 			srand(time(NULL));
+		// 			aleatoire_clown = (rand() % 25) * positif_ou_negatif_clown;
+		// 			position_clown_z = 1700;
+		// 			positif_ou_negatif_clown = -positif_ou_negatif_clown;
+		// 		}
+				
+		// 	}
+
+
+		// 	GLUquadricObj *obj = gluNewQuadric();
 		
-		
-		glTranslatef(0,0,0.3);
-		glColor3f(0,0,0);
-		gluCylinder(obj,0.51,0.3,0.2,32,32);
-		
-		glTranslatef(0,0,0.2);
-		glColor3f(0.925, 0.921, 0.611);
-		gluCylinder(obj,0.3,0.1,0.1,32,32);
-		
-		glTranslatef(0,0,0.1);
-		glColor3f(0,0,0);
-		gluCylinder(obj,0.1,0.3,0.2,32,32);
-		
-		glScalef(0.5,1,1);
-		glTranslatef(0,0,0.2);
-		gluDisk(obj,0,0.3,32,32);
+		// 	glPushMatrix(); // yeux
+		// 	{
+		// 		glColor3f(0,0,0);
+		// 		glTranslatef(-0.3,0.1,-0.75);
+		// 		glutSolidSphere(0.05,32,32);
+		// 		glTranslatef(0.6,0,0);
+		// 		glutSolidSphere(0.05,32,32);
+		// 	}
+		// 	glPopMatrix();
+				
+		// 	glColor3f(0.976, 0.443, 0.101);
+		// 	glScalef(1,1,2);
+		// 	glutSolidSphere(0.5,32,32);
+			
+		// 	glPushMatrix(); // dorsale
+		// 	{
+		// 		glTranslatef(0,0.45,0);
+		// 		glRotatef(33,1,0,0);
+		// 		glScalef(0.1,1,1);
+		// 		glutSolidSphere(0.1,32,32);
+		// 		glColor3f(0,0,0);
+		// 		glScalef(0.8,1,1);
+		// 		glTranslatef(0,0.01,0);
+		// 		glutSolidSphere(0.1,32,32);
+		// 	}
+		// 	glPopMatrix();
+			
+		// 	glPushMatrix(); // ventrale
+		// 	{
+		// 		glColor3f(0.976, 0.443, 0.101);
+		// 		glTranslatef(0,-0.45,0);
+		// 		glRotatef(-33,1,0,0);
+		// 		glScalef(0.1,1,1);
+		// 		glutSolidSphere(0.1,32,32);
+		// 		glColor3f(0,0,0);
+		// 		glScalef(0.8,1,1);
+		// 		glTranslatef(0,-0.01,0);
+		// 		glutSolidSphere(0.1,32,32);
+		// 	}
+		// 	glPopMatrix();
+			
+		// 	glPushMatrix(); // nageoire g
+		// 	{
+		// 		glColor3f(0.976, 0.443, 0.101);
+		// 		glTranslatef(-0.5,0,0);
+		// 		glRotatef(-45,0,1,0);
+		// 		glScalef(0.1,1,1);
+		// 		glutSolidSphere(0.1,32,32);
+				
+		// 		glTranslatef(0,0,0.01);
+		// 		glColor3f(0,0,0);
+		// 		glScalef(0.5,1,1);
+		// 		glutSolidSphere(0.1,32,32);
+		// 	}
+		// 	glPopMatrix();
+			
+		// 	glPushMatrix(); // nageoire d
+		// 	{
+		// 		glColor3f(0.976, 0.443, 0.101);
+		// 		glTranslatef(0.5,0,0);
+		// 		glRotatef(45,0,1,0);
+		// 		glScalef(0.1,1,1);
+		// 		glutSolidSphere(0.1,32,32);
+				
+		// 		glTranslatef(0,0,0.01);
+		// 		glColor3f(0,0,0);
+		// 		glScalef(0.5,1,1);
+		// 		glutSolidSphere(0.1,32,32);
+		// 	}
+		// 	glPopMatrix();
+			
+		// 	glPushMatrix(); // blanc 1
+		// 	{
+		// 		glColor3f(1,1,1);
+		// 		glTranslatef(0,0,-0.3);
+		// 		gluCylinder(obj,0.4,0.47,0.1,32,32);
+		// 	}
+		// 	glPopMatrix();
+		// 	glPushMatrix(); // blanc 2
+		// 	{
+		// 		glColor3f(1,1,1);
+		// 		glTranslatef(0,0,0.2);
+		// 		gluCylinder(obj,0.47,0.4,0.1,32,32);
+		// 	}
+		// 	glPopMatrix();
+			
+		// 	glScalef(1,1,0.5);
+			
+		// 	glPushMatrix(); // queue
+		// 	{
+		// 		glTranslatef(0,0,0.5);
+		// 		glColor3f(0.976, 0.443, 0.101);
+		// 		gluCylinder(obj,0.45,0.2,0.5,32,32);
+				
+		// 		glTranslatef(0,0,0.5);
+		// 		glColor3f(1,1,1);
+		// 		gluCylinder(obj,0.2,0.1,0.2,32,32);
+				
+		// 		glTranslatef(0,0,0.18);
+		// 		glutSolidSphere(0.1,32,32);
+				
+		// 		glTranslatef(0,0,0.1);
+		// 		glColor3f(0.976, 0.443, 0.101);
+		// 		glScalef(0.2,1.3,1);
+		// 		glutSolidSphere(0.2,32,32);
+				
+		// 		glTranslatef(0,0,0.01);
+		// 		glColor3f(0,0,0);
+		// 		glScalef(0.5,1,1);
+		// 		glutSolidSphere(0.2,32,32);
+				
+		// 	}
+		// 	glPopMatrix();
+		// }
+		// glPopMatrix();
+
+
+		glPushMatrix(); //box clown
+		{
+			glTranslatef(aleatoire_clown ,position_clown_y ,position_clown_z);
+			glScalef(2,2,3);
+			glColor4f(1,1,1,0.5);
+			glutSolidCube(2.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+
+		// glPushMatrix(); // Poisson : Zancle modele box
+		// {
+		// 	glTranslatef(0,5,100);
+		// 	glScalef(3,3,3);
+		// 	if(position_z > 925 && position_z < 1000)
+		// 	{
+		// 		position_y = -50;
+		// 		position_zancle_z -= 2;
+		// 		if(position_zancle_z< 900)
+		// 		{
+		// 			srand(time(NULL));
+		// 			aleatoire_zancle = (rand() % 25) * positif_ou_negatif_zancle;
+		// 			position_zancle_z = 1800;
+		// 			positif_ou_negatif_zancle = -positif_ou_negatif_zancle;
+		// 		}
+				
+		// 	}
+
+
+		// 	GLUquadricObj *obj = gluNewQuadric();
+		// 	glScalef(0.3,1,1);
+			
+		// 	glColor3f(0,0,0);
+		// 	gluDisk(obj,0.01,0.05,32,32);
+		// 	gluCylinder(obj,0.05,0.1,0.2,32,32);
+			
+		// 	glTranslatef(0,0,0.2);
+		// 	glColor3f(0.925, 0.921, 0.611);
+		// 	gluCylinder(obj,0.1,0.2,0.1,32,32);
+			
+		// 	glTranslatef(0,0,0.1);
+		// 	glColor3f(0,0,0);
+		// 	gluCylinder(obj,0.2,0.5,0.2,32,32);
+		// 	glPushMatrix(); // yeux
+		// 	{
+		// 		glColor3f(1,1,1);
+		// 		glTranslatef(0.3,0.2,0.1);
+		// 		glutSolidSphere(0.05,32,32);
+				
+		// 		glTranslatef(-0.6,0,0);
+		// 		glutSolidSphere(0.05,32,32);
+		// 	}
+		// 	glPopMatrix();
+			
+		// 	glTranslatef(0,0,0.2);
+		// 	glColor3f(0.925, 0.921, 0.611);
+		// 	gluCylinder(obj,0.5,0.51,0.3,32,32);
+			
+			
+		// 	glTranslatef(0,0,0.3);
+		// 	glColor3f(0,0,0);
+		// 	gluCylinder(obj,0.51,0.3,0.2,32,32);
+			
+		// 	glTranslatef(0,0,0.2);
+		// 	glColor3f(0.925, 0.921, 0.611);
+		// 	gluCylinder(obj,0.3,0.1,0.1,32,32);
+			
+		// 	glTranslatef(0,0,0.1);
+		// 	glColor3f(0,0,0);
+		// 	gluCylinder(obj,0.1,0.3,0.2,32,32);
+			
+		// 	glScalef(0.5,1,1);
+		// 	glTranslatef(0,0,0.2);
+		// 	gluDisk(obj,0,0.3,32,32);
+		// }
+		// glPopMatrix();
+
+
+		glPushMatrix(); //box zancle 
+		{
+			glTranslatef(aleatoire_zancle ,position_zancle_y ,position_zancle_z + 2);
+			glScalef(1,2,2);
+			glColor4f(1,1,1,0.5);
+			glutSolidCube(2.0);
+			glEnd();
+		}
+		glPopMatrix();
 	}
 	glPopMatrix();
 
 
-	glPushMatrix(); //box zancle 
+	// glPushMatrix(); // algue
+	// {
+	// 	glPushMatrix(); //boule de terre
+	// 	{
+	// 		glTranslatef(0,5,20);
+	// 		glColor3f(0.54,0.27,0.07);
+	// 		glScalef(2,1,2);
+	// 		glutSolidSphere(2,8,8);
+	// 		glEnd();
+	// 	}
+	// 	glPopMatrix();
+
+	// 	glPushMatrix(); //feuille d'algue gauche
+	// 	{
+
+	// 		glPushMatrix(); //petite feuille d'algue gauche
+	// 		{
+	// 			glTranslatef(-4,18,20);
+	// 			glRotatef(-20,0,0,1);
+	// 			glColor3f(0,0.51,0);
+	// 			glScalef(0.5,2,0.25);
+	// 			glutSolidSphere(2,8,8);
+	// 			glEnd();
+	// 		}
+	// 		glPopMatrix();
+
+
+	// 		glTranslatef(-4,13,20);
+	// 		glRotatef(20,0,0,1);
+	// 		glColor3f(0,0.51,0);
+	// 		glScalef(0.5,5,0.25);
+	// 		glutSolidSphere(2,8,8);
+	// 		glEnd();
+	// 	}
+	// 	glPopMatrix();
+
+	// 	glPushMatrix(); //feuille d'algue devant
+	// 	{
+
+
+	// 		glPushMatrix(); //petite feuille d'algue devant
+	// 		{
+	// 			glTranslatef(0,15,24);
+	// 			glRotatef(90,0,1,0);
+	// 			glRotatef(-20,0,0,1);
+	// 			glColor3f(0,0.51,0);
+	// 			glScalef(0.5,1.5,0.25);
+	// 			glutSolidSphere(2,8,8);
+	// 			glEnd();
+	// 		}
+	// 		glPopMatrix();
+
+
+	// 		glTranslatef(0,10,24);
+	// 		glRotatef(90,0,1,0);
+	// 		glRotatef(20,0,0,1);
+	// 		glColor3f(0,0.51,0);
+	// 		glScalef(0.5,3,0.25);
+	// 		glutSolidSphere(2,8,8);
+	// 		glEnd();
+	// 	}
+	// 	glPopMatrix();
+
+
+
+	// 	glPushMatrix(); //feuille d'algue arrière
+	// 	{
+
+
+	// 		glPushMatrix(); //petite feuille d'algue arrière
+	// 		{
+	// 			glTranslatef(0,10,18);
+	// 			glRotatef(-90,0,1,0);
+	// 			glRotatef(-20,0,0,1);
+	// 			glColor3f(0,0.51,0);
+	// 			glScalef(0.25,1,0.125);
+	// 			glutSolidSphere(2,8,8);
+	// 			glEnd();
+	// 		}
+	// 		glPopMatrix();
+
+
+	// 		glTranslatef(0,10,16);
+	// 		glRotatef(-90,0,1,0);
+	// 		glRotatef(20,0,0,1);
+	// 		glColor3f(0,0.51,0);
+	// 		glScalef(0.5,3,0.25);
+	// 		glutSolidSphere(2,8,8);
+	// 		glEnd();
+	// 	}
+	// 	glPopMatrix();
+
+
+
+	// 	glPushMatrix(); //feuille d'algue gauche
+	// 	{
+
+
+	// 		glPushMatrix(); //petite feuille d'algue droite
+	// 		{
+	// 			glTranslatef(2,14,20);
+	// 			glRotatef(20,0,0,1);
+	// 			glColor3f(0,0.51,0);
+	// 			glScalef(0.5,2,0.25);
+	// 			glutSolidSphere(2,8,8);
+	// 			glEnd();
+	// 		}
+	// 		glPopMatrix();
+
+
+
+	// 		glTranslatef(4,13,20);
+	// 		glRotatef(-20,0,0,1);
+	// 		glColor3f(0,0.51,0);
+	// 		glScalef(0.5,5,0.25);
+	// 		glutSolidSphere(2,8,8);
+	// 		glEnd();
+	// 	}
+	// 	glPopMatrix();
+
+	// 	glEnd();
+	// }
+	// glPopMatrix();
+
+
+	glPushMatrix(); //création d'algue
 	{
-		glTranslatef(aleatoire_zancle ,position_zancle_y ,position_zancle_z + 2);
-		glScalef(1,2,2);
-		glColor4f(1,1,1,0.5);
-		glutSolidCube(2.0);
+
+		for (int i = 1; i < 70; ++i)
+		{
+			creer_algue(60, -75 - (i+angle_algue), 890 + i*15);
+			creer_algue(-60, -75 - (i + angle_algue), 890 + i*15);
+			//creer_algue(0 + (5 * -algue_positif_negatif), -70, 925 + i*5);
+			//algue_positif_negatif = -algue_positif_negatif;
+			// nb_algue += 1;
+			if(i == 0)
+			{
+				angle_algue = 0;
+			}
+		}
+		
+
 		glEnd();
 	}
 	glPopMatrix();
+
+
+	glPushMatrix();	//cascade
+	{
+		glPushMatrix(); //amont
+		{
+			  //transparence
+			glEnable(GL_BLEND); 
+		  	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+			glTranslatef(0,-18,300);
+			glScalef(20,1,200);
+			glColor4f(0.25,0.41,0.88,0.5);
+			glutSolidCube(3.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+		glPushMatrix(); //descente
+		{
+			  //transparence
+			glEnable(GL_BLEND); 
+		  	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+			glTranslatef(0,-28,674);
+			glRotatef(7.5,1,0,0);
+			glScalef(20,1,50);
+			glColor4f(0.25,0.41,0.88,0.5);
+			glutSolidCube(3.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+
+		glPushMatrix(); //mer
+		{
+			  //transparence
+			glEnable(GL_BLEND); 
+		  	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+			glTranslatef(0,-36,950);
+			glScalef(500,1,300);
+			glColor4f(0.25,0.41,0.88,0.5);
+			glutSolidCube(3.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+		glEnd();
+	}
+	glPopMatrix();
+
 
 // FIN DE MODELISATION
 

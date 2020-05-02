@@ -47,6 +47,8 @@ extern int mouse_button;
 extern int mouse_state;
 extern int mouse_x;
 extern int mouse_y;
+extern int mouse_motion_x;
+extern int mouse_motion_y;
 
 #include <math.h>
 
@@ -305,7 +307,7 @@ float set_camera_1(float old_position_camera,float new_position_camera)
 
 void touche_pressee(unsigned char key, int x, int y)
 {
-    usleep(100);
+    //usleep(100);
 
     switch (key) 
     {
@@ -637,6 +639,30 @@ void vMouse(int button, int state, int x, int y)
       printf("Erreur??\n");
       break;
   }
+}
+
+
+void vMousemotion(int x, int y)
+{
+    if(x < mouse_motion_x) //left
+    {
+        yrot -= 2;
+    }
+    else if(x > mouse_motion_x) //right
+    {
+        yrot += 2;
+    }
+    else if(y > mouse_motion_y) //haut
+    {
+        xrot += 2;
+    }
+      else if(y < mouse_motion_y) //bas
+    {
+        xrot -= 2;
+    }
+
+    mouse_motion_x = x;
+    mouse_motion_y = y;
 }
 
 
