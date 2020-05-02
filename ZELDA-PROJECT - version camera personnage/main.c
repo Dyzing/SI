@@ -6231,6 +6231,45 @@ GLvoid Modelisation()
 	{
 		glTranslatef(aleatoire_clown,position_clown_y,position_clown_z);
 		glScalef(3,3,3);
+
+
+
+
+		box_clown.x = aleatoire_clown;
+		box_clown.y = position_clown_y;
+		box_clown.z = position_clown_z;
+
+		box_clown.w = 4;
+		box_clown.h = 4;
+		box_clown.d = 6;
+
+
+		if(Collision(box_personnage, box_clown) && position_z > 900 && position_z < 1000)
+		{	
+			// position_x = 0;
+			// position_y = -10;
+			// position_z = 20;
+			printf(" touche clown \n");
+		}
+
+
+
+
+
+		// glPushMatrix(); //box clown
+		// {
+		// 	glTranslatef(aleatoire_clown ,position_clown_y ,position_clown_z);
+		// 	glScalef(2,2,3);
+		// 	glColor4f(1,1,1,0.5);
+		// 	glutSolidCube(2.0);
+		// 	glEnd();
+		// }
+		// glPopMatrix();
+
+
+
+
+
 		if(position_z > 925 && position_z < 1000)
 		{
 			position_y = -50;
@@ -6368,6 +6407,39 @@ GLvoid Modelisation()
 	{
 		glTranslatef(aleatoire_zancle,position_zancle_y,position_zancle_z);
 		glScalef(3,3,3);
+
+
+
+		box_zancle.x = aleatoire_zancle;
+		box_zancle.y = position_zancle_y;
+		box_zancle.z = position_zancle_z + 2;
+
+		box_zancle.w = 2;
+		box_zancle.h = 4;
+		box_zancle.d = 4;
+
+
+		if(Collision(box_personnage, box_zancle) && position_z > 900 && position_z < 1000)
+		{	
+			// position_x = 0;
+			// position_y = -10;
+			// position_z = 20;
+			printf(" touche zancle \n");
+		}
+
+
+		// glPushMatrix(); //box zancle 
+		// {
+		// 	glTranslatef(0 ,5 ,100 + 2);
+		// 	glScalef(1,2,2);
+		// 	glColor4f(1,1,1,0.5);
+		// 	glutSolidCube(2.0);
+		// 	glEnd();
+		// }
+		// glPopMatrix();
+
+
+
 		if(position_z > 925 && position_z < 1000)
 		{
 			position_y = -50;
@@ -6719,7 +6791,7 @@ GLvoid Modelisation()
 	glPopMatrix();
 
 
-	glPushMatrix(); // Poisson : Turbot mdoele box
+	glPushMatrix(); // Poisson : Turbot modele box
 	{
 		glTranslatef(0,5,50);
 		glScalef(2,2,2);
@@ -6819,6 +6891,234 @@ GLvoid Modelisation()
 	}
 	glPopMatrix();
 	
+
+	glPushMatrix(); // Poisson : Clown modele box
+	{
+		glTranslatef(0,5,80);
+		glScalef(3,3,3);
+		if(position_z > 925 && position_z < 1000)
+		{
+			position_y = -50;
+			position_clown_z-= 3;
+			if(position_clown_z < 900)
+			{
+				srand(time(NULL));
+				aleatoire_clown = (rand() % 25) * positif_ou_negatif_clown;
+				position_clown_z = 1700;
+				positif_ou_negatif_clown = -positif_ou_negatif_clown;
+			}
+			
+		}
+
+
+		GLUquadricObj *obj = gluNewQuadric();
+	
+		glPushMatrix(); // yeux
+		{
+			glColor3f(0,0,0);
+			glTranslatef(-0.3,0.1,-0.75);
+			glutSolidSphere(0.05,32,32);
+			glTranslatef(0.6,0,0);
+			glutSolidSphere(0.05,32,32);
+		}
+		glPopMatrix();
+			
+		glColor3f(0.976, 0.443, 0.101);
+		glScalef(1,1,2);
+		glutSolidSphere(0.5,32,32);
+		
+		glPushMatrix(); // dorsale
+		{
+			glTranslatef(0,0.45,0);
+			glRotatef(33,1,0,0);
+			glScalef(0.1,1,1);
+			glutSolidSphere(0.1,32,32);
+			glColor3f(0,0,0);
+			glScalef(0.8,1,1);
+			glTranslatef(0,0.01,0);
+			glutSolidSphere(0.1,32,32);
+		}
+		glPopMatrix();
+		
+		glPushMatrix(); // ventrale
+		{
+			glColor3f(0.976, 0.443, 0.101);
+			glTranslatef(0,-0.45,0);
+			glRotatef(-33,1,0,0);
+			glScalef(0.1,1,1);
+			glutSolidSphere(0.1,32,32);
+			glColor3f(0,0,0);
+			glScalef(0.8,1,1);
+			glTranslatef(0,-0.01,0);
+			glutSolidSphere(0.1,32,32);
+		}
+		glPopMatrix();
+		
+		glPushMatrix(); // nageoire g
+		{
+			glColor3f(0.976, 0.443, 0.101);
+			glTranslatef(-0.5,0,0);
+			glRotatef(-45,0,1,0);
+			glScalef(0.1,1,1);
+			glutSolidSphere(0.1,32,32);
+			
+			glTranslatef(0,0,0.01);
+			glColor3f(0,0,0);
+			glScalef(0.5,1,1);
+			glutSolidSphere(0.1,32,32);
+		}
+		glPopMatrix();
+		
+		glPushMatrix(); // nageoire d
+		{
+			glColor3f(0.976, 0.443, 0.101);
+			glTranslatef(0.5,0,0);
+			glRotatef(45,0,1,0);
+			glScalef(0.1,1,1);
+			glutSolidSphere(0.1,32,32);
+			
+			glTranslatef(0,0,0.01);
+			glColor3f(0,0,0);
+			glScalef(0.5,1,1);
+			glutSolidSphere(0.1,32,32);
+		}
+		glPopMatrix();
+		
+		glPushMatrix(); // blanc 1
+		{
+			glColor3f(1,1,1);
+			glTranslatef(0,0,-0.3);
+			gluCylinder(obj,0.4,0.47,0.1,32,32);
+		}
+		glPopMatrix();
+		glPushMatrix(); // blanc 2
+		{
+			glColor3f(1,1,1);
+			glTranslatef(0,0,0.2);
+			gluCylinder(obj,0.47,0.4,0.1,32,32);
+		}
+		glPopMatrix();
+		
+		glScalef(1,1,0.5);
+		
+		glPushMatrix(); // queue
+		{
+			glTranslatef(0,0,0.5);
+			glColor3f(0.976, 0.443, 0.101);
+			gluCylinder(obj,0.45,0.2,0.5,32,32);
+			
+			glTranslatef(0,0,0.5);
+			glColor3f(1,1,1);
+			gluCylinder(obj,0.2,0.1,0.2,32,32);
+			
+			glTranslatef(0,0,0.18);
+			glutSolidSphere(0.1,32,32);
+			
+			glTranslatef(0,0,0.1);
+			glColor3f(0.976, 0.443, 0.101);
+			glScalef(0.2,1.3,1);
+			glutSolidSphere(0.2,32,32);
+			
+			glTranslatef(0,0,0.01);
+			glColor3f(0,0,0);
+			glScalef(0.5,1,1);
+			glutSolidSphere(0.2,32,32);
+			
+		}
+		glPopMatrix();
+	}
+	glPopMatrix();
+
+
+	glPushMatrix(); //box clown
+	{
+		glTranslatef(aleatoire_clown ,position_clown_y ,position_clown_z);
+		glScalef(2,2,3);
+		glColor4f(1,1,1,0.5);
+		glutSolidCube(2.0);
+		glEnd();
+	}
+	glPopMatrix();
+
+
+
+	glPushMatrix(); // Poisson : Zancle modele box
+	{
+		glTranslatef(0,5,100);
+		glScalef(3,3,3);
+		if(position_z > 925 && position_z < 1000)
+		{
+			position_y = -50;
+			position_zancle_z -= 2;
+			if(position_zancle_z< 900)
+			{
+				srand(time(NULL));
+				aleatoire_zancle = (rand() % 25) * positif_ou_negatif_zancle;
+				position_zancle_z = 1800;
+				positif_ou_negatif_zancle = -positif_ou_negatif_zancle;
+			}
+			
+		}
+
+
+		GLUquadricObj *obj = gluNewQuadric();
+		glScalef(0.3,1,1);
+		
+		glColor3f(0,0,0);
+		gluDisk(obj,0.01,0.05,32,32);
+		gluCylinder(obj,0.05,0.1,0.2,32,32);
+		
+		glTranslatef(0,0,0.2);
+		glColor3f(0.925, 0.921, 0.611);
+		gluCylinder(obj,0.1,0.2,0.1,32,32);
+		
+		glTranslatef(0,0,0.1);
+		glColor3f(0,0,0);
+		gluCylinder(obj,0.2,0.5,0.2,32,32);
+		glPushMatrix(); // yeux
+		{
+			glColor3f(1,1,1);
+			glTranslatef(0.3,0.2,0.1);
+			glutSolidSphere(0.05,32,32);
+			
+			glTranslatef(-0.6,0,0);
+			glutSolidSphere(0.05,32,32);
+		}
+		glPopMatrix();
+		
+		glTranslatef(0,0,0.2);
+		glColor3f(0.925, 0.921, 0.611);
+		gluCylinder(obj,0.5,0.51,0.3,32,32);
+		
+		
+		glTranslatef(0,0,0.3);
+		glColor3f(0,0,0);
+		gluCylinder(obj,0.51,0.3,0.2,32,32);
+		
+		glTranslatef(0,0,0.2);
+		glColor3f(0.925, 0.921, 0.611);
+		gluCylinder(obj,0.3,0.1,0.1,32,32);
+		
+		glTranslatef(0,0,0.1);
+		glColor3f(0,0,0);
+		gluCylinder(obj,0.1,0.3,0.2,32,32);
+		
+		glScalef(0.5,1,1);
+		glTranslatef(0,0,0.2);
+		gluDisk(obj,0,0.3,32,32);
+	}
+	glPopMatrix();
+
+
+	glPushMatrix(); //box zancle 
+	{
+		glTranslatef(aleatoire_zancle ,position_zancle_y ,position_zancle_z + 2);
+		glScalef(1,2,2);
+		glColor4f(1,1,1,0.5);
+		glutSolidCube(2.0);
+		glEnd();
+	}
+	glPopMatrix();
 
 // FIN DE MODELISATION
 
