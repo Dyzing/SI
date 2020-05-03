@@ -1,0 +1,53 @@
+il faut que je definisse les positions de chaque angles des cubes simon afin de faire des intervalles avec pour la souris et faire agir en fonction de.
+
+mettre en incrémentation le nombre de clignottement et mettre le max à 10.
+
+faire une croix sur le coin afin de quitter le mini-jeu.
+
+pour chaque clignottement, rentrer dans le char simon la couleur correspondante (b,r,v,j).
+
+pour chaque clic correspond une couleur (b,r,v,j). Verifier si simon[nbclick]==simon[tour] et faire tour += 1; tant que le nombre de clignottement n'est pas atteint.
+
+disable quand c'est pas notre tour et enable ensuite quand ça l'est.
+
+si tout est bon jusqu'à 10, faire tout clignoter.
+
+
+
+char simon[10];
+int max_simon = 10;
+int tour_simon = 1;
+int nb_click = 0;
+int nb_flash_actuel = 0;
+
+bleu :
+	haut : x = 285, y = 112
+	bas : x = 289, y = 212
+	gauche : x = 238, y = 157
+	droite : x = 332, y = 165
+	
+rouge :
+	haut : x = 351, y = 179
+	bas : x = 351, y = 275
+	gauche : x = 306, y = 226
+	droite : x = 398, y = 226 
+	
+jaune :
+	haut : x = 351, y = 51
+	bas : x = 351, y = 158
+	gauche : x = 306, y = 100
+	droite : x = 398, y = 100 
+	
+vert :
+	haut : x = 418, y = 112
+	bas : x = 410, y = 212
+	gauche : x = 368, y = 172
+	droite : x = 465, y = 161
+	
+	
+vert = rouge en real
+jaune = vert en real
+bleu = bleu
+rouge = jaune en real
+	
+	
