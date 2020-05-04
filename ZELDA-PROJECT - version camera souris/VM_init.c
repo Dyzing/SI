@@ -29,7 +29,7 @@ void VM_init()
 		//et_camera_3(2000, 2010, 2000);
 		//glTranslatef(0,0 ,60);
 		//glRotatef(90, 0,1,0);
-		printf("test 0");	
+		printf("test rochers tombent");	
     	position_x = 1990;
         position_y = 2010;
         position_z = 2000;

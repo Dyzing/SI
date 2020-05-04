@@ -50,6 +50,9 @@ extern int mouse_y;
 extern int mouse_motion_x;
 extern int mouse_motion_y;
 
+extern float angle_jambe;
+extern int jambe_avant_arriere;
+
 #include <math.h>
 
 
@@ -370,32 +373,33 @@ void touche_pressee(unsigned char key, int x, int y)
 
     case TOUCHE_MAJ_Z:
     case TOUCHE_MIN_Z:
+              printf("position_x : %f\n",position_x );
+              if(angle_jambe <= 31 && jambe_avant_arriere == 1)
+              {
+                angle_jambe += 2;
+                if(angle_jambe == 31)
+                  jambe_avant_arriere = 0;
+              }
+              else if (angle_jambe >= -31 && jambe_avant_arriere == 0)
+              {
+                angle_jambe -= 2;
+                if(angle_jambe == -31)
+                  jambe_avant_arriere = 1;
+              }
               if((position_z <= 55) && ((position_z >= 42)) && ((position_x >= 100)))
               {
+                printf("je suis un rocher\n");
                   position_x = 1000;
                   position_z = 1000;
                   position_y = 1010;
               }
-              // if((position_z <= 3) && ((position_z >= -10)) && ((position_x <= -105)))
-              // {
-              //     position_x = position_dino_x;
-              //     position_z = position_dino_y;
-              //     position_y = position_dino_z;
-              // }
-              // if((position_z >= 1500)&& ((position_x >= 1500)))
-              // {
-              //     position_x = set_camera_1(position_x,2000);
-              //     position_z = set_camera_1(position_z,2000);
-              //     position_y = set_camera_1(position_y,2025);
-              //     position_dino_x = avancer_x(position_dino_x);
-              //     position_dino_z = avancer_z(position_dino_z);
-              //     printf("position_x : %f\n, position_z : %f\n", position_x, position_z);
-              else if(position_z > 975 && position_y < 50)
+              else if(position_z > 975 && position_y < 0)
               {
                 printf("ne peut plus avancer ocean \n");
               }
               else if (!( ((position_z <= 2005) && (position_z >= 1995)) && ((position_x >= 2000) && (position_x <= 2010)) ) && ( (position_z <= 2055) && ((position_z >= 1940)) && ((position_x <= 2045)) && (position_x >= 1950) ))
               {
+                printf("je teste\n");
                 position_x = avancer_x(position_x);
                 position_z = avancer_z(position_z);
                 set_camera_3(2000, 2020 , 2000 ); //glTranslatef(-position_x,-position_y - 10 ,-position_z);
@@ -641,50 +645,49 @@ void vMouse(int button, int state, int x, int y)
 
 void vMousemotion(int x, int y)
 {
+  if((position_y > 3000 && position_y < 3100) || (position_y < 0) )
+  {
+    printf("ne tourne pas la camera simon\n");
+  }
+  else
+  {
   //printf("x : %i\n, y : %i\n", x,y);
     if(x < 50) //scroll gauche
     {
-        printf("scroll gauche\n");
         yrot -= 1;
     }
     else if(x > 1550) //scroll droite
     {
-        printf("scroll droite\n");
         yrot += 1;
     }
     else if(y < 50) //scroll haut
     {
-        printf("scroll haut\n");
         xrot += 1;
     }
     else if(y > 850) //scroll bas
     {
-        printf("scroll bas\n");
         xrot -= 1;
     }
     else if(x < mouse_motion_x) //left
     {
-        printf(" gauche\n");
         yrot -= 1;
     }
     else if(x > mouse_motion_x) //right
     {
-        printf("droite\n");
         yrot += 1;
     }
     else if(y > mouse_motion_y) //haut
     {
-        printf("haut\n");
         xrot -= 1;
     }
       else if(y < mouse_motion_y) //bas
     {
-        printf("haut\n");
         xrot += 1;
     }
 
     mouse_motion_x = x;
     mouse_motion_y = y;
+  }
 }
 
 

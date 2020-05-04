@@ -17,7 +17,7 @@ int notre_init(int argc, char** argv, void (*DrawGLScene)())
 	glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGBA | GLUT_DEPTH);
 	glutInitWindowSize(720, 480);
 	glutInitWindowPosition(600, 250);
-	glutCreateWindow("COLIBRI PROJECT");
+	glutCreateWindow("ZELDA PROJECT");
 	glutFullScreen();
 	glutDisplayFunc(*DrawGLScene);
 	glutIdleFunc(*DrawGLScene);
