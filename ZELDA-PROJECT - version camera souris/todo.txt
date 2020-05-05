@@ -1,0 +1,16 @@
+mettre un compteur d'esquive dans dinosaure
+
+arriver à un certain point dans les rocher
+faire les mouvements dans les rochers
+
+bloquer le mouvement mis a part en arriere dans le simon
+
+faire plus de collisions
+
+mettre des textures
+
+faire des animations pour Link
+
+faire le CoD
+
+faire un belvédère	

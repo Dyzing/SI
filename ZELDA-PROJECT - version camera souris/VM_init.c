@@ -24,12 +24,20 @@ void VM_init()
 	glTranslatef(0,0,-60);
 	glRotatef(xrot, 1,0,0);
 	glRotatef(yrot, 0, 1, 0);
-  	if( ( (position_z <= 3) && ((position_z >= -10)) && ((position_x <= -105)) ) )
+
+	if((position_z <= 55) && ((position_z >= 42)) && ((position_x >= 100)))
+	{
+	    printf("je suis un rocher\n");
+	      position_x = 1500;
+	      position_z = 1500;
+	      position_y = 1520;
+	}      
+  	else if( ( (position_z <= 3) && ((position_z >= -10)) && ((position_x <= -105)) ) )
 	{
 		//et_camera_3(2000, 2010, 2000);
 		//glTranslatef(0,0 ,60);
 		//glRotatef(90, 0,1,0);
-		printf("test rochers tombent");	
+		printf("test dino");	
     	position_x = 1990;
         position_y = 2010;
         position_z = 2000;

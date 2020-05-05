@@ -373,27 +373,20 @@ void touche_pressee(unsigned char key, int x, int y)
 
     case TOUCHE_MAJ_Z:
     case TOUCHE_MIN_Z:
-              printf("position_x : %f\n",position_x );
-              if(angle_jambe <= 31 && jambe_avant_arriere == 1)
+              printf("angle_jambe : %f\n",angle_jambe );
+              if(angle_jambe <= 41 && jambe_avant_arriere == 1)
               {
-                angle_jambe += 2;
-                if(angle_jambe == 31)
+                angle_jambe += 4;
+                if(angle_jambe == 41)
                   jambe_avant_arriere = 0;
               }
-              else if (angle_jambe >= -31 && jambe_avant_arriere == 0)
+              else if (angle_jambe >= -43 && jambe_avant_arriere == 0)
               {
-                angle_jambe -= 2;
-                if(angle_jambe == -31)
+                angle_jambe -= 4;
+                if(angle_jambe == -43)
                   jambe_avant_arriere = 1;
               }
-              if((position_z <= 55) && ((position_z >= 42)) && ((position_x >= 100)))
-              {
-                printf("je suis un rocher\n");
-                  position_x = 1000;
-                  position_z = 1000;
-                  position_y = 1010;
-              }
-              else if(position_z > 975 && position_y < 0)
+              if(position_z > 975 && position_y < 0)
               {
                 printf("ne peut plus avancer ocean \n");
               }
@@ -420,10 +413,13 @@ void touche_pressee(unsigned char key, int x, int y)
               break;
 
     case TOUCHE_MAJ_Q:
-    case TOUCHE_MIN_Q:  
+    case TOUCHE_MIN_Q:
+                
                 if(position_z >= 900 && position_y < 0)
                 {
-                  position_x += 4;
+                  if(position_x < 44 )
+                    position_x += 4;
+                  printf("position_x : %f\n", position_x);  
                 }
                 else
                 {
@@ -433,6 +429,19 @@ void touche_pressee(unsigned char key, int x, int y)
 
     case TOUCHE_MAJ_S:
     case TOUCHE_MIN_S:
+                printf("angle_jambe : %f\n",angle_jambe );
+                if(angle_jambe <= 41 && jambe_avant_arriere == 1)
+                {
+                  angle_jambe += 4;
+                  if(angle_jambe == 41)
+                    jambe_avant_arriere = 0;
+                }
+                else if (angle_jambe >= -43 && jambe_avant_arriere == 0)
+                {
+                  angle_jambe -= 4;
+                  if(angle_jambe == -43)
+                    jambe_avant_arriere = 1;
+                }
                 position_x = reculer_x(position_x);
                 position_z = reculer_z(position_z);  
 
@@ -442,7 +451,9 @@ void touche_pressee(unsigned char key, int x, int y)
     case TOUCHE_MIN_D:
                 if(position_z >= 900 && position_y < 0)
                 {
-                  position_x-= 4;
+                  if(position_x > -44)
+                    position_x-= 4;
+                  printf("position_x : %f\n", position_x);  
                 }
                 else
                 {
