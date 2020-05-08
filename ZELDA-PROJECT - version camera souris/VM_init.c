@@ -28,9 +28,9 @@ void VM_init()
 	if((position_z <= 55) && ((position_z >= 42)) && ((position_x >= 100)))
 	{
 	    printf("je suis un rocher\n");
-	      position_x = 1500;
-	      position_z = 1500;
-	      position_y = 1520;
+	      position_x = 1000;
+	      position_z = 1000;
+	      position_y = 1020;
 	}      
   	else if( ( (position_z <= 3) && ((position_z >= -10)) && ((position_x <= -105)) ) )
 	{
@@ -63,7 +63,7 @@ void VM_init()
 		//glRotatef(90, 0,1,0);
 		printf("test simon");	
     	position_x = 2940;
-        position_y = 3010;
+        position_y = 3015;
         position_z = 3000;
         xrot = -6.0;
         yrot = -87;

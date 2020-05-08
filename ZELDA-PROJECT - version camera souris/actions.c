@@ -53,6 +53,19 @@ extern int mouse_motion_y;
 extern float angle_jambe;
 extern int jambe_avant_arriere;
 
+extern float angle_bras_gauche;
+
+extern int bras_gauche;
+extern int bras_droit;
+
+extern int garde;
+
+extern int montee0_descente1_bras_gauche;
+extern int montee0_descente1_bras_droit;
+
+extern int link_bouge;
+
+
 #include <math.h>
 
 
@@ -376,12 +389,14 @@ void touche_pressee(unsigned char key, int x, int y)
               printf("angle_jambe : %f\n",angle_jambe );
               if(angle_jambe <= 41 && jambe_avant_arriere == 1)
               {
+                link_bouge = 1;
                 angle_jambe += 4;
                 if(angle_jambe == 41)
                   jambe_avant_arriere = 0;
               }
               else if (angle_jambe >= -43 && jambe_avant_arriere == 0)
               {
+                link_bouge = 1;
                 angle_jambe -= 4;
                 if(angle_jambe == -43)
                   jambe_avant_arriere = 1;
@@ -389,6 +404,11 @@ void touche_pressee(unsigned char key, int x, int y)
               if(position_z > 975 && position_y < 0)
               {
                 printf("ne peut plus avancer ocean \n");
+              }
+              else if(position_y > 3000 && position_y < 3200 && position_x <= 2940)
+              {
+                printf("ne peut plus avancer simon \n");
+                printf("position_x : %f\n, position_y : %f\n, position_z : %f\n",position_x, position_y, position_z);
               }
               else if (!( ((position_z <= 2005) && (position_z >= 1995)) && ((position_x >= 2000) && (position_x <= 2010)) ) && ( (position_z <= 2055) && ((position_z >= 1940)) && ((position_x <= 2045)) && (position_x >= 1950) ))
               {
@@ -621,10 +641,22 @@ void vMouse(int button, int state, int x, int y)
       {
 
         printf("Appui\n");
-        mouse_state = GLUT_DOWN;
-        mouse_x = x;
-        mouse_y = y;
-        mouse_button = button;
+        if(position_y > 3000 && position_y < 3100)
+        {
+          mouse_state = GLUT_DOWN;
+          mouse_x = x;
+          mouse_y = y;
+          mouse_button = button;
+        }
+        else
+        {
+          if(bras_gauche == 0 && garde == 0)
+          {
+            bras_gauche = 1;
+            montee0_descente1_bras_gauche = 0;
+          }
+          
+        }
         break;
       }
       if (state==GLUT_UP)
@@ -641,11 +673,30 @@ void vMouse(int button, int state, int x, int y)
     //   if (state==GLUT_UP) printf("Relachement\n");
     //   break;
 
-    // case GLUT_RIGHT_BUTTON :
-    //   printf("Bouton Droit\n");
-    //   if (state==GLUT_DOWN) printf("Appui\n");
-    //   if (state==GLUT_UP) printf("Relachement\n");
-    //   break;
+    case GLUT_RIGHT_BUTTON :
+      printf("Bouton Droit\n");
+      if (state==GLUT_DOWN)
+      {
+        printf("Appui\n");
+        if(bras_droit == 0 && garde == 0)
+        {
+          bras_droit = 1;
+          if(montee0_descente1_bras_droit == 2)
+            montee0_descente1_bras_droit= 0;
+          else if(montee0_descente1_bras_droit == 1)
+          {
+            garde = 0;
+          }
+        }
+        else if(bras_droit == 1 && garde == 1)
+        {
+            garde = 0;    
+            //montee0_descente1_bras_droit = 1:
+        }
+
+      } 
+      if (state==GLUT_UP) printf("Relachement\n");
+      break;
 
     default :
       printf("Erreur??\n");

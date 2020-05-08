@@ -1,16 +1,18 @@
-mettre un compteur d'esquive dans dinosaure
+mettre un compteur d'esquive dans dinosaure: fait~
 
 arriver à un certain point dans les rocher
 faire les mouvements dans les rochers
 
-bloquer le mouvement mis a part en arriere dans le simon
+bloquer le mouvement mis a part en arriere dans le simon : fait
 
 faire plus de collisions
 
 mettre des textures
 
-faire des animations pour Link
+faire des animations pour Link : fait
 
-faire le CoD
+faire le CoD / jeu d'épée
 
-faire un belvédère	
+faire un belvédère : fait
+
+faire en sorte de pouvoir tourner la camera mais que ca ne compte pas pour le mouvement

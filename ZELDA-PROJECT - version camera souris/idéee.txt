@@ -9,3 +9,4 @@ idées pour mon projet :
 	- jeu du dinosaure sans wifi : fait
 	- tic tac toe
 	- jeu de tir CoD
+	- jeu d'épée
