@@ -386,6 +386,7 @@ void touche_pressee(unsigned char key, int x, int y)
 
     case TOUCHE_MAJ_Z:
     case TOUCHE_MIN_Z:
+              printf("position_z %f\n, position_y %f\n", position_z, position_y);
               printf("angle_jambe : %f\n",angle_jambe );
               if(angle_jambe <= 41 && jambe_avant_arriere == 1)
               {
@@ -405,10 +406,15 @@ void touche_pressee(unsigned char key, int x, int y)
               {
                 printf("ne peut plus avancer ocean \n");
               }
+              else if(position_y > 1000 && position_y < 1425)
+              {
+                position_z += 0.5;
+                position_y += 0.5;
+              }
               else if(position_y > 3000 && position_y < 3200 && position_x <= 2940)
               {
                 printf("ne peut plus avancer simon \n");
-                printf("position_x : %f\n, position_y : %f\n, position_z : %f\n",position_x, position_y, position_z);
+                //printf("position_x : %f\n, position_y : %f\n, position_z : %f\n",position_x, position_y, position_z);
               }
               else if (!( ((position_z <= 2005) && (position_z >= 1995)) && ((position_x >= 2000) && (position_x <= 2010)) ) && ( (position_z <= 2055) && ((position_z >= 1940)) && ((position_x <= 2045)) && (position_x >= 1950) ))
               {
@@ -434,11 +440,12 @@ void touche_pressee(unsigned char key, int x, int y)
 
     case TOUCHE_MAJ_Q:
     case TOUCHE_MIN_Q:
-                
-                if(position_z >= 900 && position_y < 0)
+                if((position_z >= 900 && position_y < 0) || (position_y > 1000 && position_y < 1425))
                 {
-                  if(position_x < 44 )
+                  if(position_x < 44 && position_y < 0)
                     position_x += 4;
+                  if(position_y > 1000 && position_y < 1500)
+                    position_x += 32;
                   printf("position_x : %f\n", position_x);  
                 }
                 else
@@ -462,17 +469,26 @@ void touche_pressee(unsigned char key, int x, int y)
                   if(angle_jambe == -43)
                     jambe_avant_arriere = 1;
                 }
-                position_x = reculer_x(position_x);
-                position_z = reculer_z(position_z);  
+                if(position_y > 1000 && position_y <= 1425 && position_z <= 1515)
+                {
+                  printf("ne peut plus reculer terre \n");
+                }
+                else
+                {
+                  position_x = reculer_x(position_x);
+                  position_z = reculer_z(position_z);  
+                }
 
                 break;
 
     case TOUCHE_MAJ_D:
     case TOUCHE_MIN_D:
-                if(position_z >= 900 && position_y < 0)
+                if((position_z >= 900 && position_y < 0) || (position_y > 1000 && position_y < 1425))
                 {
-                  if(position_x > -44)
+                  if(position_x > -44 && position_y < 0)
                     position_x-= 4;
+                  if(position_y > 1000 && position_y < 1500)
+                    position_x -= 32;
                   printf("position_x : %f\n", position_x);  
                 }
                 else
@@ -707,9 +723,10 @@ void vMouse(int button, int state, int x, int y)
 
 void vMousemotion(int x, int y)
 {
-  if((position_y > 3000 && position_y < 3100) || (position_y < 0) )
+  printf("xrot : %f\n ,yrot : %i\n",xrot, yrot);
+  if((position_y > 3000 && position_y < 3100) || (position_y < 0) || (position_y > 1000 && position_y < 1425))
   {
-    printf("ne tourne pas la camera simon\n");
+    printf("ne tourne pas la camera simon ou ocean ou terre\n");
   }
   else
   {

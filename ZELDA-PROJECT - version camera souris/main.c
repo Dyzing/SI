@@ -823,7 +823,7 @@ GLvoid Modelisation()
   glEnable(GL_COLOR_MATERIAL);
   glLightModelfv(GL_LIGHT_MODEL_AMBIENT, mipuissance);
 
-	// /printf("position_x %f\n, position_y %f\n, position_z %f\n", position_x, position_y, position_z);
+	printf("position_x %f\n, position_y %f\n, position_z %f\n", position_x, position_y, position_z);
 
 	if(lumiere_lampadaire == 1)
 	{
@@ -2163,19 +2163,19 @@ GLvoid Modelisation()
 			if(Collision(box_rocher_milieu, box_personnage))
 			{	
 				position_x = 0;
-				position_y = 10;
+				position_y = 5;
 				position_z = 20;
 			}
 
 
 			glRotatef(angle_rocher, 1,0,0);
-			angle_rocher -= 5;
-			position_y_rocher -= 0.5;
-			position_z_rocher -= 0.5;
-			if ((position_y_rocher <= 950) && (position_z_rocher <= 800))
+			angle_rocher -= 10;
+			position_y_rocher -= 4;
+			position_z_rocher -= 4;
+			if ((position_y_rocher <= 985) && (position_z_rocher <= 940))
 			{
-				position_y_rocher = 1200;
-				position_z_rocher = 1232;
+				position_y_rocher = 1500;
+				position_z_rocher = 1532;
 			}
 			glColor3f(0.54,0.27,0.07);
 			glScalef(1,1,1);
@@ -2200,20 +2200,20 @@ GLvoid Modelisation()
 			if(Collision(box_rocher_gauche, box_personnage))
 			{	
 				position_x = 0;
-				position_y = 10;
+				position_y = 5;
 				position_z = 20;
 			}
 
 
 
 			glRotatef(angle_rocher, 1,0,0);
-			angle_rocher -= 5;
-			position_y_rocher_gauche -= 0.5;
-			position_z_rocher_gauche -= 0.5;
-			if ((position_y_rocher_gauche <= 950) && (position_z_rocher_gauche  <= 800))
+			angle_rocher -= 10;
+			position_y_rocher_gauche -= 5;
+			position_z_rocher_gauche -= 5;
+			if ((position_y_rocher_gauche <= 1000) && (position_z_rocher_gauche  <= 970))
 			{
-				position_y_rocher_gauche = 1300;
-				position_z_rocher_gauche = 1332;
+				position_y_rocher_gauche = 1500;
+				position_z_rocher_gauche = 1532;
 			}
 			glColor3f(0.54,0.27,0.07);
 			glScalef(1,1,1);
@@ -2238,19 +2238,19 @@ GLvoid Modelisation()
 			if(Collision(box_rocher_droite, box_personnage))
 			{	
 				position_x = 0;
-				position_y = 0;
+				position_y = 5;
 				position_z = 20;
 			}
 
 
 			glRotatef(angle_rocher, 1,0,0);
-			angle_rocher -= 5;
-			position_y_rocher_droite -= 0.5;
-			position_z_rocher_droite -= 0.5;
-			if ((position_y_rocher_droite <= 950) && (position_z_rocher_droite  <= 800))
+			angle_rocher -= 10;
+			position_y_rocher_droite -= 3;
+			position_z_rocher_droite -= 3;
+			if ((position_y_rocher_droite <= 970) && (position_z_rocher_droite  <= 950))
 			{
-				position_y_rocher_droite = 1250;
-				position_z_rocher_droite = 1282;
+				position_y_rocher_droite = 1550;
+				position_z_rocher_droite = 1582;
 			}
 			glColor3f(0.54,0.27,0.07);
 			glScalef(1,1,1);
@@ -2258,6 +2258,8 @@ GLvoid Modelisation()
 			glEnd();
 		}
 		glPopMatrix();
+
+
 
 
 		glPushMatrix(); //pente
@@ -2274,6 +2276,231 @@ GLvoid Modelisation()
 		}
 		glPopMatrix();
 
+
+		glPushMatrix(); //arrivée
+		{
+			glEnable(GL_DEPTH_TEST);
+			glEnable(GL_BLEND); 
+			 glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			glTranslatef(1000,1403,1552);
+			glRotatef(0,1,0,0);
+			glScalef(15,1,40);
+			glColor4f(0.5,0.5,0, 0.8);
+			glutSolidCube(5.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+	glPushMatrix(); //Maison rocher
+	{
+
+		glTranslatef(1100, 1425, 1580);
+		glRotatef(-180,0,1,0);
+
+
+		glPushMatrix(); //mur du fond
+		{		
+			glTranslatef(100,0,-30);
+			glScalef(9,5,0.4);
+			glColor4f(1,1,1, 0.8);
+			glutSolidCube(7.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); //mur de droite
+		{		
+			glTranslatef(131,-1,-6);
+			glRotatef(90, 0,1,0);
+			glScalef(7,5,0.4);
+			glColor4f(0.5,0.5,0.5, 0.8);
+			glutSolidCube(7.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+
+		glPushMatrix(); //mur de gauche
+		{		
+			glTranslatef(70,-1,-6);
+			glRotatef(-90, 0,1,0);
+			glScalef(7,5,0.4);
+			glColor4f(0.5,0.5,0.5, 0.8);
+			glutSolidCube(7.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); //plafond
+		{		
+			glTranslatef(101,18	,-6);
+			glRotatef(90, 1,0,0);
+			glScalef(9,7,0.4);
+			glColor4f(0,1,1, 0.8);
+			glutSolidCube(7.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+
+
+		glPushMatrix(); //toit gauche
+		{		
+			glTranslatef(78,25,-6);
+			glRotatef(90, 1,0,0);
+			glRotatef(22.5, 0,1,0);
+			glScalef(7,7,0.4);
+			glColor4f(0,1,0.5, 0.8);
+			glutSolidCube(7.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); //toit gauche
+		{		
+			glTranslatef(122,25,-6);
+			glRotatef(90, 1,0,0);
+			glRotatef(-22.5, 0,1,0);
+			glScalef(7,7,0.4);
+			glColor4f(0,1,0.5, 0.8);
+			glutSolidCube(7.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); //face avant toit
+		{
+			glTranslatef(101,27,17);
+			glScalef(32,8.4,1);
+			glColor4f(0,0.41,0.41, 0.8);
+			glBegin( GL_TRIANGLES ); 
+				glVertex3f( 0.0f, 1.f, 0.0f );
+				glVertex3f( -1.0f, -1.0f, 1.0f );
+				glVertex3f( 1.0f, -1.0f, 1.0f);
+
+				glVertex3f( 0.0f, 1.0f, 0.0f);
+				glVertex3f( -1.0f, -1.0f, 1.0f);
+				glVertex3f( 0.0f, -1.0f, -1.0f);
+
+				glVertex3f( 0.0f, 1.0f, 0.0f);
+				glVertex3f( 0.0f, -1.0f, -1.0f);
+				glVertex3f( 1.0f, -1.0f, 1.0f);
+
+				glVertex3f( -1.0f, -1.0f, 1.0f);
+				glVertex3f( 0.0f, -1.0f, -1.0f);
+				glVertex3f( 1.0f, -1.0f, 1.0f);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+
+		glPushMatrix(); //face arrière toit
+		{
+			glTranslatef(101,27,-29);
+			glRotatef(180,0,1,0);
+			glScalef(32,8.4,1);
+			glColor4f(0,0.41,0.41, 0.8);
+			glBegin( GL_TRIANGLES ); 
+				glVertex3f( 0.0f, 1.f, 0.0f );
+				glVertex3f( -1.0f, -1.0f, 1.0f );
+				glVertex3f( 1.0f, -1.0f, 1.0f);
+
+				glVertex3f( 0.0f, 1.0f, 0.0f);
+				glVertex3f( -1.0f, -1.0f, 1.0f);
+				glVertex3f( 0.0f, -1.0f, -1.0f);
+
+				glVertex3f( 0.0f, 1.0f, 0.0f);
+				glVertex3f( 0.0f, -1.0f, -1.0f);
+				glVertex3f( 1.0f, -1.0f, 1.0f);
+
+				glVertex3f( -1.0f, -1.0f, 1.0f);
+				glVertex3f( 0.0f, -1.0f, -1.0f);
+				glVertex3f( 1.0f, -1.0f, 1.0f);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+
+		glPushMatrix(); //sol
+		{		
+			glTranslatef(101,-19.5,-8);
+			glRotatef(90, 1,0,0);
+			glScalef(8.5,6.7,0.4);
+			glColor4f(1,0.5,0, 0.8);
+			glutSolidCube(7.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+
+
+		glPushMatrix(); //mur de devant gauche
+		{		
+			glTranslatef(83,-3,17);
+			glScalef(3.5,5.6,0.4);
+			glColor4f(1,1,1, 0.8);
+			glutSolidCube(7.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); //mur de devant droite
+		{		
+			glTranslatef(120,-3,17);
+			glScalef(3.5,5.6,0.4);
+			glColor4f(1,1,1, 0.8);
+			glutSolidCube(7.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); //mur de devant au mileu en haut
+		{		
+			glTranslatef(101.5,10,17);
+			glScalef(1.9,2.5,0.4);
+			glColor4f(0.5,0.5,0.5, 0.8);
+			glutSolidCube(7.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); //fentre en devant gauche
+		{		
+			glTranslatef(82.5,8,18.5);
+			glScalef(2,1.5,0.4);
+			glColor4f(0,0,0, 0.9);
+			glutSolidCube(7.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+
+		glPushMatrix(); //fentre en devant droite
+		{		
+			glTranslatef(119.5,8,18.5);
+			glScalef(2,1.5,0.4);
+			glColor4f(0,0,0, 0.9);
+			glutSolidCube(7.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+	}
+	glPopMatrix();
 
 		glEnd();
 	}
@@ -7929,8 +8156,21 @@ GLvoid Modelisation()
 	{
 		glTranslatef(position_x,position_y,position_z);
 
+		if(position_y > 1000 && position_y < 1425 && position_x > 800 && position_x < 1200)
+		{
+			angle_oiseau_vertical = -45;
+		}
+		// else if (position_y >= 1425 && position_y < 1450 && position_x > 800 && position_x < 1200)
+		// {
+		// 	position_y = 1440;
+		// }
+		else
+		{
+			angle_oiseau_vertical = 0;			
+		}
+
 		glRotatef(-yrot + 180 , 0, 1, 0);
-		glRotatef(angle_oiseau_vertical, 0, 0, 1);
+		glRotatef(angle_oiseau_vertical, 1, 0, 0);
 
 		if(position_z > 900 && position_z < 980 && position_y < 0)
 		{
@@ -8192,7 +8432,7 @@ GLvoid Modelisation()
 				}
 				glPopMatrix();
 				
-				glPushMatrix(); // cil droit
+				glPushMatrix(); // cil droite
 				{
 					glRotatef(8.9,0,1,0);
 					glTranslatef(0.09,0,0.06);
@@ -8512,7 +8752,7 @@ GLvoid Modelisation()
 				}
 				else
 				{
-					printf("error droit \n");
+					//printf("error droit \n");
 				}
 
 
@@ -8750,7 +8990,7 @@ GLvoid Modelisation()
 				}
 				else
 				{
-					printf("error gauche \n");
+					//printf("error gauche \n");
 				}
 
 				glTranslatef(3,-0.5,0); // épaule
@@ -8903,6 +9143,7 @@ GLvoid Modelisation()
 	{
 		glTranslatef(position_x,position_y - 7,position_z );
 		glRotatef(-yrot, 0,1,0);
+		glRotatef(-angle_oiseau_vertical, 1,0,0);
 		glScalef(8,12,4);
 		glColor4f(1,1,1,0.5);
 		glutSolidCube(2.0);
