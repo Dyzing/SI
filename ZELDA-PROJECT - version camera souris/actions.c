@@ -212,7 +212,7 @@ float angle_oiseau_dehors_fleur(float angle_oiseau_vertical)
 
 float avancer_x(float position_x) // Z
 {
-  printf("yrot : %i\n", -yrot);
+  //printf("yrot : %i\n", -yrot);
   position_x =  position_x + cos((-yrot%360 + 90) * M_PI/180);
   return position_x;
 }
@@ -333,7 +333,7 @@ void touche_pressee(unsigned char key, int x, int y)
         break;
 
     case ESPACE:
-      printf("espace, dino_bouge %i\n", dino_bouge);
+      //printf("espace, dino_bouge %i\n", dino_bouge);
       dino_bouge = 1;
       dino_monte0_descend1_statique2 = 0;
       break;
@@ -386,8 +386,8 @@ void touche_pressee(unsigned char key, int x, int y)
 
     case TOUCHE_MAJ_Z:
     case TOUCHE_MIN_Z:
-              printf("position_z %f\n, position_y %f\n", position_z, position_y);
-              printf("angle_jambe : %f\n",angle_jambe );
+              // printf("position_z %f\n, position_y %f\n", position_z, position_y);
+              // printf("angle_jambe : %f\n",angle_jambe );
               if(angle_jambe <= 41 && jambe_avant_arriere == 1)
               {
                 link_bouge = 1;
@@ -456,7 +456,7 @@ void touche_pressee(unsigned char key, int x, int y)
 
     case TOUCHE_MAJ_S:
     case TOUCHE_MIN_S:
-                printf("angle_jambe : %f\n",angle_jambe );
+                //printf("angle_jambe : %f\n",angle_jambe );
                 if(angle_jambe <= 41 && jambe_avant_arriere == 1)
                 {
                   angle_jambe += 4;
@@ -723,7 +723,7 @@ void vMouse(int button, int state, int x, int y)
 
 void vMousemotion(int x, int y)
 {
-  printf("xrot : %f\n ,yrot : %i\n",xrot, yrot);
+  //printf("xrot : %f\n ,yrot : %i\n",xrot, yrot);
   if((position_y > 3000 && position_y < 3100) || (position_y < 0) || (position_y > 1000 && position_y < 1425))
   {
     printf("ne tourne pas la camera simon ou ocean ou terre\n");

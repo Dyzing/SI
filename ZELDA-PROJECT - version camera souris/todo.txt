@@ -24,3 +24,6 @@ ajouter du decor au rocher
 faire plus de collisions
 
 mettre des textures
+
+faire les coeurs dark et link
+
