@@ -25,5 +25,5 @@ faire plus de collisions
 
 mettre des textures
 
-faire les coeurs dark et link
+faire les coeurs dark et link : il manque de les enlever quand je prend un coup 
 
