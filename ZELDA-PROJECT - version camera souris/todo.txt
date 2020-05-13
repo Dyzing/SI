@@ -1,0 +1,33 @@
+mettre un compteur d'esquive dans dinosaure: fait~
+
+arriver à un certain point dans les rocher : fait
+faire les mouvements dans les rochers : fait
+
+bloquer le mouvement mis a part en arriere dans le simon : fait
+
+faire des animations pour Link : fait
+
+faire un belvédère : fait
+
+faire les coeurs dark et link : fait
+
+faire la protection de bouclier : fait
+
+-----------------------------------------------------------------------------------------------------------------
+
+faire en sorte de pouvoir tourner la camera mais que ca ne compte pas pour le mouvement
+
+changer la couleur du cerceau quand on passe dedans
+
+faire le CoD / jeu d'épée
+
+faire l'ile du combat
+
+ajouter du decor au rocher
+
+faire plus de collisions
+
+mettre des textures
+
+
+
