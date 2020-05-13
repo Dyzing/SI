@@ -66,6 +66,17 @@ extern int montee0_descente1_bras_droit;
 extern int link_bouge;
 
 
+
+
+extern int bras_gauche_dark;
+extern int bras_droit_dark;
+
+extern int montee0_descente1_bras_gauche_dark;
+extern int montee0_descente1_bras_droit_dark;
+extern int garde_dark;
+
+
+
 #include <math.h>
 
 
@@ -526,25 +537,30 @@ void touche_pressee(unsigned char key, int x, int y)
                 break;
 
     case TOUCHE_MAJ_C:
-                if(position_x > 6)
+                printf("garde à vous\n");
+                if(bras_droit_dark == 0 && garde_dark == 0)
                 {
-                  position_x = position_x_oiseau_dehors_fleur(position_x);
+                  bras_droit_dark = 1;
+                  if(montee0_descente1_bras_droit_dark == 2)
+                    montee0_descente1_bras_droit_dark= 0;
+                  else if(montee0_descente1_bras_droit_dark == 1)
+                  {
+                    garde_dark = 0;
+                  }
                 }
-                if(position_z < -10)
+                else if(bras_droit_dark == 1 && garde_dark == 1)
                 {
-                  position_z = position_z_oiseau_dehors_fleur(position_z);
-                }
-                if(angle_oiseau_vertical > 0)
-                {
-                  angle_oiseau_vertical = angle_oiseau_dehors_fleur(angle_oiseau_vertical);
+                    garde_dark = 0;    
+                    //montee0_descente1_bras_droit = 1:
                 }
                 break;
     case TOUCHE_MIN_C:
-                position_x = x_vers_fleur(position_x);
-                //position_y = y_vers_zero(position_y);
-                position_z = z_vers_fleur(position_z);
-                angle_triangle = angle_vers_fleur(angle_triangle);
-                angle_oiseau_vertical = angle_oiseau_vertical_vers_fleur(angle_oiseau_vertical);
+                printf("attaque\n");
+                if(bras_gauche_dark == 0 && garde_dark == 0)
+                {
+                  bras_gauche_dark = 1;
+                  montee0_descente1_bras_gauche_dark = 0;
+                }
                 break;
 
     case TOUCHE_MAJ_T:
@@ -683,12 +699,9 @@ void vMouse(int button, int state, int x, int y)
       }
       break;
     
-    // case GLUT_MIDDLE_BUTTON :
-    //   printf("Bouton du Milieu\n");
-    //   if (state==GLUT_DOWN) printf("Appui\n");
-    //   if (state==GLUT_UP) printf("Relachement\n");
-    //   break;
-
+    case GLUT_MIDDLE_BUTTON :
+      printf("Bouton Milieu\n");
+      break;
     case GLUT_RIGHT_BUTTON :
       printf("Bouton Droit\n");
       if (state==GLUT_DOWN)

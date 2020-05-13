@@ -9,6 +9,10 @@ faire des animations pour Link : fait
 
 faire un belvédère : fait
 
+faire les coeurs dark et link : fait
+
+faire la protection de bouclier : fait
+
 -----------------------------------------------------------------------------------------------------------------
 
 faire en sorte de pouvoir tourner la camera mais que ca ne compte pas pour le mouvement
@@ -17,7 +21,7 @@ changer la couleur du cerceau quand on passe dedans
 
 faire le CoD / jeu d'épée
 
-faire la protection de bouclier
+faire l'ile du combat
 
 ajouter du decor au rocher
 
@@ -25,5 +29,5 @@ faire plus de collisions
 
 mettre des textures
 
-faire les coeurs dark et link : il manque de les enlever quand je prend un coup 
+
 
