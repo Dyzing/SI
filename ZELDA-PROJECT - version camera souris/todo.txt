@@ -13,21 +13,20 @@ faire les coeurs dark et link : fait
 
 faire la protection de bouclier : fait
 
+faire le CoD / jeu d'épée : fait
+
+faire l'ile du combat : fait
+
+changer la couleur du cerceau quand on passe dedans : fait
+
 -----------------------------------------------------------------------------------------------------------------
 
 faire en sorte de pouvoir tourner la camera mais que ca ne compte pas pour le mouvement
-
-changer la couleur du cerceau quand on passe dedans
-
-faire le CoD / jeu d'épée
-
-faire l'ile du combat
 
 ajouter du decor au rocher
 
 faire plus de collisions
 
 mettre des textures
-
 
 

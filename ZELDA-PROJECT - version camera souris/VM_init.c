@@ -91,6 +91,18 @@ void VM_init()
 		position_y = 5;
 		position_z = -4;
 	}
+  	else if( ( (position_z <= 303) && ((position_z >= 293)) && ((position_x <= -105)) ) )
+	{
+		//et_camera_3(2000, 2010, 2000);
+		//glTranslatef(0,0 ,60);
+		//glRotatef(90, 0,1,0);
+		printf("test dark");	
+    	position_x = 4250;
+        position_y = 5022;
+        position_z = 4800;
+        yrot -= 90;
+
+	}
 	// else if ( (position_z <= 2055) && ((position_z >= 1940)) && ((position_x <= 2045)) && (position_x >= 1950) && !( (position_z <= 2005) && ((position_z >= 1995)) && ((position_x >= 2000)) )) // à changer les bornes pour celle de l'ile et d'ajouter la maison sur l'ile
 	// {
 	// 	printf("test 2");

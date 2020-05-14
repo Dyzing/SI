@@ -54,10 +54,9 @@ GLfloat position_y = 2;
 GLfloat position_z = 0;
 
 
-GLfloat position_dark_x = 0;
-GLfloat position_dark_y = 2;
-GLfloat position_dark_z = 50;
-
+GLfloat position_dark_x = 4200;
+GLfloat position_dark_y = 5022;
+GLfloat position_dark_z = 5000;
 
 GLfloat position_x_beta = 1400;
 GLfloat position_y_beta = 2010;
@@ -230,7 +229,11 @@ float angle_algue = 0.5;
 
 
 float angle_jambe = 1;
+float angle_jambe_cote = 1;
+float angle_jambe_dark = 1;
 int jambe_avant_arriere = 1;
+int jambe_avant_arriere_dark = 1;
+int jambe_cote = 1;
 
 float transparence_boule_1 = 0.1;
 float transparence_boule_2 = 0.1;
@@ -311,12 +314,13 @@ float translation_mort = 0;
 bool dark_link_mort = false; 
 bool arreter_animation_dark = false; 
 
-int aleatoire_position_dark_x;
-int aleatoire_position_dark_z;
+int aleatoire_position_dark_x = 4800;
+int aleatoire_position_dark_z = 5000;
 
 int positif_ou_negatif_dark_link_x = 1;
 int positif_ou_negatif_dark_link_z = 1;
 
+float couleur_tor = 1;
 
 
 // variables
@@ -1077,7 +1081,7 @@ GLvoid Modelisation()
   glEnable(GL_COLOR_MATERIAL);
   glLightModelfv(GL_LIGHT_MODEL_AMBIENT, mipuissance);
 
-	//printf("position_x %f\n, position_y %f\n, position_z %f\n", position_x, position_y, position_z);
+	//printf("\nposition_x %f\nposition_y %f\nposition_z %f\n", position_x, position_y, position_z);
 
 	if(lumiere_lampadaire == 1)
 	{
@@ -6206,8 +6210,8 @@ GLvoid Modelisation()
 					}
 				}	
 
-				printf("nb_flash_actuel_apres :  %i\n", nb_flash_actuel);
-				printf("tour_simon_apres :  %i\n", tour_simon);
+				// printf("nb_flash_actuel_apres :  %i\n", nb_flash_actuel);
+				//printf("tour_simon_apres :  %i\n", tour_simon);
 			}
 			else if(position_y > 2900 && tour_IA0_Link1 == 1) // tour link
 			{
@@ -7313,7 +7317,7 @@ GLvoid Modelisation()
 
 			if(Collision(box_personnage, box_bouee) && position_z > 900 && position_z < 1000)
 			{	
-				
+				couleur_tor = 0;
 				printf(" touche bouee \n");
 				nb_bouees_rentres += 1;
 				nb_bouees_rentres_char[0] = nb_bouees_rentres  +'0';
@@ -7338,11 +7342,12 @@ GLvoid Modelisation()
 					aleatoire_bouee = (rand() % 25) * positif_ou_negatif_bouee;
 					position_bouee_z = 1800;
 					positif_ou_negatif_bouee = -positif_ou_negatif_bouee;
+					couleur_tor = 1;
 				}
 				
 			}
 
-			glColor3f(0,1,1);
+			glColor3f(0,1,couleur_tor);
 			glutWireTorus(1,6,32,32);
 		}
 		glPopMatrix();
@@ -8916,6 +8921,7 @@ GLvoid Modelisation()
 				glRotatef(15,0,-1,1);
 				
 				glRotatef(angle_jambe, 1,0,0);
+				glRotatef(angle_jambe_cote, 0,1,0);
 				
 				glPushMatrix(); //hanche + cuisse
 					glutSolidSphere(1,32,32);
@@ -8960,7 +8966,7 @@ GLvoid Modelisation()
 				glRotatef(-15,0,-1,1);
 				
 				glRotatef(-angle_jambe, 1,0,0);
-
+				glRotatef(-angle_jambe_cote, 0,1,0);
 
 				glPushMatrix(); //hanche + cuisse
 					glutSolidSphere(1,32,32);
@@ -9559,11 +9565,12 @@ GLvoid Modelisation()
 	glPushMatrix(); //dark link
 	{
 
+
+
 		if (dark_link_mort == false)
 		{
 			if(arreter_animation_dark == false)
 			{							
-
 				if(position_dark_x < aleatoire_position_dark_x - 1) // pour x
 				{
 					position_dark_x += 0.25;
@@ -9572,12 +9579,12 @@ GLvoid Modelisation()
 				{
 					position_dark_x -= 0.25;
 				}
-				else
+				else 
 				{
-					printf("egal x \n");
+					printf("egal x \n");	
 					positif_ou_negatif_dark_link_x = -positif_ou_negatif_dark_link_x;
 					srand(time(NULL));
-					aleatoire_position_dark_x = (rand() % 20) * positif_ou_negatif_dark_link_x;
+					aleatoire_position_dark_x = (rand() % 20) * positif_ou_negatif_dark_link_x + 4200;
 				}
 
 				if(position_dark_z < aleatoire_position_dark_z - 1) // pour z
@@ -9593,7 +9600,7 @@ GLvoid Modelisation()
 					printf("egal z \n");
 					positif_ou_negatif_dark_link_z = -positif_ou_negatif_dark_link_z;	
 					srand(time(NULL));
-					aleatoire_position_dark_z = (rand() % 20) * positif_ou_negatif_dark_link_z;
+					aleatoire_position_dark_z = (rand() % 20) * positif_ou_negatif_dark_link_z + 5000;
 				}
 
 				printf("\nposition_dark_x : %f\nposition_dark_z : %f\n", position_dark_x, position_dark_z);
@@ -9602,6 +9609,7 @@ GLvoid Modelisation()
 
 
 			}
+
 
 
 
@@ -9630,6 +9638,9 @@ GLvoid Modelisation()
 				{
 					dark_link_mort = true;
 					transparence_boule_6 = 1;
+					position_x = 0;
+					position_y = 5;
+					position_z = -4;
 				}
 			}
 				// if(position_z > 900 && position_z < 980 && position_y < 0)
@@ -10038,7 +10049,7 @@ GLvoid Modelisation()
 					glRotatef(75,1,0,0);
 					glRotatef(15,0,-1,1);
 					
-					//glRotatef(angle_jambe, 1,0,0);
+					glRotatef(angle_jambe_dark, 0,1,0);
 					
 					glPushMatrix(); //hanche + cuisse
 						glutSolidSphere(1,32,32);
@@ -10082,7 +10093,7 @@ GLvoid Modelisation()
 					glRotatef(93,1,0,0);
 					glRotatef(-15,0,-1,1);
 					
-					//glRotatef(-angle_jambe, 1,0,0);
+					glRotatef(-angle_jambe_dark, 0,1,0);
 
 
 					glPushMatrix(); //hanche + cuisse
@@ -10135,6 +10146,24 @@ GLvoid Modelisation()
 				{	
 					if(arreter_animation_dark == false)
 					{
+						if(angle_jambe_dark <= 21 && jambe_avant_arriere_dark == 1)
+			            {
+			                angle_jambe_dark += 2;
+			                if(angle_jambe_dark == 21)
+			                  jambe_avant_arriere_dark = 0;
+			            }
+			            else if (angle_jambe_dark >= -23 && jambe_avant_arriere_dark == 0)
+			            {
+			                angle_jambe_dark -= 2;
+			                if(angle_jambe_dark == -23)
+			                  jambe_avant_arriere_dark = 1;
+			            }
+			
+
+
+
+
+
 						if(bras_droit_bouge == false)	
 						{
 							srand(time(NULL));
@@ -10149,7 +10178,7 @@ GLvoid Modelisation()
 
 						if(garde_dark == 0)
 						{
-							//glRotatef(-angle_jambe, 1,0,0);
+							glRotatef(-angle_jambe_dark, 1,0,0);
 						}
 
 						if (bras_droit_dark == 5)
@@ -10404,7 +10433,7 @@ GLvoid Modelisation()
 					}
 					glPopMatrix();
 
-					//glRotatef(angle_jambe, 1,0,0);
+					glRotatef(angle_jambe_dark, 1,0,0);
 					
 				}
 				glPopMatrix();
@@ -10427,9 +10456,9 @@ GLvoid Modelisation()
 						}
 
 
-						if(bras_gauche_dark == 0)
+						if(bras_gauche_dark != 1)
 						{
-							glRotatef(angle_jambe, 1,0,0);
+							glRotatef(angle_jambe_dark, 1,0,0);
 						}
 
 						if(bras_gauche_dark == 1)
@@ -10887,33 +10916,277 @@ GLvoid Modelisation()
 
 	glPushMatrix(); //barre de vie
 	{
-		glTranslatef (position_dark_x  + 8, position_dark_y + 8, position_dark_z);
-		glPushMatrix(); //barre 1
+		if (vie_dark_link != 0)
 		{
-			glTranslatef(-5,0,-5);
-			glScalef(3,0.5,0.5);
-			glColor4f(couleur_barre_r,couleur_barre_g,couleur_barre_b,transparence_barre_1);
-			glutSolidSphere(1,8,8);
+			glTranslatef (position_dark_x  + 8, position_dark_y + 8, position_dark_z);
+			glPushMatrix(); //barre 1
+			{
+				glTranslatef(-5,0,-5);
+				glScalef(3,0.5,0.5);
+				glColor4f(couleur_barre_r,couleur_barre_g,couleur_barre_b,transparence_barre_1);
+				glutSolidSphere(1,8,8);
+				glEnd();
+			}
+			glPopMatrix();
+
+			glPushMatrix(); //barre 2
+			{
+				glTranslatef(-8,0,-5);
+				glScalef(3,0.5,0.5);
+				glColor4f(couleur_barre_r,couleur_barre_g,couleur_barre_b,transparence_barre_2);
+				glutSolidSphere(1,8,8);
+				glEnd();
+			}
+			glPopMatrix();
+
+			glPushMatrix(); //barre 3
+			{
+				glTranslatef(-11,0,-5);
+				glScalef(3,0.5,0.5);
+				glColor4f(couleur_barre_r,couleur_barre_g,couleur_barre_b,transparence_barre_3);
+				glutSolidSphere(1,8,8);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glEnd();
+		}
+		
+	}
+	glPopMatrix();
+
+
+	glPushMatrix(); //ile 5 dark
+	{
+
+		glPushMatrix(); //Maison dark
+		{
+			glTranslatef(5020, 5020, 4900);
+			glRotatef(-90,0,1,0);
+
+
+			glPushMatrix(); //mur du fond
+			{		
+				glTranslatef(100,0,-30);
+				glScalef(9,5,0.4);
+				glColor4f(1,1,1, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //mur de droite
+			{		
+				glTranslatef(131,-1,-6);
+				glRotatef(90, 0,1,0);
+				glScalef(7,5,0.4);
+				glColor4f(0.5,0.5,0.5, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+
+			glPushMatrix(); //mur de gauche
+			{		
+				glTranslatef(70,-1,-6);
+				glRotatef(-90, 0,1,0);
+				glScalef(7,5,0.4);
+				glColor4f(0.5,0.5,0.5, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //plafond
+			{		
+				glTranslatef(101,18	,-6);
+				glRotatef(90, 1,0,0);
+				glScalef(9,7,0.4);
+				glColor4f(0,1,1, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+
+
+			glPushMatrix(); //toit gauche
+			{		
+				glTranslatef(78,25,-6);
+				glRotatef(90, 1,0,0);
+				glRotatef(22.5, 0,1,0);
+				glScalef(7,7,0.4);
+				glColor4f(0,1,0.5, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //toit gauche
+			{		
+				glTranslatef(122,25,-6);
+				glRotatef(90, 1,0,0);
+				glRotatef(-22.5, 0,1,0);
+				glScalef(7,7,0.4);
+				glColor4f(0,1,0.5, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //face avant toit
+			{
+				glTranslatef(101,27,17);
+				glScalef(32,8.4,1);
+				glColor4f(0,0.41,0.41, 0.8);
+				glBegin( GL_TRIANGLES ); 
+					glVertex3f( 0.0f, 1.f, 0.0f );
+					glVertex3f( -1.0f, -1.0f, 1.0f );
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+
+					glVertex3f( 0.0f, 1.0f, 0.0f);
+					glVertex3f( -1.0f, -1.0f, 1.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+
+					glVertex3f( 0.0f, 1.0f, 0.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+
+					glVertex3f( -1.0f, -1.0f, 1.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+
+			glPushMatrix(); //face arrière toit
+			{
+				glTranslatef(101,27,-29);
+				glRotatef(180,0,1,0);
+				glScalef(32,8.4,1);
+				glColor4f(0,0.41,0.41, 0.8);
+				glBegin( GL_TRIANGLES ); 
+					glVertex3f( 0.0f, 1.f, 0.0f );
+					glVertex3f( -1.0f, -1.0f, 1.0f );
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+
+					glVertex3f( 0.0f, 1.0f, 0.0f);
+					glVertex3f( -1.0f, -1.0f, 1.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+
+					glVertex3f( 0.0f, 1.0f, 0.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+
+					glVertex3f( -1.0f, -1.0f, 1.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+
+			glPushMatrix(); //sol
+			{		
+				glTranslatef(101,-19.5,-8);
+				glRotatef(90, 1,0,0);
+				glScalef(8.5,6.7,0.4);
+				glColor4f(1,0.5,0, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+
+
+			glPushMatrix(); //mur de devant gauche
+			{		
+				glTranslatef(83,-3,17);
+				glScalef(3.5,5.6,0.4);
+				glColor4f(1,1,1, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //mur de devant droite
+			{		
+				glTranslatef(120,-3,17);
+				glScalef(3.5,5.6,0.4);
+				glColor4f(1,1,1, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //mur de devant au mileu en haut
+			{		
+				glTranslatef(101.5,10,17);
+				glScalef(1.9,2.5,0.4);
+				glColor4f(0.5,0.5,0.5, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //fentre en devant gauche
+			{		
+				glTranslatef(82.5,8,18.5);
+				glScalef(2,1.5,0.4);
+				glColor4f(0,0,0, 0.9);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+
+			glPushMatrix(); //fentre en devant droite
+			{		
+				glTranslatef(119.5,8,18.5);
+				glScalef(2,1.5,0.4);
+				glColor4f(0,0,0, 0.9);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
 			glEnd();
 		}
 		glPopMatrix();
 
-		glPushMatrix(); //barre 2
+		glPushMatrix(); //sol blanc dark
 		{
-			glTranslatef(-8,0,-5);
-			glScalef(3,0.5,0.5);
-			glColor4f(couleur_barre_r,couleur_barre_g,couleur_barre_b,transparence_barre_2);
-			glutSolidSphere(1,8,8);
+			glTranslatef(4300,5000,5000);
+			glScalef(500,1,500);
+			glColor3f(1,1,1);
+			glutSolidCube(3.0);
 			glEnd();
 		}
 		glPopMatrix();
 
-		glPushMatrix(); //barre 3
+
+		glPushMatrix(); //sol eau dark
 		{
-			glTranslatef(-11,0,-5);
-			glScalef(3,0.5,0.5);
-			glColor4f(couleur_barre_r,couleur_barre_g,couleur_barre_b,transparence_barre_3);
-			glutSolidSphere(1,8,8);
+			glTranslatef(4300,5004,5000);
+			glScalef(500,1,500);
+			glColor4f(0.25,0.41,0.88,0.5);
+			glutSolidCube(3.0);
 			glEnd();
 		}
 		glPopMatrix();
@@ -10922,6 +11195,7 @@ GLvoid Modelisation()
 		glEnd();
 	}
 	glPopMatrix();
+
 
 
 // FIN DE MODELISATION
