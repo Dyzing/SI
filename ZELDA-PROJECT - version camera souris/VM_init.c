@@ -23,6 +23,13 @@ extern float yrot_middle;
 extern int camera_middle;
 extern float xrot_middle;
 
+extern float transparence_boule_1;
+extern float transparence_boule_2;
+extern float transparence_boule_3;
+extern float transparence_boule_4;
+extern float transparence_boule_5;
+
+
 void VM_init()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

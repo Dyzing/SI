@@ -168,6 +168,8 @@ struct AABB3D box_grand_cactus;
 
 struct AABB3D box_bouee;
 
+struct AABB3D box_aura;
+
 
 
 float position_box2 = -6;
@@ -317,7 +319,7 @@ float translation_mort = 0;
 bool dark_link_mort = false; 
 bool arreter_animation_dark = false; 
 
-int aleatoire_position_dark_x = 4800;
+int aleatoire_position_dark_x = 4200;
 int aleatoire_position_dark_z = 5000;
 
 int positif_ou_negatif_dark_link_x = 1;
@@ -329,8 +331,92 @@ float yrot_middle = -180;
 float xrot_middle = 0;
 int camera_middle = 0;
 
+int angle_triforce = 0;
+
 
 // variables
+
+
+void creer_cloture(float x, float y, float z, float angle)
+{
+	glPushMatrix(); //clôture 
+	{
+		glTranslatef(x,y,z);
+		glRotatef(angle, 0,1,0);
+		glPushMatrix(); //barreau droit
+		{
+			glTranslatef(0,5,0);
+			glScalef(0.5,0.5,5);
+			glColor3f(0.87, 0.72, 0.52);
+			glutSolidCube(3.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); //barrière 1
+		{
+			glTranslatef(0,0,-7);
+			glScalef(0.3,5.5,0.3);
+			glColor3f(0.87, 0.72, 0.52);
+			glutSolidCube(3.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); //barrière 2
+		{
+			glTranslatef(0,0,7);
+			glScalef(0.3,5.5,0.3);
+			glColor3f(0.87, 0.72, 0.52);
+			glutSolidCube(3.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+		glEnd();
+
+	}
+	glPopMatrix();
+}
+
+
+void creer_triforce()
+{
+	glPushMatrix(); //triforce
+	{
+		//glTranslatef(x,y,z);
+		//glRotatef(angle_triforce, 0,1,0);
+		//angle_triforce += 1;
+		glScalef(6,6,6);
+		glColor3f(1,0.8,0);
+		glBegin( GL_TRIANGLES ); 
+			 // Front
+	      glVertex3f( 0.0f, 1.0f, 0.0f);
+	      glVertex3f(-1.0f, -1.0f, 1.0f);
+	      glVertex3f(1.0f, -1.0f, 1.0f);
+	 
+	      // Right
+	      glVertex3f(0.0f, 1.0f, 0.0f);
+	      glVertex3f(1.0f, -1.0f, 1.0f);
+	      glVertex3f(1.0f, -1.0f, -1.0f);
+	 
+	      // Back
+	      glVertex3f(0.0f, 1.0f, 0.0f);
+	      glVertex3f(1.0f, -1.0f, -1.0f);
+	      glVertex3f(-1.0f, -1.0f, -1.0f);
+	 
+	      // Left
+	      glVertex3f( 0.0f, 1.0f, 0.0f);
+	      glVertex3f(-1.0f,-1.0f,-1.0f);
+	      glVertex3f(-1.0f,-1.0f, 1.0f);
+		glEnd();
+	}
+	glPopMatrix();
+}
+
 
 void creer_cadre(float x, float y, float z, float angle)
 {
@@ -1486,7 +1572,7 @@ GLvoid Modelisation()
 		if(Collision(box_dinosaure, box_oiseau_dino) && position_y >= 1999 && position_y <= 2500)
 		{	
 			position_x = 0;
-			position_y = 5;
+			position_y = 2;
 			position_z = 20;
 			transparence_boule_3 = 1;
 		}
@@ -2461,7 +2547,7 @@ GLvoid Modelisation()
 			if(Collision(box_rocher_milieu, box_personnage))
 			{	
 				position_x = 0;
-				position_y = 5;
+				position_y = 2;
 				position_z = 20;
 			}
 
@@ -2498,7 +2584,7 @@ GLvoid Modelisation()
 			if(Collision(box_rocher_gauche, box_personnage))
 			{	
 				position_x = 0;
-				position_y = 5;
+				position_y = 2;
 				position_z = 20;
 			}
 
@@ -2536,7 +2622,7 @@ GLvoid Modelisation()
 			if(Collision(box_rocher_droite, box_personnage))
 			{	
 				position_x = 0;
-				position_y = 5;
+				position_y = 2;
 				position_z = 20;
 			}
 
@@ -5776,7 +5862,7 @@ GLvoid Modelisation()
 		if(Collision(box_dinosaure, box_petit_cactus) && position_y >= 1999 && position_y <= 2500)
 		{	
 			position_x = 0;
-			position_y = 5;
+			position_y = 2;
 			position_z = 20;
 			transparence_boule_3 = 1;
 		}
@@ -6174,7 +6260,7 @@ GLvoid Modelisation()
 		if(Collision(box_dinosaure, box_grand_cactus) && position_y >= 1999 && position_y <= 2500)
 		{	
 			position_x = 0;
-			position_y = 5;
+			position_y = 2;
 			position_z = 20;
 			transparence_boule_3 = 1;
 		}
@@ -6635,7 +6721,7 @@ GLvoid Modelisation()
 			//printf("tour_IA0_Link1 :  %i\n", tour_IA0_Link1);
 
 
-			if(tour_simon < max_simon && position_y > 2900 && tour_IA0_Link1 == 0) // tour IA
+			if(tour_simon < max_simon && position_y > 2900 && position_y < 3100 && tour_IA0_Link1 == 0) // tour IA
 			{
 
 				if(cube_attente < 50 && cube_attente > 0)  // délais d'attente
@@ -6650,7 +6736,7 @@ GLvoid Modelisation()
 
 				if(nb_flash_actuel == tour_simon && cube_attente == 0)
 				{
-					if(position_z < 3010 && position_z > 2990 && position_x < 2945 && position_y > 2900 && tour_suivant == 1)
+					if(position_z < 3010 && position_z > 2990 && position_x < 2945 && position_y > 2900 && position_y < 3100 && tour_suivant == 1)
 					{
 						srand(time(NULL));
 						aleatoire_simon = (rand() % 4) + 1;
@@ -6852,7 +6938,7 @@ GLvoid Modelisation()
 				// printf("nb_flash_actuel_apres :  %i\n", nb_flash_actuel);
 				//printf("tour_simon_apres :  %i\n", tour_simon);
 			}
-			else if(position_y > 2900 && tour_IA0_Link1 == 1) // tour link
+			else if(position_y > 2900 && position_y < 3100 && tour_IA0_Link1 == 1) // tour link
 			{
 
 
@@ -7104,7 +7190,7 @@ GLvoid Modelisation()
 					else
 					{
 						position_x = 0;
-						position_y = 5;
+						position_y = 2;
 						position_z = 20;
 					}
 
@@ -7965,7 +8051,7 @@ GLvoid Modelisation()
 				{
 					transparence_boule_1 = 1;
 					position_x = 0;
-					position_y = 5;
+					position_y = 2;
 					position_z = 20;
 				}
 			}
@@ -10190,17 +10276,17 @@ GLvoid Modelisation()
 
 
 
-	glPushMatrix(); //box link
-	{
-		glTranslatef(position_x,position_y - 7,position_z );
-		glRotatef(-yrot, 0,1,0);
-		glRotatef(-angle_oiseau_vertical, 1,0,0);
-		glScalef(8,12,4);
-		glColor4f(1,1,1,0.5);
-		glutSolidCube(2.0);
-		glEnd();
-	}
-	glPopMatrix();
+	// glPushMatrix(); //box link
+	// {
+	// 	glTranslatef(position_x,position_y - 7,position_z );
+	// 	glRotatef(-yrot, 0,1,0);
+	// 	glRotatef(-angle_oiseau_vertical, 1,0,0);
+	// 	glScalef(8,12,4);
+	// 	glColor4f(1,1,1,0.5);
+	// 	glutSolidCube(2.0);
+	// 	glEnd();
+	// }
+	// glPopMatrix();
 
 
 
@@ -10279,7 +10365,7 @@ GLvoid Modelisation()
 					dark_link_mort = true;
 					transparence_boule_6 = 1;
 					position_x = 0;
-					position_y = 5;
+					position_y = 2;
 					position_z = -4;
 				}
 			}
@@ -11865,8 +11951,214 @@ GLvoid Modelisation()
 	// }
 	// glPopMatrix();
 
+	// glPushMatrix(); //triforce
+	// {
+	// 	glTranslatef(0,15,25);
+	// 	glRotatef(angle_triforce, 0,1,0);
+	// 	angle_triforce += 1;
+	// 	glScalef(6,6,6);
+	// 	glColor3f(1,0.8,0);
+	// 	glBegin( GL_TRIANGLES ); 
+	// 		glVertex3f( 0.0f, 1.f, 0.0f );
+	// 		glVertex3f( -1.0f, -1.0f, 1.0f );
+	// 		glVertex3f( 1.0f, -1.0f, 1.0f);
+
+	// 		glVertex3f( 0.0f, 1.0f, 0.0f);
+	// 		glVertex3f( -1.0f, -1.0f, 1.0f);
+	// 		glVertex3f( 0.0f, -1.0f, -1.0f);
+
+	// 		glVertex3f( 0.0f, 1.0f, 0.0f);
+	// 		glVertex3f( 0.0f, -1.0f, -1.0f);
+	// 		glVertex3f( 1.0f, -1.0f, 1.0f);
+
+	// 		glVertex3f( -1.0f, -1.0f, 1.0f);
+	// 		glVertex3f( 0.0f, -1.0f, -1.0f);
+	// 		glVertex3f( 1.0f, -1.0f, 1.0f);
+	// 	glEnd();
+	// }
+	// glPopMatrix();
+	
 
 
+	glPushMatrix(); //triforce au sol
+	{
+		glTranslatef(0,-14,100);
+		glRotatef(80,1,0,0);
+		// glRotatef(angle_triforce, 0,0,1);
+		// angle_triforce += 1;
+		glScalef(0.5,0.5,0.2);
+		glPushMatrix();
+		{
+			glTranslatef(0,25,25);
+			creer_triforce();
+			glEnd();
+		}
+		glPopMatrix();
+
+		
+		glPushMatrix();
+		{
+			glTranslatef(5,14,19.5);
+			creer_triforce();
+			glEnd();
+		}
+		glPopMatrix();
+
+		glPushMatrix();
+		{
+			glTranslatef(-5,14,19.5);
+			creer_triforce();
+			glEnd();
+		}
+		glPopMatrix();
+
+		glPushMatrix();
+		{
+			glTranslatef(5,14,30.5);
+			creer_triforce();
+			glEnd();
+		}
+		glPopMatrix();
+
+		glPushMatrix();
+		{
+			glTranslatef(-5,14,30.5);
+			creer_triforce();
+			glEnd();
+		}
+		glPopMatrix();
+
+
+		glEnd();
+	}
+	glPopMatrix();
+
+	if (transparence_boule_1 == 1 && transparence_boule_3 == 1 && transparence_boule_3 == 1 && transparence_boule_4 == 1 && transparence_boule_6 == 1)
+	{
+		glPushMatrix(); //triforce
+		{
+			glTranslatef(0,0,850);
+			// glRotatef(angle_triforce, 0,0,0);
+			// angle_triforce += 1;
+			glScalef(15,15,15);
+			glPushMatrix();
+			{
+				glTranslatef(0,25,25);
+				creer_triforce();
+				glEnd();
+			}
+			glPopMatrix();
+
+			
+			glPushMatrix();
+			{
+				glTranslatef(5,14,19.5);
+				creer_triforce();
+				glEnd();
+			}
+			glPopMatrix();
+
+			glPushMatrix();
+			{
+				glTranslatef(-5,14,19.5);
+				creer_triforce();
+				glEnd();
+			}
+			glPopMatrix();
+
+			glPushMatrix();
+			{
+				glTranslatef(5,14,30.5);
+				creer_triforce();
+				glEnd();
+			}
+			glPopMatrix();
+
+			glPushMatrix();
+			{
+				glTranslatef(-5,14,30.5);
+				creer_triforce();
+				glEnd();
+			}
+			glPopMatrix();
+
+			glEnd();
+		}
+		glPopMatrix();
+
+		glPushMatrix(); //sol fin
+		{
+			glTranslatef(0,50,700);
+
+			creer_cloture(0,9,9, 90);
+			creer_cloture(0,9,-9, -90);
+			creer_cloture(8,9,0, 180);
+			creer_cloture(-8,9,0, -180);
+
+
+			glScalef(7,1,7);
+			glColor3f(0.43, 0.57, 0);
+			glutSolidCube(3.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+		glPushMatrix(); //triforce aura
+		{
+			glTranslatef(0,-10,110);
+
+
+
+			box_aura.x = 0;
+			box_aura.y = -10;
+			box_aura.z = 110;
+
+			box_aura.w = 8;
+			box_aura.h = 8;
+			box_aura.d = 8;
+
+
+			if(Collision(box_aura, box_personnage))
+			{	
+				position_x = 0;
+				position_y = 72;
+				position_z = 700;
+			}
+
+
+
+
+
+
+
+			glRotatef(180,0,1,0);
+			glRotatef(angle_triforce, 0,1,0);
+			angle_triforce += 1;
+			glScalef(6,6,6);
+			glColor4f(1,0.8,0.5, 0.5);
+			glBegin( GL_TRIANGLES ); 
+				glVertex3f( 0.0f, 1.f, 0.0f );
+				glVertex3f( -1.0f, -1.0f, 1.0f );
+				glVertex3f( 1.0f, -1.0f, 1.0f);
+
+				glVertex3f( 0.0f, 1.0f, 0.0f);
+				glVertex3f( -1.0f, -1.0f, 1.0f);
+				glVertex3f( 0.0f, -1.0f, -1.0f);
+
+				glVertex3f( 0.0f, 1.0f, 0.0f);
+				glVertex3f( 0.0f, -1.0f, -1.0f);
+				glVertex3f( 1.0f, -1.0f, 1.0f);
+
+				glVertex3f( -1.0f, -1.0f, 1.0f);
+				glVertex3f( 0.0f, -1.0f, -1.0f);
+				glVertex3f( 1.0f, -1.0f, 1.0f);
+			glEnd();
+		}
+		glPopMatrix();	
+	}
+	
+
+	
 
 // FIN DE MODELISATION
 

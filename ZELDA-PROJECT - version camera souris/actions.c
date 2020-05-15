@@ -82,6 +82,9 @@ extern int mouse_motion_y_middle;
 extern float xrot_middle;
 extern int mouse_motion_x_middle;
 
+
+
+
 #include <math.h>
 
 
@@ -432,6 +435,10 @@ void touche_pressee(unsigned char key, int x, int y)
                 printf("ne peut plus avancer simon \n");
                 //printf("position_x : %f\n, position_y : %f\n, position_z : %f\n",position_x, position_y, position_z);
               }
+              else if(position_z == 700 && position_y == 72)
+              {
+                printf("ne peut plus avancer fin \n");
+              }
               else if (!( ((position_z <= 2005) && (position_z >= 1995)) && ((position_x >= 2000) && (position_x <= 2010)) ) && ( (position_z <= 2055) && ((position_z >= 1940)) && ((position_x <= 2045)) && (position_x >= 1950) ))
               {
                 printf("je teste\n");
@@ -461,7 +468,14 @@ void touche_pressee(unsigned char key, int x, int y)
                   if(position_x < 44 && position_y < 0)
                     position_x += 4;
                   if(position_y > 1000 && position_y < 1500)
-                    position_x += 32;
+                  {
+                    if(position_x >= 1032)
+                    {
+                      printf("ne peut se décaler davantage a gauche\n");
+                    }
+                    else
+                      position_x += 32;
+                  }
                 }
                 else
                 {
@@ -488,6 +502,10 @@ void touche_pressee(unsigned char key, int x, int y)
                 {
                   printf("ne peut plus reculer terre \n");
                 }
+                else if(position_z == 700 && position_y == 72)
+                {
+                  printf("ne peut plus avancer fin \n");
+                }
                 else
                 {
                   position_x = reculer_x(position_x);
@@ -503,7 +521,14 @@ void touche_pressee(unsigned char key, int x, int y)
                   if(position_x > -44 && position_y < 0)
                     position_x-= 4;
                   if(position_y > 1000 && position_y < 1500)
-                    position_x -= 32;
+                  {
+                    if(position_x<= 968)
+                    {
+                      printf("ne peut se décaler davantage a droite\n");
+                    }
+                    else
+                      position_x -= 32;
+                  }
                 }
                 else
                 {
