@@ -75,7 +75,12 @@ extern int montee0_descente1_bras_gauche_dark;
 extern int montee0_descente1_bras_droit_dark;
 extern int garde_dark;
 
+extern float yrot_middle;
+extern int camera_middle;
+extern int mouse_motion_y_middle;
 
+extern float xrot_middle;
+extern int mouse_motion_x_middle;
 
 #include <math.h>
 
@@ -457,7 +462,6 @@ void touche_pressee(unsigned char key, int x, int y)
                     position_x += 4;
                   if(position_y > 1000 && position_y < 1500)
                     position_x += 32;
-                  printf("position_x : %f\n", position_x);  
                 }
                 else
                 {
@@ -500,7 +504,6 @@ void touche_pressee(unsigned char key, int x, int y)
                     position_x-= 4;
                   if(position_y > 1000 && position_y < 1500)
                     position_x -= 32;
-                  printf("position_x : %f\n", position_x);  
                 }
                 else
                 {
@@ -701,6 +704,16 @@ void vMouse(int button, int state, int x, int y)
     
     case GLUT_MIDDLE_BUTTON :
       printf("Bouton Milieu\n");
+       if (state==GLUT_DOWN)
+      {
+        printf("Appui middle\n");
+        camera_middle = 1;
+      } 
+      if (state==GLUT_UP) 
+      {
+        printf("Relachement middle\n");
+        camera_middle = 0;
+      }
       break;
     case GLUT_RIGHT_BUTTON :
       printf("Bouton Droit\n");
@@ -783,6 +796,45 @@ void vMousemotion(int x, int y)
 }
 
 
-
+void vMousemotion_middle(int x, int y)
+{
+  if(camera_middle == 1)
+  {
+     if(x < 50) //scroll gauche
+        {
+            yrot_middle -= 1;
+        }
+        else if(x > 1550) //scroll droite
+        {
+            yrot_middle += 1;
+        }
+        else if(y < 50) //scroll haut
+        {
+            xrot_middle += 1;
+        }
+        else if(y > 850) //scroll bas
+        {
+            xrot_middle -= 1;
+        }
+        else if(x < mouse_motion_x_middle) //left
+        {
+            yrot_middle -= 1;
+        }
+        else if(x > mouse_motion_x_middle) //right
+        {
+            yrot_middle += 1;
+        }
+        else if(y > mouse_motion_y_middle) //haut
+        {
+            xrot_middle -= 1;
+        }
+          else if(y < mouse_motion_y_middle) //bas
+        {
+            xrot_middle += 1;
+        }
+        mouse_motion_y_middle = yrot_middle;
+        mouse_motion_x_middle = xrot_middle;
+  }
+}
 
 

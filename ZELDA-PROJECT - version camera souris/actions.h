@@ -21,4 +21,7 @@ void vMouse(int button, int state, int x, int y);
 
 void vMousemotion(int x, int y);
 
+
+void vMousemotion_middle(int x, int y);
+
 #endif

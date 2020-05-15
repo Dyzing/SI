@@ -19,23 +19,37 @@ extern GLfloat position_dino_z;
 
 extern float transparence_boule_4;
 
+extern float yrot_middle;
+extern int camera_middle;
+extern float xrot_middle;
+
 void VM_init()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glMatrixMode( GL_MODELVIEW );
 	glLoadIdentity();
 	glTranslatef(0,0,-60);
-	glRotatef(xrot, 1,0,0);
-	glRotatef(yrot, 0, 1, 0);
+
+	if(camera_middle == 1)
+	{
+		glRotatef(-yrot_middle, 0, 1, 1);
+		glRotatef(xrot_middle, 0, 1, 1);
+	}
+	else
+	{
+		glRotatef(xrot, 1,0,0);
+		glRotatef(yrot, 0, 1, 0);
+	}
+	
 
 	if((position_z <= 55) && ((position_z >= 42)) && ((position_x >= 100)))
 	{
 	    printf("je suis un rocher\n");
 	      position_x = 1000;
-	      //position_z = 1039;
-	      //position_y = 1020;
-	      position_z = 1439;
-	      position_y = 1420;
+	      position_z = 1039;
+	      position_y = 1020;
+	      // position_z = 1439;
+	      // position_y = 1420;
 	      xrot = -4.0;
 	      yrot = -180;
 	}      

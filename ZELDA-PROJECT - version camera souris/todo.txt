@@ -19,14 +19,20 @@ faire l'ile du combat : fait
 
 changer la couleur du cerceau quand on passe dedans : fait
 
+ajouter un element au dessus des maisons : fait
+
+faire une entrée des maisons plus grande : fait
+
+ajouter du decor au rocher : fait
+
+faire en sorte de pouvoir tourner la camera mais que ca ne compte pas pour le mouvement : fait~
+
 -----------------------------------------------------------------------------------------------------------------
-
-faire en sorte de pouvoir tourner la camera mais que ca ne compte pas pour le mouvement
-
-ajouter du decor au rocher
 
 faire plus de collisions
 
 mettre des textures
 
+faire une fin
 
+ajouter des clôtures

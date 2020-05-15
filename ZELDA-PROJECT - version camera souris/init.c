@@ -25,6 +25,7 @@ int notre_init(int argc, char** argv, void (*DrawGLScene)())
 	glutKeyboardFunc(touche_pressee);
 	glutSpecialFunc(touche_speciale);
 	glutMouseFunc(vMouse);
+	glutMotionFunc(vMousemotion_middle);
 	glutPassiveMotionFunc(vMousemotion);
 	glClearColor(0,0,0,0);
 	
