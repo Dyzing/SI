@@ -124,6 +124,17 @@ void VM_init()
         yrot -= 90;
 
 	}
+	else if( ( (position_z <= 355) && ((position_z >= 346)) && ((position_x >= 102)) ) )
+	{
+		//et_camera_3(2000, 2010, 2000);
+		//glTranslatef(0,0 ,60);
+		//glRotatef(90, 0,1,0);
+		printf("test tictactoe");	
+    	position_x = 5940;
+        position_y = 6022;
+        position_z = 6000;
+        yrot -= 180;
+	}
 	// else if ( (position_z <= 2055) && ((position_z >= 1940)) && ((position_x <= 2045)) && (position_x >= 1950) && !( (position_z <= 2005) && ((position_z >= 1995)) && ((position_x >= 2000)) )) // à changer les bornes pour celle de l'ile et d'ajouter la maison sur l'ile
 	// {
 	// 	printf("test 2");

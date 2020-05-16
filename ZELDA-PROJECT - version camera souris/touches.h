@@ -57,6 +57,18 @@
 #define TOUCHE_MAJ_P 80
 #define TOUCHE_MIN_P 112
 
+
+#define TOUCHE_0 48
+#define TOUCHE_1 49
+#define TOUCHE_2 50
+#define TOUCHE_3 51
+#define TOUCHE_4 52
+#define TOUCHE_5 53
+#define TOUCHE_6 54
+#define TOUCHE_7 55
+#define TOUCHE_8 56
+#define TOUCHE_9 57
+
 #define RETURN 13
 #define DELETE 8
 #define UP_ARROW 72

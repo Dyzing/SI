@@ -11,6 +11,7 @@
 #include <time.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <unistd.h>
 
 
 #define STB_IMAGE_IMPLEMENTATION
@@ -315,6 +316,8 @@ int aleatoire_temps_bouclier = 0;
 
 int rotation_mort = 0;
 float translation_mort = 0;
+int rotation_mort_vrai_link = 0;
+float translation_mort_vrai_link = 0;
 
 bool dark_link_mort = false; 
 bool arreter_animation_dark = false; 
@@ -334,7 +337,52 @@ int camera_middle = 0;
 int angle_triforce = 0;
 
 
+	// Déclarations Tic-Tac-Toe
+	int victoire = 0;
+	int ttt_tour = 0;
+
+	int ttt_0 = 0;
+	int ttt_1 = 0;
+	int ttt_1_color = 0;
+	int ttt_2 = 0;
+	int ttt_2_color = 0;
+	int ttt_3 = 0;
+	int ttt_3_color = 0;
+	int ttt_4 = 0;
+	int ttt_4_color = 0;
+	int ttt_5 = 0;
+	int ttt_5_color = 0;
+	int ttt_6 = 0;
+	int ttt_6_color = 0;
+	int ttt_7 = 0;
+	int ttt_7_color = 0;
+	int ttt_8 = 0;
+	int ttt_8_color = 0;
+	int ttt_9 = 0;
+	int ttt_9_color = 0;
+
+
+
 // variables
+
+
+
+	void tout_a_zero(){
+		victoire = 0;
+		ttt_tour = 0;
+		ttt_0 = 0;
+		
+		ttt_1 = 0;	ttt_1_color = 0;
+		ttt_2 = 0;	ttt_2_color = 0;
+		ttt_3 = 0;	ttt_3_color = 0;
+		ttt_4 = 0;	ttt_4_color = 0;
+		ttt_5 = 0;	ttt_5_color = 0;
+		ttt_6 = 0;	ttt_6_color = 0;
+		ttt_7 = 0;	ttt_7_color = 0;
+		ttt_8 = 0;	ttt_8_color = 0;
+		ttt_9 = 0;	ttt_9_color = 0;
+	}
+
 
 
 void creer_cloture(float x, float y, float z, float angle)
@@ -1207,7 +1255,7 @@ GLvoid Modelisation()
   glEnable(GL_COLOR_MATERIAL);
   glLightModelfv(GL_LIGHT_MODEL_AMBIENT, mipuissance);
 
-	//printf("\nposition_x %f\nposition_y %f\nposition_z %f\n", position_x, position_y, position_z);
+	printf("\nposition_x %f\nposition_y %f\nposition_z %f\n", position_x, position_y, position_z);
 
 	if(lumiere_lampadaire == 1)
 	{
@@ -11175,19 +11223,19 @@ GLvoid Modelisation()
 							aleatoire_dark_link_epee = (rand() % 10	);
 							bras_gauche_dark = aleatoire_dark_link_epee;
 							//printf("bras_gauche_dark : %i\n", bras_gauche_dark);
-							if(bras_gauche_dark == 1)
+							if(bras_gauche_dark == 1 || bras_gauche_dark == 8)
 							{
 								montee0_descente1_bras_gauche_dark = 0;
 							}
 						}
 
 
-						if(bras_gauche_dark != 1)
+						if(bras_gauche_dark != 1 && bras_gauche_dark != 8)
 						{
 							glRotatef(angle_jambe_dark, 1,0,0);
 						}
 
-						if(bras_gauche_dark == 1)
+						if(bras_gauche_dark == 1 || bras_gauche_dark == 8)
 						{
 							bras_gauche_bouge = true;
 							//printf("touche_vrai_link : %i\n", touche_vrai_link);
@@ -11215,7 +11263,24 @@ GLvoid Modelisation()
 									transparence_vie_2 = 0.05;
 									transparence_vie_1 = 0.05;
 									vie_vrai_link -= 1;
+
+									printf("mort\n");
+									printf("vie_vrai_link: %i\n", vie_vrai_link);
+									position_x = 0;	
+									position_y = 2;
+									position_z = 20;
+
+									if(vie_vrai_link == 0)
+									{
+										vie_vrai_link = 3;	
+										transparence_vie_3 = 1;
+										transparence_vie_2 = 1;
+										transparence_vie_1 = 1;
+									}
+															
+
 								}
+		
 							}
 
 
@@ -12033,7 +12098,7 @@ GLvoid Modelisation()
 	}
 	glPopMatrix();
 
-	if (transparence_boule_1 == 1 && transparence_boule_3 == 1 && transparence_boule_3 == 1 && transparence_boule_4 == 1 && transparence_boule_6 == 1)
+	if (transparence_boule_1 == 1 && transparence_boule_3 == 1 && transparence_boule_3 == 1 && transparence_boule_4 == 1 && transparence_boule_5 == 1 && transparence_boule_6 == 1)
 	{
 		glPushMatrix(); //triforce
 		{
@@ -12157,6 +12222,611 @@ GLvoid Modelisation()
 		glPopMatrix();	
 	}
 	
+
+
+
+	// TIC TAC TOE
+
+	//**************** touches.h ****************
+
+
+	//**************** main.c ****************
+
+	// DANS LE 'GLvoid Modelisation()'
+	glPushMatrix(); // Tic-Tac-Toe
+	{
+		glTranslatef(5848, 6022, 6042);
+		glRotatef(90, 0,1,0);
+		glScalef(8,8,8);
+
+		glPushMatrix(); // création cadre
+		{
+			glTranslatef(-0.5,0.5,0); // vers x
+			for(int i = 0; i<10; i++){
+				glTranslatef(1,0,0);
+				glutSolidCube(1);
+				if(i==3 || i==6){
+					glPushMatrix();
+						for(int j = 0; j<9; j++){
+								glTranslatef(0,1,0);
+								glutSolidCube(1);
+						}
+					glPopMatrix();
+				}
+			}
+			
+			glTranslatef(0,-1,0); // vers y
+			for(int i = 0; i<10; i++){
+				glTranslatef(0,1,0);
+				glutSolidCube(1);
+				if(i==3 || i==6){
+					glPushMatrix();
+						for(int j = 0; j<9; j++){
+								glTranslatef(-1,0,0);
+								glutSolidCube(1);
+						}
+					glPopMatrix();
+				}
+			}
+			
+			glTranslatef(1,0,0); // vers -x
+			for(int i = 0; i<10; i++){
+				glTranslatef(-1,0,0);
+				glutSolidCube(1);
+			}
+			
+			glTranslatef(0,1,0); // vers -y
+			for(int i = 0; i<10; i++){
+				glTranslatef(0,-1,0);
+				glutSolidCube(1);
+			}
+		}
+		glPopMatrix(); // fin cadre
+		
+		// Jeu
+		{
+			if (ttt_0 == 1) tout_a_zero();
+			
+			// Victoire		
+			int gagne(){
+			// lignes
+				if (victoire == 0)
+				{
+					if((ttt_1 + ttt_2 + ttt_3 == 3) && (ttt_1_color == ttt_2_color) && (ttt_1_color == ttt_3_color)){
+						if (ttt_tour%2 != 0){ 
+							victoire = 1;
+							ttt_1_color = ttt_2_color = ttt_3_color = 3;
+							usleep(500000);
+						}
+						if (ttt_tour%2 == 0){
+							victoire = 2;
+							ttt_1_color = ttt_2_color = ttt_3_color = 4;
+							usleep(500000);
+						 }
+						return victoire;
+					}
+					if((ttt_4 + ttt_5 + ttt_6 == 3) && (ttt_4_color == ttt_5_color) && (ttt_4_color == ttt_6_color)){
+						if (ttt_tour%2 != 0){ 
+							victoire = 1;
+							ttt_4_color = ttt_5_color = ttt_6_color = 3;
+							usleep(500000);
+						}
+						if (ttt_tour%2 == 0){
+							victoire = 2;
+							ttt_4_color = ttt_5_color = ttt_6_color = 4;
+							usleep(500000);
+						 }
+						return victoire;
+					}
+					if((ttt_7 + ttt_8 + ttt_9 == 3) && (ttt_7_color == ttt_8_color) && (ttt_7_color == ttt_9_color)){
+						if (ttt_tour%2 != 0){ 
+							victoire = 1;
+							ttt_7_color = ttt_8_color = ttt_9_color = 3;
+							usleep(500000);
+						}
+						if (ttt_tour%2 == 0){
+							victoire = 2;
+							ttt_7_color = ttt_8_color = ttt_9_color = 4;
+							usleep(500000);
+						 }
+						return victoire;
+					}
+					if((ttt_1 + ttt_4 + ttt_7 == 3) && (ttt_1_color == ttt_4_color) && (ttt_1_color == ttt_7_color)){
+						if (ttt_tour%2 != 0){ 
+							victoire = 1;
+							ttt_1_color = ttt_4_color = ttt_7_color = 3;
+							usleep(500000);
+						}
+						if (ttt_tour%2 == 0){
+							victoire = 2;
+							ttt_1_color = ttt_4_color = ttt_7_color = 4;
+							usleep(500000);
+						 }
+						return victoire;
+					}
+					if((ttt_2 + ttt_5 + ttt_8 == 3) && (ttt_2_color == ttt_5_color) && (ttt_2_color == ttt_8_color)){
+						if (ttt_tour%2 != 0){ 
+							victoire = 1;
+							ttt_2_color = ttt_5_color = ttt_8_color = 3;
+							usleep(500000);
+						}
+						if (ttt_tour%2 == 0){
+							victoire = 2;
+							ttt_2_color = ttt_5_color = ttt_8_color = 4;
+							usleep(500000);
+						 }
+						return victoire;
+					}
+					if((ttt_3 + ttt_6 + ttt_9 == 3) && (ttt_3_color == ttt_6_color) && (ttt_3_color == ttt_9_color)){
+						if (ttt_tour%2 != 0){ 
+							victoire = 1;
+							ttt_3_color = ttt_6_color = ttt_9_color = 3;
+							usleep(500000);
+						}
+						if (ttt_tour%2 == 0){
+							victoire = 2;
+							ttt_3_color = ttt_6_color = ttt_9_color = 4;
+							usleep(500000);
+						 }
+						return victoire;
+					}
+				// diagonales
+					if((ttt_3 + ttt_5 + ttt_7 == 3) && (ttt_3_color == ttt_5_color) && (ttt_3_color == ttt_7_color)){
+						if (ttt_tour%2 != 0){ 
+							victoire = 1;
+							ttt_3_color = ttt_5_color = ttt_7_color = 3;
+							usleep(500000);
+						}
+						if (ttt_tour%2 == 0){
+							victoire = 2;
+							ttt_3_color = ttt_5_color = ttt_7_color = 4;
+							usleep(500000);
+						 }
+						return victoire;
+					}
+					if((ttt_1 + ttt_5 + ttt_9 == 3) && (ttt_1_color == ttt_5_color) && (ttt_1_color == ttt_9_color)){
+						if (ttt_tour%2 != 0){ 
+							victoire = 1;
+							ttt_1_color = ttt_5_color = ttt_9_color = 3;
+							usleep(500000);
+						}
+						if (ttt_tour%2 == 0){
+							victoire = 2;
+							ttt_1_color = ttt_5_color = ttt_9_color = 4;
+							usleep(500000);
+						 }
+						return victoire;
+					}
+				}
+
+				return 0;
+			}
+			gagne();
+			// fin Victoire
+			
+			//IA
+			if(victoire == 0){
+				int combien_cases_libres(){ // calcul du nombre de cases libres
+					int resultat = 0;
+					if (ttt_1 == 0) resultat += 1;
+					if (ttt_2 == 0) resultat += 1;
+					if (ttt_3 == 0) resultat += 1;
+					if (ttt_4 == 0) resultat += 1;
+					if (ttt_5 == 0) resultat += 1;
+					if (ttt_6 == 0) resultat += 1;
+					if (ttt_7 == 0) resultat += 1;
+					if (ttt_8 == 0) resultat += 1;
+					if (ttt_9 == 0) resultat += 1;
+					return resultat;
+				}
+				if((ttt_tour%2 != 0) && (combien_cases_libres() > 0)){ // test tour et si il reste une case libre
+			// *** qu'a-t-il été joué ? ***
+					int cases_libres[combien_cases_libres()];
+					//initialisation
+					for(int i=0; i < combien_cases_libres(); i++) cases_libres[i] = 0;
+					//remplissage
+					for(int i=0; i < combien_cases_libres(); i++){
+						if 		((ttt_1 == 0) && cases_libres[i-1] < 1) cases_libres[i] = 1;
+						else if ((ttt_2 == 0) && cases_libres[i-1] < 2) cases_libres[i] = 2;
+						else if ((ttt_3 == 0) && cases_libres[i-1] < 3) cases_libres[i] = 3;
+						else if ((ttt_4 == 0) && cases_libres[i-1] < 4) cases_libres[i] = 4;
+						else if ((ttt_5 == 0) && cases_libres[i-1] < 5) cases_libres[i] = 5;
+						else if ((ttt_6 == 0) && cases_libres[i-1] < 6) cases_libres[i] = 6;
+						else if ((ttt_7 == 0) && cases_libres[i-1] < 7) cases_libres[i] = 7;
+						else if ((ttt_8 == 0) && cases_libres[i-1] < 8) cases_libres[i] = 8;
+						else if ((ttt_9 == 0) && cases_libres[i-1] < 9) cases_libres[i] = 9;
+					}
+					
+			// *** choix d'une case ***
+					int rand_a_b(int a, int b){
+						return ( rand()/(double)RAND_MAX ) * (b-a) + a;
+					}
+					int random = rand_a_b(0,combien_cases_libres());
+					int choix =  cases_libres[random];
+					if (choix == 1){
+						ttt_1 = 1;
+						ttt_1_color = 2;
+						ttt_tour += 1;
+					}
+					if (choix == 2){
+						ttt_2 = 1;
+						ttt_2_color = 2;
+						ttt_tour += 1;
+					}
+					if (choix == 3){
+						ttt_3 = 1;
+						ttt_3_color = 2;
+						ttt_tour += 1;
+					}
+					if (choix == 4){
+						ttt_4 = 1;
+						ttt_4_color = 2;
+						ttt_tour += 1;
+					}
+					if (choix == 5){
+						ttt_5 = 1;
+						ttt_5_color = 2;
+						ttt_tour += 1;
+					}
+					if (choix == 6){
+						ttt_6 = 1;
+						ttt_6_color = 2;
+						ttt_tour += 1;
+					}
+					if (choix == 7){
+						ttt_7 = 1;
+						ttt_7_color = 2;
+						ttt_tour += 1;
+					}
+					if (choix == 8){
+						ttt_8 = 1;
+						ttt_8_color = 2;
+						ttt_tour += 1;
+					}
+					if (choix == 9){
+						ttt_9 = 1;
+						ttt_9_color = 2;
+						ttt_tour += 1;
+					}
+				}
+			}
+			if (victoire == 1 || victoire == 2)
+			{
+				
+				position_x = 0;
+				position_y = 2;
+				position_z = 20;
+				victoire = 3;
+				transparence_boule_5 = 1;
+			}
+			//fin IA
+				
+			//Déroulement des actions
+			{
+				if (ttt_1 == 1){
+					glPushMatrix();
+						if(ttt_1_color == 1) glColor3f(0,0,1);
+						if(ttt_1_color == 2) glColor3f(1,0,0);
+						if(ttt_1_color == 3) glColor3f(0,1,0);
+						if(ttt_1_color == 4) glColor3f(1,0,1);
+						glTranslatef(2,2,0);
+						glutSolidCube(1);
+					glPopMatrix();
+				}
+				if (ttt_2 == 1){
+					glPushMatrix();
+						if(ttt_2_color == 1) glColor3f(0,0,1);
+						if(ttt_2_color == 2) glColor3f(1,0,0);
+						if(ttt_2_color == 3) glColor3f(0,1,0);
+						if(ttt_2_color == 4) glColor3f(1,0,1);
+						glTranslatef(5,2,0);
+						glutSolidCube(1);
+					glPopMatrix();
+				}
+				if (ttt_3 == 1){
+					glPushMatrix();
+						if(ttt_3_color == 1) glColor3f(0,0,1);
+						if(ttt_3_color == 2) glColor3f(1,0,0);
+						if(ttt_3_color == 3) glColor3f(0,1,0);
+						if(ttt_3_color == 4) glColor3f(1,0,1);
+						glTranslatef(8,2,0);
+						glutSolidCube(1);
+					glPopMatrix();
+				}
+				if (ttt_4 == 1){
+					glPushMatrix();
+						if(ttt_4_color == 1) glColor3f(0,0,1);
+						if(ttt_4_color == 2) glColor3f(1,0,0);
+						if(ttt_4_color == 3) glColor3f(0,1,0);
+						if(ttt_4_color == 4) glColor3f(1,0,1);
+						glTranslatef(2,5,0);
+						glutSolidCube(1);
+					glPopMatrix();
+				}
+				if (ttt_5 == 1){
+					glPushMatrix();
+						if(ttt_5_color == 1) glColor3f(0,0,1);
+						if(ttt_5_color == 2) glColor3f(1,0,0);
+						if(ttt_5_color == 3) glColor3f(0,1,0);
+						if(ttt_5_color == 4) glColor3f(1,0,1);
+						glTranslatef(5,5,0);
+						glutSolidCube(1);
+					glPopMatrix();
+				}
+				if (ttt_6 == 1){
+					glPushMatrix();
+						if(ttt_6_color == 1) glColor3f(0,0,1);
+						if(ttt_6_color == 2) glColor3f(1,0,0);
+						if(ttt_6_color == 3) glColor3f(0,1,0);
+						if(ttt_6_color == 4) glColor3f(1,0,1);
+						glTranslatef(8,5,0);
+						glutSolidCube(1);
+					glPopMatrix();
+				}
+				if (ttt_7 == 1){
+					glPushMatrix();
+						if(ttt_7_color == 1) glColor3f(0,0,1);
+						if(ttt_7_color == 2) glColor3f(1,0,0);
+						if(ttt_7_color == 3) glColor3f(0,1,0);
+						if(ttt_7_color == 4) glColor3f(1,0,1);
+						glTranslatef(2,8,0);
+						glutSolidCube(1);
+					glPopMatrix();
+				}
+				if (ttt_8 == 1){
+					glPushMatrix();
+						if(ttt_8_color == 1) glColor3f(0,0,1);
+						if(ttt_8_color == 2) glColor3f(1,0,0);
+						if(ttt_8_color == 3) glColor3f(0,1,0);
+						if(ttt_8_color == 4) glColor3f(1,0,1);
+						glTranslatef(5,8,0);
+						glutSolidCube(1);
+					glPopMatrix();
+				}
+				if (ttt_9 == 1){
+					glPushMatrix();
+						if(ttt_9_color == 1) glColor3f(0,0,1);
+						if(ttt_9_color == 2) glColor3f(1,0,0);
+						if(ttt_9_color == 3) glColor3f(0,1,0);
+						if(ttt_9_color == 4) glColor3f(1,0,1);
+						glTranslatef(8,8,0);
+						glutSolidCube(1);
+					glPopMatrix();
+				}
+			}
+			// fin Déroulement
+		}
+		//fin Jeu
+	}
+	glPopMatrix();
+
+
+	//**************** action.c ****************
+
+	glPushMatrix(); //sol ile tictactoe
+	{
+		glTranslatef(5950,6000,6000);
+
+		glScalef(70,1,40);
+		glColor3f(1,1,1);
+		glutSolidCube(3.0);
+		glEnd();
+	}
+	glPopMatrix();
+
+	glPushMatrix(); //Maison super simon
+	{
+		glTranslatef(6020, 6020, 5900);
+		glRotatef(-90,0,1,0);
+
+
+		glPushMatrix(); //mur du fond
+		{		
+			glTranslatef(100,0,-30);
+			glScalef(9,5,0.4);
+			glColor4f(1,1,1, 0.8);
+			glutSolidCube(7.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); //mur de droite
+		{		
+			glTranslatef(131,-1,-6);
+			glRotatef(90, 0,1,0);
+			glScalef(7,5,0.4);
+			glColor4f(0.5,0.5,0.5, 0.8);
+			glutSolidCube(7.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+
+		glPushMatrix(); //mur de gauche
+		{		
+			glTranslatef(70,-1,-6);
+			glRotatef(-90, 0,1,0);
+			glScalef(7,5,0.4);
+			glColor4f(0.5,0.5,0.5, 0.8);
+			glutSolidCube(7.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); //plafond
+		{		
+			glTranslatef(101,18	,-6);
+			glRotatef(90, 1,0,0);
+			glScalef(9,7,0.4);
+			glColor4f(0,1,1, 0.8);
+			glutSolidCube(7.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+
+
+		glPushMatrix(); //toit gauche
+		{		
+			glTranslatef(78,25,-6);
+			glRotatef(90, 1,0,0);
+			glRotatef(22.5, 0,1,0);
+			glScalef(7,7,0.4);
+			glColor4f(0,1,0.5, 0.8);
+			glutSolidCube(7.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); //toit gauche
+		{		
+			glTranslatef(122,25,-6);
+			glRotatef(90, 1,0,0);
+			glRotatef(-22.5, 0,1,0);
+			glScalef(7,7,0.4);
+			glColor4f(0,1,0.5, 0.8);
+			glutSolidCube(7.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); //face avant toit
+		{
+			glTranslatef(101,27,17);
+			glScalef(32,8.4,1);
+			glColor4f(0,0.41,0.41, 0.8);
+			glBegin( GL_TRIANGLES ); 
+				glVertex3f( 0.0f, 1.f, 0.0f );
+				glVertex3f( -1.0f, -1.0f, 1.0f );
+				glVertex3f( 1.0f, -1.0f, 1.0f);
+
+				glVertex3f( 0.0f, 1.0f, 0.0f);
+				glVertex3f( -1.0f, -1.0f, 1.0f);
+				glVertex3f( 0.0f, -1.0f, -1.0f);
+
+				glVertex3f( 0.0f, 1.0f, 0.0f);
+				glVertex3f( 0.0f, -1.0f, -1.0f);
+				glVertex3f( 1.0f, -1.0f, 1.0f);
+
+				glVertex3f( -1.0f, -1.0f, 1.0f);
+				glVertex3f( 0.0f, -1.0f, -1.0f);
+				glVertex3f( 1.0f, -1.0f, 1.0f);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+
+		glPushMatrix(); //face arrière toit
+		{
+			glTranslatef(101,27,-29);
+			glRotatef(180,0,1,0);
+			glScalef(32,8.4,1);
+			glColor4f(0,0.41,0.41, 0.8);
+			glBegin( GL_TRIANGLES ); 
+				glVertex3f( 0.0f, 1.f, 0.0f );
+				glVertex3f( -1.0f, -1.0f, 1.0f );
+				glVertex3f( 1.0f, -1.0f, 1.0f);
+
+				glVertex3f( 0.0f, 1.0f, 0.0f);
+				glVertex3f( -1.0f, -1.0f, 1.0f);
+				glVertex3f( 0.0f, -1.0f, -1.0f);
+
+				glVertex3f( 0.0f, 1.0f, 0.0f);
+				glVertex3f( 0.0f, -1.0f, -1.0f);
+				glVertex3f( 1.0f, -1.0f, 1.0f);
+
+				glVertex3f( -1.0f, -1.0f, 1.0f);
+				glVertex3f( 0.0f, -1.0f, -1.0f);
+				glVertex3f( 1.0f, -1.0f, 1.0f);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+
+		glPushMatrix(); //sol
+		{		
+			glTranslatef(101,-19.5,-8);
+			glRotatef(90, 1,0,0);
+			glScalef(8.5,6.7,0.4);
+			glColor4f(1,0.5,0, 0.8);
+			glutSolidCube(7.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+
+
+		glPushMatrix(); //mur de devant gauche
+		{		
+			glTranslatef(83,-3,17);
+			glScalef(3.5,5.6,0.4);
+			glColor4f(1,1,1, 0.8);
+			glutSolidCube(7.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); //mur de devant droite
+		{		
+			glTranslatef(120,-3,17);
+			glScalef(3.5,5.6,0.4);
+			glColor4f(1,1,1, 0.8);
+			glutSolidCube(7.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); //mur de devant au mileu en haut
+		{		
+			glTranslatef(101.5,12,17);
+			glScalef(1.9,1.5,0.4);
+			glColor4f(0.5,0.5,0.5, 0.8);
+			glutSolidCube(7.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+		glPushMatrix(); //fentre en devant gauche
+		{		
+			glTranslatef(82.5,8,18.5);
+			glScalef(2,1.5,0.4);
+			glColor4f(0,0,0, 0.9);
+			glutSolidCube(7.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+
+
+		glPushMatrix(); //fentre en devant droite
+		{		
+			glTranslatef(119.5,8,18.5);
+			glScalef(2,1.5,0.4);
+			glColor4f(0,0,0, 0.9);
+			glutSolidCube(7.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+		glEnd();
+	}
+	glPopMatrix();
+
+
+
+	// FIN TIC TAC TOE
 
 	
 

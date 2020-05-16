@@ -83,6 +83,29 @@ extern float xrot_middle;
 extern int mouse_motion_x_middle;
 
 
+  extern int victoire;
+  extern int ttt_0;
+  extern int ttt_1;
+  extern int ttt_1_color;
+  extern int ttt_2;
+  extern int ttt_2_color;
+  extern int ttt_3;
+  extern int ttt_3_color;
+  extern int ttt_4;
+  extern int ttt_4_color;
+  extern int ttt_5;
+  extern int ttt_5_color;
+  extern int ttt_6;
+  extern int ttt_6_color;
+  extern int ttt_7;
+  extern int ttt_7_color;
+  extern int ttt_8;
+  extern int ttt_8_color;
+  extern int ttt_9;
+  extern int ttt_9_color;
+
+  extern int ttt_tour;
+
 
 
 #include <math.h>
@@ -345,8 +368,8 @@ void touche_pressee(unsigned char key, int x, int y)
 {
     //usleep(100);
 
-    switch (key) 
-    {
+  switch (key) 
+  {
     case ESCAPE:
         exit(1); 
         break;
@@ -658,9 +681,114 @@ void touche_pressee(unsigned char key, int x, int y)
     case TOUCHE_MIN_P:
                 ycamrot -= 1;
                 break;  
-  } 
+      //Déclarations Tic-Tac-Toe
 
-
+    case TOUCHE_0:
+      {
+        if (ttt_0 == 0) ttt_0 = 1;
+        break;
+      }
+    case TOUCHE_1:          //Je joue...
+      {
+        if((ttt_tour%2 == 0) && (victoire == 0)){ //...si c'est à mon tour de jouer...
+          if(ttt_1 == 0){   //...et si la case est vide
+            ttt_1 = 1;
+            ttt_1_color = 1;
+            ttt_tour += 1;
+          }
+        }
+        break;
+      }
+    case TOUCHE_2:
+      {
+        if((ttt_tour%2 == 0) && (victoire == 0)){
+          if(ttt_2 == 0){
+            ttt_2 = 1;
+            ttt_2_color = 1;
+            ttt_tour += 1;
+          }
+        }
+        break;
+      }
+    case TOUCHE_3:
+      {
+        if((ttt_tour%2 == 0) && (victoire == 0)){
+          if(ttt_3 == 0){
+            ttt_3 = 1;
+            ttt_3_color = 1;
+            ttt_tour += 1;
+          }
+        }
+        break;
+      }
+    case TOUCHE_4:
+      {
+        if((ttt_tour%2 == 0) && (victoire == 0)){
+          if(ttt_4 == 0){
+            ttt_4 = 1;
+            ttt_4_color = 1;
+            ttt_tour += 1;
+          }
+        }
+        break;
+      }
+    case TOUCHE_5:
+      {
+        if((ttt_tour%2 == 0) && (victoire == 0)){
+          if(ttt_5 == 0){
+            ttt_5 = 1;
+            ttt_5_color = 1;
+            ttt_tour += 1;
+          }
+        }
+        break;
+      }
+    case TOUCHE_6:
+      {
+        if((ttt_tour%2 == 0) && (victoire == 0)){
+          if(ttt_6 == 0){
+            ttt_6 = 1;
+            ttt_6_color = 1;
+            ttt_tour += 1;
+          }
+        }
+        break;
+      }
+    case TOUCHE_7:
+      {
+        if((ttt_tour%2 == 0) && (victoire == 0)){
+          if(ttt_7 == 0){
+            ttt_7 = 1;
+            ttt_7_color = 1;
+            ttt_tour += 1;
+          }
+        }
+        break;
+      }
+    case TOUCHE_8:
+      {
+        if((ttt_tour%2 == 0) && (victoire == 0)){
+          if(ttt_8 == 0){
+            ttt_8 = 1;
+            ttt_8_color = 1;
+            ttt_tour += 1;
+          }
+        }
+        break;
+      }
+    case TOUCHE_9:
+      {
+        if((ttt_tour%2 == 0) && (victoire == 0)){
+          if(ttt_9 == 0){
+            ttt_9 = 1;
+            ttt_9_color = 1;
+            ttt_tour += 1;
+          }
+        }
+        break;
+      }
+  }//fin tictactoe
+   
 }
 
 void touche_speciale(int touche, int x, int y)
