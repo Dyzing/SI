@@ -36,3 +36,13 @@ faire plus de collisions
 mettre des textures
 
 ajouter des clôtures
+
+mettre des matériaux
+
+rajouter des lumières
+
+faire les tps des maisons sur les iles pour revenir au monde 
+
+faire des ghost wall pour chaque ile
+
+regler les mouvements dans l'ile dino

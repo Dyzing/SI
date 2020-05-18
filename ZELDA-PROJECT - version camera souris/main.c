@@ -361,7 +361,10 @@ int angle_triforce = 0;
 	int ttt_9 = 0;
 	int ttt_9_color = 0;
 
+bool message = false;
 
+float res_prediction_avancer = 0;
+float res_prediction_reculer = 0;
 
 // variables
 
@@ -1255,7 +1258,7 @@ GLvoid Modelisation()
   glEnable(GL_COLOR_MATERIAL);
   glLightModelfv(GL_LIGHT_MODEL_AMBIENT, mipuissance);
 
-	printf("\nposition_x %f\nposition_y %f\nposition_z %f\n", position_x, position_y, position_z);
+	//printf("\nposition_x %f\nposition_y %f\nposition_z %f\n", position_x, position_y, position_z); //xyzpos
 
 	if(lumiere_lampadaire == 1)
 	{
@@ -1590,7 +1593,7 @@ GLvoid Modelisation()
 		if(position_x_beta <= 2005 && position_y >= 1999 && position_y <= 2500)
 		{
 			//printf("position_x_beta  : %f\n", position_x_beta);
-			position_x_beta = position_x_beta + 1.5;
+			position_x_beta = position_x_beta + 3;
 			position_y_beta = 2010 + (aleatoire_oiseau * aleatoire_oiseau * aleatoire_oiseau) ;
 			glTranslatef(position_x_beta, position_y_beta ,position_z_beta);
 		}
@@ -3168,7 +3171,7 @@ GLvoid Modelisation()
 
 			creer_cadre(0,0,2,180);
 
-			glPushMatrix(); //rocher mileux
+			glPushMatrix(); //logo rocher 
 			{
 				glTranslatef(0,0,3);
 				glColor3f(0.54,0.27,0.07);
@@ -4465,7 +4468,7 @@ GLvoid Modelisation()
 
 			creer_cadre(0,0,2,180);
 
-			glPushMatrix(); // Poisson : Clown
+			glPushMatrix(); // logo  Clown
 			{
 				glTranslatef(0,0,3);
 				glRotatef(90,0,1,0);
@@ -4804,6 +4807,61 @@ GLvoid Modelisation()
 			glTranslatef(101.5,12,17);
 
 			creer_cadre(0,0,2,180);
+
+			glPushMatrix(); // logo cadre
+			{
+				glTranslatef(-1.5,-1.5,3);
+				glScalef(0.3,0.3,0.3);
+				glColor3f(0.2,0.2,0.2);				
+				glPushMatrix();
+				{
+					glTranslatef(-0.5,0.5,0); // vers x
+					for(int i = 0; i<10; i++){
+						glTranslatef(1,0,0);
+						glutSolidCube(1);
+						if(i==3 || i==6){
+							glPushMatrix();
+								for(int j = 0; j<9; j++){
+										glTranslatef(0,1,0);
+										glutSolidCube(1);
+								}
+							glPopMatrix();
+						}
+					}
+					
+					glTranslatef(0,-1,0); // vers y
+					for(int i = 0; i<10; i++){
+						glTranslatef(0,1,0);
+						glutSolidCube(1);
+						if(i==3 || i==6){
+							glPushMatrix();
+								for(int j = 0; j<9; j++){
+										glTranslatef(-1,0,0);
+										glutSolidCube(1);
+								}
+							glPopMatrix();
+						}
+					}
+					
+					glTranslatef(1,0,0); // vers -x
+					for(int i = 0; i<10; i++){
+						glTranslatef(-1,0,0);
+						glutSolidCube(1);
+					}
+					
+					glTranslatef(0,1,0); // vers -y
+					for(int i = 0; i<10; i++){
+						glTranslatef(0,-1,0);
+						glutSolidCube(1);
+					}
+
+					glEnd();
+				}
+				glPopMatrix();
+
+				
+			}
+			glPopMatrix(); // fin cadre
 
 			glScalef(1.9,1.5,0.4);
 			glColor4f(0.5,0.5,0.5, 0.8);
@@ -6171,7 +6229,7 @@ GLvoid Modelisation()
 	{
 		if(position_cactus_petit_x <= 2005 && position_y >= 1999 && position_y <= 2500)
 		{
-			position_cactus_petit_x = position_cactus_petit_x + 1;
+			position_cactus_petit_x = position_cactus_petit_x + 4;
 			glTranslatef(position_cactus_petit_x,2010,2000);
 		}
 		else
@@ -6282,7 +6340,7 @@ GLvoid Modelisation()
 	{
 		if(position_cactus_grand_x <= 2005 && position_y >= 1999 && position_y <= 2500)
 		{
-			position_cactus_grand_x = position_cactus_grand_x + 1;
+			position_cactus_grand_x = position_cactus_grand_x + 4;
 			glTranslatef(position_cactus_grand_x,2010,2000);
 		}
 		else
@@ -12047,7 +12105,7 @@ GLvoid Modelisation()
 
 	glPushMatrix(); //triforce au sol
 	{
-		glTranslatef(0,-14,100);
+		glTranslatef(0,-14,700);
 		glRotatef(80,1,0,0);
 		// glRotatef(angle_triforce, 0,0,1);
 		// angle_triforce += 1;
@@ -12100,56 +12158,7 @@ GLvoid Modelisation()
 
 	if (transparence_boule_1 == 1 && transparence_boule_3 == 1 && transparence_boule_3 == 1 && transparence_boule_4 == 1 && transparence_boule_5 == 1 && transparence_boule_6 == 1)
 	{
-		glPushMatrix(); //triforce
-		{
-			glTranslatef(0,0,850);
-			// glRotatef(angle_triforce, 0,0,0);
-			// angle_triforce += 1;
-			glScalef(15,15,15);
-			glPushMatrix();
-			{
-				glTranslatef(0,25,25);
-				creer_triforce();
-				glEnd();
-			}
-			glPopMatrix();
-
-			
-			glPushMatrix();
-			{
-				glTranslatef(5,14,19.5);
-				creer_triforce();
-				glEnd();
-			}
-			glPopMatrix();
-
-			glPushMatrix();
-			{
-				glTranslatef(-5,14,19.5);
-				creer_triforce();
-				glEnd();
-			}
-			glPopMatrix();
-
-			glPushMatrix();
-			{
-				glTranslatef(5,14,30.5);
-				creer_triforce();
-				glEnd();
-			}
-			glPopMatrix();
-
-			glPushMatrix();
-			{
-				glTranslatef(-5,14,30.5);
-				creer_triforce();
-				glEnd();
-			}
-			glPopMatrix();
-
-			glEnd();
-		}
-		glPopMatrix();
+		
 
 		glPushMatrix(); //sol fin
 		{
@@ -12168,15 +12177,16 @@ GLvoid Modelisation()
 		}
 		glPopMatrix();
 
+		
 		glPushMatrix(); //triforce aura
 		{
-			glTranslatef(0,-10,110);
+			glTranslatef(0,-10,710);
 
 
 
 			box_aura.x = 0;
 			box_aura.y = -10;
-			box_aura.z = 110;
+			box_aura.z = 710;
 
 			box_aura.w = 8;
 			box_aura.h = 8;
@@ -12188,11 +12198,75 @@ GLvoid Modelisation()
 				position_x = 0;
 				position_y = 72;
 				position_z = 700;
+				message = true;
 			}
 
 
 
+			if(message == true)
+			{
+				glPushMatrix(); //triforce
+				{
+					glTranslatef(0,0,850);
+					// glRotatef(angle_triforce, 0,0,0);
+					// angle_triforce += 1;
+					glScalef(15,15,15);
+					glPushMatrix();
+					{
+						glTranslatef(0,25,25);
+						creer_triforce();
+						glEnd();
+					}
+					glPopMatrix();
 
+					
+					glPushMatrix();
+					{
+						glTranslatef(5,14,19.5);
+						creer_triforce();
+						glEnd();
+					}
+					glPopMatrix();
+
+					glPushMatrix();
+					{
+						glTranslatef(-5,14,19.5);
+						creer_triforce();
+						glEnd();
+					}
+					glPopMatrix();
+
+					glPushMatrix();
+					{
+						glTranslatef(5,14,30.5);
+						creer_triforce();
+						glEnd();
+					}
+					glPopMatrix();
+
+					glPushMatrix();
+					{
+						glTranslatef(-5,14,30.5);
+						creer_triforce();
+						glEnd();
+					}
+					glPopMatrix();
+
+					glEnd();
+				}
+				glPopMatrix();
+
+				glPushMatrix(); //message
+				{
+					glColor3f(1,1,1);
+					glRasterPos3f(-5, 10, -715);
+					glutBitmapString (GLUT_BITMAP_TIMES_ROMAN_24, "BRAVO");
+					glEnd();
+				}
+				glPopMatrix();
+
+
+			}
 
 
 
@@ -12200,7 +12274,7 @@ GLvoid Modelisation()
 			glRotatef(angle_triforce, 0,1,0);
 			angle_triforce += 1;
 			glScalef(6,6,6);
-			glColor4f(1,0.8,0.5, 0.5);
+			glColor4f(1,0.8,0.2, 0.75);
 			glBegin( GL_TRIANGLES ); 
 				glVertex3f( 0.0f, 1.f, 0.0f );
 				glVertex3f( -1.0f, -1.0f, 1.0f );
@@ -12827,6 +12901,17 @@ GLvoid Modelisation()
 
 
 	// FIN TIC TAC TOE
+
+
+	glPushMatrix(); //ghost wall
+	{
+		glTranslatef(0,0,325);
+		glScalef(400,400,400);
+		glColor4f(1,1,1,0.5);
+		glutSolidSphere(1.0,100,100);
+		glEnd();
+	}
+	glPopMatrix();
 
 	
 

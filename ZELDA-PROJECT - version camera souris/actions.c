@@ -106,6 +106,16 @@ extern int mouse_motion_x_middle;
 
   extern int ttt_tour;
 
+extern float res_prediction_avancer;
+extern float res_prediction_reculer;
+
+
+extern float transparence_boule_1;
+extern float transparence_boule_2;
+extern float transparence_boule_3;
+extern float transparence_boule_4;
+extern float transparence_boule_5;
+extern float transparence_boule_6;
 
 
 #include <math.h>
@@ -252,30 +262,30 @@ float angle_oiseau_dehors_fleur(float angle_oiseau_vertical)
 
 
 
-float avancer_x(float position_x) // Z
+float avancer_x(float x) // Z
 {
   //printf("yrot : %i\n", -yrot);
-  position_x =  position_x + cos((-yrot%360 + 90) * M_PI/180);
-  return position_x;
+  x =  x + cos((-yrot%360 + 90) * M_PI/180);
+  return x;
 }
 
-float reculer_x(float position_x) // Q
+float reculer_x(float x) // Q
 {
-  position_x = position_x - cos((-yrot%360 + 90) * M_PI/180);
-  return position_x;
+  x = x - cos((-yrot%360 + 90) * M_PI/180);
+  return x;
 }
 
 
-float avancer_z(float position_x) // Z
+float avancer_z(float z) // Z
 {
-  position_z =  position_z - sin((-yrot%360 + 90) * M_PI/180);
-  return position_z;
+  z =  z - sin((-yrot%360 + 90) * M_PI/180);
+  return z;
 }
 
-float reculer_z(float position_x) // Q
+float reculer_z(float z) // Q
 {
-  position_z = position_z +  sin((-yrot%360 + 90) * M_PI/180);
-  return position_z;
+  z = z +  sin((-yrot%360 + 90) * M_PI/180);
+  return z;
 }
 
 
@@ -361,7 +371,35 @@ float set_camera_1(float old_position_camera,float new_position_camera)
   old_position_camera = new_position_camera;
 }
 
+void prediction_avancer(float x, float z)
+{
+  float prediction_x = x;
+  prediction_x =  avancer_x(prediction_x);
 
+  float prediction_z = z;
+  prediction_z =  avancer_z(prediction_z);
+
+  res_prediction_avancer = sqrtf(powf(prediction_x - 0, 2) + powf(prediction_z - 325, 2));
+  printf("\nres_prediction %f\n", res_prediction_avancer);
+
+
+  //return res_prediction; 
+}
+
+void prediction_reculer(float x, float z)
+{
+  float prediction_x = x;
+  prediction_x =  reculer_x(prediction_x);
+
+  float prediction_z = z;
+  prediction_z =  reculer_z(prediction_z);
+
+  res_prediction_reculer = sqrtf(powf(prediction_x - 0, 2) + powf(prediction_z - 325, 2));
+  printf("\nres_prediction %f\n", res_prediction_reculer);
+
+
+  //return res_prediction; 
+}
 
 
 void touche_pressee(unsigned char key, int x, int y)
@@ -467,7 +505,7 @@ void touche_pressee(unsigned char key, int x, int y)
                 printf("je teste\n");
                 position_x = avancer_x(position_x);
                 position_z = avancer_z(position_z);
-                set_camera_3(2000, 2020 , 2000 ); //glTranslatef(-position_x,-position_y - 10 ,-position_z);
+                set_camera_3(2000, 2020 , 2000 ); //glTranslatef(-position_x,-position_y - 10 ,-position_z);  
               }
               // }
               else
@@ -478,8 +516,23 @@ void touche_pressee(unsigned char key, int x, int y)
                 }
                 else
                 {
+                  if(res_prediction_avancer < 400  && position_y < 100 && position_y > 0)
+                  {
                     position_x = avancer_x(position_x);
                     position_z = avancer_z(position_z);
+                    prediction_avancer(position_x, position_z);
+                  }
+                  else if ((position_y > 1000 && position_y <= 1425) || (position_y < 5500 && position_y > 5000))
+                  {
+                    position_x = avancer_x(position_x);
+                    position_z = avancer_z(position_z);
+                  }
+                  else
+                  {
+                    printf("\nne peut plus AVANCER ghost wall\n");
+                    prediction_reculer(position_x, position_z);
+                    prediction_avancer(position_x, position_z);
+                  }
                 }
               }
               break;
@@ -531,8 +584,23 @@ void touche_pressee(unsigned char key, int x, int y)
                 }
                 else
                 {
-                  position_x = reculer_x(position_x);
-                  position_z = reculer_z(position_z);  
+                  if(res_prediction_reculer < 400 && position_y < 100 && position_y > 0)
+                  {
+                    position_x = reculer_x(position_x);
+                    position_z = reculer_z(position_z);  
+                    prediction_reculer(position_x, position_z);
+                  }
+                  else if ((position_y > 1000 && position_y <= 1425) || (position_y < 5500 && position_y > 5000))
+                  {
+                    position_x = reculer_x(position_x);
+                    position_z = reculer_z(position_z);
+                  }
+                  else
+                  {
+                    printf("\nne peut plus RECULER ghost wall\n");
+                    prediction_reculer(position_x, position_z);
+                    prediction_avancer(position_x, position_z);
+                  }
                 }
 
                 break;
