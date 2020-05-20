@@ -53,10 +53,10 @@ void VM_init()
 	{
 	    printf("je suis un rocher\n");
 	      position_x = 1000;
-	      position_z = 1039;
-	      position_y = 1020;
-	      // position_z = 1439;
-	      // position_y = 1420;
+	      // position_z = 1039;
+	      // position_y = 1020;
+	      position_z = 1439;
+	      position_y = 1420;
 	      xrot = -4.0;
 	      yrot = -180;
 	}      

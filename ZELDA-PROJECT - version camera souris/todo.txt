@@ -37,14 +37,17 @@ faire des ghost wall pour chaque ile : fait
 
 faire plus de collisions avec les maisons : fait
 
+rajouter des cactus : fait
+
+rajouter des fleurs : fait
+
+rajouter des lumières : fait
+
 -----------------------------------------------------------------------------------------------------------------
 
 mettre des textures
 
 mettre des matériaux
-
-rajouter des lumières
-
 
 
 
