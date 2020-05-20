@@ -49,7 +49,7 @@ void VM_init()
 	}
 	
 
-	if((position_z <= 55) && ((position_z >= 42)) && ((position_x >= 100)))
+	if((position_z <= 55) && (position_z >= 42) && (position_x >= 100) && position_x <= 105)
 	{
 	    printf("je suis un rocher\n");
 	      position_x = 1000;
@@ -64,11 +64,11 @@ void VM_init()
 	{
 		printf("rentrer de terre");	
 		position_x = 0;
-		position_y = 5;
-		position_z = -4;
+		position_y = 2;
+		position_z = 20;
 		transparence_boule_4 = 1;
 	}
-  	else if( ( (position_z <= 3) && ((position_z >= -10)) && ((position_x <= -105)) ) )
+  	else if( ( (position_z <= 3) && ((position_z >= -10)) && ((position_x <= -105)) )  && position_x >= -110)
 	{
 		//et_camera_3(2000, 2010, 2000);
 		//glTranslatef(0,0 ,60);
@@ -79,7 +79,14 @@ void VM_init()
         position_z = 2000;
 
 	}
-	else if( ( (position_z <= 206) && ((position_z >= 193)) && ((position_x >= 102)) ) )
+	else if ( (position_z <= 2005) && ((position_z >= 1995)) && ((position_x >= 2000)) )
+	{
+		printf("rentrer de dino");	
+		position_x = 0;
+		position_y = 2;
+		position_z = 20;
+	}
+	else if( ( (position_z <= 206) && ((position_z >= 193)) && ((position_x >= 102))  ) && position_x <= 105)
 	{
 		//et_camera_3(2000, 2010, 2000);
 		//glTranslatef(0,0 ,60);
@@ -92,7 +99,7 @@ void VM_init()
         yrot = -180;
         angle_triangle = -90;
 	}
-	else if( ( (position_z <= 152) && ((position_z >= 140)) && ((position_x <= -105)) ) )
+	else if( ( (position_z <= 152) && ((position_z >= 140)) && ((position_x <= -105)) )   && position_x >= -110)
 	
 {		//et_camera_3(2000, 2010, 2000);
 		//glTranslatef(0,0 ,60);
@@ -105,16 +112,10 @@ void VM_init()
         yrot = -87;
         angle_triangle = -180;
 	}
-	else if ( (position_z <= 2005) && ((position_z >= 1995)) && ((position_x >= 2000)) )
+	
+  	else if( ( (position_z <= 303) && ((position_z >= 293)) && ((position_x <= -105)) )   && position_x >= -110)
 	{
-		printf("test 1");	
-		position_x = -104;
-		position_y = 5;
-		position_z = -4;
-	}
-  	else if( ( (position_z <= 303) && ((position_z >= 293)) && ((position_x <= -105)) ) )
-	{
-		//et_camera_3(2000, 2010, 2000);
+		//et_camera_3(2000, 2010, 2000);		
 		//glTranslatef(0,0 ,60);
 		//glRotatef(90, 0,1,0);
 		printf("test dark");	
@@ -124,7 +125,14 @@ void VM_init()
         yrot -= 90;
 
 	}
-	else if( ( (position_z <= 355) && ((position_z >= 346)) && ((position_x >= 102)) ) )
+	else if ( (position_z <= 5005) && ((position_z >= 4995)) && ((position_x <= 5010) && position_x >= 5000) )
+	{
+		printf("rentrer de dark");	
+		position_x = 0;
+		position_y = 2;
+		position_z = 20;
+	}
+	else if( ( (position_z <= 355) && ((position_z >= 346)) && ((position_x >= 102)) )  && position_x <= 105)
 	{
 		//et_camera_3(2000, 2010, 2000);
 		//glTranslatef(0,0 ,60);

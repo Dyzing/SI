@@ -29,20 +29,22 @@ faire en sorte de pouvoir tourner la camera mais que ca ne compte pas pour le mo
 
 faire une fin : fait
 
+regler les mouvements dans l'ile dino : fait 
+
+faire les tps des maisons sur les iles pour revenir au monde : fait
+	
+faire des ghost wall pour chaque ile : fait
+
+faire plus de collisions avec les maisons : fait
+
 -----------------------------------------------------------------------------------------------------------------
 
-faire plus de collisions
-
 mettre des textures
-
-ajouter des clôtures
 
 mettre des matériaux
 
 rajouter des lumières
 
-faire les tps des maisons sur les iles pour revenir au monde 
 
-faire des ghost wall pour chaque ile
 
-regler les mouvements dans l'ile dino
+

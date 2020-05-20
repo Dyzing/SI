@@ -172,6 +172,13 @@ struct AABB3D box_bouee;
 struct AABB3D box_aura;
 
 
+struct AABB3D box_maison_droite_1;
+struct AABB3D box_maison_droite_2;
+struct AABB3D box_maison_droite_3;
+struct AABB3D box_maison_gauche_1;
+struct AABB3D box_maison_gauche_2;
+struct AABB3D box_maison_gauche_3;
+
 
 float position_box2 = -6;
 float couleur_box2 = 0;
@@ -365,6 +372,13 @@ bool message = false;
 
 float res_prediction_avancer = 0;
 float res_prediction_reculer = 0;
+
+bool peut_avancer_maison_1 = true;
+bool peut_avancer_maison_2 = true;
+bool peut_avancer_maison_3 = true;
+bool peut_avancer_maison_4 = true;
+bool peut_avancer_maison_5 = true;
+bool peut_avancer_maison_6 = true;
 
 // variables
 
@@ -1258,7 +1272,7 @@ GLvoid Modelisation()
   glEnable(GL_COLOR_MATERIAL);
   glLightModelfv(GL_LIGHT_MODEL_AMBIENT, mipuissance);
 
-	//printf("\nposition_x %f\nposition_y %f\nposition_z %f\n", position_x, position_y, position_z); //xyzpos
+	printf("\nposition_x %f\nposition_y %f\nposition_z %f\n", position_x, position_y, position_z); //xyzpos
 
 	if(lumiere_lampadaire == 1)
 	{
@@ -2595,7 +2609,7 @@ GLvoid Modelisation()
 			box_rocher_milieu.h = 10;
 			box_rocher_milieu.d = 10;
 
-			if(Collision(box_rocher_milieu, box_personnage))
+			if(Collision(box_rocher_milieu, box_personnage) && position_y <= 1420)
 			{	
 				position_x = 0;
 				position_y = 2;
@@ -2632,7 +2646,7 @@ GLvoid Modelisation()
 			box_rocher_gauche.h = 10;
 			box_rocher_gauche.d = 10;
 
-			if(Collision(box_rocher_gauche, box_personnage))
+			if(Collision(box_rocher_gauche, box_personnage) && position_y <= 1420)
 			{	
 				position_x = 0;
 				position_y = 2;
@@ -2670,7 +2684,7 @@ GLvoid Modelisation()
 			box_rocher_droite.h = 10;
 			box_rocher_droite.d = 10;
 
-			if(Collision(box_rocher_droite, box_personnage))
+			if(Collision(box_rocher_droite, box_personnage) && position_y <= 1420)
 			{	
 				position_x = 0;
 				position_y = 2;
@@ -2995,6 +3009,32 @@ GLvoid Modelisation()
 	glPushMatrix(); //Maison droite 1
 	{
 		glTranslatef(120, 0, -50);
+
+
+			box_maison_droite_1.x = 120;
+			box_maison_droite_1.y = 0;
+			box_maison_droite_1.z = 25;
+
+			//printf("position_x_rocher %f\n, position_x_rocher %f\n, box_rocher_milieu_z %f\n", box_rocher_milieu.x, box_rocher_milieu.y, box_rocher_milieu.z);
+
+			// printf("box_rocher_milieu_x %f\n, box_rocher_milieu_y %f\n, box_rocher_milieu_z %f\n", box_rocher_milieu.x, box_rocher_milieu.y, box_rocher_milieu.z);
+
+			box_maison_droite_1.w = 50;
+			box_maison_droite_1.h = 60;
+			box_maison_droite_1.d = 60;
+
+			if(Collision(box_maison_droite_1, box_personnage))
+			{	
+				peut_avancer_maison_1 = false;
+				//printf("\npeut_avancer_maison-1 : %i\n", peut_avancer_maison_1);
+			}
+			else
+			{
+				peut_avancer_maison_1 = true;
+				//printf("\npeut_avancer_maison-1 : %i\n", peut_avancer_maison_1);
+			}
+
+
 		glRotatef(-90,0,1,0);
 
 
@@ -3221,6 +3261,34 @@ GLvoid Modelisation()
 	{
 
 		glTranslatef(-120, 0, 100);
+
+
+
+		box_maison_gauche_1.x = -154;
+		box_maison_gauche_1.y = 0;
+		box_maison_gauche_1.z = -30;
+
+		//printf("position_x_rocher %f\n, position_x_rocher %f\n, box_rocher_milieu_z %f\n", box_rocher_milieu.x, box_rocher_milieu.y, box_rocher_milieu.z);
+
+		// printf("box_rocher_milieu_x %f\n, box_rocher_milieu_y %f\n, box_rocher_milieu_z %f\n", box_rocher_milieu.x, box_rocher_milieu.y, box_rocher_milieu.z);
+
+		box_maison_gauche_1.w = 50;
+		box_maison_gauche_1.h = 60;
+		box_maison_gauche_1.d = 60;
+
+		if(Collision(box_maison_gauche_1, box_personnage))
+		{	
+			peut_avancer_maison_4 = false;
+			//printf("\npeut_avancer_maison-1 : %i\n", peut_avancer_maison_4);
+		}
+		else
+		{
+			peut_avancer_maison_4 = true;
+			//printf("\npeut_avancer_maison-1 : %i\n", peut_avancer_maison_4);
+		}
+
+
+
 		glRotatef(90,0,1,0);
 
 
@@ -3681,6 +3749,33 @@ GLvoid Modelisation()
 	{
 
 		glTranslatef(-120, 0, 250);
+
+
+
+		box_maison_gauche_2.x = -153;
+		box_maison_gauche_2.y = 0;
+		box_maison_gauche_2.z = 120;
+
+		//printf("position_x_rocher %f\n, position_x_rocher %f\n, box_rocher_milieu_z %f\n", box_rocher_milieu.x, box_rocher_milieu.y, box_rocher_milieu.z);
+
+		// printf("box_rocher_milieu_x %f\n, box_rocher_milieu_y %f\n, box_rocher_milieu_z %f\n", box_rocher_milieu.x, box_rocher_milieu.y, box_rocher_milieu.z);
+
+		box_maison_gauche_2.w = 50;
+		box_maison_gauche_2.h = 60;
+		box_maison_gauche_2.d = 60;
+
+		if(Collision(box_maison_gauche_2, box_personnage))
+		{	
+			peut_avancer_maison_5 = false;
+			//printf("\npeut_avancer_maison-1 : %i\n", peut_avancer_maison_5);
+		}
+		else
+		{
+			peut_avancer_maison_5 = true;
+			//printf("\npeut_avancer_maison-1 : %i\n", peut_avancer_maison_5);
+		}
+
+
 		glRotatef(90,0,1,0);
 
 
@@ -3947,6 +4042,32 @@ GLvoid Modelisation()
 	{
 
 		glTranslatef(-120, 0, 400);
+
+
+		box_maison_gauche_3.x = -154;
+		box_maison_gauche_3.y = 0;
+		box_maison_gauche_3.z = 270;
+
+		//printf("position_x_rocher %f\n, position_x_rocher %f\n, box_rocher_milieu_z %f\n", box_rocher_milieu.x, box_rocher_milieu.y, box_rocher_milieu.z);
+
+		// printf("box_rocher_milieu_x %f\n, box_rocher_milieu_y %f\n, box_rocher_milieu_z %f\n", box_rocher_milieu.x, box_rocher_milieu.y, box_rocher_milieu.z);
+
+		box_maison_gauche_3.w = 50;
+		box_maison_gauche_3.h = 60;
+		box_maison_gauche_3.d = 60;
+
+		if(Collision(box_maison_gauche_3, box_personnage))
+		{	
+			peut_avancer_maison_6 = false;
+			//printf("\npeut_avancer_maison-1 : %i\n", peut_avancer_maison_6);
+		}
+		else
+		{
+			peut_avancer_maison_6 = true;
+			//printf("\npeut_avancer_maison-1 : %i\n", peut_avancer_maison_6);
+		}
+
+
 		glRotatef(90,0,1,0);
 
 
@@ -4290,6 +4411,36 @@ GLvoid Modelisation()
 	{
 
 		glTranslatef(120, 0, 100);
+
+
+
+		box_maison_droite_2.x = 120;
+		box_maison_droite_2.y = 0;
+		box_maison_droite_2.z = 175;
+
+		//printf("position_x_rocher %f\n, position_x_rocher %f\n, box_rocher_milieu_z %f\n", box_rocher_milieu.x, box_rocher_milieu.y, box_rocher_milieu.z);
+
+		// printf("box_rocher_milieu_x %f\n, box_rocher_milieu_y %f\n, box_rocher_milieu_z %f\n", box_rocher_milieu.x, box_rocher_milieu.y, box_rocher_milieu.z);
+
+		box_maison_droite_2.w = 50;
+		box_maison_droite_2.h = 60;
+		box_maison_droite_2.d = 60;
+
+		if(Collision(box_maison_droite_2, box_personnage))
+		{	
+			peut_avancer_maison_2 = false;
+			//printf("\npeut_avancer_maison-2 : %i\n", peut_avancer_maison_2);
+		}
+		else
+		{
+			peut_avancer_maison_2 = true;
+			//printf("\npeut_avancer_maison-2 : %i\n", peut_avancer_maison_2);
+		}
+
+
+
+
+
 		glRotatef(-90,0,1,0);
 
 
@@ -4630,6 +4781,32 @@ GLvoid Modelisation()
 	{
 
 		glTranslatef(120, 0, 250);
+
+
+
+		box_maison_droite_3.x = 120;
+		box_maison_droite_3.y = 0;
+		box_maison_droite_3.z = 325;
+
+		//printf("position_x_rocher %f\n, position_x_rocher %f\n, box_rocher_milieu_z %f\n", box_rocher_milieu.x, box_rocher_milieu.y, box_rocher_milieu.z);
+
+		// printf("box_rocher_milieu_x %f\n, box_rocher_milieu_y %f\n, box_rocher_milieu_z %f\n", box_rocher_milieu.x, box_rocher_milieu.y, box_rocher_milieu.z);
+
+		box_maison_droite_3.w = 50;
+		box_maison_droite_3.h = 60;
+		box_maison_droite_3.d = 60;
+
+		if(Collision(box_maison_droite_3, box_personnage))
+		{	
+			peut_avancer_maison_3 = false;
+			//printf("\npeut_avancer_maison-3 : %i\n", peut_avancer_maison_3);
+		}
+		else
+		{
+			peut_avancer_maison_3 = true;
+			//printf("\npeut_avancer_maison-3 : %i\n", peut_avancer_maison_3);
+		}
+
 		glRotatef(-90,0,1,0);
 
 
@@ -5911,7 +6088,7 @@ GLvoid Modelisation()
 		glPushMatrix(); //sol ile dino
 		{
 			glTranslatef(1300,2000,2000);
-			glScalef(500,1,40);
+			glScalef(500,1,50);
 			glColor3f(1,1,1);
 			glutSolidCube(3.0);
 			glEnd();
@@ -12564,13 +12741,11 @@ GLvoid Modelisation()
 					}
 				}
 			}
-			if (victoire == 1 || victoire == 2)
+			if ((victoire == 1 || victoire == 2) && position_y > 6000 && position_y <  6100)
 			{
-				
 				position_x = 0;
 				position_y = 2;
 				position_z = 20;
-				victoire = 3;
 				transparence_boule_5 = 1;
 			}
 			//fin IA
@@ -12903,7 +13078,7 @@ GLvoid Modelisation()
 	// FIN TIC TAC TOE
 
 
-	glPushMatrix(); //ghost wall
+	glPushMatrix(); //ghost wall lobby
 	{
 		glTranslatef(0,0,325);
 		glScalef(400,400,400);
@@ -12912,6 +13087,48 @@ GLvoid Modelisation()
 		glEnd();
 	}
 	glPopMatrix();
+
+	glPushMatrix(); //ghost wall dino
+	{
+		glTranslatef(1932,2022,2000);
+		glScalef(75,75,75);
+		glColor4f(1,1,1,0.5);
+		glutSolidSphere(1.0,100,100);
+		glEnd();
+	}
+	glPopMatrix();
+
+	glPushMatrix(); //ghost wall dark
+	{
+		glTranslatef(4207,5022,5000);
+		glScalef(800,800,800);
+		glColor4f(1,1,1,0.5);
+		glutSolidSphere(1.0,100,100);
+		glEnd();
+	}
+	glPopMatrix();
+
+	glPushMatrix(); //ghost wall rocher
+	{
+		glTranslatef(1000,1425,1505);
+		glScalef(70,70,70);
+		glColor4f(1,1,1,0.5);
+		glutSolidSphere(1.0,100,100);
+		glEnd();
+	}
+	glPopMatrix();
+
+	glPushMatrix(); //ghost box maison droite 1
+	{
+		glTranslatef(130,0,50);
+		glScalef(50,60,60);
+		glColor4f(1,1,1,0.5);
+		glutSolidCube(1.0);
+		glEnd();
+	}
+	glPopMatrix();
+
+
 
 	
 

@@ -1,6 +1,8 @@
 #include "actions.h"
 #include <stdio.h>
 #include <unistd.h>
+#include <stdbool.h>
+
 
 extern GLfloat xrot;
 extern int yrot;
@@ -116,6 +118,13 @@ extern float transparence_boule_3;
 extern float transparence_boule_4;
 extern float transparence_boule_5;
 extern float transparence_boule_6;
+
+extern bool peut_avancer_maison_1;
+extern bool peut_avancer_maison_2;
+extern bool peut_avancer_maison_3;
+extern bool peut_avancer_maison_4;
+extern bool peut_avancer_maison_5;
+extern bool peut_avancer_maison_6;
 
 
 #include <math.h>
@@ -371,7 +380,7 @@ float set_camera_1(float old_position_camera,float new_position_camera)
   old_position_camera = new_position_camera;
 }
 
-void prediction_avancer(float x, float z)
+void prediction_avancer(float x, float z, float sx, float sz)
 {
   float prediction_x = x;
   prediction_x =  avancer_x(prediction_x);
@@ -379,14 +388,14 @@ void prediction_avancer(float x, float z)
   float prediction_z = z;
   prediction_z =  avancer_z(prediction_z);
 
-  res_prediction_avancer = sqrtf(powf(prediction_x - 0, 2) + powf(prediction_z - 325, 2));
-  printf("\nres_prediction %f\n", res_prediction_avancer);
+  res_prediction_avancer = sqrtf(powf(prediction_x - sx, 2) + powf(prediction_z - sz, 2));
+  printf("\nres_prediction_avancer %f\n", res_prediction_avancer);
 
 
   //return res_prediction; 
 }
 
-void prediction_reculer(float x, float z)
+void prediction_reculer(float x, float z, float sx, float sz)
 {
   float prediction_x = x;
   prediction_x =  reculer_x(prediction_x);
@@ -394,8 +403,8 @@ void prediction_reculer(float x, float z)
   float prediction_z = z;
   prediction_z =  reculer_z(prediction_z);
 
-  res_prediction_reculer = sqrtf(powf(prediction_x - 0, 2) + powf(prediction_z - 325, 2));
-  printf("\nres_prediction %f\n", res_prediction_reculer);
+  res_prediction_reculer = sqrtf(powf(prediction_x - sx, 2) + powf(prediction_z - sz, 2));
+  printf("\nres_prediction_reculer %f\n", res_prediction_reculer);
 
 
   //return res_prediction; 
@@ -500,41 +509,75 @@ void touche_pressee(unsigned char key, int x, int y)
               {
                 printf("ne peut plus avancer fin \n");
               }
-              else if (!( ((position_z <= 2005) && (position_z >= 1995)) && ((position_x >= 2000) && (position_x <= 2010)) ) && ( (position_z <= 2055) && ((position_z >= 1940)) && ((position_x <= 2045)) && (position_x >= 1950) ))
-              {
-                printf("je teste\n");
-                position_x = avancer_x(position_x);
-                position_z = avancer_z(position_z);
-                set_camera_3(2000, 2020 , 2000 ); //glTranslatef(-position_x,-position_y - 10 ,-position_z);  
-              }
+              // else if (!( ((position_z <= 2005) && (position_z >= 1995)) && ((position_x >= 2000) && (position_x <= 2010)) ) && ( (position_z <= 2055) && ((position_z >= 1940)) && ((position_x <= 2045)) && (position_x >= 1950) ))
+              // {
+              //   printf("je teste\n");
+              //   position_x = avancer_x(position_x);
+              //   position_z = avancer_z(position_z);
+              //   set_camera_3(2000, 2020 , 2000 ); //glTranslatef(-position_x,-position_y - 10 ,-position_z);  
+              // }
               // }
               else
               {
-                if (!( (position_z <= 2055) && ((position_z >= 1940)) && ((position_x <= 2045)) && (position_x >= 1950) )  && position_y >= 1999 && position_y <= 2500) 
+                // if (!( (position_z <= 2055) && ((position_z >= 1940)) && ((position_x <= 2045)) && (position_x >= 1950) )  && position_y >= 1999 && position_y <= 2500) 
+                // {
+                //     printf("steph");
+                //     position_x = avancer_x(position_x);
+                //     position_z = avancer_z(position_z);
+                // }
+                // else
                 {
-                    printf("steph");
-                }
-                else
-                {
-                  if(res_prediction_avancer < 400  && position_y < 100 && position_y > 0)
+                  if(res_prediction_avancer < 400  && position_y < 100 && position_y > 0 && peut_avancer_maison_1 && peut_avancer_maison_2 && peut_avancer_maison_3 && peut_avancer_maison_4 && peut_avancer_maison_5 && peut_avancer_maison_6) // ghost lobby
                   {
                     position_x = avancer_x(position_x);
                     position_z = avancer_z(position_z);
-                    prediction_avancer(position_x, position_z);
+                    prediction_avancer(position_x, position_z, 0, 325);
                   }
-                  else if ((position_y > 1000 && position_y <= 1425) || (position_y < 5500 && position_y > 5000))
+                  else if(res_prediction_avancer < 75 && position_y > 2000 && position_y < 2200) // ghost dino
+                  {
+                    position_x = avancer_x(position_x);
+                    position_z = avancer_z(position_z);  
+                    prediction_avancer(position_x, position_z, 1932, 2000); 
+                  }
+                  else if(res_prediction_avancer < 800 && position_y > 5000 && position_y < 5500) // ghost dark
+                  {
+                    position_x = avancer_x(position_x);
+                    position_z = avancer_z(position_z);  
+                    prediction_avancer(position_x, position_z, 4207, 5000); 
+                  }
+                  else if ((res_prediction_avancer < 70 && position_y > 1000 && position_y <= 1425)) // ghost rocher
                   {
                     position_x = avancer_x(position_x);
                     position_z = avancer_z(position_z);
+                    prediction_avancer(position_x, position_z, 1000, 1505); 
                   }
                   else
                   {
                     printf("\nne peut plus AVANCER ghost wall\n");
-                    prediction_reculer(position_x, position_z);
-                    prediction_avancer(position_x, position_z);
+                    if(position_y > 0 && position_y < 25  && peut_avancer_maison_1 && peut_avancer_maison_2 && peut_avancer_maison_3 && peut_avancer_maison_4 && peut_avancer_maison_5 && peut_avancer_maison_6) // ghost lobby
+                    {
+                      prediction_reculer(position_x, position_z, 0, 325);
+                      prediction_avancer(position_x, position_z, 0, 325);
+                    }
+                    else if(position_y > 2000 && position_y < 2200)  // ghost dino
+                    {
+                      prediction_reculer(position_x, position_z, 1932, 2000);
+                      prediction_avancer(position_x, position_z, 1932, 2000);
+                    }
+                    else if(position_y > 5000 && position_y < 5500) // ghost dark
+                    {
+                      prediction_reculer(position_x, position_z, 4207, 5000);
+                      prediction_avancer(position_x, position_z, 4207, 5000);
+                    }
+                    else if(position_y > 1000 && position_y <= 1425) // ghost dark
+                    {
+                      prediction_reculer(position_x, position_z, 1000, 1505); 
+                      prediction_avancer(position_x, position_z, 1000, 1505);
+                    }
+                    
                   }
                 }
-              }
+              } 
               break;
 
     case TOUCHE_MAJ_Q:
@@ -574,32 +617,67 @@ void touche_pressee(unsigned char key, int x, int y)
                   if(angle_jambe == -43)
                     jambe_avant_arriere = 1;
                 }
-                if(position_y > 1000 && position_y <= 1425 && position_z <= 1515)
-                {
-                  printf("ne peut plus reculer terre \n");
-                }
-                else if(position_z == 700 && position_y == 72)
+                // if(position_y > 1000 && position_y <= 1425 && position_z <= 1515)
+                // {
+                //   printf("ne peut plus reculer terre \n");
+                // }
+                //else
+                 if(position_z == 700 && position_y == 72)
                 {
                   printf("ne peut plus avancer fin \n");
                 }
                 else
                 {
-                  if(res_prediction_reculer < 400 && position_y < 100 && position_y > 0)
+                  if(res_prediction_reculer < 400 && position_y < 100 && position_y > 0) // ghost lobby
                   {
                     position_x = reculer_x(position_x);
                     position_z = reculer_z(position_z);  
-                    prediction_reculer(position_x, position_z);
+                    prediction_reculer(position_x, position_z, 0, 325);
                   }
-                  else if ((position_y > 1000 && position_y <= 1425) || (position_y < 5500 && position_y > 5000))
+                  else if(res_prediction_reculer < 75 && position_y > 2000 && position_y < 2200) // ghost dino
+                  {
+                    position_x = reculer_x(position_x);
+                    position_z = reculer_z(position_z);  
+                    prediction_reculer(position_x, position_z, 1932, 2000); 
+                  }
+                  else if(res_prediction_reculer < 800 && position_y > 5000 && position_y < 5500) // ghost dark
+                  {
+                    position_x = reculer_x(position_x);
+                    position_z = reculer_z(position_z);  
+                    prediction_reculer(position_x, position_z, 4207, 5000); 
+                  }
+                  else if ((res_prediction_reculer < 70 && position_y > 1000 && position_y <= 1425)) // ghost rocher
                   {
                     position_x = reculer_x(position_x);
                     position_z = reculer_z(position_z);
+                    prediction_reculer(position_x, position_z, 1000, 1505); 
                   }
+
                   else
                   {
-                    printf("\nne peut plus RECULER ghost wall\n");
-                    prediction_reculer(position_x, position_z);
-                    prediction_avancer(position_x, position_z);
+                    printf("\nne peut plus AVANCER ghost wall\n");
+                    if(position_y > 0 && position_y < 25) // ghost lobby
+                    {
+                      prediction_reculer(position_x, position_z, 0, 325);
+                      prediction_avancer(position_x, position_z, 0, 325);
+                    }
+                    else if(position_y > 2000 && position_y < 2200) // ghost dino
+                    {
+                      prediction_reculer(position_x, position_z, 1932, 2000);
+                      prediction_avancer(position_x, position_z, 1932, 2000);
+                    }
+                    else if(position_y > 5000 && position_y < 5500) // ghost dark
+                    {
+                      prediction_reculer(position_x, position_z, 4207, 5000);
+                      prediction_avancer(position_x, position_z, 4207, 5000);
+                    }
+                    else if(position_y > 1000 && position_y <= 1425) // ghost rocher
+                    {
+                      prediction_reculer(position_x, position_z, 1000, 1505); 
+                      prediction_avancer(position_x, position_z, 1000, 1505);
+                    }
+
+                    
                   }
                 }
 
