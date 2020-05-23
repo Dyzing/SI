@@ -27,6 +27,8 @@ GLfloat z = -5.0f;
 int blend = 0;
 int light = 0;
 
+GLuint texture[1];
+
 GLfloat angle2 = 0;
 GLfloat angle3 = 0;
 GLfloat angle4 = 0;
@@ -401,7 +403,7 @@ void creer_fleur(float x, float y, float z)
 			glScalef(5,5,5);
 			glColor4f(1,0.71, 0.75, 0.4);
 			GLUquadric* cone = gluNewQuadric();
-	    	gluQuadricTexture(cone,GL_TRUE); 
+	    	
 		    gluCylinder(cone,0.5,0,1.6,20,1); 
 	        gluDeleteQuadric(cone); 
 		}
@@ -1346,7 +1348,7 @@ GLvoid Modelisation()
 
 	  glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);
 	  glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 2.0);
-		glShadeModel(GL_FLAT);
+		glShadeModel(GL_SMOOTH);
 
 	}
 	else if (lumiere_lampadaire == 0)
@@ -2115,7 +2117,6 @@ GLvoid Modelisation()
 		glScalef(5,5,5);
 		glColor4f(1,0.71, 0.75, 0.4);
 		GLUquadric* cone = gluNewQuadric();
-    	gluQuadricTexture(cone,GL_TRUE); 
 	    gluCylinder(cone,0.5,0,1.6,20,1); 
         gluDeleteQuadric(cone); 
 	}
@@ -3153,6 +3154,29 @@ GLvoid Modelisation()
 				}
 				glPopMatrix();
 
+				glPushMatrix(); //mur de devant au mileu en haut texture
+				{		
+					glTranslatef(94.85,6.75,18.502);
+					glBegin(GL_QUADS);
+					glColor3f(1,1,1);
+						glBindTexture(GL_TEXTURE_2D,texture[0]);//load texture buffer
+						//set point in 3D and texture space
+						glTexCoord2f(0.0f,0.0f);
+						glVertex3f(0.0f,0.0f,0.0f);
+						
+						glTexCoord2f(1.0f,0.0f);
+						glVertex3f(13.3f,0.0f,0.0f);
+						
+						glTexCoord2f(1.0f,1.0f);
+						glVertex3f(13.3f,10.5f,0.0f);
+						
+						glTexCoord2f(0.0f,1.0f);
+						glVertex3f(0.0f,10.5f,0.0f);
+
+					glEnd();
+				}
+				glPopMatrix();
+
 
 				glPushMatrix(); //fentre en devant gauche
 				{		
@@ -3408,6 +3432,31 @@ GLvoid Modelisation()
 			glEnd();
 		}
 		glPopMatrix();
+
+		glPushMatrix(); //mur de devant au mileu en haut texture
+		{		
+			glTranslatef(94.85,6.75,18.502);
+			glBegin(GL_QUADS);
+			glColor3f(1,1,1);
+				glBindTexture(GL_TEXTURE_2D,texture[0]);//load texture buffer
+				//set point in 3D and texture space
+				glTexCoord2f(0.0f,0.0f);
+				glVertex3f(0.0f,0.0f,0.0f);
+				
+				glTexCoord2f(1.0f,0.0f);
+				glVertex3f(13.3f,0.0f,0.0f);
+				
+				glTexCoord2f(1.0f,1.0f);
+				glVertex3f(13.3f,10.5f,0.0f);
+				
+				glTexCoord2f(0.0f,1.0f);
+				glVertex3f(0.0f,10.5f,0.0f);
+
+			glEnd();
+		}
+		glPopMatrix();
+
+
 
 		glPushMatrix(); // carre noir porte
 		{
@@ -3907,6 +3956,28 @@ GLvoid Modelisation()
 		}
 		glPopMatrix();
 
+		glPushMatrix(); //mur de devant au mileu en haut texture
+		{		
+			glTranslatef(94.85,6.75,18.502);
+			glBegin(GL_QUADS);
+			glColor3f(1,1,1);
+				glBindTexture(GL_TEXTURE_2D,texture[0]);//load texture buffer
+				//set point in 3D and texture space
+				glTexCoord2f(0.0f,0.0f);
+				glVertex3f(0.0f,0.0f,0.0f);
+				
+				glTexCoord2f(1.0f,0.0f);
+				glVertex3f(13.3f,0.0f,0.0f);
+				
+				glTexCoord2f(1.0f,1.0f);
+				glVertex3f(13.3f,10.5f,0.0f);
+				
+				glTexCoord2f(0.0f,1.0f);
+				glVertex3f(0.0f,10.5f,0.0f);
+
+			glEnd();
+		}
+		glPopMatrix();
 
 		glPushMatrix(); // carre noir porte
 		{
@@ -4209,6 +4280,29 @@ GLvoid Modelisation()
 			glScalef(1.9,1.5,0.4);
 			glColor3f(0.77,0.69,0.49);
 			glutSolidCube(7.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+		glPushMatrix(); //mur de devant au mileu en haut texture
+		{		
+			glTranslatef(94.85,6.75,18.502);
+			glBegin(GL_QUADS);
+			glColor3f(1,1,1);
+				glBindTexture(GL_TEXTURE_2D,texture[0]);//load texture buffer
+				//set point in 3D and texture space
+				glTexCoord2f(0.0f,0.0f);
+				glVertex3f(0.0f,0.0f,0.0f);
+				
+				glTexCoord2f(1.0f,0.0f);
+				glVertex3f(13.3f,0.0f,0.0f);
+				
+				glTexCoord2f(1.0f,1.0f);
+				glVertex3f(13.3f,10.5f,0.0f);
+				
+				glTexCoord2f(0.0f,1.0f);
+				glVertex3f(0.0f,10.5f,0.0f);
+
 			glEnd();
 		}
 		glPopMatrix();
@@ -4597,6 +4691,29 @@ GLvoid Modelisation()
 		}
 		glPopMatrix();
 
+		glPushMatrix(); //mur de devant au mileu en haut texture
+		{		
+			glTranslatef(94.85,6.75,18.502);
+			glBegin(GL_QUADS);
+			glColor3f(1,1,1);
+				glBindTexture(GL_TEXTURE_2D,texture[0]);//load texture buffer
+				//set point in 3D and texture space
+				glTexCoord2f(0.0f,0.0f);
+				glVertex3f(0.0f,0.0f,0.0f);
+				
+				glTexCoord2f(1.0f,0.0f);
+				glVertex3f(13.3f,0.0f,0.0f);
+				
+				glTexCoord2f(1.0f,1.0f);
+				glVertex3f(13.3f,10.5f,0.0f);
+				
+				glTexCoord2f(0.0f,1.0f);
+				glVertex3f(0.0f,10.5f,0.0f);
+
+			glEnd();
+		}
+		glPopMatrix();
+
 
 		glPushMatrix(); // carre noir porte
 		{
@@ -4981,6 +5098,29 @@ GLvoid Modelisation()
 		}
 		glPopMatrix();
 
+		glPushMatrix(); //mur de devant au mileu en haut texture
+		{		
+			glTranslatef(94.85,6.75,18.502);
+			glBegin(GL_QUADS);
+			glColor3f(1,1,1);
+				glBindTexture(GL_TEXTURE_2D,texture[0]);//load texture buffer
+				//set point in 3D and texture space
+				glTexCoord2f(0.0f,0.0f);
+				glVertex3f(0.0f,0.0f,0.0f);
+				
+				glTexCoord2f(1.0f,0.0f);
+				glVertex3f(13.3f,0.0f,0.0f);
+				
+				glTexCoord2f(1.0f,1.0f);
+				glVertex3f(13.3f,10.5f,0.0f);
+				
+				glTexCoord2f(0.0f,1.0f);
+				glVertex3f(0.0f,10.5f,0.0f);
+
+			glEnd();
+		}
+		glPopMatrix();
+
 
 		glPushMatrix(); // carre noir porte
 		{
@@ -5225,7 +5365,7 @@ GLvoid Modelisation()
 
 
 		
-	glPushMatrix(); //mur de devant au mileu en haut
+		glPushMatrix(); //mur de devant au mileu en haut
 		{		
 			glTranslatef(101.5,12,17);
 
@@ -5289,6 +5429,29 @@ GLvoid Modelisation()
 			glScalef(1.9,1.5,0.4);
 			glColor3f(0.77,0.69,0.49);
 			glutSolidCube(7.0);
+			glEnd();
+		}
+		glPopMatrix();
+
+		glPushMatrix(); //mur de devant au mileu en haut texture
+		{		
+			glTranslatef(94.85,6.75,18.502);
+			glBegin(GL_QUADS);
+			glColor3f(1,1,1);
+				glBindTexture(GL_TEXTURE_2D,texture[0]);//load texture buffer
+				//set point in 3D and texture space
+				glTexCoord2f(0.0f,0.0f);
+				glVertex3f(0.0f,0.0f,0.0f);
+				
+				glTexCoord2f(1.0f,0.0f);
+				glVertex3f(13.3f,0.0f,0.0f);
+				
+				glTexCoord2f(1.0f,1.0f);
+				glVertex3f(13.3f,10.5f,0.0f);
+				
+				glTexCoord2f(0.0f,1.0f);
+				glVertex3f(0.0f,10.5f,0.0f);
+
 			glEnd();
 		}
 		glPopMatrix();
@@ -6330,6 +6493,29 @@ GLvoid Modelisation()
 				}
 				glPopMatrix();
 
+				glPushMatrix(); //mur de devant au mileu en haut texture
+				{		
+					glTranslatef(94.85,6.75,18.502);
+					glBegin(GL_QUADS);
+					glColor3f(1,1,1);
+						glBindTexture(GL_TEXTURE_2D,texture[0]);//load texture buffer
+						//set point in 3D and texture space
+						glTexCoord2f(0.0f,0.0f);
+						glVertex3f(0.0f,0.0f,0.0f);
+						
+						glTexCoord2f(1.0f,0.0f);
+						glVertex3f(13.3f,0.0f,0.0f);
+						
+						glTexCoord2f(1.0f,1.0f);
+						glVertex3f(13.3f,10.5f,0.0f);
+						
+						glTexCoord2f(0.0f,1.0f);
+						glVertex3f(0.0f,10.5f,0.0f);
+
+					glEnd();
+				}
+				glPopMatrix();
+
 
 				glPushMatrix(); //fentre en devant gauche
 				{		
@@ -7297,6 +7483,29 @@ GLvoid Modelisation()
 					glScalef(1.9,1.5,0.4);
 					glColor3f(0.77,0.69,0.49);
 					glutSolidCube(7.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+				glPushMatrix(); //mur de devant au mileu en haut texture
+				{		
+					glTranslatef(94.85,6.75,18.502);
+					glBegin(GL_QUADS);
+					glColor3f(1,1,1);
+						glBindTexture(GL_TEXTURE_2D,texture[0]);//load texture buffer
+						//set point in 3D and texture space
+						glTexCoord2f(0.0f,0.0f);
+						glVertex3f(0.0f,0.0f,0.0f);
+						
+						glTexCoord2f(1.0f,0.0f);
+						glVertex3f(13.3f,0.0f,0.0f);
+						
+						glTexCoord2f(1.0f,1.0f);
+						glVertex3f(13.3f,10.5f,0.0f);
+						
+						glTexCoord2f(0.0f,1.0f);
+						glVertex3f(0.0f,10.5f,0.0f);
+
 					glEnd();
 				}
 				glPopMatrix();
@@ -12617,6 +12826,28 @@ GLvoid Modelisation()
 			}
 			glPopMatrix();
 
+			glPushMatrix(); //mur de devant au mileu en haut texture
+			{		
+				glTranslatef(94.85,6.75,18.502);
+				glBegin(GL_QUADS);
+				glColor3f(1,1,1);
+					glBindTexture(GL_TEXTURE_2D,texture[0]);//load texture buffer
+					//set point in 3D and texture space
+					glTexCoord2f(0.0f,0.0f);
+					glVertex3f(0.0f,0.0f,0.0f);
+					
+					glTexCoord2f(1.0f,0.0f);
+					glVertex3f(13.3f,0.0f,0.0f);
+					
+					glTexCoord2f(1.0f,1.0f);
+					glVertex3f(13.3f,10.5f,0.0f);
+					
+					glTexCoord2f(0.0f,1.0f);
+					glVertex3f(0.0f,10.5f,0.0f);
+
+				glEnd();
+			}
+			glPopMatrix();
 
 			glPushMatrix(); //fentre en devant gauche
 			{		
@@ -13604,6 +13835,29 @@ GLvoid Modelisation()
 				glScalef(1.9,1.5,0.4);
 				glColor3f(0.77,0.69,0.49);
 				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+			glPushMatrix(); //mur de devant au mileu en haut texture
+			{		
+				glTranslatef(94.85,6.75,18.502);
+				glBegin(GL_QUADS);
+				glColor3f(1,1,1);
+					glBindTexture(GL_TEXTURE_2D,texture[0]);//load texture buffer
+					//set point in 3D and texture space
+					glTexCoord2f(0.0f,0.0f);
+					glVertex3f(0.0f,0.0f,0.0f);
+					
+					glTexCoord2f(1.0f,0.0f);
+					glVertex3f(13.3f,0.0f,0.0f);
+					
+					glTexCoord2f(1.0f,1.0f);
+					glVertex3f(13.3f,10.5f,0.0f);
+					
+					glTexCoord2f(0.0f,1.0f);
+					glVertex3f(0.0f,10.5f,0.0f);
+
 				glEnd();
 			}
 			glPopMatrix();

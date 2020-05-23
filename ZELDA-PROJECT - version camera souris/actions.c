@@ -810,32 +810,6 @@ void touche_pressee(unsigned char key, int x, int y)
    
 }
 
-void touche_speciale(int touche, int x, int y)
-{
-    usleep(100);
-    switch (touche) 
-    {
-                case GLUT_KEY_UP:
-                  xrot += 3.0f;
-                        break;
-
-                case GLUT_KEY_DOWN:
-                  xrot -= 3.0f;
-                        break;
-
-                case GLUT_KEY_LEFT:
-                  yrot = (yrot + 3)%360;
-                        break;
-
-                case GLUT_KEY_RIGHT:
-                  yrot = (yrot - 3)%360;
-                        break;
-        }
-    
-
-}
-
-
 
 void vMouse(int button, int state, int x, int y)
 {
