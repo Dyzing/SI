@@ -176,7 +176,7 @@ int cube_time = 1;
 int cube_attente = 0;
 
 char simon[10];
-int max_simon = 3;
+int max_simon = 5;
 int tour_simon = 0;
 int nb_click = 0;
 int nb_flash_actuel = 0;
@@ -4290,7 +4290,6 @@ GLvoid Modelisation()
 						gluCylinder(obj,0.5,0.3,0.3,32,32);
 						glTranslatef(0,0,0.3);
 						gluCylinder(obj,0.3,0,0.3,32,32);
-						axes();
 					}
 					glPopMatrix();
 				}
@@ -7268,7 +7267,6 @@ GLvoid Modelisation()
 						glutSolidSphere(7,32,32);
 					glPopMatrix();
 					
-					axes();
 					
 					glPushMatrix();  // Yeux
 					{
@@ -7503,7 +7501,6 @@ GLvoid Modelisation()
 					}
 					glEnd();
 					
-					axes();
 				}
 				glPopMatrix();
 				
@@ -9272,7 +9269,6 @@ GLvoid Modelisation()
 						gluCylinder(obj,0.5,0.3,0.3,32,32);
 						glTranslatef(0,0,0.3);
 						gluCylinder(obj,0.3,0,0.3,32,32);
-						axes();
 					}
 					glPopMatrix();
 				}
@@ -10356,7 +10352,6 @@ GLvoid Modelisation()
 								gluCylinder(obj,0.5,0.3,0.3,32,32);
 								glTranslatef(0,0,0.3);
 								gluCylinder(obj,0.3,0,0.3,32,32);
-								axes();
 							}
 							glPopMatrix();
 						}
@@ -10897,7 +10892,6 @@ GLvoid Modelisation()
 
 				glPushMatrix(); //message
 				{
-					glScalef(5,5,5);
 					glColor3f(1,1,1);
 					glRasterPos3f(-5, 10, -715);
 					glutBitmapString (GLUT_BITMAP_TIMES_ROMAN_24, "BRAVO");
@@ -11617,7 +11611,6 @@ glClearColor(couleur_ciel_x,couleur_ciel_y, couleur_ciel_z, 0.8);
 
 
 
-  axes();
   glutSwapBuffers();
   
 }
