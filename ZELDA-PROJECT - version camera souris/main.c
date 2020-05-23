@@ -4153,7 +4153,7 @@ GLvoid Modelisation()
 		
 		glPushMatrix(); //mur de devant au mileu en haut
 		{		
-			glTranslatef(101.5,12,17);
+			glTranslatef(101.5,12,17);	
 
 			creer_cadre(0,0,2,-180);
 
@@ -6142,840 +6142,841 @@ GLvoid Modelisation()
 
 
 
-
-	glPushMatrix(); //ile 2 dino
+	if(position_y > 2000 && position_y < 2500)
 	{
-
-		glPushMatrix(); //Maison DINO
-		{
-			glTranslatef(2020, 2020, 1900);
-			glRotatef(-90,0,1,0);
-
-
-			glPushMatrix(); //mur du fond
-			{		
-				glTranslatef(100,0,-30);
-				glScalef(9,5,0.4);
-				glColor4f(1,1,1, 0.8);
-				glutSolidCube(7.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-
-			glPushMatrix(); //mur de droite
-			{		
-				glTranslatef(131,-1,-6);
-				glRotatef(90, 0,1,0);
-				glScalef(7,5,0.4);
-				glColor4f(0.5,0.5,0.5, 0.8);
-				glutSolidCube(7.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-
-
-			glPushMatrix(); //mur de gauche
-			{		
-				glTranslatef(70,-1,-6);
-				glRotatef(-90, 0,1,0);
-				glScalef(7,5,0.4);
-				glColor4f(0.5,0.5,0.5, 0.8);
-				glutSolidCube(7.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-
-			glPushMatrix(); //plafond
-			{		
-				glTranslatef(101,18	,-6);
-				glRotatef(90, 1,0,0);
-				glScalef(9,7,0.4);
-				glColor4f(0,1,1, 0.8);
-				glutSolidCube(7.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-
-
-
-			glPushMatrix(); //toit gauche
-			{		
-				glTranslatef(78,25,-6);
-				glRotatef(90, 1,0,0);
-				glRotatef(22.5, 0,1,0);
-				glScalef(7,7,0.4);
-				glColor4f(0,1,0.5, 0.8);
-				glutSolidCube(7.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-
-			glPushMatrix(); //toit gauche
-			{		
-				glTranslatef(122,25,-6);
-				glRotatef(90, 1,0,0);
-				glRotatef(-22.5, 0,1,0);
-				glScalef(7,7,0.4);
-				glColor4f(0,1,0.5, 0.8);
-				glutSolidCube(7.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-
-			glPushMatrix(); //face avant toit
-			{
-				glTranslatef(101,27,17);
-				glScalef(32,8.4,1);
-				glColor4f(0,0.41,0.41, 0.8);
-				glBegin( GL_TRIANGLES ); 
-					glVertex3f( 0.0f, 1.f, 0.0f );
-					glVertex3f( -1.0f, -1.0f, 1.0f );
-					glVertex3f( 1.0f, -1.0f, 1.0f);
-
-					glVertex3f( 0.0f, 1.0f, 0.0f);
-					glVertex3f( -1.0f, -1.0f, 1.0f);
-					glVertex3f( 0.0f, -1.0f, -1.0f);
-
-					glVertex3f( 0.0f, 1.0f, 0.0f);
-					glVertex3f( 0.0f, -1.0f, -1.0f);
-					glVertex3f( 1.0f, -1.0f, 1.0f);
-
-					glVertex3f( -1.0f, -1.0f, 1.0f);
-					glVertex3f( 0.0f, -1.0f, -1.0f);
-					glVertex3f( 1.0f, -1.0f, 1.0f);
-				glEnd();
-			}
-			glPopMatrix();
-
-
-
-			glPushMatrix(); //face arrière toit
-			{
-				glTranslatef(101,27,-29);
-				glRotatef(180,0,1,0);
-				glScalef(32,8.4,1);
-				glColor4f(0,0.41,0.41, 0.8);
-				glBegin( GL_TRIANGLES ); 
-					glVertex3f( 0.0f, 1.f, 0.0f );
-					glVertex3f( -1.0f, -1.0f, 1.0f );
-					glVertex3f( 1.0f, -1.0f, 1.0f);
-
-					glVertex3f( 0.0f, 1.0f, 0.0f);
-					glVertex3f( -1.0f, -1.0f, 1.0f);
-					glVertex3f( 0.0f, -1.0f, -1.0f);
-
-					glVertex3f( 0.0f, 1.0f, 0.0f);
-					glVertex3f( 0.0f, -1.0f, -1.0f);
-					glVertex3f( 1.0f, -1.0f, 1.0f);
-
-					glVertex3f( -1.0f, -1.0f, 1.0f);
-					glVertex3f( 0.0f, -1.0f, -1.0f);
-					glVertex3f( 1.0f, -1.0f, 1.0f);
-				glEnd();
-			}
-			glPopMatrix();
-
-
-
-			glPushMatrix(); //sol
-			{		
-				glTranslatef(101,-19.5,-8);
-				glRotatef(90, 1,0,0);
-				glScalef(8.5,6.7,0.4);
-				glColor4f(1,0.5,0, 0.8);
-				glutSolidCube(7.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-
-
-
-			glPushMatrix(); //mur de devant gauche
-			{		
-				glTranslatef(83,-3,17);
-				glScalef(3.5,5.6,0.4);
-				glColor4f(1,1,1, 0.8);
-				glutSolidCube(7.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-
-			glPushMatrix(); //mur de devant droite
-			{		
-				glTranslatef(120,-3,17);
-				glScalef(3.5,5.6,0.4);
-				glColor4f(1,1,1, 0.8);
-				glutSolidCube(7.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-
-			glPushMatrix(); //mur de devant au mileu en haut
-			{		
-				glTranslatef(101.5,12,17);
-				glScalef(1.9,1.5,0.4);
-				glColor3f(0.77,0.69,0.49);
-				glutSolidCube(7.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-
-			glPushMatrix(); //fentre en devant gauche
-			{		
-				glTranslatef(82.5,8,18.5);
-				glScalef(2,1.5,0.4);
-				glColor3f(0,0,0);
-				glutSolidCube(7.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-
-
-			glPushMatrix(); //fentre en devant droite
-			{		
-				glTranslatef(119.5,8,18.5);
-				glScalef(2,1.5,0.4);
-				glColor3f(0,0,0);
-				glutSolidCube(7.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-			glEnd();
-		}
-		glPopMatrix();
-
-		glPushMatrix(); //sol ile dino
-		{
-			glTranslatef(1300,2000,2000);
-			glScalef(500,1,50);
-			glColor3f(1,1,1);
-			glutSolidCube(3.0);
-			glEnd();
-		}
-		glPopMatrix();
-
-
-		glPushMatrix(); //lampadaire dino
+		glPushMatrix(); //ile 2 dino
 		{
 
-			glTranslatef(1990,2022,2065);
-			glRotatef(180,0,1,0);
-
-			glPushMatrix(); //poteau
+			glPushMatrix(); //Maison DINO
 			{
-				glTranslatef(-10, -17, -15);
-				glScalef(1,50,1);
-				glColor3f(0.75,0.75,0.75);
-				glutSolidCube(1.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-			glPushMatrix(); //barre horizontale
-			{
-				glTranslatef(-5.5, 8, -15);
-				glScalef(10,1,1);
-				glColor3f(0.75,0.75,0.75);
-				glutSolidCube(1.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-			glPushMatrix(); //baton vertical
-			{
-				glTranslatef(0, 7, -15);
-				glScalef(1,3,1);
-				glColor3f(0.75,0.75,0.75);
-				glutSolidCube(1.0);
-				glEnd();
-			}
-			glPopMatrix();
+				glTranslatef(2020, 2020, 1900);
+				glRotatef(-90,0,1,0);
 
 
-			glPushMatrix(); //ampoule/lumiere
-			{
-
-				glTranslatef(0, 4.5, -15);
-				glScalef(1,1,1);
-				glColor4f(couleur_ampoule,couleur_ampoule,couleur_ampoule, couleur_ampoule);
-				glutSolidCube(2.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-
-			glPushMatrix(); //lampion
-			{
-				glTranslatef(0, 5, -15);
-				glScalef(1,1,1);
-				glColor4f(0.82,0.82,0.82,0.25);
-				glutSolidCube(4.0);
-				glEnd();
-			}
-			glPopMatrix();
-			glEnd();
-
-		}
-		glPopMatrix();
-
-
-
-		glEnd();
-	}
-	glPopMatrix();
-
-
-
-
-
-	glPushMatrix(); //dinosaure
-	{
-
-		if(dino_bouge == 1)
-		{
-
-		      if( (position_dino_y <= 2060) && (dino_monte0_descend1_statique2 == 0) ) 
-		      {
-		        position_dino_y = monter_dino(position_dino_y);
-		        glTranslatef(position_dino_x,position_dino_y,position_dino_z);
-		        if (position_dino_y >= 2060)
-		        {
-		        	dino_monte0_descend1_statique2 = 1;
-		        }
-		      }
-		      else if( (position_dino_y >= 2018) && (dino_monte0_descend1_statique2 == 1) )
-		      {
-		        position_dino_y = descendre_dino(position_dino_y);
-		        glTranslatef(position_dino_x,position_dino_y,position_dino_z);
-		        if (position_dino_y <= 2018)
-		        {
-		        	dino_monte0_descend1_statique2 = 2;
-		        	dino_bouge = 0;   	
-		        }
-		      }		      
-		}
-		else
-		{
-			glTranslatef(position_dino_x,position_dino_y,position_dino_z);
-		}
-
-		
-		box_dinosaure.x = position_dino_x + 6;
-		box_dinosaure.y = position_dino_y -4;
-		box_dinosaure.z = position_dino_z - 20;
-
-		box_dinosaure.w = 22;
-		box_dinosaure.h = 24;
-		box_dinosaure.d = 10;
-
-		if(Collision(box_dinosaure, box_petit_cactus) && position_y >= 1999 && position_y <= 2500)
-		{	
-			position_x = 0;
-			position_y = 2;
-			position_z = 20;
-			transparence_boule_3 = 1;
-		}
-
-		// glPushMatrix(); //box dinosaure
-		// {
-		// 	glTranslatef(position_dino_x + 6 ,position_dino_y -4 ,position_dino_z - 20);
-		// 	glScalef(11,12,5);
-		// 	glColor4f(1,1,1,0.5);
-		// 	glutSolidCube(2.0);
-		// 	glEnd();
-		// }
-		// glPopMatrix();
-
-		glRotatef(180, 0,1,0);
-
-
-		glPushMatrix(); //tete dino
-		{
-			glTranslatef(0,4.8,20);
-
-
-			glPushMatrix(); //oeil
-			{
-				glTranslatef(-2,1,3);
-
-				glPushMatrix(); //pupille
-				{
-					glTranslatef(0,0,0.3);
-					glColor3f(0.4,0.4,0.4);
-					glScalef(0.5,0.5,0.5);
-					glutSolidCube(1);
+				glPushMatrix(); //mur du fond
+				{		
+					glTranslatef(100,0,-30);
+					glScalef(9,5,0.4);
+					glColor4f(1,1,1, 0.8);
+					glutSolidCube(7.0);
 					glEnd();
 				}
 				glPopMatrix();
 
 
+				glPushMatrix(); //mur de droite
+				{		
+					glTranslatef(131,-1,-6);
+					glRotatef(90, 0,1,0);
+					glScalef(7,5,0.4);
+					glColor4f(0.5,0.5,0.5, 0.8);
+					glutSolidCube(7.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+
+				glPushMatrix(); //mur de gauche
+				{		
+					glTranslatef(70,-1,-6);
+					glRotatef(-90, 0,1,0);
+					glScalef(7,5,0.4);
+					glColor4f(0.5,0.5,0.5, 0.8);
+					glutSolidCube(7.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+				glPushMatrix(); //plafond
+				{		
+					glTranslatef(101,18	,-6);
+					glRotatef(90, 1,0,0);
+					glScalef(9,7,0.4);
+					glColor4f(0,1,1, 0.8);
+					glutSolidCube(7.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+
+
+				glPushMatrix(); //toit gauche
+				{		
+					glTranslatef(78,25,-6);
+					glRotatef(90, 1,0,0);
+					glRotatef(22.5, 0,1,0);
+					glScalef(7,7,0.4);
+					glColor4f(0,1,0.5, 0.8);
+					glutSolidCube(7.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+				glPushMatrix(); //toit gauche
+				{		
+					glTranslatef(122,25,-6);
+					glRotatef(90, 1,0,0);
+					glRotatef(-22.5, 0,1,0);
+					glScalef(7,7,0.4);
+					glColor4f(0,1,0.5, 0.8);
+					glutSolidCube(7.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+				glPushMatrix(); //face avant toit
+				{
+					glTranslatef(101,27,17);
+					glScalef(32,8.4,1);
+					glColor4f(0,0.41,0.41, 0.8);
+					glBegin( GL_TRIANGLES ); 
+						glVertex3f( 0.0f, 1.f, 0.0f );
+						glVertex3f( -1.0f, -1.0f, 1.0f );
+						glVertex3f( 1.0f, -1.0f, 1.0f);
+
+						glVertex3f( 0.0f, 1.0f, 0.0f);
+						glVertex3f( -1.0f, -1.0f, 1.0f);
+						glVertex3f( 0.0f, -1.0f, -1.0f);
+
+						glVertex3f( 0.0f, 1.0f, 0.0f);
+						glVertex3f( 0.0f, -1.0f, -1.0f);
+						glVertex3f( 1.0f, -1.0f, 1.0f);
+
+						glVertex3f( -1.0f, -1.0f, 1.0f);
+						glVertex3f( 0.0f, -1.0f, -1.0f);
+						glVertex3f( 1.0f, -1.0f, 1.0f);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+
+				glPushMatrix(); //face arrière toit
+				{
+					glTranslatef(101,27,-29);
+					glRotatef(180,0,1,0);
+					glScalef(32,8.4,1);
+					glColor4f(0,0.41,0.41, 0.8);
+					glBegin( GL_TRIANGLES ); 
+						glVertex3f( 0.0f, 1.f, 0.0f );
+						glVertex3f( -1.0f, -1.0f, 1.0f );
+						glVertex3f( 1.0f, -1.0f, 1.0f);
+
+						glVertex3f( 0.0f, 1.0f, 0.0f);
+						glVertex3f( -1.0f, -1.0f, 1.0f);
+						glVertex3f( 0.0f, -1.0f, -1.0f);
+
+						glVertex3f( 0.0f, 1.0f, 0.0f);
+						glVertex3f( 0.0f, -1.0f, -1.0f);
+						glVertex3f( 1.0f, -1.0f, 1.0f);
+
+						glVertex3f( -1.0f, -1.0f, 1.0f);
+						glVertex3f( 0.0f, -1.0f, -1.0f);
+						glVertex3f( 1.0f, -1.0f, 1.0f);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+
+				glPushMatrix(); //sol
+				{		
+					glTranslatef(101,-19.5,-8);
+					glRotatef(90, 1,0,0);
+					glScalef(8.5,6.7,0.4);
+					glColor4f(1,0.5,0, 0.8);
+					glutSolidCube(7.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+
+
+				glPushMatrix(); //mur de devant gauche
+				{		
+					glTranslatef(83,-3,17);
+					glScalef(3.5,5.6,0.4);
+					glColor4f(1,1,1, 0.8);
+					glutSolidCube(7.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+				glPushMatrix(); //mur de devant droite
+				{		
+					glTranslatef(120,-3,17);
+					glScalef(3.5,5.6,0.4);
+					glColor4f(1,1,1, 0.8);
+					glutSolidCube(7.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+				glPushMatrix(); //mur de devant au mileu en haut
+				{		
+					glTranslatef(101.5,12,17);
+					glScalef(1.9,1.5,0.4);
+					glColor3f(0.77,0.69,0.49);
+					glutSolidCube(7.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+				glPushMatrix(); //fentre en devant gauche
+				{		
+					glTranslatef(82.5,8,18.5);
+					glScalef(2,1.5,0.4);
+					glColor3f(0,0,0);
+					glutSolidCube(7.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+
+				glPushMatrix(); //fentre en devant droite
+				{		
+					glTranslatef(119.5,8,18.5);
+					glScalef(2,1.5,0.4);
+					glColor3f(0,0,0);
+					glutSolidCube(7.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+				glEnd();
+			}
+			glPopMatrix();
+
+			glPushMatrix(); //sol ile dino
+			{
+				glTranslatef(1300,2000,2000);
+				glScalef(500,1,50);
 				glColor3f(1,1,1);
-				glutSolidCube(1);
-				glEnd();
-			}
-			glPopMatrix();
-
-			glColor3f(0.4,0.4,0.4);
-
-			glPushMatrix(); // cou
-			{
-				glTranslatef(-2.99,-3,0);
-				glScalef(1,1,2);
-				glutSolidCube(3);
+				glutSolidCube(3.0);
 				glEnd();
 			}
 			glPopMatrix();
 
 
-
-			glPushMatrix(); // langue
+			glPushMatrix(); //lampadaire dino
 			{
-				glTranslatef(-0.9,-4.5,0);
-				glScalef(2.4,0.3,2);
-				glutSolidCube(3);
-				glEnd();
-			}
-			glPopMatrix();
 
-
-			glScalef(3,2,2);
-			glutSolidCube(3);
-			glEnd();
-		}
-		glPopMatrix();
-
-
-
-		glPushMatrix(); // cravate
-		{
-			glTranslatef(-3,-4.5,20);
-			glScalef(2,3,2);
-			glutSolidCube(3);
-			glEnd();
-		}
-		glPopMatrix();
-
-
-
-		glPushMatrix(); // bra
-		{
-			glTranslatef(-1,-3.5,20);
-
-
-			glPushMatrix(); // main
-			{
-				glTranslatef(2.55,-1,0);
-				glScalef(0.3,0.4,2);
-				glutSolidCube(3);
-				glEnd();
-			}
-			glPopMatrix();
-
-
-			glScalef(2,0.3,2);
-			glutSolidCube(3);
-			glEnd();
-		}
-		glPopMatrix();
-
-
-		glPushMatrix(); //dos rond
-		{
-			glTranslatef(-6,-9,20);
-			glScalef(2,2,1.5);
-			glutSolidSphere(3,8,8);
-			glEnd();
-		}
-		glPopMatrix();
-
-
-
-		glPushMatrix(); // queue
-		{
-			glTranslatef(-12.0,-10,20);
-
-
-			glPushMatrix(); // milieu de queue
-			{
-				glTranslatef(-1.5,2,0);
-				glScalef(1,1,2);
-				glutSolidCube(3);
-				glEnd();
-			}
-			glPopMatrix();
-
-			glPushMatrix(); // fin de queue
-			{
-				glTranslatef(-2.5,3.5,0);
-				glScalef(1,1,2);
-				glutSolidCube(3);
-				glEnd();
-			}
-			glPopMatrix();
-
-			glPushMatrix(); //bout de queue devant
-			{
-				glTranslatef(-2.5,8,0);
-				glScalef(1.5,3.5,3);
-				glBegin( GL_TRIANGLES ); 
-					glVertex3f( 0.0f, 1.f, 0.0f );
-					glVertex3f( -1.0f, -1.0f, 1.0f );
-					glVertex3f( 1.0f, -1.0f, 1.0f);
-
-					glVertex3f( 0.0f, 1.0f, 0.0f);
-					glVertex3f( -1.0f, -1.0f, 1.0f);
-					glVertex3f( 0.0f, -1.0f, -1.0f);
-
-					glVertex3f( 0.0f, 1.0f, 0.0f);
-					glVertex3f( 0.0f, -1.0f, -1.0f);
-					glVertex3f( 1.0f, -1.0f, 1.0f);
-
-					glVertex3f( -1.0f, -1.0f, 1.0f);
-					glVertex3f( 0.0f, -1.0f, -1.0f);
-					glVertex3f( 1.0f, -1.0f, 1.0f);
-	
-				glEnd();	
-			}
-			glPopMatrix();
-
-
-			glPushMatrix(); //bout de queue derrière
-			{
-				glTranslatef(-2.5,8,0);
-				glScalef(1.5,3.5,3);
+				glTranslatef(1990,2022,2065);
 				glRotatef(180,0,1,0);
-				glBegin( GL_TRIANGLES ); 
-					glVertex3f( 0.0f, 1.f, 0.0f );
-					glVertex3f( -1.0f, -1.0f, 1.0f );
-					glVertex3f( 1.0f, -1.0f, 1.0f);
 
-					glVertex3f( 0.0f, 1.0f, 0.0f);
-					glVertex3f( -1.0f, -1.0f, 1.0f);
-					glVertex3f( 0.0f, -1.0f, -1.0f);
+				glPushMatrix(); //poteau
+				{
+					glTranslatef(-10, -17, -15);
+					glScalef(1,50,1);
+					glColor3f(0.75,0.75,0.75);
+					glutSolidCube(1.0);
+					glEnd();
+				}
+				glPopMatrix();
 
-					glVertex3f( 0.0f, 1.0f, 0.0f);
-					glVertex3f( 0.0f, -1.0f, -1.0f);
-					glVertex3f( 1.0f, -1.0f, 1.0f);
+				glPushMatrix(); //barre horizontale
+				{
+					glTranslatef(-5.5, 8, -15);
+					glScalef(10,1,1);
+					glColor3f(0.75,0.75,0.75);
+					glutSolidCube(1.0);
+					glEnd();
+				}
+				glPopMatrix();
 
-					glVertex3f( -1.0f, -1.0f, 1.0f);
-					glVertex3f( 0.0f, -1.0f, -1.0f);
-					glVertex3f( 1.0f, -1.0f, 1.0f);
-	
-				glEnd();	
+				glPushMatrix(); //baton vertical
+				{
+					glTranslatef(0, 7, -15);
+					glScalef(1,3,1);
+					glColor3f(0.75,0.75,0.75);
+					glutSolidCube(1.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+				glPushMatrix(); //ampoule/lumiere
+				{
+
+					glTranslatef(0, 4.5, -15);
+					glScalef(1,1,1);
+					glColor4f(couleur_ampoule,couleur_ampoule,couleur_ampoule, couleur_ampoule);
+					glutSolidCube(2.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+				glPushMatrix(); //lampion
+				{
+					glTranslatef(0, 5, -15);
+					glScalef(1,1,1);
+					glColor4f(0.82,0.82,0.82,0.25);
+					glutSolidCube(4.0);
+					glEnd();
+				}
+				glPopMatrix();
+				glEnd();
+
 			}
 			glPopMatrix();
 
 
 
-
-			glScalef(1,1,2);
-			glutSolidCube(3);
 			glEnd();
 		}
 		glPopMatrix();
 
 
 
-		glPushMatrix(); // jambes
+
+
+		glPushMatrix(); //dinosaure
 		{
-			glTranslatef(-7,-14,20);
 
-			glPushMatrix(); //jambe gauche
+			if(dino_bouge == 1)
 			{
-				glScalef(0.3,1,1.8);
+
+			      if( (position_dino_y <= 2060) && (dino_monte0_descend1_statique2 == 0) ) 
+			      {
+			        position_dino_y = monter_dino(position_dino_y);
+			        glTranslatef(position_dino_x,position_dino_y,position_dino_z);
+			        if (position_dino_y >= 2060)
+			        {
+			        	dino_monte0_descend1_statique2 = 1;
+			        }
+			      }
+			      else if( (position_dino_y >= 2018) && (dino_monte0_descend1_statique2 == 1) )
+			      {
+			        position_dino_y = descendre_dino(position_dino_y);
+			        glTranslatef(position_dino_x,position_dino_y,position_dino_z);
+			        if (position_dino_y <= 2018)
+			        {
+			        	dino_monte0_descend1_statique2 = 2;
+			        	dino_bouge = 0;   	
+			        }
+			      }		      
+			}
+			else
+			{
+				glTranslatef(position_dino_x,position_dino_y,position_dino_z);
+			}
+
+			
+			box_dinosaure.x = position_dino_x + 6;
+			box_dinosaure.y = position_dino_y -4;
+			box_dinosaure.z = position_dino_z - 20;
+
+			box_dinosaure.w = 22;
+			box_dinosaure.h = 24;
+			box_dinosaure.d = 10;
+
+			if(Collision(box_dinosaure, box_petit_cactus) && position_y >= 1999 && position_y <= 2500)
+			{	
+				position_x = 0;
+				position_y = 2;
+				position_z = 20;
+				transparence_boule_3 = 1;
+			}
+
+			// glPushMatrix(); //box dinosaure
+			// {
+			// 	glTranslatef(position_dino_x + 6 ,position_dino_y -4 ,position_dino_z - 20);
+			// 	glScalef(11,12,5);
+			// 	glColor4f(1,1,1,0.5);
+			// 	glutSolidCube(2.0);
+			// 	glEnd();
+			// }
+			// glPopMatrix();
+
+			glRotatef(180, 0,1,0);
+
+
+			glPushMatrix(); //tete dino
+			{
+				glTranslatef(0,4.8,20);
+
+
+				glPushMatrix(); //oeil
+				{
+					glTranslatef(-2,1,3);
+
+					glPushMatrix(); //pupille
+					{
+						glTranslatef(0,0,0.3);
+						glColor3f(0.4,0.4,0.4);
+						glScalef(0.5,0.5,0.5);
+						glutSolidCube(1);
+						glEnd();
+					}
+					glPopMatrix();
+
+
+					glColor3f(1,1,1);
+					glutSolidCube(1);
+					glEnd();
+				}
+				glPopMatrix();
+
+				glColor3f(0.4,0.4,0.4);
+
+				glPushMatrix(); // cou
+				{
+					glTranslatef(-2.99,-3,0);
+					glScalef(1,1,2);
+					glutSolidCube(3);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+
+				glPushMatrix(); // langue
+				{
+					glTranslatef(-0.9,-4.5,0);
+					glScalef(2.4,0.3,2);
+					glutSolidCube(3);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+				glScalef(3,2,2);
 				glutSolidCube(3);
 				glEnd();
 			}
 			glPopMatrix();
 
-			glPushMatrix(); //jambe droite
+
+
+			glPushMatrix(); // cravate
 			{
-				glTranslatef(3,0,0);
-				glScalef(0.3,1,1.8);
+				glTranslatef(-3,-4.5,20);
+				glScalef(2,3,2);
 				glutSolidCube(3);
 				glEnd();
 			}
 			glPopMatrix();
 
 
-			glPushMatrix(); //pied gauche
+
+			glPushMatrix(); // bra
 			{
-				glTranslatef(0.5,-1,0);
-				glScalef(0.5,0.3,1.8);
+				glTranslatef(-1,-3.5,20);
+
+
+				glPushMatrix(); // main
+				{
+					glTranslatef(2.55,-1,0);
+					glScalef(0.3,0.4,2);
+					glutSolidCube(3);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+				glScalef(2,0.3,2);
 				glutSolidCube(3);
 				glEnd();
 			}
 			glPopMatrix();
 
 
-			glPushMatrix(); //pied droite
+			glPushMatrix(); //dos rond
 			{
-				glTranslatef(3.5,-1,0);
-				glScalef(0.5,0.3,1.8);
+				glTranslatef(-6,-9,20);
+				glScalef(2,2,1.5);
+				glutSolidSphere(3,8,8);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+
+			glPushMatrix(); // queue
+			{
+				glTranslatef(-12.0,-10,20);
+
+
+				glPushMatrix(); // milieu de queue
+				{
+					glTranslatef(-1.5,2,0);
+					glScalef(1,1,2);
+					glutSolidCube(3);
+					glEnd();
+				}
+				glPopMatrix();
+
+				glPushMatrix(); // fin de queue
+				{
+					glTranslatef(-2.5,3.5,0);
+					glScalef(1,1,2);
+					glutSolidCube(3);
+					glEnd();
+				}
+				glPopMatrix();
+
+				glPushMatrix(); //bout de queue devant
+				{
+					glTranslatef(-2.5,8,0);
+					glScalef(1.5,3.5,3);
+					glBegin( GL_TRIANGLES ); 
+						glVertex3f( 0.0f, 1.f, 0.0f );
+						glVertex3f( -1.0f, -1.0f, 1.0f );
+						glVertex3f( 1.0f, -1.0f, 1.0f);
+
+						glVertex3f( 0.0f, 1.0f, 0.0f);
+						glVertex3f( -1.0f, -1.0f, 1.0f);
+						glVertex3f( 0.0f, -1.0f, -1.0f);
+
+						glVertex3f( 0.0f, 1.0f, 0.0f);
+						glVertex3f( 0.0f, -1.0f, -1.0f);
+						glVertex3f( 1.0f, -1.0f, 1.0f);
+
+						glVertex3f( -1.0f, -1.0f, 1.0f);
+						glVertex3f( 0.0f, -1.0f, -1.0f);
+						glVertex3f( 1.0f, -1.0f, 1.0f);
+		
+					glEnd();	
+				}
+				glPopMatrix();
+
+
+				glPushMatrix(); //bout de queue derrière
+				{
+					glTranslatef(-2.5,8,0);
+					glScalef(1.5,3.5,3);
+					glRotatef(180,0,1,0);
+					glBegin( GL_TRIANGLES ); 
+						glVertex3f( 0.0f, 1.f, 0.0f );
+						glVertex3f( -1.0f, -1.0f, 1.0f );
+						glVertex3f( 1.0f, -1.0f, 1.0f);
+
+						glVertex3f( 0.0f, 1.0f, 0.0f);
+						glVertex3f( -1.0f, -1.0f, 1.0f);
+						glVertex3f( 0.0f, -1.0f, -1.0f);
+
+						glVertex3f( 0.0f, 1.0f, 0.0f);
+						glVertex3f( 0.0f, -1.0f, -1.0f);
+						glVertex3f( 1.0f, -1.0f, 1.0f);
+
+						glVertex3f( -1.0f, -1.0f, 1.0f);
+						glVertex3f( 0.0f, -1.0f, -1.0f);
+						glVertex3f( 1.0f, -1.0f, 1.0f);
+		
+					glEnd();	
+				}
+				glPopMatrix();
+
+
+
+
+				glScalef(1,1,2);
 				glutSolidCube(3);
 				glEnd();
 			}
 			glPopMatrix();
 
+
+
+			glPushMatrix(); // jambes
+			{
+				glTranslatef(-7,-14,20);
+
+				glPushMatrix(); //jambe gauche
+				{
+					glScalef(0.3,1,1.8);
+					glutSolidCube(3);
+					glEnd();
+				}
+				glPopMatrix();
+
+				glPushMatrix(); //jambe droite
+				{
+					glTranslatef(3,0,0);
+					glScalef(0.3,1,1.8);
+					glutSolidCube(3);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+				glPushMatrix(); //pied gauche
+				{
+					glTranslatef(0.5,-1,0);
+					glScalef(0.5,0.3,1.8);
+					glutSolidCube(3);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+				glPushMatrix(); //pied droite
+				{
+					glTranslatef(3.5,-1,0);
+					glScalef(0.5,0.3,1.8);
+					glutSolidCube(3);
+					glEnd();
+				}
+				glPopMatrix();
+
+			}
+			glPopMatrix();
+
+			glEnd();
 		}
 		glPopMatrix();
 
-		glEnd();
+		//creer_petit_cactus(0,10,30, 0); //		glTranslatef(1900,2010,2000);
+
+
+
+		glPushMatrix(); // petit cactus
+		{
+			if(position_cactus_petit_x <= 2005 && position_y >= 1999 && position_y <= 2500)
+			{
+				position_cactus_petit_x = position_cactus_petit_x + 4;
+				glTranslatef(position_cactus_petit_x,2010,2000);
+			}
+			else
+			{
+				position_cactus_petit_x = 1300;
+				glTranslatef(position_cactus_petit_x,2010,2000);
+			}
+
+			box_petit_cactus.x = position_cactus_petit_x  + 1;
+			box_petit_cactus.y = 2010;
+			box_petit_cactus.z = 2000;
+
+			box_petit_cactus.w = 6;
+			box_petit_cactus.h = 10;
+			box_petit_cactus.d = 2;
+
+			// glPushMatrix(); //box petit_cactus
+			// {
+			// 	glTranslatef(1,10,30);
+			// 	glScalef(3,5,1);
+			// 	glColor4f(1,1,1,0.5);
+			// 	glutSolidCube(2.0);
+			// 	glEnd();
+			// }
+			// glPopMatrix();
+
+
+			glPushMatrix(); //bouboule
+			{
+				glTranslatef(0,4.25,0);
+				glColor3f(0,0,0);
+				glScalef(1,1,1);
+				glutSolidSphere(0.5,8,8);
+				glEnd();		
+			}
+			glPopMatrix();
+
+			glPushMatrix(); //tronc
+			{
+				glColor3f(0.06,0.58,0.06);
+				glScalef(1,5,1);
+				glutSolidSphere(1,6,6);
+				glEnd();		
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); // branche gauche
+			{
+				glTranslatef(-1,1,0);
+
+				glPushMatrix(); //horizontal
+				{
+					glColor3f(0.06,0.58,0.06);
+					glScalef(3,1,1);
+					glutSolidSphere(0.5,6,6);
+					glEnd();		
+				}
+				glPopMatrix();
+
+				glPushMatrix(); //vertical
+				{
+					glTranslatef(-1.1,1,0);
+					glColor3f(0.06,0.58,0.06);
+					glScalef(1,3,1);
+					glutSolidSphere(0.5,6,6);
+					glEnd();		
+				}
+				glPopMatrix();
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); // branche droite
+			{
+				glTranslatef(1,-0.5,0);
+
+				glPushMatrix(); //horizontal
+				{
+					glColor3f(0.06,0.58,0.06);
+					glScalef(3,1,1);
+					glutSolidSphere(0.5,6,6);
+					glEnd();		
+				}
+				glPopMatrix();
+
+				glPushMatrix(); //vertical
+				{
+					glTranslatef(1.1,1,0);
+					glColor3f(0.06,0.58,0.06);
+					glScalef(1,3,1);
+					glutSolidSphere(0.5,6,6);
+					glEnd();		
+				}
+				glPopMatrix();
+				glEnd();
+			}
+			glPopMatrix();
+			glEnd();
+		}
+		glPopMatrix();
+
+		//creer_grand_cactus(0,10,0,0);
+
+
+		glPushMatrix(); // grand cactus
+		{
+			if(position_cactus_grand_x <= 2005 && position_y >= 1999 && position_y <= 2500)
+			{
+				position_cactus_grand_x = position_cactus_grand_x + 4;
+				glTranslatef(position_cactus_grand_x,2010,2000);
+			}
+			else
+			{
+				position_cactus_grand_x = 1100;
+				glTranslatef(position_cactus_grand_x,2010,2000);
+			}
+
+			//glTranslatef(x,y,z);
+
+
+
+
+			box_grand_cactus.x = position_cactus_grand_x  + 2;
+			box_grand_cactus.y = 2010;
+			box_grand_cactus.z = 2000;
+
+			box_grand_cactus.w = 12;
+			box_grand_cactus.h = 18;
+			box_grand_cactus.d = 4;
+
+
+			if(Collision(box_dinosaure, box_grand_cactus) && position_y >= 1999 && position_y <= 2500)
+			{	
+				position_x = 0;
+				position_y = 2;
+				position_z = 20;
+				transparence_boule_3 = 1;
+			}
+
+
+			// glPushMatrix(); //box grand_cactus
+			// {
+			// 	glTranslatef(position_cactus_grand_x  + 2,2010,2000);
+			// 	glScalef(6,9,2);
+			// 	glColor4f(1,1,1,0.5);
+			// 	glutSolidCube(2.0);
+			// 	glEnd();
+			// }
+			// glPopMatrix();
+
+
+			glScalef(2,2,2);
+
+			glPushMatrix(); //bouboule
+			{
+				glTranslatef(0,4.25,0);
+				glColor3f(0,0,0);
+				glScalef(1,1,1);
+				glutSolidSphere(0.5,8,8);
+				glEnd();		
+			}
+			glPopMatrix();
+
+			glPushMatrix(); //tronc
+			{
+				glColor3f(0.06,0.58,0.06);
+				glScalef(1,5,1);
+				glutSolidSphere(1,6,6);
+				glEnd();		
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); // branche gauche
+			{
+				glTranslatef(-1,1,0);
+
+				glPushMatrix(); //horizontal
+				{
+					glColor3f(0.06,0.58,0.06);
+					glScalef(3,1,1);
+					glutSolidSphere(0.5,6,6);
+					glEnd();		
+				}
+				glPopMatrix();
+
+				glPushMatrix(); //vertical
+				{
+					glTranslatef(-1.1,1,0);
+					glColor3f(0.06,0.58,0.06);
+					glScalef(1,3,1);
+					glutSolidSphere(0.5,6,6);
+					glEnd();		
+				}
+				glPopMatrix();
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); // branche droite
+			{
+				glTranslatef(1,-0.5,0);
+
+				glPushMatrix(); //horizontal
+				{
+					glColor3f(0.06,0.58,0.06);
+					glScalef(3,1,1);
+					glutSolidSphere(0.5,6,6);
+					glEnd();		
+				}
+				glPopMatrix();
+
+				glPushMatrix(); //vertical
+				{
+					glTranslatef(1.1,1,0);
+					glColor3f(0.06,0.58,0.06);
+					glScalef(1,3,1);
+					glutSolidSphere(0.5,6,6);
+					glEnd();		
+				}
+				glPopMatrix();
+				glEnd();
+			}
+			glPopMatrix();
+			glEnd();
+		}
+		glPopMatrix();
 	}
-	glPopMatrix();
-
-	//creer_petit_cactus(0,10,30, 0); //		glTranslatef(1900,2010,2000);
-
-
-
-	glPushMatrix(); // petit cactus
-	{
-		if(position_cactus_petit_x <= 2005 && position_y >= 1999 && position_y <= 2500)
-		{
-			position_cactus_petit_x = position_cactus_petit_x + 4;
-			glTranslatef(position_cactus_petit_x,2010,2000);
-		}
-		else
-		{
-			position_cactus_petit_x = 1300;
-			glTranslatef(position_cactus_petit_x,2010,2000);
-		}
-
-		box_petit_cactus.x = position_cactus_petit_x  + 1;
-		box_petit_cactus.y = 2010;
-		box_petit_cactus.z = 2000;
-
-		box_petit_cactus.w = 6;
-		box_petit_cactus.h = 10;
-		box_petit_cactus.d = 2;
-
-		// glPushMatrix(); //box petit_cactus
-		// {
-		// 	glTranslatef(1,10,30);
-		// 	glScalef(3,5,1);
-		// 	glColor4f(1,1,1,0.5);
-		// 	glutSolidCube(2.0);
-		// 	glEnd();
-		// }
-		// glPopMatrix();
-
-
-		glPushMatrix(); //bouboule
-		{
-			glTranslatef(0,4.25,0);
-			glColor3f(0,0,0);
-			glScalef(1,1,1);
-			glutSolidSphere(0.5,8,8);
-			glEnd();		
-		}
-		glPopMatrix();
-
-		glPushMatrix(); //tronc
-		{
-			glColor3f(0.06,0.58,0.06);
-			glScalef(1,5,1);
-			glutSolidSphere(1,6,6);
-			glEnd();		
-		}
-		glPopMatrix();
-
-
-		glPushMatrix(); // branche gauche
-		{
-			glTranslatef(-1,1,0);
-
-			glPushMatrix(); //horizontal
-			{
-				glColor3f(0.06,0.58,0.06);
-				glScalef(3,1,1);
-				glutSolidSphere(0.5,6,6);
-				glEnd();		
-			}
-			glPopMatrix();
-
-			glPushMatrix(); //vertical
-			{
-				glTranslatef(-1.1,1,0);
-				glColor3f(0.06,0.58,0.06);
-				glScalef(1,3,1);
-				glutSolidSphere(0.5,6,6);
-				glEnd();		
-			}
-			glPopMatrix();
-			glEnd();
-		}
-		glPopMatrix();
-
-
-		glPushMatrix(); // branche droite
-		{
-			glTranslatef(1,-0.5,0);
-
-			glPushMatrix(); //horizontal
-			{
-				glColor3f(0.06,0.58,0.06);
-				glScalef(3,1,1);
-				glutSolidSphere(0.5,6,6);
-				glEnd();		
-			}
-			glPopMatrix();
-
-			glPushMatrix(); //vertical
-			{
-				glTranslatef(1.1,1,0);
-				glColor3f(0.06,0.58,0.06);
-				glScalef(1,3,1);
-				glutSolidSphere(0.5,6,6);
-				glEnd();		
-			}
-			glPopMatrix();
-			glEnd();
-		}
-		glPopMatrix();
-		glEnd();
-	}
-	glPopMatrix();
-
-	//creer_grand_cactus(0,10,0,0);
-
-
-	glPushMatrix(); // grand cactus
-	{
-		if(position_cactus_grand_x <= 2005 && position_y >= 1999 && position_y <= 2500)
-		{
-			position_cactus_grand_x = position_cactus_grand_x + 4;
-			glTranslatef(position_cactus_grand_x,2010,2000);
-		}
-		else
-		{
-			position_cactus_grand_x = 1100;
-			glTranslatef(position_cactus_grand_x,2010,2000);
-		}
-
-		//glTranslatef(x,y,z);
-
-
-
-
-		box_grand_cactus.x = position_cactus_grand_x  + 2;
-		box_grand_cactus.y = 2010;
-		box_grand_cactus.z = 2000;
-
-		box_grand_cactus.w = 12;
-		box_grand_cactus.h = 18;
-		box_grand_cactus.d = 4;
-
-
-		if(Collision(box_dinosaure, box_grand_cactus) && position_y >= 1999 && position_y <= 2500)
-		{	
-			position_x = 0;
-			position_y = 2;
-			position_z = 20;
-			transparence_boule_3 = 1;
-		}
-
-
-		// glPushMatrix(); //box grand_cactus
-		// {
-		// 	glTranslatef(position_cactus_grand_x  + 2,2010,2000);
-		// 	glScalef(6,9,2);
-		// 	glColor4f(1,1,1,0.5);
-		// 	glutSolidCube(2.0);
-		// 	glEnd();
-		// }
-		// glPopMatrix();
-
-
-		glScalef(2,2,2);
-
-		glPushMatrix(); //bouboule
-		{
-			glTranslatef(0,4.25,0);
-			glColor3f(0,0,0);
-			glScalef(1,1,1);
-			glutSolidSphere(0.5,8,8);
-			glEnd();		
-		}
-		glPopMatrix();
-
-		glPushMatrix(); //tronc
-		{
-			glColor3f(0.06,0.58,0.06);
-			glScalef(1,5,1);
-			glutSolidSphere(1,6,6);
-			glEnd();		
-		}
-		glPopMatrix();
-
-
-		glPushMatrix(); // branche gauche
-		{
-			glTranslatef(-1,1,0);
-
-			glPushMatrix(); //horizontal
-			{
-				glColor3f(0.06,0.58,0.06);
-				glScalef(3,1,1);
-				glutSolidSphere(0.5,6,6);
-				glEnd();		
-			}
-			glPopMatrix();
-
-			glPushMatrix(); //vertical
-			{
-				glTranslatef(-1.1,1,0);
-				glColor3f(0.06,0.58,0.06);
-				glScalef(1,3,1);
-				glutSolidSphere(0.5,6,6);
-				glEnd();		
-			}
-			glPopMatrix();
-			glEnd();
-		}
-		glPopMatrix();
-
-
-		glPushMatrix(); // branche droite
-		{
-			glTranslatef(1,-0.5,0);
-
-			glPushMatrix(); //horizontal
-			{
-				glColor3f(0.06,0.58,0.06);
-				glScalef(3,1,1);
-				glutSolidSphere(0.5,6,6);
-				glEnd();		
-			}
-			glPopMatrix();
-
-			glPushMatrix(); //vertical
-			{
-				glTranslatef(1.1,1,0);
-				glColor3f(0.06,0.58,0.06);
-				glScalef(1,3,1);
-				glutSolidSphere(0.5,6,6);
-				glEnd();		
-			}
-			glPopMatrix();
-			glEnd();
-		}
-		glPopMatrix();
-		glEnd();
-	}
-	glPopMatrix();
-
 
 	// glPushMatrix(); //cube 1
 	// {
@@ -7111,835 +7112,839 @@ GLvoid Modelisation()
 	// glPopMatrix();
 
 
-	glPushMatrix(); //ile 3 super simon
-	{
 
-		glPushMatrix(); //Maison super simon
+	if(position_y > 3000 && position_y < 3500)
+	{	
+		glPushMatrix(); //ile 3 super simon
 		{
-			glTranslatef(3020, 3020, 2900);
-			glRotatef(-90,0,1,0);
 
-
-			glPushMatrix(); //mur du fond
-			{		
-				glTranslatef(100,0,-30);
-				glScalef(9,5,0.4);
-				glColor4f(1,1,1, 0.8);
-				glutSolidCube(7.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-
-			glPushMatrix(); //mur de droite
-			{		
-				glTranslatef(131,-1,-6);
-				glRotatef(90, 0,1,0);
-				glScalef(7,5,0.4);
-				glColor4f(0.5,0.5,0.5, 0.8);
-				glutSolidCube(7.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-
-
-			glPushMatrix(); //mur de gauche
-			{		
-				glTranslatef(70,-1,-6);
-				glRotatef(-90, 0,1,0);
-				glScalef(7,5,0.4);
-				glColor4f(0.5,0.5,0.5, 0.8);
-				glutSolidCube(7.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-
-			glPushMatrix(); //plafond
-			{		
-				glTranslatef(101,18	,-6);
-				glRotatef(90, 1,0,0);
-				glScalef(9,7,0.4);
-				glColor4f(0,1,1, 0.8);
-				glutSolidCube(7.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-
-
-
-			glPushMatrix(); //toit gauche
-			{		
-				glTranslatef(78,25,-6);
-				glRotatef(90, 1,0,0);
-				glRotatef(22.5, 0,1,0);
-				glScalef(7,7,0.4);
-				glColor4f(0,1,0.5, 0.8);
-				glutSolidCube(7.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-
-			glPushMatrix(); //toit gauche
-			{		
-				glTranslatef(122,25,-6);
-				glRotatef(90, 1,0,0);
-				glRotatef(-22.5, 0,1,0);
-				glScalef(7,7,0.4);
-				glColor4f(0,1,0.5, 0.8);
-				glutSolidCube(7.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-
-			glPushMatrix(); //face avant toit
+			glPushMatrix(); //Maison super simon
 			{
-				glTranslatef(101,27,17);
-				glScalef(32,8.4,1);
-				glColor4f(0,0.41,0.41, 0.8);
-				glBegin( GL_TRIANGLES ); 
-					glVertex3f( 0.0f, 1.f, 0.0f );
-					glVertex3f( -1.0f, -1.0f, 1.0f );
-					glVertex3f( 1.0f, -1.0f, 1.0f);
+				glTranslatef(3020, 3020, 2900);
+				glRotatef(-90,0,1,0);
 
-					glVertex3f( 0.0f, 1.0f, 0.0f);
-					glVertex3f( -1.0f, -1.0f, 1.0f);
-					glVertex3f( 0.0f, -1.0f, -1.0f);
 
-					glVertex3f( 0.0f, 1.0f, 0.0f);
-					glVertex3f( 0.0f, -1.0f, -1.0f);
-					glVertex3f( 1.0f, -1.0f, 1.0f);
+				glPushMatrix(); //mur du fond
+				{		
+					glTranslatef(100,0,-30);
+					glScalef(9,5,0.4);
+					glColor4f(1,1,1, 0.8);
+					glutSolidCube(7.0);
+					glEnd();
+				}
+				glPopMatrix();
 
-					glVertex3f( -1.0f, -1.0f, 1.0f);
-					glVertex3f( 0.0f, -1.0f, -1.0f);
-					glVertex3f( 1.0f, -1.0f, 1.0f);
+
+				glPushMatrix(); //mur de droite
+				{		
+					glTranslatef(131,-1,-6);
+					glRotatef(90, 0,1,0);
+					glScalef(7,5,0.4);
+					glColor4f(0.5,0.5,0.5, 0.8);
+					glutSolidCube(7.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+
+				glPushMatrix(); //mur de gauche
+				{		
+					glTranslatef(70,-1,-6);
+					glRotatef(-90, 0,1,0);
+					glScalef(7,5,0.4);
+					glColor4f(0.5,0.5,0.5, 0.8);
+					glutSolidCube(7.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+				glPushMatrix(); //plafond
+				{		
+					glTranslatef(101,18	,-6);
+					glRotatef(90, 1,0,0);
+					glScalef(9,7,0.4);
+					glColor4f(0,1,1, 0.8);
+					glutSolidCube(7.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+
+
+				glPushMatrix(); //toit gauche
+				{		
+					glTranslatef(78,25,-6);
+					glRotatef(90, 1,0,0);
+					glRotatef(22.5, 0,1,0);
+					glScalef(7,7,0.4);
+					glColor4f(0,1,0.5, 0.8);
+					glutSolidCube(7.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+				glPushMatrix(); //toit gauche
+				{		
+					glTranslatef(122,25,-6);
+					glRotatef(90, 1,0,0);
+					glRotatef(-22.5, 0,1,0);
+					glScalef(7,7,0.4);
+					glColor4f(0,1,0.5, 0.8);
+					glutSolidCube(7.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+				glPushMatrix(); //face avant toit
+				{
+					glTranslatef(101,27,17);
+					glScalef(32,8.4,1);
+					glColor4f(0,0.41,0.41, 0.8);
+					glBegin( GL_TRIANGLES ); 
+						glVertex3f( 0.0f, 1.f, 0.0f );
+						glVertex3f( -1.0f, -1.0f, 1.0f );
+						glVertex3f( 1.0f, -1.0f, 1.0f);
+
+						glVertex3f( 0.0f, 1.0f, 0.0f);
+						glVertex3f( -1.0f, -1.0f, 1.0f);
+						glVertex3f( 0.0f, -1.0f, -1.0f);
+
+						glVertex3f( 0.0f, 1.0f, 0.0f);
+						glVertex3f( 0.0f, -1.0f, -1.0f);
+						glVertex3f( 1.0f, -1.0f, 1.0f);
+
+						glVertex3f( -1.0f, -1.0f, 1.0f);
+						glVertex3f( 0.0f, -1.0f, -1.0f);
+						glVertex3f( 1.0f, -1.0f, 1.0f);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+
+				glPushMatrix(); //face arrière toit
+				{
+					glTranslatef(101,27,-29);
+					glRotatef(180,0,1,0);
+					glScalef(32,8.4,1);
+					glColor4f(0,0.41,0.41, 0.8);
+					glBegin( GL_TRIANGLES ); 
+						glVertex3f( 0.0f, 1.f, 0.0f );
+						glVertex3f( -1.0f, -1.0f, 1.0f );
+						glVertex3f( 1.0f, -1.0f, 1.0f);
+
+						glVertex3f( 0.0f, 1.0f, 0.0f);
+						glVertex3f( -1.0f, -1.0f, 1.0f);
+						glVertex3f( 0.0f, -1.0f, -1.0f);
+
+						glVertex3f( 0.0f, 1.0f, 0.0f);
+						glVertex3f( 0.0f, -1.0f, -1.0f);
+						glVertex3f( 1.0f, -1.0f, 1.0f);
+
+						glVertex3f( -1.0f, -1.0f, 1.0f);
+						glVertex3f( 0.0f, -1.0f, -1.0f);
+						glVertex3f( 1.0f, -1.0f, 1.0f);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+
+				glPushMatrix(); //sol
+				{		
+					glTranslatef(101,-19.5,-8);
+					glRotatef(90, 1,0,0);
+					glScalef(8.5,6.7,0.4);
+					glColor4f(1,0.5,0, 0.8);
+					glutSolidCube(7.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+
+
+				glPushMatrix(); //mur de devant gauche
+				{		
+					glTranslatef(83,-3,17);
+					glScalef(3.5,5.6,0.4);
+					glColor4f(1,1,1, 0.8);
+					glutSolidCube(7.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+				glPushMatrix(); //mur de devant droite
+				{		
+					glTranslatef(120,-3,17);
+					glScalef(3.5,5.6,0.4);
+					glColor4f(1,1,1, 0.8);
+					glutSolidCube(7.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+				glPushMatrix(); //mur de devant au mileu en haut
+				{		
+					glTranslatef(101.5,12,17);
+					glScalef(1.9,1.5,0.4);
+					glColor3f(0.77,0.69,0.49);
+					glutSolidCube(7.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+				glPushMatrix(); //fentre en devant gauche
+				{		
+					glTranslatef(82.5,8,18.5);
+					glScalef(2,1.5,0.4);
+					glColor3f(0,0,0);
+					glutSolidCube(7.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+
+				glPushMatrix(); //fentre en devant droite
+				{		
+					glTranslatef(119.5,8,18.5);
+					glScalef(2,1.5,0.4);
+					glColor3f(0,0,0);
+					glutSolidCube(7.0);
+					glEnd();
+				}
+				glPopMatrix();
+
 				glEnd();
 			}
 			glPopMatrix();
 
-
-
-			glPushMatrix(); //face arrière toit
+			glPushMatrix(); //sol ile simon
 			{
-				glTranslatef(101,27,-29);
-				glRotatef(180,0,1,0);
-				glScalef(32,8.4,1);
-				glColor4f(0,0.41,0.41, 0.8);
-				glBegin( GL_TRIANGLES ); 
-					glVertex3f( 0.0f, 1.f, 0.0f );
-					glVertex3f( -1.0f, -1.0f, 1.0f );
-					glVertex3f( 1.0f, -1.0f, 1.0f);
-
-					glVertex3f( 0.0f, 1.0f, 0.0f);
-					glVertex3f( -1.0f, -1.0f, 1.0f);
-					glVertex3f( 0.0f, -1.0f, -1.0f);
-
-					glVertex3f( 0.0f, 1.0f, 0.0f);
-					glVertex3f( 0.0f, -1.0f, -1.0f);
-					glVertex3f( 1.0f, -1.0f, 1.0f);
-
-					glVertex3f( -1.0f, -1.0f, 1.0f);
-					glVertex3f( 0.0f, -1.0f, -1.0f);
-					glVertex3f( 1.0f, -1.0f, 1.0f);
+				glTranslatef(2950,3000,3000);
+				glScalef(70,1,40);
+				glColor3f(1,1,1);
+				glutSolidCube(3.0);
 				glEnd();
 			}
 			glPopMatrix();
 
+			glPushMatrix(); //lampadaire
+			{
+
+				glTranslatef(2900,3015,2970);
+				glRotatef(-90,0,1,0);
+
+				glPushMatrix(); //poteau
+				{
+					glTranslatef(-10, -17, -15);
+					glScalef(1,50,1);
+					glColor3f(0.75,0.75,0.75);
+					glutSolidCube(1.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+				glPushMatrix(); //barre horizontale
+				{
+					glTranslatef(-5.5, 8, -15);
+					glScalef(10,1,1);
+					glColor3f(0.75,0.75,0.75);
+					glutSolidCube(1.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+				glPushMatrix(); //baton vertical
+				{
+					glTranslatef(0, 7, -15);
+					glScalef(1,3,1);
+					glColor3f(0.75,0.75,0.75);
+					glutSolidCube(1.0);
+					glEnd();
+				}
+				glPopMatrix();
 
 
-			glPushMatrix(); //sol
-			{		
-				glTranslatef(101,-19.5,-8);
-				glRotatef(90, 1,0,0);
-				glScalef(8.5,6.7,0.4);
-				glColor4f(1,0.5,0, 0.8);
-				glutSolidCube(7.0);
+				glPushMatrix(); //ampoule/lumiere
+				{
+
+					glTranslatef(0, 4.5, -15);
+					glScalef(1,1,1);
+					glColor4f(couleur_ampoule,couleur_ampoule,couleur_ampoule, couleur_ampoule);
+					glutSolidCube(2.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+
+				glPushMatrix(); //lampion
+				{
+					glTranslatef(0, 5, -15);
+					glScalef(1,1,1);
+					glColor4f(0.82,0.82,0.82,0.25);
+					glutSolidCube(4.0);
+					glEnd();
+				}
+				glPopMatrix();
 				glEnd();
+
 			}
 			glPopMatrix();
 
 
-
-
-			glPushMatrix(); //mur de devant gauche
-			{		
-				glTranslatef(83,-3,17);
-				glScalef(3.5,5.6,0.4);
-				glColor4f(1,1,1, 0.8);
-				glutSolidCube(7.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-
-			glPushMatrix(); //mur de devant droite
-			{		
-				glTranslatef(120,-3,17);
-				glScalef(3.5,5.6,0.4);
-				glColor4f(1,1,1, 0.8);
-				glutSolidCube(7.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-
-			glPushMatrix(); //mur de devant au mileu en haut
-			{		
-				glTranslatef(101.5,12,17);
-				glScalef(1.9,1.5,0.4);
-				glColor3f(0.77,0.69,0.49);
-				glutSolidCube(7.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-
-			glPushMatrix(); //fentre en devant gauche
-			{		
-				glTranslatef(82.5,8,18.5);
-				glScalef(2,1.5,0.4);
-				glColor3f(0,0,0);
-				glutSolidCube(7.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-
-
-			glPushMatrix(); //fentre en devant droite
-			{		
-				glTranslatef(119.5,8,18.5);
-				glScalef(2,1.5,0.4);
-				glColor3f(0,0,0);
-				glutSolidCube(7.0);
-				glEnd();
-			}
-			glPopMatrix();
 
 			glEnd();
-		}
-		glPopMatrix();
 
-		glPushMatrix(); //sol ile simon
-		{
-			glTranslatef(2950,3000,3000);
-			glScalef(70,1,40);
-			glColor3f(1,1,1);
-			glutSolidCube(3.0);
-			glEnd();
-		}
-		glPopMatrix();
-
-		glPushMatrix(); //lampadaire
-		{
-
-			glTranslatef(2900,3015,2970);
-			glRotatef(-90,0,1,0);
-
-			glPushMatrix(); //poteau
+			glPushMatrix(); //cube simon
 			{
-				glTranslatef(-10, -17, -15);
-				glScalef(1,50,1);
-				glColor3f(0.75,0.75,0.75);
-				glutSolidCube(1.0);
-				glEnd();
-			}
-			glPopMatrix();
+				glTranslatef(10,-5,0);
 
-			glPushMatrix(); //barre horizontale
-			{
-				glTranslatef(-5.5, 8, -15);
-				glScalef(10,1,1);
-				glColor3f(0.75,0.75,0.75);
-				glutSolidCube(1.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-			glPushMatrix(); //baton vertical
-			{
-				glTranslatef(0, 7, -15);
-				glScalef(1,3,1);
-				glColor3f(0.75,0.75,0.75);
-				glutSolidCube(1.0);
-				glEnd();
-			}
-			glPopMatrix();
+				//printf("tour_IA0_Link1 :  %i\n", tour_IA0_Link1);
 
 
-			glPushMatrix(); //ampoule/lumiere
-			{
-
-				glTranslatef(0, 4.5, -15);
-				glScalef(1,1,1);
-				glColor4f(couleur_ampoule,couleur_ampoule,couleur_ampoule, couleur_ampoule);
-				glutSolidCube(2.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-
-			glPushMatrix(); //lampion
-			{
-				glTranslatef(0, 5, -15);
-				glScalef(1,1,1);
-				glColor4f(0.82,0.82,0.82,0.25);
-				glutSolidCube(4.0);
-				glEnd();
-			}
-			glPopMatrix();
-			glEnd();
-
-		}
-		glPopMatrix();
-
-
-
-		glEnd();
-
-		glPushMatrix(); //cube simon
-		{
-			glTranslatef(10,-5,0);
-
-			//printf("tour_IA0_Link1 :  %i\n", tour_IA0_Link1);
-
-
-			if(tour_simon < max_simon && position_y > 2900 && position_y < 3100 && tour_IA0_Link1 == 0) // tour IA
-			{
-
-				if(cube_attente < 50 && cube_attente > 0)  // délais d'attente
-				{
-					cube_attente += 1;
-					printf(" attente : %i\n", cube_time);
-				}
-				else
-				{
-					cube_attente = 0;
-				}
-
-				if(nb_flash_actuel == tour_simon && cube_attente == 0)
-				{
-					if(position_z < 3010 && position_z > 2990 && position_x < 2945 && position_y > 2900 && position_y < 3100 && tour_suivant == 1)
-					{
-						srand(time(NULL));
-						aleatoire_simon = (rand() % 4) + 1;
-					}
-
-
-					if(aleatoire_simon == 1 && cube_attente == 0) //bleu
-					{
-						printf("bleu");
-						if(cube_time < 100)
-						{
-							tour_suivant = 0;
-							transparence_simon_bleu = 1;
-							cube_time += 1;
-							printf(" cube time : %i\n", cube_time);
-						}
-						else
-						{
-							simon[tour_simon] = 'b';
-							tour_suivant = 1;
-							cube_time = 0;
-							transparence_simon_bleu = 0.3;
-							aleatoire_simon = 0;
-							cube_attente = 1;
-							tour_simon+= 1;
-							nb_flash_actuel = 0;
-							tour_IA0_Link1 = 1;
-							for (int i = 0; i < tour_simon; ++i)
-							{
-								printf("simon[%i] = %c\n", tour_simon - 1, simon[tour_simon - 1]);
-							}
-						}
-					}
-					else if(aleatoire_simon == 2 && cube_attente == 0) //rouge
-					{
-						printf("vert");
-						if(cube_time < 100)
-						{
-							tour_suivant = 0;
-							transparence_simon_rouge = 1;
-							cube_time += 1;
-							printf(" cube time : %i\n", cube_time);
-						}
-						else
-						{
-							simon[tour_simon] = 'r';
-							tour_suivant = 1;
-							cube_time = 0;
-							transparence_simon_rouge = 0.3;
-							aleatoire_simon = 0;
-							cube_attente = 1;
-							tour_simon+= 1;
-							nb_flash_actuel = 0;
-							tour_IA0_Link1 = 1;
-							for (int i = 0; i < tour_simon - 1; ++i)
-							{
-								printf("simon[%i] = %c\n", tour_simon, simon[tour_simon - 1]);
-							}						}
-					}
-					else if(aleatoire_simon == 3 && cube_attente == 0) //jaune
-					{
-						printf("jaune");
-						if(cube_time < 100)
-						{
-							tour_suivant = 0;
-							transparence_simon_jaune = 1;
-							cube_time += 1;
-							printf(" cube time : %i\n", cube_time);
-						}
-						else
-						{
-							simon[tour_simon] = 'j';
-							tour_suivant = 1;
-							cube_time = 0;
-							transparence_simon_jaune = 0.3;
-							aleatoire_simon = 0;
-							cube_attente = 1;
-							tour_simon+= 1;
-							nb_flash_actuel = 0;
-							tour_IA0_Link1 = 1;
-							for (int i = 0; i < tour_simon - 1; ++i)
-							{
-								printf("simon[%i] = %c\n", tour_simon - 1, simon[tour_simon - 1]);
-							}						}
-					}
-					else if(aleatoire_simon == 4 && cube_attente == 0) //vert
-					{
-						printf("vert");
-						if(cube_time < 100)
-						{
-							tour_suivant = 0;
-							transparence_simon_vert = 1;
-							cube_time += 1;
-							printf(" cube time : %i\n", cube_time);
-						}
-						else
-						{
-							simon[tour_simon] = 'v';
-							tour_suivant = 1;
-							cube_time = 0;
-							transparence_simon_vert = 0.3;
-							aleatoire_simon = 0;
-							cube_attente = 1;
-							tour_simon+= 1;
-							nb_flash_actuel = 0;
-							tour_IA0_Link1 = 1;
-							for (int i = 0; i < tour_simon - 1; ++i)
-							{
-								printf("simon[%i] = %c\n", tour_simon - 1, simon[tour_simon - 1]);
-							}						
-						}
-					}
-
-				}
-
-				else if (nb_flash_actuel < tour_simon && cube_attente == 0)
-				{
-					printf("SECOND IF ****************************** \n");
-					printf(" cube time : %i\n", cube_time);
-
-					if(simon[nb_flash_actuel] == 'b') //bleu
-					{
-						if(cube_time < 100)
-						{
-							tour_suivant = 0;
-							transparence_simon_bleu = 1;
-							cube_time += 1;
-							printf(" cube time : %i\n", cube_time);
-						}
-						else
-						{
-							tour_suivant = 1;
-							cube_time = 0;
-							transparence_simon_bleu = 0.3;
-							aleatoire_simon = 0;
-							cube_attente = 1;
-							nb_flash_actuel += 1;
-						}
-					}
-					else if(simon[nb_flash_actuel] == 'r') //rouge
-					{
-						if(cube_time < 100)
-						{
-							tour_suivant = 0;
-							transparence_simon_rouge = 1;
-							cube_time += 1;
-							printf(" cube time : %i\n", cube_time);
-						}
-						else
-						{
-							tour_suivant = 1;
-							cube_time = 0;
-							transparence_simon_rouge = 0.3;
-							aleatoire_simon = 0;
-							cube_attente = 1;
-							nb_flash_actuel += 1;
-						}
-					}
-					else if(simon[nb_flash_actuel] == 'j') //jaune
-					{
-						if(cube_time < 100)
-						{
-							tour_suivant = 0;
-							transparence_simon_jaune = 1;
-							cube_time += 1;
-							printf(" cube time : %i\n", cube_time);
-						}
-						else
-						{
-							tour_suivant = 1;
-							cube_time = 0;
-							transparence_simon_jaune = 0.3;
-							aleatoire_simon = 0;
-							cube_attente = 1;
-							nb_flash_actuel += 1;
-						}
-					}
-					else if(simon[nb_flash_actuel] == 'v') //vert
-					{
-						if(cube_time < 100)
-						{
-							tour_suivant = 0;
-							transparence_simon_vert = 1;
-							cube_time += 1;
-							printf(" cube time : %i\n", cube_time);
-						}
-						else
-						{
-							tour_suivant = 1;
-							cube_time = 0;
-							transparence_simon_vert = 0.3;
-							aleatoire_simon = 0;
-							cube_attente = 1;
-							nb_flash_actuel += 1;
-						}
-					}
-				}	
-
-				// printf("nb_flash_actuel_apres :  %i\n", nb_flash_actuel);
-				//printf("tour_simon_apres :  %i\n", tour_simon);
-			}
-			else if(position_y > 2900 && position_y < 3100 && tour_IA0_Link1 == 1) // tour link
-			{
-
-
-
-				//printf("tour_simon : %i\n", tour_simon);
-				//printf("nb_click : %i\n", nb_click);
-				if(nb_click < tour_simon )
+				if(tour_simon < max_simon && position_y > 2900 && position_y < 3100 && tour_IA0_Link1 == 0) // tour IA
 				{
 
 					if(cube_attente < 50 && cube_attente > 0)  // délais d'attente
 					{
 						cube_attente += 1;
-						//printf(" attente : %i\n", cube_time);
+						printf(" attente : %i\n", cube_time);
 					}
 					else
 					{
 						cube_attente = 0;
 					}
 
-					if(mouse_x > 568 && mouse_x < 746 && mouse_y > 210 && mouse_y < 401 && mouse_state == GLUT_DOWN && mouse_button == GLUT_LEFT_BUTTON)
+					if(nb_flash_actuel == tour_simon && cube_attente == 0)
 					{
-						printf("bleu \n");
-						for (int i = 0; i < nb_click; ++i)
+						if(position_z < 3010 && position_z > 2990 && position_x < 2945 && position_y > 2900 && position_y < 3100 && tour_suivant == 1)
 						{
-							//printf("simon[%i] = %c\n",i, simon[i]);
+							srand(time(NULL));
+							aleatoire_simon = (rand() % 4) + 1;
 						}
-						if(simon[nb_click] == 'b')
+
+
+						if(aleatoire_simon == 1 && cube_attente == 0) //bleu
+						{
+							printf("bleu");
+							if(cube_time < 100)
+							{
+								tour_suivant = 0;
+								transparence_simon_bleu = 1;
+								cube_time += 1;
+								printf(" cube time : %i\n", cube_time);
+							}
+							else
+							{
+								simon[tour_simon] = 'b';
+								tour_suivant = 1;
+								cube_time = 0;
+								transparence_simon_bleu = 0.3;
+								aleatoire_simon = 0;
+								cube_attente = 1;
+								tour_simon+= 1;
+								nb_flash_actuel = 0;
+								tour_IA0_Link1 = 1;
+								for (int i = 0; i < tour_simon; ++i)
+								{
+									printf("simon[%i] = %c\n", tour_simon - 1, simon[tour_simon - 1]);
+								}
+							}
+						}
+						else if(aleatoire_simon == 2 && cube_attente == 0) //rouge
+						{
+							printf("vert");
+							if(cube_time < 100)
+							{
+								tour_suivant = 0;
+								transparence_simon_rouge = 1;
+								cube_time += 1;
+								printf(" cube time : %i\n", cube_time);
+							}
+							else
+							{
+								simon[tour_simon] = 'r';
+								tour_suivant = 1;
+								cube_time = 0;
+								transparence_simon_rouge = 0.3;
+								aleatoire_simon = 0;
+								cube_attente = 1;
+								tour_simon+= 1;
+								nb_flash_actuel = 0;
+								tour_IA0_Link1 = 1;
+								for (int i = 0; i < tour_simon - 1; ++i)
+								{
+									printf("simon[%i] = %c\n", tour_simon, simon[tour_simon - 1]);
+								}						}
+						}
+						else if(aleatoire_simon == 3 && cube_attente == 0) //jaune
+						{
+							printf("jaune");
+							if(cube_time < 100)
+							{
+								tour_suivant = 0;
+								transparence_simon_jaune = 1;
+								cube_time += 1;
+								printf(" cube time : %i\n", cube_time);
+							}
+							else
+							{
+								simon[tour_simon] = 'j';
+								tour_suivant = 1;
+								cube_time = 0;
+								transparence_simon_jaune = 0.3;
+								aleatoire_simon = 0;
+								cube_attente = 1;
+								tour_simon+= 1;
+								nb_flash_actuel = 0;
+								tour_IA0_Link1 = 1;
+								for (int i = 0; i < tour_simon - 1; ++i)
+								{
+									printf("simon[%i] = %c\n", tour_simon - 1, simon[tour_simon - 1]);
+								}						}
+						}
+						else if(aleatoire_simon == 4 && cube_attente == 0) //vert
+						{
+							printf("vert");
+							if(cube_time < 100)
+							{
+								tour_suivant = 0;
+								transparence_simon_vert = 1;
+								cube_time += 1;
+								printf(" cube time : %i\n", cube_time);
+							}
+							else
+							{
+								simon[tour_simon] = 'v';
+								tour_suivant = 1;
+								cube_time = 0;
+								transparence_simon_vert = 0.3;
+								aleatoire_simon = 0;
+								cube_attente = 1;
+								tour_simon+= 1;
+								nb_flash_actuel = 0;
+								tour_IA0_Link1 = 1;
+								for (int i = 0; i < tour_simon - 1; ++i)
+								{
+									printf("simon[%i] = %c\n", tour_simon - 1, simon[tour_simon - 1]);
+								}						
+							}
+						}
+
+					}
+
+					else if (nb_flash_actuel < tour_simon && cube_attente == 0)
+					{
+						printf("SECOND IF ****************************** \n");
+						printf(" cube time : %i\n", cube_time);
+
+						if(simon[nb_flash_actuel] == 'b') //bleu
+						{
+							if(cube_time < 100)
+							{
+								tour_suivant = 0;
+								transparence_simon_bleu = 1;
+								cube_time += 1;
+								printf(" cube time : %i\n", cube_time);
+							}
+							else
+							{
+								tour_suivant = 1;
+								cube_time = 0;
+								transparence_simon_bleu = 0.3;
+								aleatoire_simon = 0;
+								cube_attente = 1;
+								nb_flash_actuel += 1;
+							}
+						}
+						else if(simon[nb_flash_actuel] == 'r') //rouge
+						{
+							if(cube_time < 100)
+							{
+								tour_suivant = 0;
+								transparence_simon_rouge = 1;
+								cube_time += 1;
+								printf(" cube time : %i\n", cube_time);
+							}
+							else
+							{
+								tour_suivant = 1;
+								cube_time = 0;
+								transparence_simon_rouge = 0.3;
+								aleatoire_simon = 0;
+								cube_attente = 1;
+								nb_flash_actuel += 1;
+							}
+						}
+						else if(simon[nb_flash_actuel] == 'j') //jaune
+						{
+							if(cube_time < 100)
+							{
+								tour_suivant = 0;
+								transparence_simon_jaune = 1;
+								cube_time += 1;
+								printf(" cube time : %i\n", cube_time);
+							}
+							else
+							{
+								tour_suivant = 1;
+								cube_time = 0;
+								transparence_simon_jaune = 0.3;
+								aleatoire_simon = 0;
+								cube_attente = 1;
+								nb_flash_actuel += 1;
+							}
+						}
+						else if(simon[nb_flash_actuel] == 'v') //vert
+						{
+							if(cube_time < 100)
+							{
+								tour_suivant = 0;
+								transparence_simon_vert = 1;
+								cube_time += 1;
+								printf(" cube time : %i\n", cube_time);
+							}
+							else
+							{
+								tour_suivant = 1;
+								cube_time = 0;
+								transparence_simon_vert = 0.3;
+								aleatoire_simon = 0;
+								cube_attente = 1;
+								nb_flash_actuel += 1;
+							}
+						}
+					}	
+
+					// printf("nb_flash_actuel_apres :  %i\n", nb_flash_actuel);
+					//printf("tour_simon_apres :  %i\n", tour_simon);
+				}
+				else if(position_y > 2900 && position_y < 3100 && tour_IA0_Link1 == 1) // tour link
+				{
+
+
+
+					//printf("tour_simon : %i\n", tour_simon);
+					//printf("nb_click : %i\n", nb_click);
+					if(nb_click < tour_simon )
+					{
+
+						if(cube_attente < 50 && cube_attente > 0)  // délais d'attente
+						{
+							cube_attente += 1;
+							//printf(" attente : %i\n", cube_time);
+						}
+						else
+						{
+							cube_attente = 0;
+						}
+
+						if(mouse_x > 568 && mouse_x < 746 && mouse_y > 210 && mouse_y < 401 && mouse_state == GLUT_DOWN && mouse_button == GLUT_LEFT_BUTTON)
 						{
 							printf("bleu \n");
-							if(cube_attente == 0)
+							for (int i = 0; i < nb_click; ++i)
 							{
-								if(cube_time < 25)
+								//printf("simon[%i] = %c\n",i, simon[i]);
+							}
+							if(simon[nb_click] == 'b')
+							{
+								printf("bleu \n");
+								if(cube_attente == 0)
 								{
-									tour_suivant = 0;
-									transparence_simon_bleu = 1;
-									cube_time += 1;
-									//printf(" cube time : %i\n", cube_time);
-								}
-								else
-								{
-									tour_suivant = 1;
-									cube_time = 0;
-									transparence_simon_bleu = 0.3;
-									aleatoire_simon = 0;
-									cube_attente = 1;
-									nb_click += 1;
-									//printf("nb_click : %i\n, tour_simon : %i\n", nb_click, tour_simon);
-									if(nb_click == tour_simon && nb_click < max_simon)
+									if(cube_time < 25)
 									{
-										tour_IA0_Link1 = 0;
-										nb_click = 0;
+										tour_suivant = 0;
+										transparence_simon_bleu = 1;
+										cube_time += 1;
+										//printf(" cube time : %i\n", cube_time);
 									}
-									for (int i = 0; i < nb_click; ++i)
+									else
 									{
-										//printf("simon[%i] = %c\n",nb_click, simon[nb_click]);
+										tour_suivant = 1;
+										cube_time = 0;
+										transparence_simon_bleu = 0.3;
+										aleatoire_simon = 0;
+										cube_attente = 1;
+										nb_click += 1;
+										//printf("nb_click : %i\n, tour_simon : %i\n", nb_click, tour_simon);
+										if(nb_click == tour_simon && nb_click < max_simon)
+										{
+											tour_IA0_Link1 = 0;
+											nb_click = 0;
+										}
+										for (int i = 0; i < nb_click; ++i)
+										{
+											//printf("simon[%i] = %c\n",nb_click, simon[nb_click]);
+										}
 									}
 								}
 							}
+							else
+							{
+								// transparence_simon_bleu = 0;
+								// transparence_simon_rouge = 0;
+								// transparence_simon_jaune = 0;
+								// transparence_simon_vert = 0;
+								printf("perdu \n");
+							}
 						}
-						else
-						{
-							// transparence_simon_bleu = 0;
-							// transparence_simon_rouge = 0;
-							// transparence_simon_jaune = 0;
-							// transparence_simon_vert = 0;
-							printf("perdu \n");
-						}
-					}
-					else if(mouse_x > 696 && mouse_x < 873 && mouse_y > 421 && mouse_y < 516 && mouse_state == GLUT_DOWN && mouse_button == GLUT_LEFT_BUTTON)
-					{
-						printf("rouge \n");
-						for (int i = 0; i < nb_click; ++i)
-						{
-							//printf("simon[%i] = %c\n",i, simon[i]);
-						}
-						if(simon[nb_click] == 'r')
+						else if(mouse_x > 696 && mouse_x < 873 && mouse_y > 421 && mouse_y < 516 && mouse_state == GLUT_DOWN && mouse_button == GLUT_LEFT_BUTTON)
 						{
 							printf("rouge \n");
-							if(cube_attente == 0)
+							for (int i = 0; i < nb_click; ++i)
 							{
-								if(cube_time < 25)
+								//printf("simon[%i] = %c\n",i, simon[i]);
+							}
+							if(simon[nb_click] == 'r')
+							{
+								printf("rouge \n");
+								if(cube_attente == 0)
 								{
-									tour_suivant = 0;
-									transparence_simon_rouge = 1;
-									cube_time += 1;
-									//printf(" cube time : %i\n", cube_time);
-								}
-								else
-								{
-									tour_suivant = 1;
-									cube_time = 0;
-									transparence_simon_rouge = 0.3;
-									aleatoire_simon = 0;
-									cube_attente = 1;
-									nb_click += 1;
-									//printf("nb_click : %i\n, tour_simon : %i\n", nb_click, tour_simon);
-									if(nb_click == tour_simon && nb_click < max_simon)
+									if(cube_time < 25)
 									{
-										tour_IA0_Link1 = 0;
-										nb_click = 0;
+										tour_suivant = 0;
+										transparence_simon_rouge = 1;
+										cube_time += 1;
+										//printf(" cube time : %i\n", cube_time);
 									}
-									for (int i = 0; i < nb_click; ++i)
+									else
 									{
-										printf("simon[%i] = %c\n",nb_click, simon[nb_click]);
+										tour_suivant = 1;
+										cube_time = 0;
+										transparence_simon_rouge = 0.3;
+										aleatoire_simon = 0;
+										cube_attente = 1;
+										nb_click += 1;
+										//printf("nb_click : %i\n, tour_simon : %i\n", nb_click, tour_simon);
+										if(nb_click == tour_simon && nb_click < max_simon)
+										{
+											tour_IA0_Link1 = 0;
+											nb_click = 0;
+										}
+										for (int i = 0; i < nb_click; ++i)
+										{
+											printf("simon[%i] = %c\n",nb_click, simon[nb_click]);
+										}
 									}
 								}
 							}
+							else
+							{
+								// transparence_simon_bleu = 0;
+								// transparence_simon_rouge = 0;
+								// transparence_simon_jaune = 0;
+								// transparence_simon_vert = 0;
+								printf("perdu \n");
+							}
 						}
-						else
-						{
-							// transparence_simon_bleu = 0;
-							// transparence_simon_rouge = 0;
-							// transparence_simon_jaune = 0;
-							// transparence_simon_vert = 0;
-							printf("perdu \n");
-						}
-					}
-					else if(mouse_x > 699 && mouse_x < 870 && mouse_y > 93 && mouse_y < 291 && mouse_state == GLUT_DOWN && mouse_button == GLUT_LEFT_BUTTON)
-					{
-						printf("jaune \n");
-						for (int i = 0; i < tour_simon; ++i)
-						{
-							printf("simon[%i] = %c\n",i, simon[i]);
-						}
-						if(simon[nb_click] == 'j')
+						else if(mouse_x > 699 && mouse_x < 870 && mouse_y > 93 && mouse_y < 291 && mouse_state == GLUT_DOWN && mouse_button == GLUT_LEFT_BUTTON)
 						{
 							printf("jaune \n");
-							if(cube_attente == 0)
+							for (int i = 0; i < tour_simon; ++i)
 							{
-								if(cube_time < 25)
+								printf("simon[%i] = %c\n",i, simon[i]);
+							}
+							if(simon[nb_click] == 'j')
+							{
+								printf("jaune \n");
+								if(cube_attente == 0)
 								{
-									tour_suivant = 0;
-									transparence_simon_jaune = 1;
-									cube_time += 1;
-									//printf(" cube time : %i\n", cube_time);
-								}
-								else
-								{
-									tour_suivant = 1;
-									cube_time = 0;
-									transparence_simon_jaune = 0.3;
-									aleatoire_simon = 0;
-									cube_attente = 1;
-									nb_click += 1;
-									//printf("nb_click : %i\n, tour_simon : %i\n", nb_click, tour_simon);
-									if(nb_click == tour_simon && nb_click < max_simon)
+									if(cube_time < 25)
 									{
-										tour_IA0_Link1 = 0;
-										nb_click = 0;
+										tour_suivant = 0;
+										transparence_simon_jaune = 1;
+										cube_time += 1;
+										//printf(" cube time : %i\n", cube_time);
 									}
-									for (int i = 0; i < nb_click; ++i)
+									else
 									{
-										//printf("simon[%i] = %c\n",nb_click, simon[nb_click]);
+										tour_suivant = 1;
+										cube_time = 0;
+										transparence_simon_jaune = 0.3;
+										aleatoire_simon = 0;
+										cube_attente = 1;
+										nb_click += 1;
+										//printf("nb_click : %i\n, tour_simon : %i\n", nb_click, tour_simon);
+										if(nb_click == tour_simon && nb_click < max_simon)
+										{
+											tour_IA0_Link1 = 0;
+											nb_click = 0;
+										}
+										for (int i = 0; i < nb_click; ++i)
+										{
+											//printf("simon[%i] = %c\n",nb_click, simon[nb_click]);
+										}
 									}
 								}
 							}
+							else
+							{
+								// transparence_simon_bleu = 0;
+								// transparence_simon_rouge = 0;
+								// transparence_simon_jaune = 0;
+								// transparence_simon_vert = 0;
+								printf("perdu \n");
+							}					
 						}
-						else
-						{
-							// transparence_simon_bleu = 0;
-							// transparence_simon_rouge = 0;
-							// transparence_simon_jaune = 0;
-							// transparence_simon_vert = 0;
-							printf("perdu \n");
-						}					
-					}
-					else if(mouse_x > 814 && mouse_x < 995 && mouse_y > 214 && mouse_y < 402 && mouse_state == GLUT_DOWN && mouse_button == GLUT_LEFT_BUTTON)
-					{
-						printf("vert \n");
-						for (int i = 0; i < nb_click; ++i)
-						{
-							//printf("simon[%i] = %c\n",i, simon[i]);
-						}
-						if(simon[nb_click] == 'v')
+						else if(mouse_x > 814 && mouse_x < 995 && mouse_y > 214 && mouse_y < 402 && mouse_state == GLUT_DOWN && mouse_button == GLUT_LEFT_BUTTON)
 						{
 							printf("vert \n");
-							if(cube_attente == 0)
+							for (int i = 0; i < nb_click; ++i)
 							{
-								if(cube_time < 25)
+								//printf("simon[%i] = %c\n",i, simon[i]);
+							}
+							if(simon[nb_click] == 'v')
+							{
+								printf("vert \n");
+								if(cube_attente == 0)
 								{
-									tour_suivant = 0;
-									transparence_simon_vert = 1;
-									cube_time += 1;
-									//printf(" cube time : %i\n", cube_time);
-								}
-								else
-								{
-									tour_suivant = 1;
-									cube_time = 0;
-									transparence_simon_vert = 0.3;
-									aleatoire_simon = 0;
-									cube_attente = 1;
-									nb_click += 1;
-									//printf("nb_click : %i\n, tour_simon : %i\n", nb_click, tour_simon);
-									if(nb_click == tour_simon && nb_click < max_simon)
+									if(cube_time < 25)
 									{
-										tour_IA0_Link1 = 0;
-										nb_click = 0;
+										tour_suivant = 0;
+										transparence_simon_vert = 1;
+										cube_time += 1;
+										//printf(" cube time : %i\n", cube_time);
 									}
-									for (int i = 0; i < nb_click; ++i)
+									else
 									{
-										printf("simon[%i] = %c\n",nb_click, simon[nb_click]);
+										tour_suivant = 1;
+										cube_time = 0;
+										transparence_simon_vert = 0.3;
+										aleatoire_simon = 0;
+										cube_attente = 1;
+										nb_click += 1;
+										//printf("nb_click : %i\n, tour_simon : %i\n", nb_click, tour_simon);
+										if(nb_click == tour_simon && nb_click < max_simon)
+										{
+											tour_IA0_Link1 = 0;
+											nb_click = 0;
+										}
+										for (int i = 0; i < nb_click; ++i)
+										{
+											printf("simon[%i] = %c\n",nb_click, simon[nb_click]);
+										}
 									}
 								}
 							}
+							else
+							{
+								// transparence_simon_bleu = 0;
+								// transparence_simon_rouge = 0;
+								// transparence_simon_jaune = 0;
+								// transparence_simon_vert = 0;
+								printf("perdu \n");
+							}					
+						}
+					}
+					else
+					{
+						printf(" attente : %i\n", cube_attente);
+						if(cube_attente < 500 && cube_attente > 1)  // délais d'attente
+						{
+							cube_attente += 1;
+							printf(" attente : %i\n", cube_time);
+							transparence_simon_bleu = 0;
+							transparence_simon_rouge = 0;
+							transparence_simon_jaune = 0;
+							transparence_simon_vert = 0;
 						}
 						else
 						{
-							// transparence_simon_bleu = 0;
-							// transparence_simon_rouge = 0;
-							// transparence_simon_jaune = 0;
-							// transparence_simon_vert = 0;
-							printf("perdu \n");
-						}					
+							cube_attente = 0;
+						}
+						if (cube_attente <= 500)
+						{
+							transparence_simon_bleu = 1;
+							transparence_simon_rouge = 1;
+							transparence_simon_jaune = 1;
+							transparence_simon_vert = 1;
+							transparence_boule_2 = 1;
+							cube_attente +=1;
+
+						}
+
+						if(cube_attente < 250 && cube_attente > 0)  // délais d'attente
+						{
+							cube_attente += 1;
+							printf(" attente : %i\n", cube_time);
+						}
+						else
+						{
+							position_x = 0;
+							position_y = 2;
+							position_z = 20;
+						}
+
+						
 					}
 				}
 				else
 				{
-					printf(" attente : %i\n", cube_attente);
-					if(cube_attente < 500 && cube_attente > 1)  // délais d'attente
-					{
-						cube_attente += 1;
-						printf(" attente : %i\n", cube_time);
-						transparence_simon_bleu = 0;
-						transparence_simon_rouge = 0;
-						transparence_simon_jaune = 0;
-						transparence_simon_vert = 0;
-					}
-					else
-					{
-						cube_attente = 0;
-					}
-					if (cube_attente <= 500)
-					{
-						transparence_simon_bleu = 1;
-						transparence_simon_rouge = 1;
-						transparence_simon_jaune = 1;
-						transparence_simon_vert = 1;
-						transparence_boule_2 = 1;
-						cube_attente +=1;
-
-					}
-
-					if(cube_attente < 250 && cube_attente > 0)  // délais d'attente
-					{
-						cube_attente += 1;
-						printf(" attente : %i\n", cube_time);
-					}
-					else
-					{
-						position_x = 0;
-						position_y = 2;
-						position_z = 20;
-					}
-
-					
+					//printf("stop");
 				}
-			}
-			else
-			{
-				//printf("stop");
-			}
 
 
 
 
 
 
-			glPushMatrix(); //cube bleu gauche super-simon
-			{
-				glTranslatef(2900,3040,3010);
-				glRotatef(45,1,0,0);
-				glColor4f(0,0,1,transparence_simon_bleu);
-				glutSolidCube(10.0);
+				glPushMatrix(); //cube bleu gauche super-simon
+				{
+					glTranslatef(2900,3040,3010);
+					glRotatef(45,1,0,0);
+					glColor4f(0,0,1,transparence_simon_bleu);
+					glutSolidCube(10.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+				glPushMatrix(); //cube vert droite super-simon
+				{
+					glTranslatef(2900,3040,2990);
+					glRotatef(45,1,0,0);
+					glColor4f(0,1,0,transparence_simon_vert);
+					glutSolidCube(10.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+				glPushMatrix(); //cube jaune haut super-simon
+				{
+					glTranslatef(2900,3050,3000);
+					glRotatef(45,1,0,0);
+					glColor4f(1,1,0,transparence_simon_jaune);
+					glutSolidCube(10.0);
+					glEnd();
+				}
+				glPopMatrix();
+
+				glPushMatrix(); //cube rouge bas super-simon
+				{
+					glTranslatef(2900,3030,3000);
+					glRotatef(45,1,0,0);
+					glColor4f(1,0,0,transparence_simon_rouge);
+					glutSolidCube(10.0);
+					glEnd();
+				}
+				glPopMatrix();
+
 				glEnd();
 			}
 			glPopMatrix();
 
-			glPushMatrix(); //cube vert droite super-simon
-			{
-				glTranslatef(2900,3040,2990);
-				glRotatef(45,1,0,0);
-				glColor4f(0,1,0,transparence_simon_vert);
-				glutSolidCube(10.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-			glPushMatrix(); //cube jaune haut super-simon
-			{
-				glTranslatef(2900,3050,3000);
-				glRotatef(45,1,0,0);
-				glColor4f(1,1,0,transparence_simon_jaune);
-				glutSolidCube(10.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-			glPushMatrix(); //cube rouge bas super-simon
-			{
-				glTranslatef(2900,3030,3000);
-				glRotatef(45,1,0,0);
-				glColor4f(1,0,0,transparence_simon_rouge);
-				glutSolidCube(10.0);
-				glEnd();
-			}
-			glPopMatrix();
-
-			glEnd();
 		}
 		glPopMatrix();
-
 	}
-	glPopMatrix();
 
 
 
@@ -12984,648 +12989,652 @@ GLvoid Modelisation()
 
 	// TIC TAC TOE
 
-	//**************** touches.h ****************
+		//**************** touches.h ****************
 
 
-	//**************** main.c ****************
+		//**************** main.c ****************
 
-	// DANS LE 'GLvoid Modelisation()'
-	glPushMatrix(); // Tic-Tac-Toe
+		// DANS LE 'GLvoid Modelisation()'
+
+	if(position_y > 6000 && position_y < 6500)
 	{
-		glTranslatef(5848, 6022, 6042);
-		glRotatef(90, 0,1,0);
-		glScalef(8,8,8);
-
-		glPushMatrix(); // création cadre
+		glPushMatrix(); // Tic-Tac-Toe
 		{
-			glTranslatef(-0.5,0.5,0); // vers x
-			for(int i = 0; i<10; i++){
-				glTranslatef(1,0,0);
-				glutSolidCube(1);
-				if(i==3 || i==6){
-					glPushMatrix();
-						for(int j = 0; j<9; j++){
-								glTranslatef(0,1,0);
-								glutSolidCube(1);
-						}
-					glPopMatrix();
-				}
-			}
-			
-			glTranslatef(0,-1,0); // vers y
-			for(int i = 0; i<10; i++){
-				glTranslatef(0,1,0);
-				glutSolidCube(1);
-				if(i==3 || i==6){
-					glPushMatrix();
-						for(int j = 0; j<9; j++){
-								glTranslatef(-1,0,0);
-								glutSolidCube(1);
-						}
-					glPopMatrix();
-				}
-			}
-			
-			glTranslatef(1,0,0); // vers -x
-			for(int i = 0; i<10; i++){
-				glTranslatef(-1,0,0);
-				glutSolidCube(1);
-			}
-			
-			glTranslatef(0,1,0); // vers -y
-			for(int i = 0; i<10; i++){
-				glTranslatef(0,-1,0);
-				glutSolidCube(1);
-			}
-		}
-		glPopMatrix(); // fin cadre
-		
-		// Jeu
-		{
-			if (ttt_0 == 1) tout_a_zero();
-			
-			// Victoire		
-			int gagne(){
-			// lignes
-				if (victoire == 0)
-				{
-					if((ttt_1 + ttt_2 + ttt_3 == 3) && (ttt_1_color == ttt_2_color) && (ttt_1_color == ttt_3_color)){
-						if (ttt_tour%2 != 0){ 
-							victoire = 1;
-							ttt_1_color = ttt_2_color = ttt_3_color = 3;
-						}
-						if (ttt_tour%2 == 0){
-							victoire = 2;
-							ttt_1_color = ttt_2_color = ttt_3_color = 4;
-						 }
-						return victoire;
-					}
-					if((ttt_4 + ttt_5 + ttt_6 == 3) && (ttt_4_color == ttt_5_color) && (ttt_4_color == ttt_6_color)){
-						if (ttt_tour%2 != 0){ 
-							victoire = 1;
-							ttt_4_color = ttt_5_color = ttt_6_color = 3;
-						}
-						if (ttt_tour%2 == 0){
-							victoire = 2;
-							ttt_4_color = ttt_5_color = ttt_6_color = 4;
-						 }
-						return victoire;
-					}
-					if((ttt_7 + ttt_8 + ttt_9 == 3) && (ttt_7_color == ttt_8_color) && (ttt_7_color == ttt_9_color)){
-						if (ttt_tour%2 != 0){ 
-							victoire = 1;
-							ttt_7_color = ttt_8_color = ttt_9_color = 3;
-						}
-						if (ttt_tour%2 == 0){
-							victoire = 2;
-							ttt_7_color = ttt_8_color = ttt_9_color = 4;
-						 }
-						return victoire;
-					}
-					if((ttt_1 + ttt_4 + ttt_7 == 3) && (ttt_1_color == ttt_4_color) && (ttt_1_color == ttt_7_color)){
-						if (ttt_tour%2 != 0){ 
-							victoire = 1;
-							ttt_1_color = ttt_4_color = ttt_7_color = 3;
-						}
-						if (ttt_tour%2 == 0){
-							victoire = 2;
-							ttt_1_color = ttt_4_color = ttt_7_color = 4;
-						 }
-						return victoire;
-					}
-					if((ttt_2 + ttt_5 + ttt_8 == 3) && (ttt_2_color == ttt_5_color) && (ttt_2_color == ttt_8_color)){
-						if (ttt_tour%2 != 0){ 
-							victoire = 1;
-							ttt_2_color = ttt_5_color = ttt_8_color = 3;
-						}
-						if (ttt_tour%2 == 0){
-							victoire = 2;
-							ttt_2_color = ttt_5_color = ttt_8_color = 4;
-						 }
-						return victoire;
-					}
-					if((ttt_3 + ttt_6 + ttt_9 == 3) && (ttt_3_color == ttt_6_color) && (ttt_3_color == ttt_9_color)){
-						if (ttt_tour%2 != 0){ 
-							victoire = 1;
-							ttt_3_color = ttt_6_color = ttt_9_color = 3;
-						}
-						if (ttt_tour%2 == 0){
-							victoire = 2;
-							ttt_3_color = ttt_6_color = ttt_9_color = 4;
-						 }
-						return victoire;
-					}
-				// diagonales
-					if((ttt_3 + ttt_5 + ttt_7 == 3) && (ttt_3_color == ttt_5_color) && (ttt_3_color == ttt_7_color)){
-						if (ttt_tour%2 != 0){ 
-							victoire = 1;
-							ttt_3_color = ttt_5_color = ttt_7_color = 3;
-						}
-						if (ttt_tour%2 == 0){
-							victoire = 2;
-							ttt_3_color = ttt_5_color = ttt_7_color = 4;
-						 }
-						return victoire;
-					}
-					if((ttt_1 + ttt_5 + ttt_9 == 3) && (ttt_1_color == ttt_5_color) && (ttt_1_color == ttt_9_color)){
-						if (ttt_tour%2 != 0){ 
-							victoire = 1;
-						}
-						if (ttt_tour%2 == 0){
-							victoire = 2;
-							ttt_1_color = ttt_5_color = ttt_9_color = 4;
-						 }
-						return victoire;
-					}
-				}
-
-				return 0;
-			}
-			gagne();
-			// fin Victoire
-			
-			//IA
-			if(victoire == 0){
-				int combien_cases_libres(){ // calcul du nombre de cases libres
-					int resultat = 0;
-					if (ttt_1 == 0) resultat += 1;
-					if (ttt_2 == 0) resultat += 1;
-					if (ttt_3 == 0) resultat += 1;
-					if (ttt_4 == 0) resultat += 1;
-					if (ttt_5 == 0) resultat += 1;
-					if (ttt_6 == 0) resultat += 1;
-					if (ttt_7 == 0) resultat += 1;
-					if (ttt_8 == 0) resultat += 1;
-					if (ttt_9 == 0) resultat += 1;
-					return resultat;
-				}
-				if((ttt_tour%2 != 0) && (combien_cases_libres() > 0)){ // test tour et si il reste une case libre
-			// *** qu'a-t-il été joué ? ***
-					int cases_libres[combien_cases_libres()];
-					//initialisation
-					for(int i=0; i < combien_cases_libres(); i++) cases_libres[i] = 0;
-					//remplissage
-					for(int i=0; i < combien_cases_libres(); i++){
-						if 		((ttt_1 == 0) && cases_libres[i-1] < 1) cases_libres[i] = 1;
-						else if ((ttt_2 == 0) && cases_libres[i-1] < 2) cases_libres[i] = 2;
-						else if ((ttt_3 == 0) && cases_libres[i-1] < 3) cases_libres[i] = 3;
-						else if ((ttt_4 == 0) && cases_libres[i-1] < 4) cases_libres[i] = 4;
-						else if ((ttt_5 == 0) && cases_libres[i-1] < 5) cases_libres[i] = 5;
-						else if ((ttt_6 == 0) && cases_libres[i-1] < 6) cases_libres[i] = 6;
-						else if ((ttt_7 == 0) && cases_libres[i-1] < 7) cases_libres[i] = 7;
-						else if ((ttt_8 == 0) && cases_libres[i-1] < 8) cases_libres[i] = 8;
-						else if ((ttt_9 == 0) && cases_libres[i-1] < 9) cases_libres[i] = 9;
-					}
-					
-			// *** choix d'une case ***
-					int rand_a_b(int a, int b){
-						return ( rand()/(double)RAND_MAX ) * (b-a) + a;
-					}
-					int random = rand_a_b(0,combien_cases_libres());
-					int choix =  cases_libres[random];
-					if (choix == 1){
-						ttt_1 = 1;
-						ttt_1_color = 2;
-						ttt_tour += 1;
-					}
-					if (choix == 2){
-						ttt_2 = 1;
-						ttt_2_color = 2;
-						ttt_tour += 1;
-					}
-					if (choix == 3){
-						ttt_3 = 1;
-						ttt_3_color = 2;
-						ttt_tour += 1;
-					}
-					if (choix == 4){
-						ttt_4 = 1;
-						ttt_4_color = 2;
-						ttt_tour += 1;
-					}
-					if (choix == 5){
-						ttt_5 = 1;
-						ttt_5_color = 2;
-						ttt_tour += 1;
-					}
-					if (choix == 6){
-						ttt_6 = 1;
-						ttt_6_color = 2;
-						ttt_tour += 1;
-					}
-					if (choix == 7){
-						ttt_7 = 1;
-						ttt_7_color = 2;
-						ttt_tour += 1;
-					}
-					if (choix == 8){
-						ttt_8 = 1;
-						ttt_8_color = 2;
-						ttt_tour += 1;
-					}
-					if (choix == 9){
-						ttt_9 = 1;
-						ttt_9_color = 2;
-						ttt_tour += 1;
-					}
-				}
-			}
-			if ((victoire == 1 || victoire == 2) && position_y > 6000 && position_y <  6100)
-			{
-				usleep(500000);
-				position_x = 0;
-				position_y = 2;
-				position_z = 20;
-				transparence_boule_5 = 1;
-			}
-			//fin IA
-				
-			//Déroulement des actions
-			{
-				if (ttt_1 == 1){
-					glPushMatrix();
-						if(ttt_1_color == 1) glColor3f(0,0,1);
-						if(ttt_1_color == 2) glColor3f(1,0,0);
-						if(ttt_1_color == 3) glColor3f(0,1,0);
-						if(ttt_1_color == 4) glColor3f(1,0,1);
-						glTranslatef(2,2,0);
-						glutSolidCube(1);
-					glPopMatrix();
-				}
-				if (ttt_2 == 1){
-					glPushMatrix();
-						if(ttt_2_color == 1) glColor3f(0,0,1);
-						if(ttt_2_color == 2) glColor3f(1,0,0);
-						if(ttt_2_color == 3) glColor3f(0,1,0);
-						if(ttt_2_color == 4) glColor3f(1,0,1);
-						glTranslatef(5,2,0);
-						glutSolidCube(1);
-					glPopMatrix();
-				}
-				if (ttt_3 == 1){
-					glPushMatrix();
-						if(ttt_3_color == 1) glColor3f(0,0,1);
-						if(ttt_3_color == 2) glColor3f(1,0,0);
-						if(ttt_3_color == 3) glColor3f(0,1,0);
-						if(ttt_3_color == 4) glColor3f(1,0,1);
-						glTranslatef(8,2,0);
-						glutSolidCube(1);
-					glPopMatrix();
-				}
-				if (ttt_4 == 1){
-					glPushMatrix();
-						if(ttt_4_color == 1) glColor3f(0,0,1);
-						if(ttt_4_color == 2) glColor3f(1,0,0);
-						if(ttt_4_color == 3) glColor3f(0,1,0);
-						if(ttt_4_color == 4) glColor3f(1,0,1);
-						glTranslatef(2,5,0);
-						glutSolidCube(1);
-					glPopMatrix();
-				}
-				if (ttt_5 == 1){
-					glPushMatrix();
-						if(ttt_5_color == 1) glColor3f(0,0,1);
-						if(ttt_5_color == 2) glColor3f(1,0,0);
-						if(ttt_5_color == 3) glColor3f(0,1,0);
-						if(ttt_5_color == 4) glColor3f(1,0,1);
-						glTranslatef(5,5,0);
-						glutSolidCube(1);
-					glPopMatrix();
-				}
-				if (ttt_6 == 1){
-					glPushMatrix();
-						if(ttt_6_color == 1) glColor3f(0,0,1);
-						if(ttt_6_color == 2) glColor3f(1,0,0);
-						if(ttt_6_color == 3) glColor3f(0,1,0);
-						if(ttt_6_color == 4) glColor3f(1,0,1);
-						glTranslatef(8,5,0);
-						glutSolidCube(1);
-					glPopMatrix();
-				}
-				if (ttt_7 == 1){
-					glPushMatrix();
-						if(ttt_7_color == 1) glColor3f(0,0,1);
-						if(ttt_7_color == 2) glColor3f(1,0,0);
-						if(ttt_7_color == 3) glColor3f(0,1,0);
-						if(ttt_7_color == 4) glColor3f(1,0,1);
-						glTranslatef(2,8,0);
-						glutSolidCube(1);
-					glPopMatrix();
-				}
-				if (ttt_8 == 1){
-					glPushMatrix();
-						if(ttt_8_color == 1) glColor3f(0,0,1);
-						if(ttt_8_color == 2) glColor3f(1,0,0);
-						if(ttt_8_color == 3) glColor3f(0,1,0);
-						if(ttt_8_color == 4) glColor3f(1,0,1);
-						glTranslatef(5,8,0);
-						glutSolidCube(1);
-					glPopMatrix();
-				}
-				if (ttt_9 == 1){
-					glPushMatrix();
-						if(ttt_9_color == 1) glColor3f(0,0,1);
-						if(ttt_9_color == 2) glColor3f(1,0,0);
-						if(ttt_9_color == 3) glColor3f(0,1,0);
-						if(ttt_9_color == 4) glColor3f(1,0,1);
-						glTranslatef(8,8,0);
-						glutSolidCube(1);
-					glPopMatrix();
-				}
-			}
-			// fin Déroulement
-		}
-		//fin Jeu
-	}
-	glPopMatrix();
-
-
-
-	glPushMatrix(); //sol ile tictactoe
-	{
-		glTranslatef(5950,6000,6000);
-
-		glScalef(70,1,40);
-		glColor3f(1,1,1);
-		glutSolidCube(3.0);
-		glEnd();
-	}
-	glPopMatrix();
-
-
-	glPushMatrix(); //lampadaire
-	{
-
-		glTranslatef(5890,6022,6040);
-		glRotatef(90,0,1,0);
-
-		glPushMatrix(); //poteau
-		{
-			glTranslatef(-10, -17, -15);
-			glScalef(1,50,1);
-			glColor3f(0.75,0.75,0.75);
-			glutSolidCube(1.0);
-			glEnd();
-		}
-		glPopMatrix();
-
-		glPushMatrix(); //barre horizontale
-		{
-			glTranslatef(-5.5, 8, -15);
-			glScalef(10,1,1);
-			glColor3f(0.75,0.75,0.75);
-			glutSolidCube(1.0);
-			glEnd();
-		}
-		glPopMatrix();
-
-		glPushMatrix(); //baton vertical
-		{
-			glTranslatef(0, 7, -15);
-			glScalef(1,3,1);
-			glColor3f(0.75,0.75,0.75);
-			glutSolidCube(1.0);
-			glEnd();
-		}
-		glPopMatrix();
-
-
-		glPushMatrix(); //ampoule/lumiere
-		{
-
-			glTranslatef(0, 4.5, -15);
-			glScalef(1,1,1);
-			glColor4f(couleur_ampoule,couleur_ampoule,couleur_ampoule, couleur_ampoule);
-			glutSolidCube(2.0);
-			glEnd();
-		}
-		glPopMatrix();
-
-
-		glPushMatrix(); //lampion
-		{
-			glTranslatef(0, 5, -15);
-			glScalef(1,1,1);
-			glColor4f(0.82,0.82,0.82,0.25);
-			glutSolidCube(4.0);
-			glEnd();
-		}
-		glPopMatrix();
-		glEnd();
-
-	}
-	glPopMatrix();
-
-
-	glPushMatrix(); //Maison super simon
-	{
-		glTranslatef(6020, 6020, 5900);
-		glRotatef(-90,0,1,0);
-
-
-		glPushMatrix(); //mur du fond
-		{		
-			glTranslatef(100,0,-30);
-			glScalef(9,5,0.4);
-			glColor4f(1,1,1, 0.8);
-			glutSolidCube(7.0);
-			glEnd();
-		}
-		glPopMatrix();
-
-
-		glPushMatrix(); //mur de droite
-		{		
-			glTranslatef(131,-1,-6);
+			glTranslatef(5848, 6022, 6042);
 			glRotatef(90, 0,1,0);
-			glScalef(7,5,0.4);
-			glColor4f(0.5,0.5,0.5, 0.8);
-			glutSolidCube(7.0);
-			glEnd();
+			glScalef(8,8,8);
+
+			glPushMatrix(); // création cadre
+			{
+				glTranslatef(-0.5,0.5,0); // vers x
+				for(int i = 0; i<10; i++){
+					glTranslatef(1,0,0);
+					glutSolidCube(1);
+					if(i==3 || i==6){
+						glPushMatrix();
+							for(int j = 0; j<9; j++){
+									glTranslatef(0,1,0);
+									glutSolidCube(1);
+							}
+						glPopMatrix();
+					}
+				}
+				
+				glTranslatef(0,-1,0); // vers y
+				for(int i = 0; i<10; i++){
+					glTranslatef(0,1,0);
+					glutSolidCube(1);
+					if(i==3 || i==6){
+						glPushMatrix();
+							for(int j = 0; j<9; j++){
+									glTranslatef(-1,0,0);
+									glutSolidCube(1);
+							}
+						glPopMatrix();
+					}
+				}
+				
+				glTranslatef(1,0,0); // vers -x
+				for(int i = 0; i<10; i++){
+					glTranslatef(-1,0,0);
+					glutSolidCube(1);
+				}
+				
+				glTranslatef(0,1,0); // vers -y
+				for(int i = 0; i<10; i++){
+					glTranslatef(0,-1,0);
+					glutSolidCube(1);
+				}
+			}
+			glPopMatrix(); // fin cadre
+			
+			// Jeu
+			{
+				if (ttt_0 == 1) tout_a_zero();
+				
+				// Victoire		
+				int gagne(){
+				// lignes
+					if (victoire == 0)
+					{
+						if((ttt_1 + ttt_2 + ttt_3 == 3) && (ttt_1_color == ttt_2_color) && (ttt_1_color == ttt_3_color)){
+							if (ttt_tour%2 != 0){ 
+								victoire = 1;
+								ttt_1_color = ttt_2_color = ttt_3_color = 3;
+							}
+							if (ttt_tour%2 == 0){
+								victoire = 2;
+								ttt_1_color = ttt_2_color = ttt_3_color = 4;
+							 }
+							return victoire;
+						}
+						if((ttt_4 + ttt_5 + ttt_6 == 3) && (ttt_4_color == ttt_5_color) && (ttt_4_color == ttt_6_color)){
+							if (ttt_tour%2 != 0){ 
+								victoire = 1;
+								ttt_4_color = ttt_5_color = ttt_6_color = 3;
+							}
+							if (ttt_tour%2 == 0){
+								victoire = 2;
+								ttt_4_color = ttt_5_color = ttt_6_color = 4;
+							 }
+							return victoire;
+						}
+						if((ttt_7 + ttt_8 + ttt_9 == 3) && (ttt_7_color == ttt_8_color) && (ttt_7_color == ttt_9_color)){
+							if (ttt_tour%2 != 0){ 
+								victoire = 1;
+								ttt_7_color = ttt_8_color = ttt_9_color = 3;
+							}
+							if (ttt_tour%2 == 0){
+								victoire = 2;
+								ttt_7_color = ttt_8_color = ttt_9_color = 4;
+							 }
+							return victoire;
+						}
+						if((ttt_1 + ttt_4 + ttt_7 == 3) && (ttt_1_color == ttt_4_color) && (ttt_1_color == ttt_7_color)){
+							if (ttt_tour%2 != 0){ 
+								victoire = 1;
+								ttt_1_color = ttt_4_color = ttt_7_color = 3;
+							}
+							if (ttt_tour%2 == 0){
+								victoire = 2;
+								ttt_1_color = ttt_4_color = ttt_7_color = 4;
+							 }
+							return victoire;
+						}
+						if((ttt_2 + ttt_5 + ttt_8 == 3) && (ttt_2_color == ttt_5_color) && (ttt_2_color == ttt_8_color)){
+							if (ttt_tour%2 != 0){ 
+								victoire = 1;
+								ttt_2_color = ttt_5_color = ttt_8_color = 3;
+							}
+							if (ttt_tour%2 == 0){
+								victoire = 2;
+								ttt_2_color = ttt_5_color = ttt_8_color = 4;
+							 }
+							return victoire;
+						}
+						if((ttt_3 + ttt_6 + ttt_9 == 3) && (ttt_3_color == ttt_6_color) && (ttt_3_color == ttt_9_color)){
+							if (ttt_tour%2 != 0){ 
+								victoire = 1;
+								ttt_3_color = ttt_6_color = ttt_9_color = 3;
+							}
+							if (ttt_tour%2 == 0){
+								victoire = 2;
+								ttt_3_color = ttt_6_color = ttt_9_color = 4;
+							 }
+							return victoire;
+						}
+					// diagonales
+						if((ttt_3 + ttt_5 + ttt_7 == 3) && (ttt_3_color == ttt_5_color) && (ttt_3_color == ttt_7_color)){
+							if (ttt_tour%2 != 0){ 
+								victoire = 1;
+								ttt_3_color = ttt_5_color = ttt_7_color = 3;
+							}
+							if (ttt_tour%2 == 0){
+								victoire = 2;
+								ttt_3_color = ttt_5_color = ttt_7_color = 4;
+							 }
+							return victoire;
+						}
+						if((ttt_1 + ttt_5 + ttt_9 == 3) && (ttt_1_color == ttt_5_color) && (ttt_1_color == ttt_9_color)){
+							if (ttt_tour%2 != 0){ 
+								victoire = 1;
+							}
+							if (ttt_tour%2 == 0){
+								victoire = 2;
+								ttt_1_color = ttt_5_color = ttt_9_color = 4;
+							 }
+							return victoire;
+						}
+					}
+
+					return 0;
+				}
+				gagne();
+				// fin Victoire
+				
+				//IA
+				if(victoire == 0){
+					int combien_cases_libres(){ // calcul du nombre de cases libres
+						int resultat = 0;
+						if (ttt_1 == 0) resultat += 1;
+						if (ttt_2 == 0) resultat += 1;
+						if (ttt_3 == 0) resultat += 1;
+						if (ttt_4 == 0) resultat += 1;
+						if (ttt_5 == 0) resultat += 1;
+						if (ttt_6 == 0) resultat += 1;
+						if (ttt_7 == 0) resultat += 1;
+						if (ttt_8 == 0) resultat += 1;
+						if (ttt_9 == 0) resultat += 1;
+						return resultat;
+					}
+					if((ttt_tour%2 != 0) && (combien_cases_libres() > 0)){ // test tour et si il reste une case libre
+				// *** qu'a-t-il été joué ? ***
+						int cases_libres[combien_cases_libres()];
+						//initialisation
+						for(int i=0; i < combien_cases_libres(); i++) cases_libres[i] = 0;
+						//remplissage
+						for(int i=0; i < combien_cases_libres(); i++){
+							if 		((ttt_1 == 0) && cases_libres[i-1] < 1) cases_libres[i] = 1;
+							else if ((ttt_2 == 0) && cases_libres[i-1] < 2) cases_libres[i] = 2;
+							else if ((ttt_3 == 0) && cases_libres[i-1] < 3) cases_libres[i] = 3;
+							else if ((ttt_4 == 0) && cases_libres[i-1] < 4) cases_libres[i] = 4;
+							else if ((ttt_5 == 0) && cases_libres[i-1] < 5) cases_libres[i] = 5;
+							else if ((ttt_6 == 0) && cases_libres[i-1] < 6) cases_libres[i] = 6;
+							else if ((ttt_7 == 0) && cases_libres[i-1] < 7) cases_libres[i] = 7;
+							else if ((ttt_8 == 0) && cases_libres[i-1] < 8) cases_libres[i] = 8;
+							else if ((ttt_9 == 0) && cases_libres[i-1] < 9) cases_libres[i] = 9;
+						}
+						
+				// *** choix d'une case ***
+						int rand_a_b(int a, int b){
+							return ( rand()/(double)RAND_MAX ) * (b-a) + a;
+						}
+						int random = rand_a_b(0,combien_cases_libres());
+						int choix =  cases_libres[random];
+						if (choix == 1){
+							ttt_1 = 1;
+							ttt_1_color = 2;
+							ttt_tour += 1;
+						}
+						if (choix == 2){
+							ttt_2 = 1;
+							ttt_2_color = 2;
+							ttt_tour += 1;
+						}
+						if (choix == 3){
+							ttt_3 = 1;
+							ttt_3_color = 2;
+							ttt_tour += 1;
+						}
+						if (choix == 4){
+							ttt_4 = 1;
+							ttt_4_color = 2;
+							ttt_tour += 1;
+						}
+						if (choix == 5){
+							ttt_5 = 1;
+							ttt_5_color = 2;
+							ttt_tour += 1;
+						}
+						if (choix == 6){
+							ttt_6 = 1;
+							ttt_6_color = 2;
+							ttt_tour += 1;
+						}
+						if (choix == 7){
+							ttt_7 = 1;
+							ttt_7_color = 2;
+							ttt_tour += 1;
+						}
+						if (choix == 8){
+							ttt_8 = 1;
+							ttt_8_color = 2;
+							ttt_tour += 1;
+						}
+						if (choix == 9){
+							ttt_9 = 1;
+							ttt_9_color = 2;
+							ttt_tour += 1;
+						}
+					}
+				}
+				if ((victoire == 1 || victoire == 2) && position_y > 6000 && position_y <  6100)
+				{
+					usleep(500000);
+					position_x = 0;
+					position_y = 2;
+					position_z = 20;
+					transparence_boule_5 = 1;
+				}
+				//fin IA
+					
+				//Déroulement des actions
+				{
+					if (ttt_1 == 1){
+						glPushMatrix();
+							if(ttt_1_color == 1) glColor3f(0,0,1);
+							if(ttt_1_color == 2) glColor3f(1,0,0);
+							if(ttt_1_color == 3) glColor3f(0,1,0);
+							if(ttt_1_color == 4) glColor3f(1,0,1);
+							glTranslatef(2,2,0);
+							glutSolidCube(1);
+						glPopMatrix();
+					}
+					if (ttt_2 == 1){
+						glPushMatrix();
+							if(ttt_2_color == 1) glColor3f(0,0,1);
+							if(ttt_2_color == 2) glColor3f(1,0,0);
+							if(ttt_2_color == 3) glColor3f(0,1,0);
+							if(ttt_2_color == 4) glColor3f(1,0,1);
+							glTranslatef(5,2,0);
+							glutSolidCube(1);
+						glPopMatrix();
+					}
+					if (ttt_3 == 1){
+						glPushMatrix();
+							if(ttt_3_color == 1) glColor3f(0,0,1);
+							if(ttt_3_color == 2) glColor3f(1,0,0);
+							if(ttt_3_color == 3) glColor3f(0,1,0);
+							if(ttt_3_color == 4) glColor3f(1,0,1);
+							glTranslatef(8,2,0);
+							glutSolidCube(1);
+						glPopMatrix();
+					}
+					if (ttt_4 == 1){
+						glPushMatrix();
+							if(ttt_4_color == 1) glColor3f(0,0,1);
+							if(ttt_4_color == 2) glColor3f(1,0,0);
+							if(ttt_4_color == 3) glColor3f(0,1,0);
+							if(ttt_4_color == 4) glColor3f(1,0,1);
+							glTranslatef(2,5,0);
+							glutSolidCube(1);
+						glPopMatrix();
+					}
+					if (ttt_5 == 1){
+						glPushMatrix();
+							if(ttt_5_color == 1) glColor3f(0,0,1);
+							if(ttt_5_color == 2) glColor3f(1,0,0);
+							if(ttt_5_color == 3) glColor3f(0,1,0);
+							if(ttt_5_color == 4) glColor3f(1,0,1);
+							glTranslatef(5,5,0);
+							glutSolidCube(1);
+						glPopMatrix();
+					}
+					if (ttt_6 == 1){
+						glPushMatrix();
+							if(ttt_6_color == 1) glColor3f(0,0,1);
+							if(ttt_6_color == 2) glColor3f(1,0,0);
+							if(ttt_6_color == 3) glColor3f(0,1,0);
+							if(ttt_6_color == 4) glColor3f(1,0,1);
+							glTranslatef(8,5,0);
+							glutSolidCube(1);
+						glPopMatrix();
+					}
+					if (ttt_7 == 1){
+						glPushMatrix();
+							if(ttt_7_color == 1) glColor3f(0,0,1);
+							if(ttt_7_color == 2) glColor3f(1,0,0);
+							if(ttt_7_color == 3) glColor3f(0,1,0);
+							if(ttt_7_color == 4) glColor3f(1,0,1);
+							glTranslatef(2,8,0);
+							glutSolidCube(1);
+						glPopMatrix();
+					}
+					if (ttt_8 == 1){
+						glPushMatrix();
+							if(ttt_8_color == 1) glColor3f(0,0,1);
+							if(ttt_8_color == 2) glColor3f(1,0,0);
+							if(ttt_8_color == 3) glColor3f(0,1,0);
+							if(ttt_8_color == 4) glColor3f(1,0,1);
+							glTranslatef(5,8,0);
+							glutSolidCube(1);
+						glPopMatrix();
+					}
+					if (ttt_9 == 1){
+						glPushMatrix();
+							if(ttt_9_color == 1) glColor3f(0,0,1);
+							if(ttt_9_color == 2) glColor3f(1,0,0);
+							if(ttt_9_color == 3) glColor3f(0,1,0);
+							if(ttt_9_color == 4) glColor3f(1,0,1);
+							glTranslatef(8,8,0);
+							glutSolidCube(1);
+						glPopMatrix();
+					}
+				}
+				// fin Déroulement
+			}
+			//fin Jeu
 		}
 		glPopMatrix();
 
 
 
-		glPushMatrix(); //mur de gauche
-		{		
-			glTranslatef(70,-1,-6);
-			glRotatef(-90, 0,1,0);
-			glScalef(7,5,0.4);
-			glColor4f(0.5,0.5,0.5, 0.8);
-			glutSolidCube(7.0);
-			glEnd();
-		}
-		glPopMatrix();
-
-
-		glPushMatrix(); //plafond
-		{		
-			glTranslatef(101,18	,-6);
-			glRotatef(90, 1,0,0);
-			glScalef(9,7,0.4);
-			glColor4f(0,1,1, 0.8);
-			glutSolidCube(7.0);
-			glEnd();
-		}
-		glPopMatrix();
-
-
-
-
-		glPushMatrix(); //toit gauche
-		{		
-			glTranslatef(78,25,-6);
-			glRotatef(90, 1,0,0);
-			glRotatef(22.5, 0,1,0);
-			glScalef(7,7,0.4);
-			glColor4f(0,1,0.5, 0.8);
-			glutSolidCube(7.0);
-			glEnd();
-		}
-		glPopMatrix();
-
-
-		glPushMatrix(); //toit gauche
-		{		
-			glTranslatef(122,25,-6);
-			glRotatef(90, 1,0,0);
-			glRotatef(-22.5, 0,1,0);
-			glScalef(7,7,0.4);
-			glColor4f(0,1,0.5, 0.8);
-			glutSolidCube(7.0);
-			glEnd();
-		}
-		glPopMatrix();
-
-
-		glPushMatrix(); //face avant toit
+		glPushMatrix(); //sol ile tictactoe
 		{
-			glTranslatef(101,27,17);
-			glScalef(32,8.4,1);
-			glColor4f(0,0.41,0.41, 0.8);
-			glBegin( GL_TRIANGLES ); 
-				glVertex3f( 0.0f, 1.f, 0.0f );
-				glVertex3f( -1.0f, -1.0f, 1.0f );
-				glVertex3f( 1.0f, -1.0f, 1.0f);
+			glTranslatef(5950,6000,6000);
 
-				glVertex3f( 0.0f, 1.0f, 0.0f);
-				glVertex3f( -1.0f, -1.0f, 1.0f);
-				glVertex3f( 0.0f, -1.0f, -1.0f);
-
-				glVertex3f( 0.0f, 1.0f, 0.0f);
-				glVertex3f( 0.0f, -1.0f, -1.0f);
-				glVertex3f( 1.0f, -1.0f, 1.0f);
-
-				glVertex3f( -1.0f, -1.0f, 1.0f);
-				glVertex3f( 0.0f, -1.0f, -1.0f);
-				glVertex3f( 1.0f, -1.0f, 1.0f);
+			glScalef(70,1,40);
+			glColor3f(1,1,1);
+			glutSolidCube(3.0);
 			glEnd();
 		}
 		glPopMatrix();
 
 
-
-		glPushMatrix(); //face arrière toit
+		glPushMatrix(); //lampadaire
 		{
-			glTranslatef(101,27,-29);
-			glRotatef(180,0,1,0);
-			glScalef(32,8.4,1);
-			glColor4f(0,0.41,0.41, 0.8);
-			glBegin( GL_TRIANGLES ); 
-				glVertex3f( 0.0f, 1.f, 0.0f );
-				glVertex3f( -1.0f, -1.0f, 1.0f );
-				glVertex3f( 1.0f, -1.0f, 1.0f);
 
-				glVertex3f( 0.0f, 1.0f, 0.0f);
-				glVertex3f( -1.0f, -1.0f, 1.0f);
-				glVertex3f( 0.0f, -1.0f, -1.0f);
+			glTranslatef(5890,6022,6040);
+			glRotatef(90,0,1,0);
 
-				glVertex3f( 0.0f, 1.0f, 0.0f);
-				glVertex3f( 0.0f, -1.0f, -1.0f);
-				glVertex3f( 1.0f, -1.0f, 1.0f);
+			glPushMatrix(); //poteau
+			{
+				glTranslatef(-10, -17, -15);
+				glScalef(1,50,1);
+				glColor3f(0.75,0.75,0.75);
+				glutSolidCube(1.0);
+				glEnd();
+			}
+			glPopMatrix();
 
-				glVertex3f( -1.0f, -1.0f, 1.0f);
-				glVertex3f( 0.0f, -1.0f, -1.0f);
-				glVertex3f( 1.0f, -1.0f, 1.0f);
+			glPushMatrix(); //barre horizontale
+			{
+				glTranslatef(-5.5, 8, -15);
+				glScalef(10,1,1);
+				glColor3f(0.75,0.75,0.75);
+				glutSolidCube(1.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+			glPushMatrix(); //baton vertical
+			{
+				glTranslatef(0, 7, -15);
+				glScalef(1,3,1);
+				glColor3f(0.75,0.75,0.75);
+				glutSolidCube(1.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //ampoule/lumiere
+			{
+
+				glTranslatef(0, 4.5, -15);
+				glScalef(1,1,1);
+				glColor4f(couleur_ampoule,couleur_ampoule,couleur_ampoule, couleur_ampoule);
+				glutSolidCube(2.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //lampion
+			{
+				glTranslatef(0, 5, -15);
+				glScalef(1,1,1);
+				glColor4f(0.82,0.82,0.82,0.25);
+				glutSolidCube(4.0);
+				glEnd();
+			}
+			glPopMatrix();
 			glEnd();
+
 		}
 		glPopMatrix();
 
 
+		glPushMatrix(); //Maison tic tac toe
+		{
+			glTranslatef(6020, 6020, 5900);
+			glRotatef(-90,0,1,0);
 
-		glPushMatrix(); //sol
-		{		
-			glTranslatef(101,-19.5,-8);
-			glRotatef(90, 1,0,0);
-			glScalef(8.5,6.7,0.4);
-			glColor4f(1,0.5,0, 0.8);
-			glutSolidCube(7.0);
+
+			glPushMatrix(); //mur du fond
+			{		
+				glTranslatef(100,0,-30);
+				glScalef(9,5,0.4);
+				glColor4f(1,1,1, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //mur de droite
+			{		
+				glTranslatef(131,-1,-6);
+				glRotatef(90, 0,1,0);
+				glScalef(7,5,0.4);
+				glColor4f(0.5,0.5,0.5, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+
+			glPushMatrix(); //mur de gauche
+			{		
+				glTranslatef(70,-1,-6);
+				glRotatef(-90, 0,1,0);
+				glScalef(7,5,0.4);
+				glColor4f(0.5,0.5,0.5, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //plafond
+			{		
+				glTranslatef(101,18	,-6);
+				glRotatef(90, 1,0,0);
+				glScalef(9,7,0.4);
+				glColor4f(0,1,1, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+
+
+			glPushMatrix(); //toit gauche
+			{		
+				glTranslatef(78,25,-6);
+				glRotatef(90, 1,0,0);
+				glRotatef(22.5, 0,1,0);
+				glScalef(7,7,0.4);
+				glColor4f(0,1,0.5, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //toit gauche
+			{		
+				glTranslatef(122,25,-6);
+				glRotatef(90, 1,0,0);
+				glRotatef(-22.5, 0,1,0);
+				glScalef(7,7,0.4);
+				glColor4f(0,1,0.5, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //face avant toit
+			{
+				glTranslatef(101,27,17);
+				glScalef(32,8.4,1);
+				glColor4f(0,0.41,0.41, 0.8);
+				glBegin( GL_TRIANGLES ); 
+					glVertex3f( 0.0f, 1.f, 0.0f );
+					glVertex3f( -1.0f, -1.0f, 1.0f );
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+
+					glVertex3f( 0.0f, 1.0f, 0.0f);
+					glVertex3f( -1.0f, -1.0f, 1.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+
+					glVertex3f( 0.0f, 1.0f, 0.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+
+					glVertex3f( -1.0f, -1.0f, 1.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+
+			glPushMatrix(); //face arrière toit
+			{
+				glTranslatef(101,27,-29);
+				glRotatef(180,0,1,0);
+				glScalef(32,8.4,1);
+				glColor4f(0,0.41,0.41, 0.8);
+				glBegin( GL_TRIANGLES ); 
+					glVertex3f( 0.0f, 1.f, 0.0f );
+					glVertex3f( -1.0f, -1.0f, 1.0f );
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+
+					glVertex3f( 0.0f, 1.0f, 0.0f);
+					glVertex3f( -1.0f, -1.0f, 1.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+
+					glVertex3f( 0.0f, 1.0f, 0.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+
+					glVertex3f( -1.0f, -1.0f, 1.0f);
+					glVertex3f( 0.0f, -1.0f, -1.0f);
+					glVertex3f( 1.0f, -1.0f, 1.0f);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+
+			glPushMatrix(); //sol
+			{		
+				glTranslatef(101,-19.5,-8);
+				glRotatef(90, 1,0,0);
+				glScalef(8.5,6.7,0.4);
+				glColor4f(1,0.5,0, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+
+
+			glPushMatrix(); //mur de devant gauche
+			{		
+				glTranslatef(83,-3,17);
+				glScalef(3.5,5.6,0.4);
+				glColor4f(1,1,1, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //mur de devant droite
+			{		
+				glTranslatef(120,-3,17);
+				glScalef(3.5,5.6,0.4);
+				glColor4f(1,1,1, 0.8);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //mur de devant au mileu en haut
+			{		
+				glTranslatef(101.5,12,17);
+				glScalef(1.9,1.5,0.4);
+				glColor3f(0.77,0.69,0.49);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+			glPushMatrix(); //fentre en devant gauche
+			{		
+				glTranslatef(82.5,8,18.5);
+				glScalef(2,1.5,0.4);
+				glColor3f(0,0,0);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
+
+
+			glPushMatrix(); //fentre en devant droite
+			{		
+				glTranslatef(119.5,8,18.5);
+				glScalef(2,1.5,0.4);
+				glColor3f(0,0,0);
+				glutSolidCube(7.0);
+				glEnd();
+			}
+			glPopMatrix();
+
 			glEnd();
 		}
 		glPopMatrix();
-
-
-
-
-		glPushMatrix(); //mur de devant gauche
-		{		
-			glTranslatef(83,-3,17);
-			glScalef(3.5,5.6,0.4);
-			glColor4f(1,1,1, 0.8);
-			glutSolidCube(7.0);
-			glEnd();
-		}
-		glPopMatrix();
-
-
-		glPushMatrix(); //mur de devant droite
-		{		
-			glTranslatef(120,-3,17);
-			glScalef(3.5,5.6,0.4);
-			glColor4f(1,1,1, 0.8);
-			glutSolidCube(7.0);
-			glEnd();
-		}
-		glPopMatrix();
-
-
-		glPushMatrix(); //mur de devant au mileu en haut
-		{		
-			glTranslatef(101.5,12,17);
-			glScalef(1.9,1.5,0.4);
-			glColor3f(0.77,0.69,0.49);
-			glutSolidCube(7.0);
-			glEnd();
-		}
-		glPopMatrix();
-
-
-		glPushMatrix(); //fentre en devant gauche
-		{		
-			glTranslatef(82.5,8,18.5);
-			glScalef(2,1.5,0.4);
-			glColor3f(0,0,0);
-			glutSolidCube(7.0);
-			glEnd();
-		}
-		glPopMatrix();
-
-
-
-		glPushMatrix(); //fentre en devant droite
-		{		
-			glTranslatef(119.5,8,18.5);
-			glScalef(2,1.5,0.4);
-			glColor3f(0,0,0);
-			glutSolidCube(7.0);
-			glEnd();
-		}
-		glPopMatrix();
-
-		glEnd();
 	}
-	glPopMatrix();
 
 
 

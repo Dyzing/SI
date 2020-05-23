@@ -466,13 +466,6 @@ void touche_pressee(unsigned char key, int x, int y)
                 break;
       }
 
-    case TOUCHE_MAJ_A:
-                angle_oiseau_vertical = monter(angle_oiseau_vertical);
-                break;
-    case TOUCHE_MIN_A:
-                angle_oiseau_vertical = monter(angle_oiseau_vertical);
-                break;
-
     case TOUCHE_MAJ_Z:
     case TOUCHE_MIN_Z:
               // printf("position_z %f\n, position_y %f\n", position_z, position_y);
@@ -705,128 +698,8 @@ void touche_pressee(unsigned char key, int x, int y)
                 }
                 break;
 
-    case TOUCHE_MAJ_E:
-                angle_oiseau_vertical = descendre(angle_oiseau_vertical);
-                break;
-    case TOUCHE_MIN_E:
-                angle_oiseau_vertical = descendre(angle_oiseau_vertical);
-                break;
-
-    case TOUCHE_MAJ_R:
-                if(montee0_descente1_tete_principal == 1)
-                {
-                  angle_tete_principal += 1;
-                  if (angle_tete_principal == 20)
-                  {
-                    montee0_descente1_tete_principal = 0;
-                  }
-                }
-                break;
-    case TOUCHE_MIN_R:
-                if(montee0_descente1_tete_principal == 0)
-                {
-                  angle_tete_principal -= 1;
-                  if (angle_tete_principal == -15)
-                  {
-                    montee0_descente1_tete_principal = 1;
-                  }
-                }         
-                break;
-
-    case TOUCHE_MAJ_C:
-                printf("garde à vous\n");
-                if(bras_droit_dark == 0 && garde_dark == 0)
-                {
-                  bras_droit_dark = 1;
-                  if(montee0_descente1_bras_droit_dark == 2)
-                    montee0_descente1_bras_droit_dark= 0;
-                  else if(montee0_descente1_bras_droit_dark == 1)
-                  {
-                    garde_dark = 0;
-                  }
-                }
-                else if(bras_droit_dark == 1 && garde_dark == 1)
-                {
-                    garde_dark = 0;    
-                    //montee0_descente1_bras_droit = 1:
-                }
-                break;
-    case TOUCHE_MIN_C:
-                printf("attaque\n");
-                if(bras_gauche_dark == 0 && garde_dark == 0)
-                {
-                  bras_gauche_dark = 1;
-                  montee0_descente1_bras_gauche_dark = 0;
-                }
-                break;
-
-    case TOUCHE_MAJ_T:
-                  if(angle_queue_principale <20)
-                  {
-                     montee0_descente1_queue_principale = 1;
-                  }
-                  angle_queue_principale += montee0_descente1_queue_principale;
-                  if (angle_queue_principale== 20)
-                  {
-                    montee0_descente1_queue_principale = 0;
-                  }               
-                  break;
-    case TOUCHE_MIN_T:
-                  if(angle_queue_principale > -30)
-                  {
-                     montee0_descente1_queue_principale = 1;
-                  }
-                  angle_queue_principale -= montee0_descente1_queue_principale;
-                  if (angle_queue_principale == -30)
-                  {
-                    montee0_descente1_queue_principale = 0;
-                  }
-                         
-                break;
-
-    case TOUCHE_MAJ_O:
-                zcamrot = avancer_x_cam(zcamrot);
-                xcamrot = avancer_z_cam(xcamrot);
-                break;
-    case TOUCHE_MIN_O:
-                zcamrot = avancer_x_cam(zcamrot);
-                xcamrot = avancer_z_cam(xcamrot);       
-                break;
-
-    case TOUCHE_MAJ_K:
-                yrot =  tourner_gauche(yrot);
-                break;
-    case TOUCHE_MIN_K:
-                yrot =  tourner_gauche(yrot);
-                break;
-
-    case TOUCHE_MAJ_L:
-                zcamrot = reculer_x_cam(zcamrot);
-                xcamrot = reculer_z_cam(xcamrot);
-                break;
-    case TOUCHE_MIN_L:
-                zcamrot = reculer_x_cam(zcamrot);
-                xcamrot = reculer_z_cam(xcamrot);
-                break;
-
-    case TOUCHE_MAJ_M:
-                yrot =  tourner_droite(yrot);
-                break;
-    case TOUCHE_MIN_M:
-                yrot =  tourner_droite(yrot);
-                break; 
 
 
-    case TOUCHE_MAJ_I:
-    case TOUCHE_MIN_I:
-                ycamrot += 1;
-                break;
-
-
-    case TOUCHE_MAJ_P:
-    case TOUCHE_MIN_P:
-                ycamrot -= 1;
-                break;  
       //Déclarations Tic-Tac-Toe
 
     case TOUCHE_0:
