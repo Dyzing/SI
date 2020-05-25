@@ -142,7 +142,6 @@ float reculer_z(float z) // Q
 
 
 
-
 void set_camera_3(float x, float y, float z)
 {
     glTranslatef(-x,-y,-z);  
@@ -186,8 +185,11 @@ void touche_pressee(unsigned char key, int x, int y)
         break;
 
     case ESPACE:
-      dino_bouge = 1;
-      dino_monte0_descend1_statique2 = 0;
+      if(dino_bouge == 0)
+      {
+        dino_bouge = 1;
+        dino_monte0_descend1_statique2 = 0;
+      }
       break;
 
     case TOUCHE_MIN_B:
@@ -573,7 +575,7 @@ void vMouse(int button, int state, int x, int y)
       break;
     
     case GLUT_MIDDLE_BUTTON :
-       if (state==GLUT_DOWN)
+      if (state==GLUT_DOWN)
       {
         camera_middle = 1;
       } 
